@@ -1,0 +1,54 @@
+package tsi.too.bvb.entidades.funcionario;
+
+import tsi.too.bvb.entidades.tiposenumerados.TipoUsuario;
+
+public class Funcionario {
+	
+	private String nomeUsuario, senha;
+	private TipoUsuario tipoUsuario;
+
+	public Funcionario() {
+		super();
+	}
+	
+	public Funcionario(String nomeUsuario, String senha, TipoUsuario tipoUsuario) {
+		this();
+		this.nomeUsuario = nomeUsuario;
+		this.senha = senha;
+		this.tipoUsuario = tipoUsuario;
+	}
+	
+	public String getNomeUsuario() {
+		return nomeUsuario;
+	}
+	
+	public void setNomeUsuario(String nomeUsuario) {
+		this.nomeUsuario = nomeUsuario;
+	}
+	
+	public String getSenha() {
+		return senha;
+	}
+	
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	
+	public TipoUsuario getTipoUsuario() {
+		return tipoUsuario;
+	}
+	
+	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Nome do Usuário: ").append(nomeUsuario)
+				.append("\nSenha: ").append(senha).append("\nTipo do Usuário: ")
+				.append(tipoUsuario);
+		return builder.toString();
+	}
+	
+} // Funcionario

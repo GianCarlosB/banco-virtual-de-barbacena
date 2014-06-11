@@ -1,0 +1,5 @@
+Caminho relativo:
+../../../database/bvbdb
+
+Login: admin
+senha: 123
