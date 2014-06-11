@@ -17,7 +17,7 @@ public class bvbApp {
 		catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
+
 		new MenuPrincipal();
 		
 		// Fecha a conexão com o banco de dados.

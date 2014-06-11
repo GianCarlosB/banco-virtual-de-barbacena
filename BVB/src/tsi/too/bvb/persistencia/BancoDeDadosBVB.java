@@ -1,5 +1,8 @@
 package tsi.too.bvb.persistencia;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class BancoDeDadosBVB extends BancoDeDadosDAO implements Runnable {
 	
@@ -30,7 +33,8 @@ public class BancoDeDadosBVB extends BancoDeDadosDAO implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		this.abrirConexao();
-		System.out.println("Banco de dados iniciado.\nURL da conexão: " + URL);
+		Date date = new Date();    
+		System.out.println("Banco de dados iniciado: " + new SimpleDateFormat("yyyy/MM/dd  HH:mm").format(date) + "\nURL da conexão: " + URL);
 	}
 
 } // class BancoDeDadosBVB

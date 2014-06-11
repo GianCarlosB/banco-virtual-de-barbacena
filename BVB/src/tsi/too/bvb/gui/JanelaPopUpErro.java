@@ -85,7 +85,7 @@ public class JanelaPopUpErro extends JDialog {
 		contentPanel.add(separatorBtn);
 		
 		JLabel lblImg = new JLabel("img");
-		lblImg.setIcon(new ImageIcon("D:\\Meus Documentos\\TSI\\Git\\tsi.too.bvb.git\\BVB\\src\\tsi\\too\\bvb\\recursos\\imagens\\bug.png"));
+		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\bug.png"));
 		lblImg.setBounds(402, 26, 32, 32);
 		contentPanel.add(lblImg);
 		
@@ -142,7 +142,7 @@ public class JanelaPopUpErro extends JDialog {
 		contentPanel.add(separatorBtn);
 		
 		JLabel lblImg = new JLabel("img");
-		lblImg.setIcon(new ImageIcon("D:\\Meus Documentos\\TSI\\Git\\tsi.too.bvb.git\\BVB\\src\\tsi\\too\\bvb\\recursos\\imagens\\bug.png"));
+		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\bug.png"));
 		lblImg.setBounds(402, 26, 32, 32);
 		contentPanel.add(lblImg);
 		

@@ -17,6 +17,9 @@ import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import tsi.too.bvb.eventos.TEMouseMenuPrincipal;
+import tsi.too.bvb.eventos.agencia.TEMouseCadastrarAgencia;
+
 public class MenuPrincipal extends JFrame {
 	
 	/**
@@ -55,7 +58,7 @@ public class MenuPrincipal extends JFrame {
 	private JButton cadClienteImgBtn;
 	private JLabel lblImgBVB;
 	private JEditorPane dtrpnTextoHome;
-	private JButton button;
+	private JButton ajudaImgBtn;
 
 	public MenuPrincipal() {
 		setTitle(".: BVB :.");
@@ -64,7 +67,7 @@ public class MenuPrincipal extends JFrame {
 		setResizable(false);
 		getContentPane().setBackground(Color.DARK_GRAY);
 	
-		
+		// Cores Flat
 		Color peterRiver = new Color(52, 152, 219);
 		Color sunFlower = new Color(241, 196, 15);
 		Color pomergante = new Color(192, 57, 43);
@@ -112,6 +115,7 @@ public class MenuPrincipal extends JFrame {
 		
 		
 		cadClienteImgBtn = new JButton("");
+		cadClienteImgBtn.addMouseListener(new TEMouseMenuPrincipal(this));
 		cadClienteImgBtn.setBounds(30, 30, 160, 160);
 		cadClienteImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\create1.png"));
 		cadClienteImgBtn.setBorder(null);
@@ -136,6 +140,7 @@ public class MenuPrincipal extends JFrame {
 		exClienteImgBtn.setBackground(pomergante);
 		
 		cadClienteBtn = new JButton("Cadastrar");
+		cadClienteBtn.addMouseListener(new TEMouseMenuPrincipal(this));
 		cadClienteBtn.setMnemonic(KeyEvent.VK_C);
 		cadClienteBtn.setBounds(30, 201, 160, 38);
 		cadClienteBtn.setBorder(new LineBorder(Color.WHITE));
@@ -150,7 +155,7 @@ public class MenuPrincipal extends JFrame {
 		altClienteBtn.setForeground(Color.WHITE);
 		altClienteBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		altClienteBtn.setBorder(new LineBorder(Color.WHITE));
-		altClienteBtn.setBackground(new Color(52, 152, 219));
+		altClienteBtn.setBackground(peterRiver);
 		
 		relClienteBtn = new JButton("Relatorio");
 		relClienteBtn.setMnemonic(KeyEvent.VK_R);
@@ -158,7 +163,7 @@ public class MenuPrincipal extends JFrame {
 		relClienteBtn.setForeground(Color.WHITE);
 		relClienteBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		relClienteBtn.setBorder(new LineBorder(Color.WHITE));
-		relClienteBtn.setBackground(new Color(52, 152, 219));
+		relClienteBtn.setBackground(peterRiver);
 		
 		exClienteBtn = new JButton("Excluir");
 		exClienteBtn.setMnemonic(KeyEvent.VK_E);
@@ -258,21 +263,21 @@ public class MenuPrincipal extends JFrame {
 		cadAgImgBtn = new JButton("");
 		cadAgImgBtn.setAlignmentX(0.5f);
 		cadAgImgBtn.setBorder(null);
-		cadAgImgBtn.setBackground(new Color(52, 152, 219));
+		cadAgImgBtn.setBackground(peterRiver);
 		cadAgImgBtn.setBounds(30, 30, 160, 160);
 		agenciaPanel.add(cadAgImgBtn);
 		
 		altAgImgBtn = new JButton("");
 		altAgImgBtn.setAlignmentX(0.5f);
 		altAgImgBtn.setBorder(null);
-		altAgImgBtn.setBackground(new Color(52, 152, 219));
+		altAgImgBtn.setBackground(peterRiver);
 		altAgImgBtn.setBounds(220, 30, 160, 160);
 		agenciaPanel.add(altAgImgBtn);
 		
 		relAgImgBtn = new JButton("");
 		relAgImgBtn.setAlignmentX(0.5f);
 		relAgImgBtn.setBorder(null);
-		relAgImgBtn.setBackground(new Color(52, 152, 219));
+		relAgImgBtn.setBackground(peterRiver);
 		relAgImgBtn.setBounds(410, 30, 160, 160);
 		agenciaPanel.add(relAgImgBtn);
 		
@@ -280,7 +285,7 @@ public class MenuPrincipal extends JFrame {
 		exAgImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\close11.png"));
 		exAgImgBtn.setAlignmentX(0.5f);
 		exAgImgBtn.setBorder(null);
-		exAgImgBtn.setBackground(new Color(192, 57, 43));
+		exAgImgBtn.setBackground(pomergante);
 		exAgImgBtn.setBounds(600, 30, 160, 160);
 		agenciaPanel.add(exAgImgBtn);
 		
@@ -290,7 +295,7 @@ public class MenuPrincipal extends JFrame {
 		cadAgBtn.setForeground(Color.WHITE);
 		cadAgBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		cadAgBtn.setBorder(new LineBorder(Color.WHITE));
-		cadAgBtn.setBackground(new Color(52, 152, 219));
+		cadAgBtn.setBackground(peterRiver);
 		cadAgBtn.setBounds(30, 201, 160, 38);
 		agenciaPanel.add(cadAgBtn);
 		
@@ -300,7 +305,7 @@ public class MenuPrincipal extends JFrame {
 		altAgBtn.setForeground(Color.WHITE);
 		altAgBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		altAgBtn.setBorder(new LineBorder(Color.WHITE));
-		altAgBtn.setBackground(new Color(52, 152, 219));
+		altAgBtn.setBackground(peterRiver);
 		altAgBtn.setActionCommand("Alterar");
 		altAgBtn.setBounds(220, 201, 160, 38);
 		agenciaPanel.add(altAgBtn);
@@ -311,7 +316,7 @@ public class MenuPrincipal extends JFrame {
 		relAgBtn.setForeground(Color.WHITE);
 		relAgBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		relAgBtn.setBorder(new LineBorder(Color.WHITE));
-		relAgBtn.setBackground(new Color(52, 152, 219));
+		relAgBtn.setBackground(peterRiver);
 		relAgBtn.setBounds(410, 201, 160, 38);
 		agenciaPanel.add(relAgBtn);
 		
@@ -321,7 +326,7 @@ public class MenuPrincipal extends JFrame {
 		exAgBtn.setForeground(Color.WHITE);
 		exAgBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		exAgBtn.setBorder(new LineBorder(Color.WHITE));
-		exAgBtn.setBackground(new Color(192, 57, 43));
+		exAgBtn.setBackground(pomergante);
 		exAgBtn.setBounds(600, 201, 160, 38);
 		agenciaPanel.add(exAgBtn);
 		JPanel outrosPanel = new JPanel(); // cria o primeiro painel
@@ -329,13 +334,13 @@ public class MenuPrincipal extends JFrame {
 		tabbedPane.addTab("Outros",null,outrosPanel,"Third Panel");
 		outrosPanel.setLayout(null);
 		
-		button = new JButton("");
-		button.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\help.png"));
-		button.setBorder(null);
-		button.setBackground(new Color(241, 196, 15));
-		button.setAlignmentX(0.5f);
-		button.setBounds(320, 30, 160, 160);
-		outrosPanel.add(button);
+		ajudaImgBtn = new JButton("");
+		ajudaImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\help.png"));
+		ajudaImgBtn.setBorder(null);
+		ajudaImgBtn.setBackground(sunFlower);
+		ajudaImgBtn.setAlignmentX(0.5f);
+		ajudaImgBtn.setBounds(320, 30, 160, 160);
+		outrosPanel.add(ajudaImgBtn);
 				
 		getContentPane().add(tabbedPane); // adiciona o JTabbedPane ao quadro
 		setVisible(true);
@@ -447,6 +452,10 @@ public class MenuPrincipal extends JFrame {
 
 	public JButton getCadClienteImgBtn() {
 		return cadClienteImgBtn;
+	}
+
+	public JButton getAjudaImgBtn() {
+		return ajudaImgBtn;
 	}
 
 	public JEditorPane getDtrpnTextoHome() {

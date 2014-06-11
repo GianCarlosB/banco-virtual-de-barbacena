@@ -1,1 +1,1 @@
--colocar uma menssagem de erro quando os campos não forem preenchidos corretamente
+-arrumar os eventos dos botões do menu principal.
