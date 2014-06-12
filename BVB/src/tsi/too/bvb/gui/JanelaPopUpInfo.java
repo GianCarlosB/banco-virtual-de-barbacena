@@ -48,7 +48,6 @@ public class JanelaPopUpInfo extends JDialog {
 	 */
 	public JanelaPopUpInfo(JFrame janelaPai, String titulo, String msgInfo, String info) {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		JanelaPopUpInfo.this.setLocationRelativeTo(janelaPai);
 		setResizable(false);
 		
 		setTitle(titulo);
@@ -111,6 +110,7 @@ public class JanelaPopUpInfo extends JDialog {
 			}
 		}
 		
+		JanelaPopUpInfo.this.setLocationRelativeTo(janelaPai);
 		setVisible(true);
 	}
 	
@@ -120,7 +120,6 @@ public class JanelaPopUpInfo extends JDialog {
 	 */
 	public JanelaPopUpInfo(JFrame janelaPai, String titulo, String msgInfo) {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		JanelaPopUpInfo.this.setLocationRelativeTo(janelaPai);
 		setResizable(false);
 		
 		setTitle(titulo);
@@ -169,7 +168,8 @@ public class JanelaPopUpInfo extends JDialog {
 			}
 		}
 		
+		JanelaPopUpInfo.this.setLocationRelativeTo(janelaPai);
 		setVisible(true);
 	}
 	
-} // class JanelaPopUp
+} // class JanelaPopUpInfo

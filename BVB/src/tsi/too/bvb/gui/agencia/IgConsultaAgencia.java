@@ -22,6 +22,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import tsi.too.bvb.entidades.agencia.Agencia;
+import javax.swing.border.LineBorder;
 
 public class IgConsultaAgencia extends JFrame {
 
@@ -62,6 +63,8 @@ public class IgConsultaAgencia extends JFrame {
 	 * Create the frame.
 	 */
 	public IgConsultaAgencia() {
+		Color pumpkin = new Color(211, 84, 0);
+		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setTitle("Consulta de Ag\u00EAncia");
@@ -76,23 +79,29 @@ public class IgConsultaAgencia extends JFrame {
 		contentPane.add(separatorTitulo);
 		
 		JLabel lblImg = new JLabel("Label Img");
-		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\commerical-building.png"));
+		lblImg.setBorder(new LineBorder(Color.WHITE, 1, true));
+		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\Building-48.png"));
 		lblImg.setBounds(459, 11, 48, 48);
 		contentPane.add(lblImg);
 		
 		JTextPane txtpnSubTitulo = new JTextPane();
+		txtpnSubTitulo.setForeground(Color.WHITE);
+		txtpnSubTitulo.setBackground(pumpkin);
 		txtpnSubTitulo.setText("Pesquise uma ag\u00EAncia pelo c\u00F3digo.");
-		txtpnSubTitulo.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		txtpnSubTitulo.setBounds(20, 36, 200, 22);
+		txtpnSubTitulo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		txtpnSubTitulo.setBounds(20, 36, 260, 22);
 		contentPane.add(txtpnSubTitulo);
 		
 		JTextPane txtpnConsultaDeAgncia = new JTextPane();
+		txtpnConsultaDeAgncia.setForeground(Color.WHITE);
+		txtpnConsultaDeAgncia.setBackground(pumpkin);
 		txtpnConsultaDeAgncia.setText("Consulta de Ag\u00EAncia");
 		txtpnConsultaDeAgncia.setFont(new Font("Tahoma", Font.BOLD, 13));
 		txtpnConsultaDeAgncia.setBounds(10, 11, 150, 22);
 		contentPane.add(txtpnConsultaDeAgncia);
 		
 		JEditorPane dtrpnCampoTitulo = new JEditorPane();
+		dtrpnCampoTitulo.setBackground(pumpkin);
 		dtrpnCampoTitulo.setEditable(false);
 		dtrpnCampoTitulo.setBounds(0, 0, 517, 70);
 		contentPane.add(dtrpnCampoTitulo);

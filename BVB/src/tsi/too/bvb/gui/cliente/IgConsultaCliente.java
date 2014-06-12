@@ -23,6 +23,8 @@ import javax.swing.table.DefaultTableModel;
 
 import tsi.too.bvb.entidades.Mascara;
 import tsi.too.bvb.entidades.cliente.Cliente;
+import java.awt.Color;
+import javax.swing.border.LineBorder;
 
 public class IgConsultaCliente extends JFrame {
 	
@@ -69,6 +71,8 @@ public class IgConsultaCliente extends JFrame {
 	 * Create the dialog.
 	 */
 	public IgConsultaCliente() {
+		Color peterRiver = new Color(52, 152, 219);
+		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setTitle("Consulta de Cliente");
@@ -83,23 +87,29 @@ public class IgConsultaCliente extends JFrame {
 		contentPanel.add(separatorTitulo);
 		
 		JTextPane txtpnSubTitulo = new JTextPane();
+		txtpnSubTitulo.setForeground(Color.WHITE);
+		txtpnSubTitulo.setBackground(peterRiver);
 		txtpnSubTitulo.setText("Pesquise um cliente pelo nome ou pelo CPF.");
-		txtpnSubTitulo.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		txtpnSubTitulo.setBounds(20, 36, 250, 22);
+		txtpnSubTitulo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		txtpnSubTitulo.setBounds(20, 36, 320, 22);
 		contentPanel.add(txtpnSubTitulo);
 		
 		JTextPane txtpnTitulo = new JTextPane();
+		txtpnTitulo.setForeground(Color.WHITE);
+		txtpnTitulo.setBackground(peterRiver);
 		txtpnTitulo.setText("Consulta de Cliente");
 		txtpnTitulo.setFont(new Font("Tahoma", Font.BOLD, 13));
 		txtpnTitulo.setBounds(10, 11, 150, 22);
 		contentPanel.add(txtpnTitulo);
 		
 		JLabel lblImg = new JLabel("Label Img");
-		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\user_profile.png"));
+		lblImg.setBorder(new LineBorder(Color.WHITE, 1, true));
+		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\User-Login-48.png"));
 		lblImg.setBounds(720, 11, 48, 48);
 		contentPanel.add(lblImg);
 		
 		JEditorPane dtrpnCampoTitulo = new JEditorPane();
+		dtrpnCampoTitulo.setBackground(peterRiver);
 		dtrpnCampoTitulo.setEditable(false);
 		dtrpnCampoTitulo.setBounds(0, 0, 778, 70);
 		contentPanel.add(dtrpnCampoTitulo);

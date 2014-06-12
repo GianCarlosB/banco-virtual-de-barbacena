@@ -8,16 +8,16 @@ import tsi.too.bvb.entidades.cliente.Cliente;
 import tsi.too.bvb.entidades.cliente.Contato;
 import tsi.too.bvb.entidades.cliente.Endereco;
 import tsi.too.bvb.entidades.funcionario.Funcionario;
-import tsi.too.bvb.gui.MenuPrincipal;
+import tsi.too.bvb.gui.IgMenuPrincipal;
 import tsi.too.bvb.gui.agencia.IgCadAgencia;
 import tsi.too.bvb.gui.cliente.IgCadCliente;
 import tsi.too.bvb.gui.funcionario.IgCadFuncionario;
 
 public class TEMouseMenuPrincipal extends MouseAdapter {
 	
-	private MenuPrincipal menuPrincipal;
+	private IgMenuPrincipal menuPrincipal;
 
-	public TEMouseMenuPrincipal(MenuPrincipal menuPrincipal) {
+	public TEMouseMenuPrincipal(IgMenuPrincipal menuPrincipal) {
 		super();
 		this.menuPrincipal = menuPrincipal;
 	}
@@ -26,7 +26,7 @@ public class TEMouseMenuPrincipal extends MouseAdapter {
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		super.mouseClicked(e);
-		
+
 		if(e.getButton() == MouseEvent.BUTTON1) { // botão esquerdo do mouse
 			
 			if((e.getSource() == menuPrincipal.getCadClienteBtn()) || (e.getSource() == menuPrincipal.getCadClienteImgBtn())){

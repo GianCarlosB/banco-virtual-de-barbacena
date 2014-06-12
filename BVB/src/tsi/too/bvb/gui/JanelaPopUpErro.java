@@ -53,7 +53,6 @@ public class JanelaPopUpErro extends JDialog {
 	 */
 	public JanelaPopUpErro(JFrame janelaPai, String titulo, String msgErro, Exception e) {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		JanelaPopUpErro.this.setLocationRelativeTo(janelaPai);
 		setResizable(false);
 		StringWriter sw = new StringWriter();
 		e.printStackTrace(new PrintWriter(sw));
@@ -118,6 +117,7 @@ public class JanelaPopUpErro extends JDialog {
 			}
 		}
 		
+		JanelaPopUpErro.this.setLocationRelativeTo(janelaPai);
 		setVisible(true);
 	}
 	
@@ -126,7 +126,6 @@ public class JanelaPopUpErro extends JDialog {
 	 */
 	public JanelaPopUpErro(JFrame janelaPai, String titulo, String msgErro) {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		JanelaPopUpErro.this.setLocationRelativeTo(janelaPai);
 		setResizable(false);
 		
 		setTitle(titulo);
@@ -174,7 +173,8 @@ public class JanelaPopUpErro extends JDialog {
 			}
 		}
 		
+		JanelaPopUpErro.this.setLocationRelativeTo(janelaPai);
 		setVisible(true);
 	}
 	
-} // class JanelaPopUp
+} // class JanelaPopUpErro

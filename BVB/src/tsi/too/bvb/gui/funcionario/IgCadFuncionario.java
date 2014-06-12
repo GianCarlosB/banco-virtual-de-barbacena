@@ -71,6 +71,8 @@ public class IgCadFuncionario extends JFrame {
 	 * Create the frame.
 	 */
 	public IgCadFuncionario(Funcionario funcionario) {
+		Color nephritis = new Color(39, 174, 96);
+		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setTitle("Novo Cadastro de Funcion\u00E1rio");
@@ -89,23 +91,29 @@ public class IgCadFuncionario extends JFrame {
 		contentPane.add(separatorTitulo);
 		
 		JTextPane txtpnSubTitulo = new JTextPane();
+		txtpnSubTitulo.setForeground(Color.WHITE);
+		txtpnSubTitulo.setBackground(nephritis);
 		txtpnSubTitulo.setText("Insira o login e a senha do novo funcion\u00E1rio.");
-		txtpnSubTitulo.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		txtpnSubTitulo.setBounds(20, 36, 250, 22);
+		txtpnSubTitulo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		txtpnSubTitulo.setBounds(20, 36, 290, 22);
 		contentPane.add(txtpnSubTitulo);
 		
 		JTextPane txtpnTitulo = new JTextPane();
+		txtpnTitulo.setForeground(Color.WHITE);
+		txtpnTitulo.setBackground(nephritis);
 		txtpnTitulo.setText("Cadastro de Funcion\u00E1rio");
 		txtpnTitulo.setFont(new Font("Tahoma", Font.BOLD, 13));
 		txtpnTitulo.setBounds(10, 11, 210, 22);
 		contentPane.add(txtpnTitulo);
 		
 		JLabel lblImg = new JLabel("Label Img");
-		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\employee_add.png"));
+		lblImg.setBorder(new LineBorder(Color.WHITE, 1, true));
+		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\User-48.png"));
 		lblImg.setBounds(459, 11, 48, 48);
 		contentPane.add(lblImg);
 		
 		JEditorPane dtrpnCampoTitulo = new JEditorPane();
+		dtrpnCampoTitulo.setBackground(nephritis);
 		dtrpnCampoTitulo.setEditable(false);
 		dtrpnCampoTitulo.setBounds(0, 0, 517, 70);
 		contentPane.add(dtrpnCampoTitulo);

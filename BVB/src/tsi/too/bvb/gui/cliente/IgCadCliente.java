@@ -26,6 +26,7 @@ import tsi.too.bvb.entidades.cliente.Contato;
 import tsi.too.bvb.entidades.cliente.Endereco;
 import tsi.too.bvb.eventos.cliente.TEMouseCadastrarCliente;
 import java.awt.Color;
+import javax.swing.border.LineBorder;
 
 public class IgCadCliente extends JFrame {
 	/**
@@ -71,6 +72,8 @@ public class IgCadCliente extends JFrame {
 	 * Create the frame.
 	 */
 	public IgCadCliente(Cliente cliente) {
+		Color peterRiver = new Color(52, 152, 219);
+		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setTitle("Novo Cadastro de Cliente");
@@ -85,19 +88,24 @@ public class IgCadCliente extends JFrame {
 		contentPane.add(separatorTitulo);
 		
 		txtpnSubTitulo = new JTextPane();
+		txtpnSubTitulo.setForeground(Color.WHITE);
+		txtpnSubTitulo.setBackground(peterRiver);
 		txtpnSubTitulo.setText("Insira o nome e o CPF do novo cliente.");
-		txtpnSubTitulo.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		txtpnSubTitulo.setBounds(20, 36, 192, 22);
+		txtpnSubTitulo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		txtpnSubTitulo.setBounds(20, 36, 260, 22);
 		contentPane.add(txtpnSubTitulo);
 		
 		JTextPane txtpnTitulo = new JTextPane();
+		txtpnTitulo.setForeground(Color.WHITE);
+		txtpnTitulo.setBackground(peterRiver);
 		txtpnTitulo.setText("Cadastro de Cliente");
 		txtpnTitulo.setFont(new Font("Tahoma", Font.BOLD, 13));
 		txtpnTitulo.setBounds(10, 11, 150, 22);
 		contentPane.add(txtpnTitulo);
 		
 		JLabel lblImg = new JLabel("Label Img");
-		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\user_add.png"));
+		lblImg.setBorder(new LineBorder(new Color(255, 255, 255), 1, true));
+		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\User-Login-48.png"));
 		lblImg.setBounds(459, 11, 48, 48);
 		contentPane.add(lblImg);
 		
@@ -138,6 +146,7 @@ public class IgCadCliente extends JFrame {
 		Btnpanel.add(btnCancelar);
 		
 		JEditorPane dtrpnCampoTitulo = new JEditorPane();
+		dtrpnCampoTitulo.setBackground(peterRiver);
 		dtrpnCampoTitulo.setEditable(false);
 		dtrpnCampoTitulo.setBounds(0, 0, 517, 70);
 		contentPane.add(dtrpnCampoTitulo);

@@ -1,14 +1,13 @@
 package tsi.too.bvb.app;
 
-import tsi.too.bvb.gui.MenuPrincipal;
+import tsi.too.bvb.gui.IgMenuPrincipal;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 
 public class bvbApp {
 	
 	public static void main(String[] args) {
 		// Inicia a thread que faz a conexão com o banco de dados.
-		BancoDeDadosBVB bancoDeDadosBVB = BancoDeDadosBVB.getInstance();
-		Thread threadBancoDeDados = new Thread(bancoDeDadosBVB);
+		Thread threadBancoDeDados = new Thread(BancoDeDadosBVB.getInstance());
 		threadBancoDeDados.start();
 		
 		try { 
@@ -18,10 +17,7 @@ public class bvbApp {
 			e.printStackTrace();
 		}
 
-		new MenuPrincipal();
-		
-		// Fecha a conexão com o banco de dados.
-		// bancoDeDadosBVB.fecharTudo();
+		new IgMenuPrincipal(); // Cria a janela que contém o menu principal
 	} // main()
 	
 } // class bvbApp
