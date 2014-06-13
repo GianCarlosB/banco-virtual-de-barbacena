@@ -19,12 +19,12 @@ public class FuncionarioDAO {
 		
 		try {
 			bdDao.executarComandoSQL(sql);
-			bdDao.getStmt().setString(1, funcionario.getNomeUsuario());
+			bdDao.getStmt().setString(1, funcionario.getNomeUsuario().toLowerCase());
 			bdDao.getStmt().setString(2, funcionario.getSenha());
 			bdDao.getStmt().setString(3, Character.toString(funcionario.getTipoUsuario().getTipo()));
 			bdDao.getStmt().executeUpdate();
 			
-			System.out.println("Funcionário inserido: ");
+			System.out.println("Funcionário inserido.");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -41,6 +41,53 @@ public class FuncionarioDAO {
 			
 			while(rSet.next())
 				lista.add(new Funcionario(rSet.getString(1), rSet.getString(2), TipoUsuario.obterTipoUsuario(rSet.getString(3))));
+			
+			BancoDeDadosDAO.fecharResultSet(rSet);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return lista;
+	}
+	
+	public List<Funcionario> pesquisarLogin(BancoDeDadosDAO bdDao, String login) {
+		List<Funcionario> lista = new ArrayList<>();
+		final String sql = "SELECT * FROM funcionario WHERE nomeUsuario LIKE \'%" + login + "%\'";
+		
+		try {
+			bdDao.executarComandoSQL(sql);
+			ResultSet rSet = bdDao.obterResultSet();
+			
+			while(rSet.next()) {
+				Funcionario funcionario = new Funcionario(rSet.getString(1), rSet.getString(2),
+						                                  TipoUsuario.obterTipoUsuario(rSet.getString(3).charAt(0)));
+				
+				lista.add(funcionario);
+			}
+			
+			BancoDeDadosDAO.fecharResultSet(rSet);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return lista;
+	}
+	
+	public List<Funcionario> pesquisarTipo(BancoDeDadosDAO bdDao, char tipo) {
+		List<Funcionario> lista = new ArrayList<>();
+		final String sql = "SELECT * FROM funcionario WHERE tipoUsuario LIKE \'%" + tipo + "%\'";
+		
+		try {
+			bdDao.executarComandoSQL(sql);
+			ResultSet rSet = bdDao.obterResultSet();
+			
+			while(rSet.next()) {
+				Funcionario funcionario = new Funcionario(rSet.getString(1), rSet.getString(2), TipoUsuario.obterTipoUsuario(rSet.getString(3)));
+				
+				lista.add(funcionario);
+			}
 			
 			BancoDeDadosDAO.fecharResultSet(rSet);
 		} catch (SQLException e) {

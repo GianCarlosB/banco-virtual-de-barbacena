@@ -10,16 +10,19 @@ import tsi.too.bvb.entidades.cliente.Endereco;
 import tsi.too.bvb.entidades.funcionario.Funcionario;
 import tsi.too.bvb.gui.IgMenuPrincipal;
 import tsi.too.bvb.gui.agencia.IgCadAgencia;
+import tsi.too.bvb.gui.agencia.IgConsultarAgencia;
 import tsi.too.bvb.gui.cliente.IgCadCliente;
+import tsi.too.bvb.gui.cliente.IgConsultarCliente;
 import tsi.too.bvb.gui.funcionario.IgCadFuncionario;
+import tsi.too.bvb.gui.funcionario.IgConsultarFuncionario;
 
 public class TEMouseMenuPrincipal extends MouseAdapter {
 	
-	private IgMenuPrincipal menuPrincipal;
+	private IgMenuPrincipal igMenuPrincipal;
 
-	public TEMouseMenuPrincipal(IgMenuPrincipal menuPrincipal) {
+	public TEMouseMenuPrincipal(IgMenuPrincipal igMenuPrincipal) {
 		super();
-		this.menuPrincipal = menuPrincipal;
+		this.igMenuPrincipal = igMenuPrincipal;
 	}
 
 	@Override
@@ -29,47 +32,64 @@ public class TEMouseMenuPrincipal extends MouseAdapter {
 
 		if(e.getButton() == MouseEvent.BUTTON1) { // botão esquerdo do mouse
 			
-			if((e.getSource() == menuPrincipal.getCadClienteBtn()) || (e.getSource() == menuPrincipal.getCadClienteImgBtn())){
-				Cliente cliente = new Cliente(new Contato(), new Endereco());
-				IgCadCliente igCadCliente = new IgCadCliente(cliente);
-				igCadCliente.setLocationRelativeTo(menuPrincipal);
+			if((e.getSource() == igMenuPrincipal.getCadClienteBtn()) || (e.getSource() == igMenuPrincipal.getCadClienteImgBtn())) {
+				IgCadCliente igCadCliente = new IgCadCliente(new Cliente(new Contato(), new Endereco()));
+				igCadCliente.setLocationRelativeTo(igMenuPrincipal);
+			}
+			
+			if((e.getSource() == igMenuPrincipal.getConsClienteBtn()) || (e.getSource() == igMenuPrincipal.getConsClienteImgBtn())){
+				IgConsultarCliente igConsultarCliente = new IgConsultarCliente();
+				igConsultarCliente.setLocationRelativeTo(igMenuPrincipal);
 			}
 				
-			if((e.getSource() == menuPrincipal.getAltClienteBtn()) || (e.getSource() == menuPrincipal.getAltClienteImgBtn())){}
+			if((e.getSource() == igMenuPrincipal.getAltClienteBtn()) || (e.getSource() == igMenuPrincipal.getAltClienteImgBtn())){}
 			
-			if((e.getSource() == menuPrincipal.getRelClienteBtn()) || (e.getSource() == menuPrincipal.getRelClienteImgBtn())){}
+			if((e.getSource() == igMenuPrincipal.getExClienteBtn()) || (e.getSource() == igMenuPrincipal.getExClienteImgBtn())){}
 			
-			if((e.getSource() == menuPrincipal.getExClienteBtn()) || (e.getSource() == menuPrincipal.getExClienteImgBtn())){}
+			if((e.getSource() == igMenuPrincipal.getRelClienteBtn()) || (e.getSource() == igMenuPrincipal.getRelClienteImgBtn())){}
+		
 			// Fim dos botões cliente.
 			
 			
-			if((e.getSource() == menuPrincipal.getCadFuncBtn()) || (e.getSource() == menuPrincipal.getCadFuncImgBtn())){
+			if((e.getSource() == igMenuPrincipal.getCadFuncBtn()) || (e.getSource() == igMenuPrincipal.getCadFuncImgBtn())) {
 				IgCadFuncionario igCadFuncionario = new IgCadFuncionario(new Funcionario());
-				igCadFuncionario.setLocationRelativeTo(menuPrincipal);
+				igCadFuncionario.setLocationRelativeTo(igMenuPrincipal);
 			}
 			
-			if((e.getSource() == menuPrincipal.getAltFuncBtn()) || (e.getSource() == menuPrincipal.getAltFuncImgBtn())){}
+			if((e.getSource() == igMenuPrincipal.getConsFuncBtn()) || (e.getSource() == igMenuPrincipal.getConsFuncImgBtn())) {
+				IgConsultarFuncionario igConsultarFuncionario = new IgConsultarFuncionario();
+				igConsultarFuncionario.setLocationRelativeTo(igMenuPrincipal);
+			}
 			
-			if((e.getSource() == menuPrincipal.getRelFuncBtn()) || (e.getSource() == menuPrincipal.getRelFuncImgBtn())){}
+			if((e.getSource() == igMenuPrincipal.getAltFuncBtn()) || (e.getSource() == igMenuPrincipal.getAltFuncImgBtn())){}
 			
-			if((e.getSource() == menuPrincipal.getExFuncBtn()) || (e.getSource() == menuPrincipal.getExFuncImgBtn())){}
+			if((e.getSource() == igMenuPrincipal.getExFuncBtn()) || (e.getSource() == igMenuPrincipal.getExFuncImgBtn())){}
+			
+			if((e.getSource() == igMenuPrincipal.getRelFuncBtn()) || (e.getSource() == igMenuPrincipal.getRelFuncImgBtn())){}
+	
 			// Fim dos botões do funcionário.
 			
 			
-			if((e.getSource() == menuPrincipal.getCadAgBtn()) || (e.getSource() == menuPrincipal.getCadAgImgBtn())){
+			if((e.getSource() == igMenuPrincipal.getCadAgBtn()) || (e.getSource() == igMenuPrincipal.getCadAgImgBtn())) {
 				IgCadAgencia igCadAgencia = new IgCadAgencia(new Agencia());
-				igCadAgencia.setLocationRelativeTo(menuPrincipal);
+				igCadAgencia.setLocationRelativeTo(igMenuPrincipal);
 			}
 			
-			if((e.getSource() == menuPrincipal.getAltAgBtn()) || (e.getSource() == menuPrincipal.getAltAgImgBtn())){}
+			if((e.getSource() == igMenuPrincipal.getConsAgBtn()) || (e.getSource() == igMenuPrincipal.getConsAgImgBtn())) {
+				IgConsultarAgencia igConsultarAgencia = new IgConsultarAgencia();
+				igConsultarAgencia.setLocationRelativeTo(igMenuPrincipal);
+			}
 			
-			if((e.getSource() == menuPrincipal.getRelAgBtn()) || (e.getSource() == menuPrincipal.getRelAgImgBtn())){}
+			if((e.getSource() == igMenuPrincipal.getAltAgBtn()) || (e.getSource() == igMenuPrincipal.getAltAgImgBtn())){}
 			
-			if((e.getSource() == menuPrincipal.getExAgBtn()) || (e.getSource() == menuPrincipal.getExAgImgBtn())){}
+			if((e.getSource() == igMenuPrincipal.getExAgBtn()) || (e.getSource() == igMenuPrincipal.getExAgImgBtn())){}
+			
+			if((e.getSource() == igMenuPrincipal.getRelAgBtn()) || (e.getSource() == igMenuPrincipal.getRelAgImgBtn())){}
+			
 			// Fim dos botões da agência.
 			
 			
-			if(e.getSource() == menuPrincipal.getAjudaImgBtn()){}	
+			if(e.getSource() == igMenuPrincipal.getAjudaImgBtn()){}	
 		}
 	}
 	

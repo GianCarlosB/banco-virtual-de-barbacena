@@ -200,5 +200,12 @@ public class ValidarDados {
 		
 		return true;
 	}
+	
+	public static boolean validarSenhaFunc(String senha1, String senha2) {
+		if(!senha1.toString().equals(senha2.toString()))
+			return false;
+		
+		return true;
+	}
 
 } // class ValidarDados

@@ -25,6 +25,7 @@ public class TEMouseCadastrarFuncionario extends MouseAdapter {
 		this.funcionario = funcionario;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -49,6 +50,17 @@ public class TEMouseCadastrarFuncionario extends MouseAdapter {
 				else
 					igCadFuncionario.getPasswordField().setBorder(UIManager.getBorder("PasswordField.border"));
 				
+				if(ValidarDados.validarSenhaFunc(igCadFuncionario.getPasswordField().getText(),
+						                         igCadFuncionario.getrPasswordField().getText()) == false) {
+					igCadFuncionario.getPasswordField().setBorder(new LineBorder(Color.RED));
+					igCadFuncionario.getrPasswordField().setBorder(new LineBorder(Color.RED));
+					validacao = false;
+				}
+				else {
+					igCadFuncionario.getPasswordField().setBorder(UIManager.getBorder("PasswordField.border"));
+					igCadFuncionario.getrPasswordField().setBorder(UIManager.getBorder("PasswordField.border"));
+				}
+				
 				if(validacao == true) {
 					igCadFuncionario.setLblCamposErrados(false);
 					igCadFuncionario.salvarCampos(funcionario);
@@ -58,7 +70,7 @@ public class TEMouseCadastrarFuncionario extends MouseAdapter {
 					FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 					funcionarioDAO.criar(BancoDeDadosBVB.getInstance(), funcionario);
 					
-					new JanelaPopUpInfo(igCadFuncionario, "Novo Cadastro de Funcionário", "Cadastro do Funcionário Realizado com Sucesso!",
+					new JanelaPopUpInfo(igCadFuncionario, "Novo Cadastro de Funcionário", " Cadastro do Funcionário Realizado com Sucesso!",
 							            funcionario.toString());
 					igCadFuncionario.dispose();
 				}

@@ -170,6 +170,7 @@ public class IgCadCliente extends JFrame {
 		contentPane.add(label);
 		
 		progressBar = new JProgressBar();
+		progressBar.setForeground(peterRiver);
 		label.setLabelFor(progressBar);
 		progressBar.setValue(25);
 		progressBar.setStringPainted(true);

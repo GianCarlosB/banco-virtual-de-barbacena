@@ -21,8 +21,8 @@ public class ClienteDAO {
 
 		try {
 			bdDao.executarComandoSQL(sql);
-			bdDao.getStmt().setString(1, cliente.getCpf());
-			bdDao.getStmt().setString(2, cliente.getNome());
+			bdDao.getStmt().setString(1, cliente.getCpf().toLowerCase());
+			bdDao.getStmt().setString(2, cliente.getNome().toLowerCase());
 			bdDao.getStmt().setString(3, cliente.getEndereco().getLogradouro());
 			bdDao.getStmt().setString(4, cliente.getEndereco().getNumero());
 			bdDao.getStmt().setString(5, cliente.getEndereco().getComplemento());
@@ -70,25 +70,21 @@ public class ClienteDAO {
 		return lista;
 	}
 	
-	public List<Cliente> pesquisarCpf(BancoDeDadosDAO bdDao, String busca) {
-		List<Cliente> lista = new ArrayList<>();
-		final String sql = "SELECT * FROM cliente WHERE cpf LIKE '%" + busca + "'%";
+	public Cliente pesquisarCpf(BancoDeDadosDAO bdDao, String cpf) {
+		Cliente cliente = new Cliente();
+		final String sql = "SELECT * FROM cliente WHERE cpf = " + cpf;
 		
 		try {
 			bdDao.executarComandoSQL(sql);
 			ResultSet rSet = bdDao.obterResultSet();
 			
-			while(rSet.next()) {
-				Cliente cliente = new Cliente(rSet.getString(1), rSet.getString(2));
-				Endereco endereco = new Endereco(rSet.getString(3), rSet.getString(4), rSet.getString(5), rSet.getString(6),
-						                         rSet.getString(7), UF.obterUF(rSet.getString(8)), rSet.getString(9));
-				Contato contato = new Contato(rSet.getString(10), rSet.getString(11));
-				
-				cliente.setEndereco(endereco);
-				cliente.setContato(contato);
-				
-				lista.add(cliente);
-			}
+			if(!rSet.next()) return null;
+			
+			cliente.setCpf(rSet.getString(1));
+			cliente.setNome(rSet.getString(2));
+			cliente.setEndereco(new Endereco(rSet.getString(3), rSet.getString(4), rSet.getString(5), rSet.getString(6),
+					                         rSet.getString(7), UF.obterUF(rSet.getString(8)), rSet.getString(9)));
+			cliente.setContato(new Contato(rSet.getString(10), rSet.getString(11)));
 			
 			BancoDeDadosDAO.fecharResultSet(rSet);
 		} catch (SQLException e) {
@@ -96,12 +92,12 @@ public class ClienteDAO {
 			e.printStackTrace();
 		}
 		
-		return lista;
+		return cliente;
 	}
-	
-	public List<Cliente> pesquisarNome(BancoDeDadosDAO bdDao, String busca) {
+
+	public List<Cliente> pesquisarNome(BancoDeDadosDAO bdDao, String nome) {
 		List<Cliente> lista = new ArrayList<>();
-		final String sql = "SELECT * FROM cliente WHERE nome LIKE '%" + busca + "'%";
+		final String sql = "SELECT * FROM cliente WHERE nome LIKE \'%" + nome + "%\'";
 		
 		try {
 			bdDao.executarComandoSQL(sql);

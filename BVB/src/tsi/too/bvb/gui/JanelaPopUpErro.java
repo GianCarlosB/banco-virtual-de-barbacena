@@ -34,20 +34,6 @@ public class JanelaPopUpErro extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 
 	/**
-	 * Launch the application.
-	 */
-	
-	public static void main(String[] args) {
-		try {
-			String s = null;
-			s.equals("");
-		} catch (Exception e) {
-			new JanelaPopUpErro(null, "Titulo","Erro na criação da janela", e);
-		}
-	}
-	
-
-	/**
 	 * Create the dialog.
 	 * @wbp.parser.constructor
 	 */
@@ -146,6 +132,7 @@ public class JanelaPopUpErro extends JDialog {
 		contentPanel.add(lblImg);
 		
 		JEditorPane msgEditorPane = new JEditorPane();
+		msgEditorPane.setEditable(false);
 		msgEditorPane.setForeground(new Color(236, 240, 241));
 		msgEditorPane.setFont(new Font("Calibri", Font.BOLD, 14));
 		msgEditorPane.setText(msgErro);

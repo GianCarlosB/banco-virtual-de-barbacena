@@ -83,6 +83,7 @@ public class TEMouseCadastrarCliente extends MouseAdapter {
 						igCadCliente.getCardLayout().show(igCadCliente.getCardPanel(), "clientePanel");
 						igCadCliente.setTxtpnSubTitulo("Insira o nome e o CPF do novo cliente.");
 						igCadCliente.setProgressBar(25);
+						igCadCliente.setLblCamposErrados(false);
 						igCadCliente.getpCadCliente().setVisible(true);
 						igCadCliente.getBtnAnterior().setVisible(false);
 					}
@@ -90,12 +91,14 @@ public class TEMouseCadastrarCliente extends MouseAdapter {
 						igCadCliente.getCardLayout().show(igCadCliente.getCardPanel(), "enderecoPanel");
 						igCadCliente.setTxtpnSubTitulo("Insera o endere\u00E7o do novo cliente.");
 						igCadCliente.setProgressBar(50);
+						igCadCliente.setLblCamposErrados(false);
 						igCadCliente.getpCadEndereco().setVisible(true);
 					}
 					else if(painelVisivel instanceof PainelConfCadCliente) {
 						igCadCliente.getCardLayout().show(igCadCliente.getCardPanel(), "contatoPanel");
 						igCadCliente.setTxtpnSubTitulo("Insera o contato do novo cliente.");
 						igCadCliente.setProgressBar(75);
+						igCadCliente.setLblCamposErrados(false);
 						igCadCliente.getpCadContato().setVisible(true);
 						igCadCliente.getBtnLimpar().setVisible(true);
 						igCadCliente.getBtnProximo().setVisible(true);
@@ -107,7 +110,7 @@ public class TEMouseCadastrarCliente extends MouseAdapter {
 					ClienteDAO clienteDAO = new ClienteDAO();
 					clienteDAO.criar(BancoDeDadosBVB.getInstance(), cliente);
 					
-					new JanelaPopUpInfo(igCadCliente, "Novo Cadastro de Cliente", "Cadastro do Cliente Realizado com Sucesso!", cliente.toString());
+					new JanelaPopUpInfo(igCadCliente, "Novo Cadastro de Cliente", " Cadastro do Cliente Realizado com Sucesso!", cliente.toString());
 					igCadCliente.dispose();
 				} // fim if(e.getSource() == igCadCliente.getBtnFinalizar())
 			} // fim else

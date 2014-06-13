@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import tsi.too.bvb.gui.JanelaPopUpErro;
+
 public abstract class BancoDeDadosDAO {
 	
 	private final String URL;
@@ -44,8 +46,8 @@ public abstract class BancoDeDadosDAO {
 		try {
 			conn = DriverManager.getConnection(URL, "admin", "123");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			conn = null;
+			new JanelaPopUpErro(null, "BVB - ERRO", " Falha na aquisição de bloqueio do banco de dados!", e);
 		}
 	}
 	

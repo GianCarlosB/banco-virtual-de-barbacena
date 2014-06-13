@@ -3,37 +3,30 @@ package tsi.too.bvb.gui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 
 import tsi.too.bvb.eventos.TEMouseMenuPrincipal;
-import tsi.too.bvb.eventos.agencia.TEMouseCadastrarAgencia;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
-
-import javax.swing.JMenuBar;
-import javax.swing.border.TitledBorder;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.Toolkit;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.MatteBorder;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.BevelBorder;
-import javax.swing.UIManager;
 
 public class IgMenuPrincipal extends JFrame {
 	
@@ -82,6 +75,8 @@ public class IgMenuPrincipal extends JFrame {
 	private JButton consAgBtn;
 	private JMenuItem mntmSair;
 	private JMenuItem mntmAutor;
+	private JButton consClienteImgBtn;
+	private JButton consClienteBtn;
 
 	public IgMenuPrincipal() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src\\tsi\\too\\bvb\\recursos\\imagens\\BVB - \u00EDcone.png"));
@@ -214,14 +209,16 @@ public class IgMenuPrincipal extends JFrame {
 		clientePanel.add(exClienteBtn);
 		clientePanel.add(exClienteImgBtn);
 		
-		JButton consClienteImgBtn = new JButton("");
+		consClienteImgBtn = new JButton("");
+		consClienteImgBtn.addMouseListener(new TEMouseMenuPrincipal(this));
 		consClienteImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\ID-Information-128.png"));
 		consClienteImgBtn.setBorder(new LineBorder(Color.WHITE));
 		consClienteImgBtn.setBackground(new Color(52, 152, 219));
 		consClienteImgBtn.setBounds(200, 77, 160, 160);
 		clientePanel.add(consClienteImgBtn);
 		
-		JButton consClienteBtn = new JButton("Consultar");
+		consClienteBtn = new JButton("Consultar");
+		consClienteBtn.addMouseListener(new TEMouseMenuPrincipal(this));
 		consClienteBtn.setMnemonic(KeyEvent.VK_O);
 		consClienteBtn.setForeground(Color.WHITE);
 		consClienteBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -234,6 +231,7 @@ public class IgMenuPrincipal extends JFrame {
 		tabbedPane.addTab("Funcionário",null,funcionarioPanel,"Second Panel");
 		
 		cadFuncImgBtn = new JButton("");
+		cadFuncImgBtn.addMouseListener(new TEMouseMenuPrincipal(this));
 		cadFuncImgBtn.setBounds(20, 77, 160, 160);
 		cadFuncImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\Employee-Add-128.png"));
 		cadFuncImgBtn.setBorder(new LineBorder(Color.WHITE));
@@ -246,20 +244,12 @@ public class IgMenuPrincipal extends JFrame {
 		altFuncImgBtn.setBackground(nephritis);
 		
 		exFuncImgBtn = new JButton("");
-		exFuncImgBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		exFuncImgBtn.setBounds(560, 77, 160, 160);
 		exFuncImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\close11.png"));
 		exFuncImgBtn.setBorder(new LineBorder(Color.WHITE));
 		exFuncImgBtn.setBackground(pomergante);
 		
 		relFuncImgBtn = new JButton("");
-		relFuncImgBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		getContentPane().setLayout(null);
 		relFuncImgBtn.setBounds(740, 77, 160, 160);
 		relFuncImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\business28.png"));
@@ -267,6 +257,7 @@ public class IgMenuPrincipal extends JFrame {
 		relFuncImgBtn.setBackground(nephritis);
 		
 		cadFuncBtn = new JButton("Cadastrar");
+		cadFuncBtn.addMouseListener(new TEMouseMenuPrincipal(this));
 		cadFuncBtn.setMnemonic(KeyEvent.VK_C);
 		cadFuncBtn.setBounds(20, 248, 160, 38);
 		cadFuncBtn.setForeground(Color.WHITE);
@@ -308,6 +299,7 @@ public class IgMenuPrincipal extends JFrame {
 		funcionarioPanel.add(exFuncImgBtn);
 		
 		consFuncImgBtn = new JButton("");
+		consFuncImgBtn.addMouseListener(new TEMouseMenuPrincipal(this));
 		consFuncImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\User-Information-128.png"));
 		consFuncImgBtn.setBorder(new LineBorder(Color.WHITE));
 		consFuncImgBtn.setBackground(nephritis);
@@ -315,6 +307,7 @@ public class IgMenuPrincipal extends JFrame {
 		funcionarioPanel.add(consFuncImgBtn);
 		
 		consFuncBtn = new JButton("Consultar");
+		consFuncBtn.addMouseListener(new TEMouseMenuPrincipal(this));
 		consFuncBtn.setMnemonic(KeyEvent.VK_O);
 		consFuncBtn.setForeground(Color.WHITE);
 		consFuncBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -404,6 +397,7 @@ public class IgMenuPrincipal extends JFrame {
 		agenciaPanel.add(exAgBtn);
 		
 		consAgImgBtn = new JButton("");
+		consAgImgBtn.addMouseListener(new TEMouseMenuPrincipal(this));
 		consAgImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\Data-Analysis-128.png"));
 		consAgImgBtn.setBorder(new LineBorder(Color.WHITE));
 		consAgImgBtn.setBackground(pumpkin);
@@ -411,6 +405,7 @@ public class IgMenuPrincipal extends JFrame {
 		agenciaPanel.add(consAgImgBtn);
 		
 		consAgBtn = new JButton("Consultar");
+		consAgBtn.addMouseListener(new TEMouseMenuPrincipal(this));
 		consAgBtn.setMnemonic(KeyEvent.VK_O);
 		consAgBtn.setForeground(Color.WHITE);
 		consAgBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -480,9 +475,10 @@ public class IgMenuPrincipal extends JFrame {
 	}
 	
 	public void terminaPrograma() {
-		// Fecha a conexão com o banco de dados.
+		// Fecha a conexão com o banco de dados e finaliza a aplicação.
 		BancoDeDadosBVB.getInstance().fecharTudo();
 		IgMenuPrincipal.this.dispose();
+		System.exit(0);
 	}
 
 	public JButton getCadastrarClienteButton() {
@@ -591,6 +587,14 @@ public class IgMenuPrincipal extends JFrame {
 
 	public JButton getAjudaBtn() {
 		return ajudaBtn;
+	}
+
+	public JButton getConsClienteImgBtn() {
+		return consClienteImgBtn;
+	}
+
+	public JButton getConsClienteBtn() {
+		return consClienteBtn;
 	}
 
 	public JButton getConsFuncImgBtn() {

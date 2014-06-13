@@ -51,6 +51,7 @@ public class IgCadFuncionario extends JFrame {
 	private JRadioButton rdbtnGerente;
 	private JPanel verificacaoPanel;
 	private JLabel lblCamposErrados;
+	private JPasswordField rPasswordField;
 
 	/**
 	 * Launch the application.
@@ -162,7 +163,7 @@ public class IgCadFuncionario extends JFrame {
 		JPanel tipoUsuarioPanel = new JPanel();
 		tipoUsuarioPanel.setLayout(null);
 		tipoUsuarioPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo do Usu\u00E1rio", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(51, 153, 255)));
-		tipoUsuarioPanel.setBounds(10, 214, 497, 58);
+		tipoUsuarioPanel.setBounds(10, 223, 497, 58);
 		contentPane.add(tipoUsuarioPanel);
 		
 		rdbtnAdministrador = new JRadioButton("Administrador");
@@ -207,6 +208,17 @@ public class IgCadFuncionario extends JFrame {
 		lblCamposErrados.setForeground(Color.RED);
 		lblCamposErrados.setBounds(10, 399, 497, 14);
 		contentPane.add(lblCamposErrados);
+		
+		JLabel lblRepetirSenha = new JLabel("Repita a Senha:");
+		lblRepetirSenha.setDisplayedMnemonic(KeyEvent.VK_R);
+		lblRepetirSenha.setBounds(10, 195, 130, 14);
+		contentPane.add(lblRepetirSenha);
+		
+		rPasswordField = new JPasswordField();
+		lblRepetirSenha.setLabelFor(rPasswordField);
+		rPasswordField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio e as senhas devem conferir");
+		rPasswordField.setBounds(100, 192, 308, 20);
+		contentPane.add(rPasswordField);
 		
 		setVisible(true);
 	}
@@ -258,6 +270,10 @@ public class IgCadFuncionario extends JFrame {
 		return passwordField;
 	}
 
+	public JPasswordField getrPasswordField() {
+		return rPasswordField;
+	}
+
 	public void setPasswordField(String password) {
 		this.passwordField.setText(password);
 	}
@@ -301,5 +317,4 @@ public class IgCadFuncionario extends JFrame {
 	public void setLblCamposErrados(boolean visivel) {
 		this.lblCamposErrados.setVisible(visivel);
 	}
-	
 } // class IgCadFuncionario

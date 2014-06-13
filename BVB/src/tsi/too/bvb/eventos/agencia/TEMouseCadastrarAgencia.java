@@ -47,7 +47,8 @@ public class TEMouseCadastrarAgencia extends MouseAdapter {
 					AgenciaDAO agenciaDAO = new AgenciaDAO();
 					agenciaDAO.criar(BancoDeDadosBVB.getInstance(), agencia);
 					
-					new JanelaPopUpInfo(igCadAgencia, "Novo Cadastro de Agência", "Cadastro da Agência Realizado com Sucesso!", agencia.toString());
+					new JanelaPopUpInfo(igCadAgencia, "Novo Cadastro de Agência", " Cadastro da Agência Realizado com Sucesso!",
+							            " Descrição: " + agencia.getDescricao());
 					igCadAgencia.dispose();
 				}
 			}

@@ -51,14 +51,14 @@ public class PainelCadContato extends JPanel implements PainelCliente {
 		telMovelFormTextField.setBounds(100, 52, 308, 20);
 		add(telMovelFormTextField);
 		
-		JLabel lblTelFixoImg = new JLabel("New label");
-		lblTelFixoImg.setIcon(new ImageIcon("D:\\Meus Documentos\\TSI\\Git\\tsi.too.bvb\\BVB\\src\\tsi\\too\\bvb\\recursos\\imagens\\Telephone-32.png"));
+		JLabel lblTelFixoImg = new JLabel("Tel Fixo");
+		lblTelFixoImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\Telephone-03-32.png"));
 		lblTelFixoImg.setDisplayedMnemonic(KeyEvent.VK_F);
 		lblTelFixoImg.setBounds(418, 16, 32, 32);
 		add(lblTelFixoImg);
 		
-		JLabel lblTelMovelImg = new JLabel("New label");
-		lblTelMovelImg.setIcon(new ImageIcon("D:\\Meus Documentos\\TSI\\Git\\tsi.too.bvb\\BVB\\src\\tsi\\too\\bvb\\recursos\\imagens\\Mobile-Phone-32.png"));
+		JLabel lblTelMovelImg = new JLabel("Tel Móvel");
+		lblTelMovelImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\Mobile-Phone-32.png"));
 		lblTelMovelImg.setDisplayedMnemonic(KeyEvent.VK_M);
 		lblTelMovelImg.setBounds(418, 46, 32, 32);
 		add(lblTelMovelImg);

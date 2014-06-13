@@ -32,19 +32,8 @@ public class JanelaPopUpInfo extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 
 	/**
-	 * Launch the application.
-	 */
-	
-	public static void main(String[] args) {
-		try {
-			new JanelaPopUpInfo(null, "Titulo","Erro na criação da janela", "");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
 	 * Create the dialog.
+	 * @wbp.parser.constructor
 	 */
 	public JanelaPopUpInfo(JFrame janelaPai, String titulo, String msgInfo, String info) {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -116,7 +105,6 @@ public class JanelaPopUpInfo extends JDialog {
 	
 	/**
 	 * Create the dialog.
-	 * @wbp.parser.constructor
 	 */
 	public JanelaPopUpInfo(JFrame janelaPai, String titulo, String msgInfo) {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);

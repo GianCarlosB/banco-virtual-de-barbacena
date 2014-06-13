@@ -18,10 +18,10 @@ public class AgenciaDAO {
 
 		try {
 			bdDao.executarComandoSQL(sql);
-			bdDao.getStmt().setString(1, agencia.getDescricao());
+			bdDao.getStmt().setString(1, agencia.getDescricao().toLowerCase());
 			bdDao.getStmt().executeUpdate();
 			
-			System.out.println("Agência inserida: ");
+			System.out.println("Agência inserida.");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -38,6 +38,51 @@ public class AgenciaDAO {
 			
 			while(rSet.next())
 				lista.add(new Agencia(rSet.getInt(1), rSet.getString(2)));
+			
+			BancoDeDadosDAO.fecharResultSet(rSet);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return lista;
+	}
+	
+	public Agencia pesquisarCodigo(BancoDeDadosDAO bdDao, String codigo) {
+		Agencia agencia = new Agencia();
+		final String sql = "SELECT * FROM agencia WHERE codAgencia = " + codigo;
+		
+		try {
+			bdDao.executarComandoSQL(sql);
+			ResultSet rSet = bdDao.obterResultSet();
+			
+			if(!rSet.next()) return null;
+			
+			agencia.setCodAgencia(rSet.getInt(1));
+			agencia.setDescricao(rSet.getString(2));
+			
+			BancoDeDadosDAO.fecharResultSet(rSet);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return agencia;
+	}
+	
+	public List<Agencia> pesquisarDescricao(BancoDeDadosDAO bdDao, String descricao) {
+		List<Agencia> lista = new ArrayList<>();
+		final String sql = "SELECT * FROM agencia WHERE descricao LIKE \'%" + descricao + "%\'";
+		
+		try {
+			bdDao.executarComandoSQL(sql);
+			ResultSet rSet = bdDao.obterResultSet();
+			
+			while(rSet.next()) {
+				Agencia agencia = new Agencia(rSet.getInt(1), rSet.getString(2));
+				
+				lista.add(agencia);
+			}
 			
 			BancoDeDadosDAO.fecharResultSet(rSet);
 		} catch (SQLException e) {

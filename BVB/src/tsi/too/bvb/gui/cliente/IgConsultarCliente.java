@@ -1,7 +1,11 @@
 package tsi.too.bvb.gui.cliente;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.List;
 
@@ -19,14 +23,15 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import tsi.too.bvb.entidades.Mascara;
 import tsi.too.bvb.entidades.cliente.Cliente;
-import java.awt.Color;
-import javax.swing.border.LineBorder;
+import tsi.too.bvb.eventos.cliente.TEMouseConsultarCliente;
+import tsi.too.bvb.eventos.cliente.TETecladoConsultarCliente;
 
-public class IgConsultaCliente extends JFrame {
+public class IgConsultarCliente extends JFrame {
 	
 	/**
 	 * 
@@ -35,6 +40,7 @@ public class IgConsultaCliente extends JFrame {
 
 	/** <code>int</code> com o número de colunas da tabela com os dados dos clientes pesquisados */
 	public final int NUMERO_COLUNAS_TABELA = 11;
+	private int num_linhas;
 	
 	private final String COLUNA_CPF = "CPF";
 	private final String COLUNA_NOME = "Nome";
@@ -55,13 +61,16 @@ public class IgConsultaCliente extends JFrame {
 	private JTextField nomeTextField;
 	private JTable tableConsulta;
 	private JFormattedTextField cpfFormattedTextField;
+	private JButton btnLimpar;
+	private JButton btnOk;
+	private JButton btnBuscar;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			new IgConsultaCliente();
+			new IgConsultarCliente();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -70,7 +79,7 @@ public class IgConsultaCliente extends JFrame {
 	/**
 	 * Create the dialog.
 	 */
-	public IgConsultaCliente() {
+	public IgConsultarCliente() {
 		Color peterRiver = new Color(52, 152, 219);
 		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -120,6 +129,7 @@ public class IgConsultaCliente extends JFrame {
 		contentPanel.add(lblNome);
 		
 		nomeTextField = new JTextField();
+		nomeTextField.addKeyListener(new TETecladoConsultarCliente(this));
 		lblNome.setLabelFor(nomeTextField);
 		nomeTextField.setToolTipText("a pesquisa \u00E9 realizada automaticamente quando cada caracter \u00E9 digitado");
 		nomeTextField.setColumns(10);
@@ -137,31 +147,96 @@ public class IgConsultaCliente extends JFrame {
 		cpfFormattedTextField.setBounds(438, 92, 231, 20);
 		contentPanel.add(cpfFormattedTextField);
 		
-		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar = new JButton("Buscar");
+		btnBuscar.addMouseListener(new TEMouseConsultarCliente(this));
 		btnBuscar.setMnemonic(KeyEvent.VK_B);
 		btnBuscar.setBounds(679, 91, 89, 23);
 		contentPanel.add(btnBuscar);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		scrollPane.setBounds(10, 125, 758, 342);
+		scrollPane.setBounds(10, 125, 758, 288);
 		contentPanel.add(scrollPane);
 
-		tableConsulta = new JTable(new DefaultTableModel(linhasTabela, COLUNAS_CLIENTE));
+		tableConsulta = new JTable(new DefaultTableModel(linhasTabela, COLUNAS_CLIENTE)) {
+	        private static final long serialVersionUID = 1L;
+	
+	        public boolean isCellEditable(int row, int column) {                
+	                return false;               
+	        };
+	    };
+		tableConsulta.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		tableConsulta.setForeground(Color.WHITE);
+		tableConsulta.setBackground(peterRiver);
 		tableConsulta.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		scrollPane.setViewportView(tableConsulta);
+		tableConsulta.getColumn(COLUNA_CPF).setPreferredWidth(100);
+		tableConsulta.getColumn(COLUNA_NOME).setPreferredWidth(150);
+		tableConsulta.getColumn(COLUNA_LOGRADOURO).setPreferredWidth(150);
+		tableConsulta.getColumn(COLUNA_NUMERO).setPreferredWidth(100);
+		tableConsulta.getColumn(COLUNA_COMPLEMENTO).setPreferredWidth(150);
+		tableConsulta.getColumn(COLUNA_BAIRRO).setPreferredWidth(150);
+		tableConsulta.getColumn(COLUNA_CIDADE).setPreferredWidth(150);
+		tableConsulta.getColumn(COLUNA_UF).setPreferredWidth(50);
+		tableConsulta.getColumn(COLUNA_CEP).setPreferredWidth(100);
+		tableConsulta.getColumn(COLUNA_TEL_FIXO).setPreferredWidth(100);
+		tableConsulta.getColumn(COLUNA_TEL_MOVEL).setPreferredWidth(100);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 435, 778, 43);
+		contentPanel.add(panel);
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		
+		btnLimpar = new JButton("Limpar");
+		btnLimpar.addMouseListener(new TEMouseConsultarCliente(this));
+		btnLimpar.setMnemonic(KeyEvent.VK_L);
+		panel.add(btnLimpar);
+		
+		btnOk = new JButton("OK");
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				IgConsultarCliente.this.dispose();
+			}
+		});
+		btnOk.setMnemonic(KeyEvent.VK_O);
+		btnOk.setActionCommand("OK");
+		panel.add(btnOk);
+		
+		JSeparator separatorBtn = new JSeparator();
+		separatorBtn.setBounds(0, 424, 778, 2);
+		contentPanel.add(separatorBtn);
 		
 		setVisible(true);
+	}
+	
+	public void addLinhasTabela(Cliente cliente) {
+		DefaultTableModel model = ((DefaultTableModel)(tableConsulta.getModel()));
+		model.setNumRows(num_linhas++);
+		
+		Object[] linha = new Object[NUMERO_COLUNAS_TABELA];
+		
+		linha[0] = Mascara.formatarString(cliente.getCpf(), "###.###.###-##");
+		linha[1] = cliente.getNome();
+		linha[2] = cliente.getEndereco().getLogradouro();
+		linha[3] = cliente.getEndereco().getNumero();
+		linha[4] = cliente.getEndereco().getComplemento();
+		linha[5] = cliente.getEndereco().getBairro();
+		linha[6] = cliente.getEndereco().getCidade();
+		linha[7] = cliente.getEndereco().getUf().getUf();
+		linha[8] = Mascara.formatarString(cliente.getEndereco().getCep(), "#####-###");
+		linha[9] = Mascara.formatarString(cliente.getContato().getTelefoneFixo(), "(##)####-####");
+		linha[10] = Mascara.formatarString(cliente.getContato().getTelefoneMovel(), "(##)####-####");
+		model.addRow(linha);
 	}
 	
 	public void addLinhasTabela(List<Cliente> clientes) {
 		DefaultTableModel model = limpaTabela();
 		
-		if (clientes.size() > 0){
+		if (clientes.size() > 0) {
 			Object[] linha = new Object[NUMERO_COLUNAS_TABELA];
 			
-			for(int i = 0; i < clientes.size(); i++) {
-				linha[0] = clientes.get(i).getCpf();
+			for(int i = 0; i < clientes.size(); i++, num_linhas++) {
+				linha[0] = Mascara.formatarString(clientes.get(i).getCpf(), "###.###.###-##");
 				linha[1] = clientes.get(i).getNome();
 				linha[2] = clientes.get(i).getEndereco().getLogradouro();
 				linha[3] = clientes.get(i).getEndereco().getNumero();
@@ -169,19 +244,46 @@ public class IgConsultaCliente extends JFrame {
 				linha[5] = clientes.get(i).getEndereco().getBairro();
 				linha[6] = clientes.get(i).getEndereco().getCidade();
 				linha[7] = clientes.get(i).getEndereco().getUf().getUf();
-				linha[8] = clientes.get(i).getEndereco().getCep();
-				linha[9] = clientes.get(i).getContato().getTelefoneFixo();
-				linha[10] = clientes.get(i).getContato().getTelefoneMovel();
+				linha[8] = Mascara.formatarString(clientes.get(i).getEndereco().getCep(), "#####-###");
+				linha[9] = Mascara.formatarString(clientes.get(i).getContato().getTelefoneFixo(), "(##)####-####");
+				linha[10] = Mascara.formatarString(clientes.get(i).getContato().getTelefoneMovel(), "(##)####-####");
 				model.addRow(linha);
 			}
 		}
-		else {}
 	}
 	
 	public DefaultTableModel limpaTabela() {
 		DefaultTableModel model = ((DefaultTableModel)(tableConsulta.getModel()));
-		model.setNumRows(0);
+		num_linhas = 0;
+		model.setNumRows(num_linhas);
 		
 		return model;
 	}
-} // class IgConsultaCliente
+	
+	public boolean pesquisaTabela(Cliente cliente) {
+		for(int i = 0; i < num_linhas; i++) {
+			String cpf = tableConsulta.getModel().getValueAt(i, 0).toString().replace(".", "").replace("-", "");
+			if(cpf.equals(cliente.getCpf()))
+				return true;
+		}
+		
+		return false;
+	}
+
+	public JTextField getNomeTextField() {
+		return nomeTextField;
+	}
+
+	public JFormattedTextField getCpfFormattedTextField() {
+		return cpfFormattedTextField;
+	}
+
+	public JButton getBtnLimpar() {
+		return btnLimpar;
+	}
+
+	public JButton getBtnBuscar() {
+		return btnBuscar;
+	}
+	
+} // class IgConsultarCliente
