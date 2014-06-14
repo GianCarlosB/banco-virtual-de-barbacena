@@ -15,6 +15,8 @@ import javax.swing.border.TitledBorder;
 import tsi.too.bvb.entidades.Mascara;
 import tsi.too.bvb.entidades.cliente.Cliente;
 import tsi.too.bvb.eventos.cliente.TEMouseCadastrarCliente;
+import tsi.too.bvb.persistencia.BancoDeDadosBVB;
+import tsi.too.bvb.persistencia.ClienteDAO;
 import tsi.too.bvb.validacoes.ValidarDados;
 
 public class PainelCadCliente extends JPanel implements PainelCliente {
@@ -59,7 +61,7 @@ public class PainelCadCliente extends JPanel implements PainelCliente {
 		
 		cpfFormattedTextField = new JFormattedTextField(new Mascara("###.###.###-##"));
 		lblCpf.setLabelFor(cpfFormattedTextField);
-		cpfFormattedTextField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio, deve conter apenas d\u00EDgitos decimais e deve ser v\u00E1lido");
+		cpfFormattedTextField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio, deve conter apenas d\u00EDgitos decimais, deve ser v\u00E1lido e \u00FAnico");
 		cpfFormattedTextField.setBounds(10, 20, 288, 20);
 		cpfPanel.add(cpfFormattedTextField);
 		
@@ -103,10 +105,16 @@ public class PainelCadCliente extends JPanel implements PainelCliente {
 		String cpf = cpfFormattedTextField.getText().replace(".", "").replace("-", "");
 
 		if(ValidarDados.validarCPF(cpf)) {
-			cpfPanel.setBorder(new TitledBorder(null, "Válido", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
-			cpfFormattedTextField.setBorder(UIManager.getBorder("FormattedTextField.border"));
-			
-			return true;
+			if(new ClienteDAO().pesquisarCpf(BancoDeDadosBVB.getInstance(), cpf) == null) {
+				cpfPanel.setBorder(new TitledBorder(null, "Disponível", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
+				cpfFormattedTextField.setBorder(UIManager.getBorder("FormattedTextField.border"));
+				
+				return true;
+			}
+			else {
+				cpfPanel.setBorder(new TitledBorder(null, "Insdisponível", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 0, 0)));
+				cpfFormattedTextField.setBorder(new LineBorder(Color.RED));
+			}
 		}
 		else {
 			cpfPanel.setBorder(new TitledBorder(null, "Inválido", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 0, 0)));

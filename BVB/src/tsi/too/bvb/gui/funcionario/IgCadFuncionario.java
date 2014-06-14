@@ -28,6 +28,8 @@ import javax.swing.border.TitledBorder;
 import tsi.too.bvb.entidades.funcionario.Funcionario;
 import tsi.too.bvb.entidades.tiposenumerados.TipoUsuario;
 import tsi.too.bvb.eventos.funcionario.TEMouseCadastrarFuncionario;
+import tsi.too.bvb.persistencia.BancoDeDadosBVB;
+import tsi.too.bvb.persistencia.FuncionarioDAO;
 import tsi.too.bvb.validacoes.ValidarDados;
 
 public class IgCadFuncionario extends JDialog {
@@ -231,13 +233,19 @@ public class IgCadFuncionario extends JDialog {
 	
 	public boolean validarLogin() {
 		if(ValidarDados.validarLoginFunc(loginTextField.getText())) {
-			verificacaoPanel.setBorder(new TitledBorder(null, "Disponível", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
-			loginTextField.setBorder(UIManager.getBorder("TextField.border"));
-			
-			return true;
+			if(new FuncionarioDAO().pesquisarLoginUnico(BancoDeDadosBVB.getInstance(), loginTextField.getText()) == null) {
+				verificacaoPanel.setBorder(new TitledBorder(null, "Disponível", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
+				loginTextField.setBorder(UIManager.getBorder("TextField.border"));
+				
+				return true;
+			}
+			else {
+				verificacaoPanel.setBorder(new TitledBorder(null, "Indisponível", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 0, 0)));
+				loginTextField.setBorder(new LineBorder(Color.RED));
+			}
 		}
 		else {
-			verificacaoPanel.setBorder(new TitledBorder(null, "Indisponível", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 0, 0)));
+			verificacaoPanel.setBorder(new TitledBorder(null, "Inválido", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 0, 0)));
 			loginTextField.setBorder(new LineBorder(Color.RED));
 		}
 		
