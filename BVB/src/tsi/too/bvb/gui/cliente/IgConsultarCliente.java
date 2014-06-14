@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -14,7 +15,6 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -31,7 +31,7 @@ import tsi.too.bvb.entidades.cliente.Cliente;
 import tsi.too.bvb.eventos.cliente.TEMouseConsultarCliente;
 import tsi.too.bvb.eventos.cliente.TETecladoConsultarCliente;
 
-public class IgConsultarCliente extends JFrame {
+public class IgConsultarCliente extends JDialog {
 	
 	/**
 	 * 
@@ -66,20 +66,10 @@ public class IgConsultarCliente extends JFrame {
 	private JButton btnBuscar;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			new IgConsultarCliente();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
 	 * Create the dialog.
 	 */
-	public IgConsultarCliente() {
+	public IgConsultarCliente(Window janelaPai) {
+		setModal(true);
 		Color peterRiver = new Color(52, 152, 219);
 		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -148,7 +138,7 @@ public class IgConsultarCliente extends JFrame {
 		contentPanel.add(cpfFormattedTextField);
 		
 		btnBuscar = new JButton("Buscar");
-		btnBuscar.addMouseListener(new TEMouseConsultarCliente(this));
+		btnBuscar.addActionListener(new TEMouseConsultarCliente(this));
 		btnBuscar.setMnemonic(KeyEvent.VK_B);
 		btnBuscar.setBounds(679, 91, 89, 23);
 		contentPanel.add(btnBuscar);
@@ -188,7 +178,7 @@ public class IgConsultarCliente extends JFrame {
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
 		btnLimpar = new JButton("Limpar");
-		btnLimpar.addMouseListener(new TEMouseConsultarCliente(this));
+		btnLimpar.addActionListener(new TEMouseConsultarCliente(this));
 		btnLimpar.setMnemonic(KeyEvent.VK_L);
 		panel.add(btnLimpar);
 		
@@ -206,6 +196,7 @@ public class IgConsultarCliente extends JFrame {
 		separatorBtn.setBounds(0, 424, 778, 2);
 		contentPanel.add(separatorBtn);
 		
+		setLocationRelativeTo(janelaPai);
 		setVisible(true);
 	}
 	

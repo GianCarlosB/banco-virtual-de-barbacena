@@ -45,8 +45,8 @@ public class Funcionario {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Nome do Usuário: ").append(nomeUsuario)
-				.append("\nSenha: ").append(senha).append("\nTipo do Usuário: ")
+		builder.append(" Nome do Usuário: ").append(nomeUsuario)
+				.append("\n Senha: ").append(senha).append("\n Tipo do Usuário: ")
 				.append(tipoUsuario);
 		return builder.toString();
 	}

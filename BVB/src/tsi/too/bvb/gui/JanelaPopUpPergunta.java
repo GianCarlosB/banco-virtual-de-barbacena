@@ -20,19 +20,22 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-public class JanelaPopUpAviso extends JDialog {
+public class JanelaPopUpPergunta extends JDialog {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8506084221384792594L;
+	private static final long serialVersionUID = -312438604748532205L;
 	
 	private final JPanel contentPanel = new JPanel();
+	private boolean sim;
+	private JButton simButton;
+	private JButton naoButton;
 	
 	/**
 	 * Create the dialog.
 	 */
-	public JanelaPopUpAviso(Window janelaPai, String titulo, String msgAviso) {
+	public JanelaPopUpPergunta(Window janelaPai, String titulo, String msgPergunta) {
 		setModal(true);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
@@ -40,7 +43,7 @@ public class JanelaPopUpAviso extends JDialog {
 		setTitle(titulo);
 		setBounds(100, 100, 450, 200);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(new Color(241, 196, 15));
+		contentPanel.setBackground(new Color(39, 174, 96));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -50,7 +53,7 @@ public class JanelaPopUpAviso extends JDialog {
 		contentPanel.add(separatorBtn);
 		
 		JLabel lblImg = new JLabel("img");
-		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\pins38.png"));
+		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\question3.png"));
 		lblImg.setBounds(402, 26, 32, 32);
 		contentPanel.add(lblImg);
 		
@@ -58,33 +61,48 @@ public class JanelaPopUpAviso extends JDialog {
 		msgEditorPane.setEditable(false);
 		msgEditorPane.setForeground(new Color(236, 240, 241));
 		msgEditorPane.setFont(new Font("Calibri", Font.BOLD, 14));
-		msgEditorPane.setText(msgAviso);
-		msgEditorPane.setBackground(new Color(241, 196, 15));
-		msgEditorPane.setBorder(new TitledBorder(new LineBorder(new Color(236, 240, 241), 1, true), "AVISO", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(236, 240, 241)));
+		msgEditorPane.setText(msgPergunta);
+		msgEditorPane.setBackground(new Color(39, 174, 96));
+		msgEditorPane.setBorder(new TitledBorder(new LineBorder(new Color(236, 240, 241), 1, true), "PERGUNTA", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(236, 240, 241)));
 		msgEditorPane.setBounds(10, 11, 382, 104);
 		contentPanel.add(msgEditorPane);
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setBackground(new Color(241, 196, 15));
+			buttonPane.setBackground(new Color(39, 174, 96));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						JanelaPopUpAviso.this.dispose();
+				simButton = new JButton("Sim");
+				simButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						sim = true; JanelaPopUpPergunta.this.dispose();
 					}
 				});
-				okButton.setBackground(new Color(241, 196, 15));
-				okButton.setMnemonic(KeyEvent.VK_O);
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				simButton.setBackground(new Color(39, 174, 96));
+				simButton.setMnemonic(KeyEvent.VK_S);
+				simButton.setActionCommand("SIM");
+				buttonPane.add(simButton);
+				getRootPane().setDefaultButton(simButton);
 			}
+			
+			naoButton = new JButton("N\u00E3o");
+			naoButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					sim = false; JanelaPopUpPergunta.this.dispose();
+				}
+			});
+			naoButton.setMnemonic(KeyEvent.VK_N);
+			naoButton.setBackground(new Color(39, 174, 96));
+			naoButton.setActionCommand("NAO");
+			buttonPane.add(naoButton);
 		}
 		
-		JanelaPopUpAviso.this.setLocationRelativeTo(janelaPai);
+		JanelaPopUpPergunta.this.setLocationRelativeTo(janelaPai);
 		setVisible(true);
 	}
 	
-} // class JanelaPopUpAviso
+	public boolean isSim() {
+		return sim;
+	}
+
+} // class JanelaPopUpPergunta

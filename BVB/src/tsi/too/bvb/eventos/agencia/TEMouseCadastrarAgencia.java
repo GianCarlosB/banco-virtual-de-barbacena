@@ -1,8 +1,8 @@
 package tsi.too.bvb.eventos.agencia;
 
 import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
@@ -14,7 +14,7 @@ import tsi.too.bvb.persistencia.AgenciaDAO;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 import tsi.too.bvb.validacoes.ValidarDados;
 
-public class TEMouseCadastrarAgencia extends MouseAdapter {
+public class TEMouseCadastrarAgencia implements ActionListener {
 	
 	private IgCadAgencia igCadAgencia;
 	private Agencia agencia;
@@ -26,31 +26,30 @@ public class TEMouseCadastrarAgencia extends MouseAdapter {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		super.mouseClicked(e);
 		
-		if(e.getButton() == MouseEvent.BUTTON1) { // botão esquerdo do mouse
-			if(e.getSource() == igCadAgencia.getBtnLimpar())
-				igCadAgencia.setDescricaoEditorPane("");
-			
-			if(e.getSource() == igCadAgencia.getBtnFinalizar()) {
-				if(ValidarDados.validarVazio(igCadAgencia.getDescricaoEditorPane().getText()) == false) {
-					igCadAgencia.setLblCamposErrados(true);
-					igCadAgencia.getDescricaoEditorPane().setBorder(new LineBorder(Color.RED));
-				}
-				else {
-					igCadAgencia.setLblCamposErrados(false);
-					igCadAgencia.salvarCampos(agencia);
-					igCadAgencia.getDescricaoEditorPane().setBorder(UIManager.getBorder("EditorPane.border"));
-					
-					AgenciaDAO agenciaDAO = new AgenciaDAO();
-					agenciaDAO.criar(BancoDeDadosBVB.getInstance(), agencia);
-					
-					new JanelaPopUpInfo(igCadAgencia, "Novo Cadastro de Agência", " Cadastro da Agência Realizado com Sucesso!",
-							            " Descrição: " + agencia.getDescricao());
-					igCadAgencia.dispose();
-				}
+		if(e.getSource() == igCadAgencia.getBtnLimpar())
+			igCadAgencia.setDescricaoEditorPane("");
+		
+		else if(e.getSource() == igCadAgencia.getBtnFinalizar()) {
+			if(ValidarDados.validarVazio(igCadAgencia.getDescricaoEditorPane().getText()) == false) {
+				igCadAgencia.setLblCamposErrados(true);
+				igCadAgencia.getDescricaoEditorPane().setBorder(new LineBorder(Color.RED));
+				igCadAgencia.getScrollPane().setBorder(new LineBorder(Color.RED));
+			}
+			else {
+				igCadAgencia.setLblCamposErrados(false);
+				igCadAgencia.salvarCampos(agencia);
+				igCadAgencia.getDescricaoEditorPane().setBorder(UIManager.getBorder("EditorPane.border"));
+				igCadAgencia.getScrollPane().setBorder(UIManager.getBorder("ScrollPane.border"));
+				
+				AgenciaDAO agenciaDAO = new AgenciaDAO();
+				agenciaDAO.criar(BancoDeDadosBVB.getInstance(), agencia);
+				
+				new JanelaPopUpInfo(igCadAgencia, "Novo Cadastro de Agência", " Cadastro da Agência Realizado com Sucesso!",
+						            " Descrição: " + agencia.getDescricao());
+				igCadAgencia.dispose();
 			}
 		}
 	}

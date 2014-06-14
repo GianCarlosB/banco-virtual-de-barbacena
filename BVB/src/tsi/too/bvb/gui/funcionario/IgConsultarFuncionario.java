@@ -1,9 +1,9 @@
 package tsi.too.bvb.gui.funcionario;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -15,7 +15,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -32,7 +31,7 @@ import tsi.too.bvb.entidades.tiposenumerados.TipoUsuario;
 import tsi.too.bvb.eventos.funcionario.TEMouseConsultarFuncionario;
 import tsi.too.bvb.eventos.funcionario.TETecladoConsultarFuncionario;
 
-public class IgConsultarFuncionario extends JFrame {
+public class IgConsultarFuncionario extends JDialog {
 
 	/**
 	 * 
@@ -59,24 +58,10 @@ public class IgConsultarFuncionario extends JFrame {
 	private JButton btnBuscar;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					new IgConsultarFuncionario();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public IgConsultarFuncionario() {
+	public IgConsultarFuncionario(Window janelaPai) {
+		setModal(true);
 		Color nephritis = new Color(39, 174, 96);
 		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -131,7 +116,7 @@ public class IgConsultarFuncionario extends JFrame {
 		Btnpanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
 		btnLimpar = new JButton("Limpar");
-		btnLimpar.addMouseListener(new TEMouseConsultarFuncionario(this));
+		btnLimpar.addActionListener(new TEMouseConsultarFuncionario(this));
 		btnLimpar.setMnemonic(KeyEvent.VK_L);
 		Btnpanel.add(btnLimpar);
 		
@@ -153,7 +138,7 @@ public class IgConsultarFuncionario extends JFrame {
 		LoginTextField.addKeyListener(new TETecladoConsultarFuncionario(this));
 		LoginTextField.setToolTipText("a pesquisa \u00E9 realizada automaticamente quando cada caracter \u00E9 digitado");
 		LoginTextField.setColumns(10);
-		LoginTextField.setBounds(80, 92, 308, 20);
+		LoginTextField.setBounds(100, 92, 308, 20);
 		contentPane.add(LoginTextField);
 		
 		tipoUsuarioComboBox = new JComboBox<Object>(TipoUsuario.arrayTipos());
@@ -181,11 +166,12 @@ public class IgConsultarFuncionario extends JFrame {
 		scrollPane.setViewportView(tableConsulta);
 		
 		btnBuscar = new JButton("Buscar");
-		btnBuscar.addMouseListener(new TEMouseConsultarFuncionario(this));
+		btnBuscar.addActionListener(new TEMouseConsultarFuncionario(this));
 		btnBuscar.setMnemonic(KeyEvent.VK_B);
 		btnBuscar.setBounds(129, 119, 89, 23);
 		contentPane.add(btnBuscar);
 		
+		setLocationRelativeTo(janelaPai);
 		setVisible(true);
 	}
 	

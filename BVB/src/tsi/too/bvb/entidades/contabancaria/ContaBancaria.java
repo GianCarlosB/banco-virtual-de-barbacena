@@ -128,14 +128,14 @@ public class ContaBancaria {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Código da Agência: ").append(codAgencia)
-				.append("\nNúmero da Conta: ").append(numConta).append("\nTipo da Conta: ")
-				.append(tipoConta).append("\nCPF: ").append(cpf)
-				.append("\nData de Abertura: ").append(dataAbertura)
-				.append("\nSenha Númerica: ").append(senhaNumerica)
-				.append("\nSenha Alfabética: ").append(senhaAlfabetica)
-				.append("\nConta Sálario: ").append(contaSalario)
-				.append("\nSaldo: ").append(saldo);
+		builder.append(" Código da Agência: ").append(codAgencia)
+				.append("\n Número da Conta: ").append(numConta).append("\n Tipo da Conta: ")
+				.append(tipoConta).append("\n CPF: ").append(cpf)
+				.append("\n Data de Abertura: ").append(dataAbertura)
+				.append("\n Senha Númerica: ").append(senhaNumerica)
+				.append("\n Senha Alfabética: ").append(senhaAlfabetica)
+				.append("\n Conta Sálario: ").append(contaSalario)
+				.append("\n Saldo: ").append(saldo);
 		return builder.toString();
 	}
 	

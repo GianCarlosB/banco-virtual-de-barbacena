@@ -1,9 +1,9 @@
 package tsi.too.bvb.gui.funcionario;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -13,7 +13,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -31,7 +30,7 @@ import tsi.too.bvb.entidades.tiposenumerados.TipoUsuario;
 import tsi.too.bvb.eventos.funcionario.TEMouseCadastrarFuncionario;
 import tsi.too.bvb.validacoes.ValidarDados;
 
-public class IgCadFuncionario extends JFrame {
+public class IgCadFuncionario extends JDialog {
 
 	/**
 	 * 
@@ -52,26 +51,12 @@ public class IgCadFuncionario extends JFrame {
 	private JPanel verificacaoPanel;
 	private JLabel lblCamposErrados;
 	private JPasswordField rPasswordField;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					new IgCadFuncionario(new Funcionario());
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */
-	public IgCadFuncionario(Funcionario funcionario) {
+	public IgCadFuncionario(Window janelaPai, Funcionario funcionario) {
+		setModal(true);
 		Color nephritis = new Color(39, 174, 96);
 		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -125,12 +110,12 @@ public class IgCadFuncionario extends JFrame {
 		Btnpanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		btnFinalizar = new JButton("Finalizar");
-		btnFinalizar.addMouseListener(new TEMouseCadastrarFuncionario(this, funcionario));
+		btnFinalizar.addActionListener(new TEMouseCadastrarFuncionario(this, funcionario));
 		btnFinalizar.setMnemonic(KeyEvent.VK_F);
 		Btnpanel.add(btnFinalizar);
 		
 		btnLimpar = new JButton("Limpar");
-		btnLimpar.addMouseListener(new TEMouseCadastrarFuncionario(this, funcionario));
+		btnLimpar.addActionListener(new TEMouseCadastrarFuncionario(this, funcionario));
 		btnLimpar.setMnemonic(KeyEvent.VK_L);
 		Btnpanel.add(btnLimpar);
 		
@@ -189,7 +174,7 @@ public class IgCadFuncionario extends JFrame {
 		lblLogin.setLabelFor(loginTextField);
 		
 		btnVerificar = new JButton("Verificar");
-		btnVerificar.addMouseListener(new TEMouseCadastrarFuncionario(this, funcionario));
+		btnVerificar.addActionListener(new TEMouseCadastrarFuncionario(this, funcionario));
 		btnVerificar.setMnemonic(KeyEvent.VK_V);
 		btnVerificar.setBounds(308, 19, 89, 23);
 		verificacaoPanel.add(btnVerificar);
@@ -220,6 +205,7 @@ public class IgCadFuncionario extends JFrame {
 		rPasswordField.setBounds(100, 192, 308, 20);
 		contentPane.add(rPasswordField);
 		
+		setLocationRelativeTo(janelaPai);
 		setVisible(true);
 	}
 	

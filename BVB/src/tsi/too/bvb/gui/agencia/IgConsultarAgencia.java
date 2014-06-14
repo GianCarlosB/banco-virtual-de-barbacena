@@ -1,9 +1,9 @@
 package tsi.too.bvb.gui.agencia;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -13,7 +13,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -29,7 +28,7 @@ import tsi.too.bvb.entidades.agencia.Agencia;
 import tsi.too.bvb.eventos.agencia.TEMouseConsultarAgencia;
 import tsi.too.bvb.eventos.agencia.TETecladoConsultarAgencia;
 
-public class IgConsultarAgencia extends JFrame {
+public class IgConsultarAgencia extends JDialog {
 
 	/**
 	 * 
@@ -54,24 +53,10 @@ public class IgConsultarAgencia extends JFrame {
 	private JTextField descricaoTextField;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					new IgConsultarAgencia();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public IgConsultarAgencia() {
+	public IgConsultarAgencia(Window janelaPai) {
+		setModal(true);
 		Color pumpkin = new Color(211, 84, 0);
 		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -124,7 +109,7 @@ public class IgConsultarAgencia extends JFrame {
 		lblCodigo.setLabelFor(codigoTextField);
 		codigoTextField.setToolTipText("para pesquisar utilizando o c\u00F3digo clique no bot\u00E3o buscar");
 		codigoTextField.setColumns(10);
-		codigoTextField.setBounds(80, 92, 308, 20);
+		codigoTextField.setBounds(100, 92, 308, 20);
 		contentPane.add(codigoTextField);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -148,9 +133,9 @@ public class IgConsultarAgencia extends JFrame {
 
 		
 		btnBuscar = new JButton("Buscar");
-		btnBuscar.addMouseListener(new TEMouseConsultarAgencia(this));
+		btnBuscar.addActionListener(new TEMouseConsultarAgencia(this));
 		btnBuscar.setMnemonic(KeyEvent.VK_B);
-		btnBuscar.setBounds(398, 91, 89, 23);
+		btnBuscar.setBounds(418, 91, 89, 23);
 		contentPane.add(btnBuscar);
 		
 		JPanel Btnpanel = new JPanel();
@@ -159,7 +144,7 @@ public class IgConsultarAgencia extends JFrame {
 		Btnpanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
 		btnLimpar = new JButton("Limpar");
-		btnLimpar.addMouseListener(new TEMouseConsultarAgencia(this));
+		btnLimpar.addActionListener(new TEMouseConsultarAgencia(this));
 		btnLimpar.setMnemonic(KeyEvent.VK_L);
 		Btnpanel.add(btnLimpar);
 		
@@ -186,10 +171,11 @@ public class IgConsultarAgencia extends JFrame {
 		descricaoTextField.setToolTipText("a pesquisa \u00E9 realizada automaticamente quando cada caracter \u00E9 digitado");
 		descricaoTextField.addKeyListener(new TETecladoConsultarAgencia(this));
 		lblDescricao.setLabelFor(descricaoTextField);
-		descricaoTextField.setBounds(80, 117, 308, 20);
+		descricaoTextField.setBounds(100, 117, 308, 20);
 		contentPane.add(descricaoTextField);
 		descricaoTextField.setColumns(10);
 		
+		setLocationRelativeTo(janelaPai);
 		setVisible(true);
 	}
 	

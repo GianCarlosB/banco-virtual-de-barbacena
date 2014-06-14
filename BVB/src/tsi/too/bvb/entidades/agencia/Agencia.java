@@ -39,8 +39,8 @@ public class Agencia {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Código da Agência: ").append(codAgencia)
-				.append("\nDescrição: ").append(descricao);
+		builder.append(" Código da Agência: ").append(codAgencia)
+				.append("\n Descrição: ").append(descricao);
 		return builder.toString();
 	}
 	

@@ -1,10 +1,11 @@
 package tsi.too.bvb.gui.cliente;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Component;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -13,22 +14,18 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JSeparator;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
-
-import tsi.too.bvb.entidades.cliente.Cliente;
-import tsi.too.bvb.entidades.cliente.Contato;
-import tsi.too.bvb.entidades.cliente.Endereco;
-import tsi.too.bvb.eventos.cliente.TEMouseCadastrarCliente;
-import java.awt.Color;
 import javax.swing.border.LineBorder;
 
-public class IgCadCliente extends JFrame {
+import tsi.too.bvb.entidades.cliente.Cliente;
+import tsi.too.bvb.eventos.cliente.TEMouseCadastrarCliente;
+
+public class IgCadCliente extends JDialog {
 	/**
 	 * 
 	 */
@@ -54,24 +51,10 @@ public class IgCadCliente extends JFrame {
 	private JLabel lblCamposErrados;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					new IgCadCliente(new Cliente(new Contato(), new Endereco()));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public IgCadCliente(Cliente cliente) {
+	public IgCadCliente(Window janelaPai, Cliente cliente) {
+		setModal(true);
 		Color peterRiver = new Color(52, 152, 219);
 		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -115,24 +98,24 @@ public class IgCadCliente extends JFrame {
 		Btnpanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		btnAnterior = new JButton("< Anterior");
-		btnAnterior.addMouseListener(new TEMouseCadastrarCliente(this, cliente));
+		btnAnterior.addActionListener(new TEMouseCadastrarCliente(this, cliente));
 		btnAnterior.setVisible(false);
 		btnAnterior.setMnemonic(KeyEvent.VK_A);
 		Btnpanel.add(btnAnterior);
 		
 		btnProximo = new JButton("Pr\u00F3ximo >");
-		btnProximo.addMouseListener(new TEMouseCadastrarCliente(this, cliente));
+		btnProximo.addActionListener(new TEMouseCadastrarCliente(this, cliente));
 		btnProximo.setMnemonic(KeyEvent.VK_P);
 		Btnpanel.add(btnProximo);
 		
 		btnFinalizar = new JButton("Finalizar");
-		btnFinalizar.addMouseListener(new TEMouseCadastrarCliente(this, cliente));
+		btnFinalizar.addActionListener(new TEMouseCadastrarCliente(this, cliente));
 		btnFinalizar.setVisible(false);
 		btnFinalizar.setMnemonic(KeyEvent.VK_F);
 		Btnpanel.add(btnFinalizar);
 		
 		btnLimpar = new JButton("Limpar");
-		btnLimpar.addMouseListener(new TEMouseCadastrarCliente(this, cliente));
+		btnLimpar.addActionListener(new TEMouseCadastrarCliente(this, cliente));
 		btnLimpar.setMnemonic(KeyEvent.VK_L);
 		Btnpanel.add(btnLimpar);
 		
@@ -183,6 +166,7 @@ public class IgCadCliente extends JFrame {
 		lblCamposErrados.setBounds(10, 377, 497, 14);
 		contentPane.add(lblCamposErrados);
 		
+		setLocationRelativeTo(janelaPai);
 		setVisible(true);
 	}
 	

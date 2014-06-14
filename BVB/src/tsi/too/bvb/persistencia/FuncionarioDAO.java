@@ -51,9 +51,32 @@ public class FuncionarioDAO {
 		return lista;
 	}
 	
+	public Funcionario pesquisarLoginUnico(BancoDeDadosDAO bdDao, String login) {
+		Funcionario funcionario = new Funcionario();
+		final String sql = "SELECT * FROM funcionario WHERE nomeUsuario LIKE '" + login.toLowerCase() + "'";
+		
+		try {
+			bdDao.executarComandoSQL(sql);
+			ResultSet rSet = bdDao.obterResultSet();
+			
+			if(!rSet.next()) return null;
+			
+			funcionario.setNomeUsuario(rSet.getString(1));
+			funcionario.setSenha(rSet.getString(2));
+			funcionario.setTipoUsuario(TipoUsuario.obterTipoUsuario(rSet.getString(3).charAt(0)));
+			
+			BancoDeDadosDAO.fecharResultSet(rSet);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return funcionario;
+	}
+	
 	public List<Funcionario> pesquisarLogin(BancoDeDadosDAO bdDao, String login) {
 		List<Funcionario> lista = new ArrayList<>();
-		final String sql = "SELECT * FROM funcionario WHERE nomeUsuario LIKE \'%" + login + "%\'";
+		final String sql = "SELECT * FROM funcionario WHERE nomeUsuario LIKE \'%" + login.toLowerCase() + "%\'";
 		
 		try {
 			bdDao.executarComandoSQL(sql);
@@ -98,4 +121,17 @@ public class FuncionarioDAO {
 		return lista;
 	}
 
+	public void excluir(BancoDeDadosDAO bdDao, String login) {
+		final String sql = "DELETE FROM funcionario WHERE nomeUsuario LIKE '" + login.toLowerCase() + "'";
+		
+		bdDao.executarComandoSQL(sql);
+		
+		try {
+			bdDao.getStmt().executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 } // class FuncionarioDAO

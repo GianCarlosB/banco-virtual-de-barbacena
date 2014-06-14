@@ -97,7 +97,7 @@ public class ClienteDAO {
 
 	public List<Cliente> pesquisarNome(BancoDeDadosDAO bdDao, String nome) {
 		List<Cliente> lista = new ArrayList<>();
-		final String sql = "SELECT * FROM cliente WHERE nome LIKE \'%" + nome + "%\'";
+		final String sql = "SELECT * FROM cliente WHERE nome LIKE \'%" + nome.toLowerCase() + "%\'";
 		
 		try {
 			bdDao.executarComandoSQL(sql);
@@ -122,6 +122,19 @@ public class ClienteDAO {
 		}
 		
 		return lista;
+	}
+	
+	public void excluir(BancoDeDadosDAO bdDao, String cpf) {
+		final String sql = "DELETE FROM cliente WHERE cpf = " + cpf;
+		
+		bdDao.executarComandoSQL(sql);
+		
+		try {
+			bdDao.getStmt().executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 } // class ClienteDAO

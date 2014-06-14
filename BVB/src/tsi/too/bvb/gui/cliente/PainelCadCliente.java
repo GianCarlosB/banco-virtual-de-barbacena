@@ -64,7 +64,7 @@ public class PainelCadCliente extends JPanel implements PainelCliente {
 		cpfPanel.add(cpfFormattedTextField);
 		
 		btnValidar = new JButton("Validar");
-		btnValidar.addMouseListener(new TEMouseCadastrarCliente(this));
+		btnValidar.addActionListener(new TEMouseCadastrarCliente(this));
 
 		btnValidar.setMnemonic(KeyEvent.VK_V);
 		btnValidar.setBounds(308, 19, 89, 23);

@@ -72,7 +72,7 @@ public class AgenciaDAO {
 	
 	public List<Agencia> pesquisarDescricao(BancoDeDadosDAO bdDao, String descricao) {
 		List<Agencia> lista = new ArrayList<>();
-		final String sql = "SELECT * FROM agencia WHERE descricao LIKE \'%" + descricao + "%\'";
+		final String sql = "SELECT * FROM agencia WHERE descricao LIKE \'%" + descricao.toLowerCase() + "%\'";
 		
 		try {
 			bdDao.executarComandoSQL(sql);
@@ -91,6 +91,19 @@ public class AgenciaDAO {
 		}
 		
 		return lista;
+	}
+	
+	public void excluir(BancoDeDadosDAO bdDao, String codigo) {
+		final String sql = "DELETE FROM agencia WHERE codAgencia = " + codigo;
+		
+		bdDao.executarComandoSQL(sql);
+		
+		try {
+			bdDao.getStmt().executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 } // class AgenciaDAO

@@ -55,8 +55,7 @@ public abstract class BancoDeDadosDAO {
 		try {
 			stmt = conn.prepareStatement(sql);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new JanelaPopUpErro(null, "BVB - ERRO", " Falha na execução de uma operação relacionada ao banco de dados!", e);
 		}
 		
 		return stmt;
@@ -68,8 +67,7 @@ public abstract class BancoDeDadosDAO {
 		try {
 			rset = stmt.executeQuery();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new JanelaPopUpErro(null, "BVB - ERRO", " Falha na obtenção de um resultado relacionado ao banco de dados!", e);
 		}
 		
 		return rset;
@@ -93,8 +91,7 @@ public abstract class BancoDeDadosDAO {
 			conn.close();
 			System.out.println("Conexão com o Banco de dados finalizada.");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new JanelaPopUpErro(null, "BVB - ERRO", " Falha na finalização da conexão com o banco de dados!", e);
 		}
 	}
 	

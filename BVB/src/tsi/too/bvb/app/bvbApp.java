@@ -1,7 +1,7 @@
 package tsi.too.bvb.app;
 
-import tsi.too.bvb.gui.IgMenuPrincipal;
 import tsi.too.bvb.gui.JanelaPopUpErro;
+import tsi.too.bvb.gui.menuprincipal.IgMenuPrincipal;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 
 public class bvbApp {

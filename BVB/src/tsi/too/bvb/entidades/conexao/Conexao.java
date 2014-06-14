@@ -81,11 +81,11 @@ public class Conexao {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Nome do Usuário: ").append(nomeUsuario)
-			    .append("\nHora Inicial: ").append(horaInicial)
-				.append("\nHora Final: ").append(horaFinal)
-				.append("\nData Inicial: ").append(dataInicial)
-				.append("\nData Final: ").append(dataFinal);
+		builder.append(" Nome do Usuário: ").append(nomeUsuario)
+			    .append("\n Hora Inicial: ").append(horaInicial)
+				.append("\n Hora Final: ").append(horaFinal)
+				.append("\n Data Inicial: ").append(dataInicial)
+				.append("\n Data Final: ").append(dataFinal);
 		return builder.toString();
 	}
 	

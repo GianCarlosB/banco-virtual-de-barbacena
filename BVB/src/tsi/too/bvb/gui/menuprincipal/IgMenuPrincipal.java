@@ -1,11 +1,9 @@
-package tsi.too.bvb.gui;
+package tsi.too.bvb.gui.menuprincipal;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -25,8 +23,7 @@ import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-import tsi.too.bvb.eventos.TEMouseMenuPrincipal;
-import tsi.too.bvb.persistencia.BancoDeDadosBVB;
+import tsi.too.bvb.eventos.menuprincipal.TEMouseMenuPrincipal;
 
 public class IgMenuPrincipal extends JFrame {
 	
@@ -143,7 +140,7 @@ public class IgMenuPrincipal extends JFrame {
 		
 		cadClienteImgBtn = new JButton("");
 		cadClienteImgBtn.setBorder(new LineBorder(Color.WHITE));
-		cadClienteImgBtn.addMouseListener(new TEMouseMenuPrincipal(this));
+		cadClienteImgBtn.addActionListener(new TEMouseMenuPrincipal(this));
 		cadClienteImgBtn.setBounds(20, 77, 160, 160);
 		cadClienteImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\User-Add-128.png"));
 		cadClienteImgBtn.setBackground(peterRiver);
@@ -161,13 +158,14 @@ public class IgMenuPrincipal extends JFrame {
 		relClienteImgBtn.setBackground(peterRiver);
 		
 		exClienteImgBtn = new JButton("");
+		exClienteImgBtn.addActionListener(new TEMouseMenuPrincipal(this));
 		exClienteImgBtn.setBounds(560, 77, 160, 160);
 		exClienteImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\close11.png"));
 		exClienteImgBtn.setBorder(new LineBorder(Color.WHITE));
 		exClienteImgBtn.setBackground(pomergante);
 		
 		cadClienteBtn = new JButton("Cadastrar");
-		cadClienteBtn.addMouseListener(new TEMouseMenuPrincipal(this));
+		cadClienteBtn.addActionListener(new TEMouseMenuPrincipal(this));
 		cadClienteBtn.setMnemonic(KeyEvent.VK_C);
 		cadClienteBtn.setBounds(20, 248, 160, 38);
 		cadClienteBtn.setBorder(new LineBorder(Color.WHITE));
@@ -193,6 +191,7 @@ public class IgMenuPrincipal extends JFrame {
 		relClienteBtn.setBackground(peterRiver);
 		
 		exClienteBtn = new JButton("Excluir");
+		exClienteBtn.addActionListener(new TEMouseMenuPrincipal(this));
 		exClienteBtn.setMnemonic(KeyEvent.VK_E);
 		exClienteBtn.setBounds(560, 248, 160, 38);
 		exClienteBtn.setForeground(Color.WHITE);
@@ -210,7 +209,7 @@ public class IgMenuPrincipal extends JFrame {
 		clientePanel.add(exClienteImgBtn);
 		
 		consClienteImgBtn = new JButton("");
-		consClienteImgBtn.addMouseListener(new TEMouseMenuPrincipal(this));
+		consClienteImgBtn.addActionListener(new TEMouseMenuPrincipal(this));
 		consClienteImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\ID-Information-128.png"));
 		consClienteImgBtn.setBorder(new LineBorder(Color.WHITE));
 		consClienteImgBtn.setBackground(new Color(52, 152, 219));
@@ -218,7 +217,7 @@ public class IgMenuPrincipal extends JFrame {
 		clientePanel.add(consClienteImgBtn);
 		
 		consClienteBtn = new JButton("Consultar");
-		consClienteBtn.addMouseListener(new TEMouseMenuPrincipal(this));
+		consClienteBtn.addActionListener(new TEMouseMenuPrincipal(this));
 		consClienteBtn.setMnemonic(KeyEvent.VK_O);
 		consClienteBtn.setForeground(Color.WHITE);
 		consClienteBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -231,7 +230,7 @@ public class IgMenuPrincipal extends JFrame {
 		tabbedPane.addTab("Funcionário",null,funcionarioPanel,"Second Panel");
 		
 		cadFuncImgBtn = new JButton("");
-		cadFuncImgBtn.addMouseListener(new TEMouseMenuPrincipal(this));
+		cadFuncImgBtn.addActionListener(new TEMouseMenuPrincipal(this));
 		cadFuncImgBtn.setBounds(20, 77, 160, 160);
 		cadFuncImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\Employee-Add-128.png"));
 		cadFuncImgBtn.setBorder(new LineBorder(Color.WHITE));
@@ -244,6 +243,7 @@ public class IgMenuPrincipal extends JFrame {
 		altFuncImgBtn.setBackground(nephritis);
 		
 		exFuncImgBtn = new JButton("");
+		exFuncImgBtn.addActionListener(new TEMouseMenuPrincipal(this));
 		exFuncImgBtn.setBounds(560, 77, 160, 160);
 		exFuncImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\close11.png"));
 		exFuncImgBtn.setBorder(new LineBorder(Color.WHITE));
@@ -257,7 +257,7 @@ public class IgMenuPrincipal extends JFrame {
 		relFuncImgBtn.setBackground(nephritis);
 		
 		cadFuncBtn = new JButton("Cadastrar");
-		cadFuncBtn.addMouseListener(new TEMouseMenuPrincipal(this));
+		cadFuncBtn.addActionListener(new TEMouseMenuPrincipal(this));
 		cadFuncBtn.setMnemonic(KeyEvent.VK_C);
 		cadFuncBtn.setBounds(20, 248, 160, 38);
 		cadFuncBtn.setForeground(Color.WHITE);
@@ -282,6 +282,7 @@ public class IgMenuPrincipal extends JFrame {
 		relFuncBtn.setBackground(nephritis);
 		
 		exFuncBtn = new JButton("Excluir");
+		exFuncBtn.addActionListener(new TEMouseMenuPrincipal(this));
 		exFuncBtn.setMnemonic(KeyEvent.VK_E);
 		exFuncBtn.setBounds(560, 248, 160, 38);
 		exFuncBtn.setForeground(Color.WHITE);
@@ -299,7 +300,7 @@ public class IgMenuPrincipal extends JFrame {
 		funcionarioPanel.add(exFuncImgBtn);
 		
 		consFuncImgBtn = new JButton("");
-		consFuncImgBtn.addMouseListener(new TEMouseMenuPrincipal(this));
+		consFuncImgBtn.addActionListener(new TEMouseMenuPrincipal(this));
 		consFuncImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\User-Information-128.png"));
 		consFuncImgBtn.setBorder(new LineBorder(Color.WHITE));
 		consFuncImgBtn.setBackground(nephritis);
@@ -307,7 +308,7 @@ public class IgMenuPrincipal extends JFrame {
 		funcionarioPanel.add(consFuncImgBtn);
 		
 		consFuncBtn = new JButton("Consultar");
-		consFuncBtn.addMouseListener(new TEMouseMenuPrincipal(this));
+		consFuncBtn.addActionListener(new TEMouseMenuPrincipal(this));
 		consFuncBtn.setMnemonic(KeyEvent.VK_O);
 		consFuncBtn.setForeground(Color.WHITE);
 		consFuncBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -322,7 +323,7 @@ public class IgMenuPrincipal extends JFrame {
 		agenciaPanel.setLayout(null);
 		
 		cadAgImgBtn = new JButton("");
-		cadAgImgBtn.addMouseListener(new TEMouseMenuPrincipal(this));
+		cadAgImgBtn.addActionListener(new TEMouseMenuPrincipal(this));
 		cadAgImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\Building-Add-128.png"));
 		cadAgImgBtn.setAlignmentX(0.5f);
 		cadAgImgBtn.setBorder(new LineBorder(Color.WHITE));
@@ -347,6 +348,7 @@ public class IgMenuPrincipal extends JFrame {
 		agenciaPanel.add(relAgImgBtn);
 		
 		exAgImgBtn = new JButton("");
+		exAgImgBtn.addActionListener(new TEMouseMenuPrincipal(this));
 		exAgImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\close11.png"));
 		exAgImgBtn.setAlignmentX(0.5f);
 		exAgImgBtn.setBorder(new LineBorder(Color.WHITE));
@@ -355,7 +357,7 @@ public class IgMenuPrincipal extends JFrame {
 		agenciaPanel.add(exAgImgBtn);
 		
 		cadAgBtn = new JButton("Cadastrar");
-		cadAgBtn.addMouseListener(new TEMouseMenuPrincipal(this));
+		cadAgBtn.addActionListener(new TEMouseMenuPrincipal(this));
 		cadAgBtn.setMnemonic(KeyEvent.VK_C);
 		cadAgBtn.setAlignmentX(0.5f);
 		cadAgBtn.setForeground(Color.WHITE);
@@ -387,6 +389,7 @@ public class IgMenuPrincipal extends JFrame {
 		agenciaPanel.add(relAgBtn);
 		
 		exAgBtn = new JButton("Excluir");
+		exAgBtn.addActionListener(new TEMouseMenuPrincipal(this));
 		exAgBtn.setMnemonic(KeyEvent.VK_E);
 		exAgBtn.setAlignmentX(0.5f);
 		exAgBtn.setForeground(Color.WHITE);
@@ -397,7 +400,7 @@ public class IgMenuPrincipal extends JFrame {
 		agenciaPanel.add(exAgBtn);
 		
 		consAgImgBtn = new JButton("");
-		consAgImgBtn.addMouseListener(new TEMouseMenuPrincipal(this));
+		consAgImgBtn.addActionListener(new TEMouseMenuPrincipal(this));
 		consAgImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\Data-Analysis-128.png"));
 		consAgImgBtn.setBorder(new LineBorder(Color.WHITE));
 		consAgImgBtn.setBackground(pumpkin);
@@ -405,7 +408,7 @@ public class IgMenuPrincipal extends JFrame {
 		agenciaPanel.add(consAgImgBtn);
 		
 		consAgBtn = new JButton("Consultar");
-		consAgBtn.addMouseListener(new TEMouseMenuPrincipal(this));
+		consAgBtn.addActionListener(new TEMouseMenuPrincipal(this));
 		consAgBtn.setMnemonic(KeyEvent.VK_O);
 		consAgBtn.setForeground(Color.WHITE);
 		consAgBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -451,11 +454,7 @@ public class IgMenuPrincipal extends JFrame {
 		menuBar.add(mnArquivo);
 		
 		mntmSair = new JMenuItem("Sair");
-		mntmSair.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				terminaPrograma();
-			}
-		});
+		mntmSair.addActionListener(new TEMouseMenuPrincipal(this));
 		mntmSair.setMnemonic(KeyEvent.VK_S);
 		mnArquivo.add(mntmSair);
 		
@@ -464,21 +463,14 @@ public class IgMenuPrincipal extends JFrame {
 		menuBar.add(mnSobre);
 		
 		mntmAutor = new JMenuItem("Autor");
-		mntmAutor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new JanelaPopUpInfo(IgMenuPrincipal.this, "Sobre", " Criado por:\n\n Diego Oliveira   &   Gian Carlos Barros Honório");
-			}
-		});
+		mntmAutor.addActionListener(new TEMouseMenuPrincipal(this));
 		mntmAutor.setMnemonic(KeyEvent.VK_U);
 		mnSobre.add(mntmAutor);
 		setVisible(true);
 	}
 	
 	public void terminaPrograma() {
-		// Fecha a conexão com o banco de dados e finaliza a aplicação.
-		BancoDeDadosBVB.getInstance().fecharTudo();
-		IgMenuPrincipal.this.dispose();
-		System.exit(0);
+
 	}
 
 	public JButton getCadastrarClienteButton() {

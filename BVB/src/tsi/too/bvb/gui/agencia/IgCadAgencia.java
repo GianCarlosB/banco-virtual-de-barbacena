@@ -1,10 +1,10 @@
 package tsi.too.bvb.gui.agencia;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -13,7 +13,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -27,7 +26,7 @@ import javax.swing.border.TitledBorder;
 import tsi.too.bvb.entidades.agencia.Agencia;
 import tsi.too.bvb.eventos.agencia.TEMouseCadastrarAgencia;
 
-public class IgCadAgencia extends JFrame {
+public class IgCadAgencia extends JDialog {
 
 	/**
 	 * 
@@ -41,26 +40,13 @@ public class IgCadAgencia extends JFrame {
 	private JButton btnCancelar;
 	private JEditorPane descricaoEditorPane;
 	private JLabel lblCamposErrados;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					new IgCadAgencia(new Agencia());
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JScrollPane scrollPane;
 
 	/**
 	 * Create the frame.
 	 */
-	public IgCadAgencia(Agencia agencia) {
+	public IgCadAgencia(Window janelaPai, Agencia agencia) {
+		setModal(true);
 		Color pumpkin = new Color(211, 84, 0);
 		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -114,12 +100,12 @@ public class IgCadAgencia extends JFrame {
 		Btnpanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		btnFinalizar = new JButton("Finalizar");
-		btnFinalizar.addMouseListener(new TEMouseCadastrarAgencia(this, agencia));
+		btnFinalizar.addActionListener(new TEMouseCadastrarAgencia(this, agencia));
 		btnFinalizar.setMnemonic(KeyEvent.VK_F);
 		Btnpanel.add(btnFinalizar);
 		
 		btnLimpar = new JButton("Limpar");
-		btnLimpar.addMouseListener(new TEMouseCadastrarAgencia(this, agencia));
+		btnLimpar.addActionListener(new TEMouseCadastrarAgencia(this, agencia));
 		btnLimpar.setMnemonic(KeyEvent.VK_L);
 		Btnpanel.add(btnLimpar);
 		
@@ -148,7 +134,7 @@ public class IgCadAgencia extends JFrame {
 		lblDescricao.setBounds(10, 20, 380, 14);
 		panel.add(lblDescricao);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 45, 477, 98);
 		panel.add(scrollPane);
 		
@@ -164,7 +150,7 @@ public class IgCadAgencia extends JFrame {
 		codigoTextField.setEnabled(false);
 		codigoTextField.setEditable(false);
 		codigoTextField.setColumns(10);
-		codigoTextField.setBounds(80, 92, 308, 20);
+		codigoTextField.setBounds(100, 92, 308, 20);
 		contentPane.add(codigoTextField);
 		
 		lblCamposErrados = new JLabel("* Os campos destacados de vermelho n\u00E3o foram preenchidos corretamente!");
@@ -173,6 +159,7 @@ public class IgCadAgencia extends JFrame {
 		lblCamposErrados.setBounds(10, 399, 497, 14);
 		contentPane.add(lblCamposErrados);
 		
+		setLocationRelativeTo(janelaPai);
 		setVisible(true);
 	}
 	
@@ -206,6 +193,10 @@ public class IgCadAgencia extends JFrame {
 
 	public void setLblCamposErrados(boolean visivel) {
 		this.lblCamposErrados.setVisible(visivel);
+	}
+
+	public JScrollPane getScrollPane() {
+		return scrollPane;
 	}
 	
 } // class IgCadAgencia

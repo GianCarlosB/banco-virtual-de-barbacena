@@ -105,11 +105,11 @@ public class Movimentacao {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Código da Agência: ").append(codAgencia)
-				.append("\nNúmero da Conta: ").append(numConta).append("\nTipo da Conta: ")
-				.append(tipoConta).append("\nTipo da Operação: ")
-				.append(tipoOperacao).append("\nData: ").append(data)
-				.append("\nHora: ").append(hora).append("\nValor: ")
+		builder.append(" Código da Agência: ").append(codAgencia)
+				.append("\n Número da Conta: ").append(numConta).append("\n Tipo da Conta: ")
+				.append(tipoConta).append("\n Tipo da Operação: ")
+				.append(tipoOperacao).append("\n Data: ").append(data)
+				.append("\n Hora: ").append(hora).append("\n Valor: ")
 				.append(valor);
 		return builder.toString();
 	}

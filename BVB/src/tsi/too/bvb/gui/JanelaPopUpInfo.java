@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -12,7 +13,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -35,7 +35,8 @@ public class JanelaPopUpInfo extends JDialog {
 	 * Create the dialog.
 	 * @wbp.parser.constructor
 	 */
-	public JanelaPopUpInfo(JFrame janelaPai, String titulo, String msgInfo, String info) {
+	public JanelaPopUpInfo(Window janelaPai, String titulo, String msgInfo, String info) {
+		setModal(true);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		
@@ -106,7 +107,8 @@ public class JanelaPopUpInfo extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public JanelaPopUpInfo(JFrame janelaPai, String titulo, String msgInfo) {
+	public JanelaPopUpInfo(Window janelaPai, String titulo, String msgInfo) {
+		setModal(true);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		

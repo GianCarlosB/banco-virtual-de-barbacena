@@ -1,5 +1,6 @@
 package tsi.too.bvb.gui.cliente;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
 
@@ -34,8 +35,10 @@ public class PainelConfCadCliente extends JPanel implements PainelCliente {
 		panelDadosCliente.add(dadosScrollPane);
 		
 		dadosEditorPane = new JEditorPane();
+		dadosEditorPane.setForeground(Color.BLACK);
+		dadosEditorPane.setBackground(Color.WHITE);
 		dadosScrollPane.setViewportView(dadosEditorPane);
-		dadosEditorPane.setFont(new Font("Arial", Font.PLAIN, 14));
+		dadosEditorPane.setFont(new Font("Arial", Font.BOLD, 14));
 		dadosEditorPane.setToolTipText("este campo exibe os dados inseridos nas janelas anteriores");
 		dadosEditorPane.setEditable(false);
 	}
