@@ -35,15 +35,13 @@ public class TEMouseMenuPrincipal implements ActionListener {
 		
 		if(e.getSource() == igMenuPrincipal.getAjudaImgBtn()){}
 		
+		else if(e.getSource() == igMenuPrincipal.getMntmLogout()){}
+		
 		else if(e.getSource() == igMenuPrincipal.getMntmAutor())
 			new JanelaPopUpInfo(igMenuPrincipal, "Sobre", " Criado por:\n\n Diego Oliveira   &   Gian Carlos Barros Honório");
 		
-		else if(e.getSource() == igMenuPrincipal.getMntmSair()) {
-			// Fecha a conexão com o banco de dados e finaliza a aplicação.
-			BancoDeDadosBVB.getInstance().fecharTudo();
-			igMenuPrincipal.dispose();
-			System.exit(0);
-		}
+		else if(e.getSource() == igMenuPrincipal.getMntmSair())
+			igMenuPrincipal.terminaPrograma();
 		
 		else if(BancoDeDadosBVB.getInstance().getConn() != null) {
 			if((e.getSource() == igMenuPrincipal.getCadClienteBtn()) || (e.getSource() == igMenuPrincipal.getCadClienteImgBtn()))
@@ -60,7 +58,7 @@ public class TEMouseMenuPrincipal implements ActionListener {
 			
 			else if((e.getSource() == igMenuPrincipal.getRelClienteBtn()) || (e.getSource() == igMenuPrincipal.getRelClienteImgBtn())){}
 		
-			// Fim dos botões cliente.
+			// Fim dos botões da aba "cliente".
 			
 			
 			else if((e.getSource() == igMenuPrincipal.getCadFuncBtn()) || (e.getSource() == igMenuPrincipal.getCadFuncImgBtn()))
@@ -77,7 +75,7 @@ public class TEMouseMenuPrincipal implements ActionListener {
 			
 			else if((e.getSource() == igMenuPrincipal.getRelFuncBtn()) || (e.getSource() == igMenuPrincipal.getRelFuncImgBtn())){}
 	
-			// Fim dos botões do funcionário.
+			// Fim dos botões da aba "funcionário".
 			
 			
 			else if((e.getSource() == igMenuPrincipal.getCadAgBtn()) || (e.getSource() == igMenuPrincipal.getCadAgImgBtn()))
@@ -94,8 +92,26 @@ public class TEMouseMenuPrincipal implements ActionListener {
 			
 			else if((e.getSource() == igMenuPrincipal.getRelAgBtn()) || (e.getSource() == igMenuPrincipal.getRelAgImgBtn())){}
 			
-			// Fim dos botões da agência.
-		}
+			// Fim dos botões da aba "agência".
+			
+			
+			else if((e.getSource() == igMenuPrincipal.getAbrirContaBtn()) || (e.getSource() == igMenuPrincipal.getAbrirContaImgBtn())){}
+			
+			else if((e.getSource() == igMenuPrincipal.getDepositarSalContaBtn()) || (e.getSource() == igMenuPrincipal.getDepositarSalContaImgBtn())){}
+			
+			else if((e.getSource() == igMenuPrincipal.getCriarAplicContaBtn()) || (e.getSource() == igMenuPrincipal.getCriarAplicContaImgBtn())){}
+			
+			else if((e.getSource() == igMenuPrincipal.getAlterarAplicContaBtn()) || (e.getSource() == igMenuPrincipal.getAlterarAplicContaImgBtn())){}
+			
+			// Fim dos botões da aba "conta".
+			
+			
+			else if((e.getSource() == igMenuPrincipal.getAtmBtn()) || (e.getSource() == igMenuPrincipal.getAtmImgBtn())){}
+			
+			else if((e.getSource() == igMenuPrincipal.getAlterarSenhaBtn()) || (e.getSource() == igMenuPrincipal.getAlterarSenhaImgBtn())){}
+			
+			// Fim dos botões da aba "outros".
+		} // fim if(BancoDeDadosBVB.getInstance().getConn() != null)
 		else
 			new JanelaPopUpErro(igMenuPrincipal, "ERRO", " A conexão com o banco de dados não foi estabelecida!\n" +
 					            " Para realizar esta operação reinicie a aplicação!");

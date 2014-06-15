@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -18,12 +20,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
 
 import tsi.too.bvb.eventos.menuprincipal.TEMouseMenuPrincipal;
+import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 
 public class IgMenuPrincipal extends JFrame {
 	
@@ -36,22 +38,18 @@ public class IgMenuPrincipal extends JFrame {
 	private JButton altClienteImgBtn;
 	private JButton relClienteImgBtn;
 	private JButton exClienteImgBtn;
-	
 	private JButton cadClienteBtn;
 	private JButton altClienteBtn;
 	private JButton relClienteBtn;
 	private JButton exClienteBtn;
-	
 	private JButton cadFuncImgBtn;
 	private JButton altFuncImgBtn;
 	private JButton relFuncImgBtn;
 	private JButton exFuncImgBtn;
-	
 	private JButton cadFuncBtn;
 	private JButton altFuncBtn;
 	private JButton relFuncBtn;
 	private JButton exFuncBtn;
-	private JLabel lblTituloHome;
 	private JButton cadAgImgBtn;
 	private JButton altAgImgBtn;
 	private JButton relAgImgBtn;
@@ -61,8 +59,6 @@ public class IgMenuPrincipal extends JFrame {
 	private JButton relAgBtn;
 	private JButton exAgBtn;
 	private JButton cadClienteImgBtn;
-	private JLabel lblImgBVB;
-	private JEditorPane dtrpnTextoHome;
 	private JButton ajudaImgBtn;
 	private JLabel lblBanner;
 	private JButton ajudaBtn;
@@ -74,6 +70,20 @@ public class IgMenuPrincipal extends JFrame {
 	private JMenuItem mntmAutor;
 	private JButton consClienteImgBtn;
 	private JButton consClienteBtn;
+	private JPanel contaPanel;
+	private JButton depositarSalContaImgBtn;
+	private JButton depositarSalContaBtn;
+	private JButton criarAplicContaImgBtn;
+	private JButton criarAplicContaBtn;
+	private JButton alterarAplicContaImgBtn;
+	private JButton alterarAplicContaBtn;
+	private JButton abrirContaImgBtn;
+	private JButton abrirContaBtn;
+	private JButton atmImgBtn;
+	private JButton atmBtn;
+	private JButton alterarSenhaImgBtn;
+	private JButton alterarSenhaBtn;
+	private JMenuItem mntmLogout;
 
 	public IgMenuPrincipal() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src\\tsi\\too\\bvb\\recursos\\imagens\\BVB - \u00EDcone.png"));
@@ -83,6 +93,7 @@ public class IgMenuPrincipal extends JFrame {
 				terminaPrograma();
 			}
 		});
+		
 		// Cores Flat
 		Color peterRiver = new Color(52, 152, 219);
 		Color sunFlower = new Color(241, 196, 15);
@@ -91,6 +102,8 @@ public class IgMenuPrincipal extends JFrame {
 		Color concrete = new Color(127, 140, 141);
 		Color nephritis = new Color(39, 174, 96);
 		Color pumpkin = new Color(211, 84, 0);
+		Color turquoise = new Color(26, 188, 156);
+		Color orange = new Color(243, 156, 18);
 		
 		setTitle(".: BVB :.");
 		setDefaultCloseOperation(IgMenuPrincipal.DISPOSE_ON_CLOSE);
@@ -112,31 +125,136 @@ public class IgMenuPrincipal extends JFrame {
 		tabbedPane.addTab("Home",null,homePanel,"First Panel");
 		homePanel.setLayout(null);
 		
-		lblTituloHome = new JLabel("Seja Bem Vindo ao BVB - Este é seu painel de administração");
+		JLabel lblTituloHome = new JLabel("Sr(a). 'Nome' Seja Bem Vindo");
 		lblTituloHome.setBounds(0, 11, 915, 26);
 		lblTituloHome.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTituloHome.setFont(new Font("Swis721 WGL4 BT", Font.BOLD, 20));
+		lblTituloHome.setFont(new Font("Swis721 WGL4 BT", Font.BOLD, 24));
 		lblTituloHome.setForeground(Color.WHITE);
 		lblTituloHome.setBackground(midnigthBlue);
 		homePanel.add(lblTituloHome);
 		
-		lblImgBVB = new JLabel("bvb");
+		JLabel lblImgBVB = new JLabel("bvb");
 		lblImgBVB.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\Logo02 - BVB.png"));
 		lblImgBVB.setBounds(10, 48, 387, 387);
 		homePanel.add(lblImgBVB);
 		
-		dtrpnTextoHome = new JEditorPane();
-		dtrpnTextoHome.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "BVB", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(255, 255, 255)));
-		dtrpnTextoHome.setText("          BVB - Banco Virtual de Barbacena\r\nEste sistema possibilita o gerenciamento de servi\u00E7os oferecidos nas ag\u00EAncias do banco virtual de barbacena, como o controle de clientes, funcion\u00E1rios, ag\u00EAncias e contas banc\u00E1rias. Para tirar d\u00FAvidas sobre o funcionamento do software, v\u00E1 na aba \"Outros\" e clique no bot\u00E3o de ajuda.");
-		dtrpnTextoHome.setEditable(false);
-		dtrpnTextoHome.setForeground(Color.WHITE);
-		dtrpnTextoHome.setFont(new Font("Swis721 WGL4 BT", Font.PLAIN, 18));
-		dtrpnTextoHome.setBackground(midnigthBlue);
-		dtrpnTextoHome.setBounds(520, 138, 385, 218);
-		homePanel.add(dtrpnTextoHome);
+		JPanel introducaoPanel = new JPanel();
+		introducaoPanel.setBackground(midnigthBlue);
+		introducaoPanel.setBounds(407, 48, 498, 387);
+		homePanel.add(introducaoPanel);
+		introducaoPanel.setLayout(null);
+		
+		JEditorPane dtrpnTxtIntroducao = new JEditorPane();
+		dtrpnTxtIntroducao.setEditable(false);
+		dtrpnTxtIntroducao.setText("Este m\u00F3dulo \u00E9 composto por um conjunto de servi\u00E7os\r\nrespons\u00E1veis por controlar os dados do sistema.\r\nAbaixo est\u00E1 listado algumas das funcionalidades do software:");
+		dtrpnTxtIntroducao.setFont(new Font("Calibri", Font.PLAIN, 18));
+		dtrpnTxtIntroducao.setForeground(Color.WHITE);
+		dtrpnTxtIntroducao.setBackground(midnigthBlue);
+		dtrpnTxtIntroducao.setBounds(10, 11, 478, 75);
+		introducaoPanel.add(dtrpnTxtIntroducao);
+		
+		JLabel lblImgSeta1 = new JLabel("");
+		lblImgSeta1.setIcon(new ImageIcon("D:\\Meus Documentos\\TSI\\Git\\tsi.too.bvb\\BVB\\src\\tsi\\too\\bvb\\recursos\\imagens\\Arrowhead-Right-01-32.png"));
+		lblImgSeta1.setBounds(10, 97, 32, 32);
+		introducaoPanel.add(lblImgSeta1);
+		
+		JLabel lblImgSeta2 = new JLabel("");
+		lblImgSeta2.setIcon(new ImageIcon("D:\\Meus Documentos\\TSI\\Git\\tsi.too.bvb\\BVB\\src\\tsi\\too\\bvb\\recursos\\imagens\\Arrowhead-Right-01-32.png"));
+		lblImgSeta2.setBounds(10, 135, 32, 32);
+		introducaoPanel.add(lblImgSeta2);
+		
+		JLabel lblImgSeta3 = new JLabel("");
+		lblImgSeta3.setIcon(new ImageIcon("D:\\Meus Documentos\\TSI\\Git\\tsi.too.bvb\\BVB\\src\\tsi\\too\\bvb\\recursos\\imagens\\Arrowhead-Right-01-32.png"));
+		lblImgSeta3.setBounds(10, 178, 32, 32);
+		introducaoPanel.add(lblImgSeta3);
+		
+		JLabel lblImgSeta4 = new JLabel("");
+		lblImgSeta4.setIcon(new ImageIcon("D:\\Meus Documentos\\TSI\\Git\\tsi.too.bvb\\BVB\\src\\tsi\\too\\bvb\\recursos\\imagens\\Arrowhead-Right-01-32.png"));
+		lblImgSeta4.setBounds(10, 221, 32, 32);
+		introducaoPanel.add(lblImgSeta4);
+		
+		JLabel lblImgSeta5 = new JLabel("");
+		lblImgSeta5.setIcon(new ImageIcon("D:\\Meus Documentos\\TSI\\Git\\tsi.too.bvb\\BVB\\src\\tsi\\too\\bvb\\recursos\\imagens\\Arrowhead-Right-01-32.png"));
+		lblImgSeta5.setBounds(10, 264, 32, 32);
+		introducaoPanel.add(lblImgSeta5);
+		
+		JTextField txtTopico1 = new JTextField();
+		txtTopico1.setEditable(false);
+		lblImgSeta1.setLabelFor(txtTopico1);
+		txtTopico1.setBorder(new LineBorder(new Color(127, 140, 141)));
+		txtTopico1.setBackground(midnigthBlue);
+		txtTopico1.setForeground(Color.WHITE);
+		txtTopico1.setFont(new Font("Calibri", Font.BOLD, 16));
+		txtTopico1.setText(" Controle de Clientes");
+		txtTopico1.setBounds(52, 97, 436, 32);
+		introducaoPanel.add(txtTopico1);
+		txtTopico1.setColumns(10);
+		
+		JTextField txtTopico2 = new JTextField();
+		txtTopico2.setEditable(false);
+		lblImgSeta2.setLabelFor(txtTopico2);
+		txtTopico2.setBorder(new LineBorder(new Color(127, 140, 141)));
+		txtTopico2.setBackground(midnigthBlue);
+		txtTopico2.setForeground(Color.WHITE);
+		txtTopico2.setFont(new Font("Calibri", Font.BOLD, 16));
+		txtTopico2.setText(" Controle de Funcion\u00E1rios");
+		txtTopico2.setColumns(10);
+		txtTopico2.setBounds(52, 140, 436, 32);
+		introducaoPanel.add(txtTopico2);
+		
+		JTextField txtTopico3 = new JTextField();
+		txtTopico3.setEditable(false);
+		lblImgSeta3.setLabelFor(txtTopico3);
+		txtTopico3.setBorder(new LineBorder(new Color(127, 140, 141)));
+		txtTopico3.setBackground(midnigthBlue);
+		txtTopico3.setForeground(Color.WHITE);
+		txtTopico3.setFont(new Font("Calibri", Font.BOLD, 16));
+		txtTopico3.setText(" Controle de Ag\u00EAncias");
+		txtTopico3.setColumns(10);
+		txtTopico3.setBounds(52, 178, 436, 32);
+		introducaoPanel.add(txtTopico3);
+		
+		JTextField txtTopico4 = new JTextField();
+		txtTopico4.setEditable(false);
+		lblImgSeta4.setLabelFor(txtTopico4);
+		txtTopico4.setBorder(new LineBorder(new Color(127, 140, 141)));
+		txtTopico4.setBackground(midnigthBlue);
+		txtTopico4.setForeground(Color.WHITE);
+		txtTopico4.setFont(new Font("Calibri", Font.BOLD, 16));
+		txtTopico4.setText(" Alterar Senha");
+		txtTopico4.setColumns(10);
+		txtTopico4.setBounds(52, 221, 436, 32);
+		introducaoPanel.add(txtTopico4);
+		
+		JTextField txtTopico5 = new JTextField();
+		txtTopico5.setEditable(false);
+		lblImgSeta5.setLabelFor(txtTopico5);
+		txtTopico5.setBorder(new LineBorder(new Color(127, 140, 141)));
+		txtTopico5.setBackground(midnigthBlue);
+		txtTopico5.setForeground(Color.WHITE);
+		txtTopico5.setFont(new Font("Calibri", Font.BOLD, 16));
+		txtTopico5.setText(" Iniciar o Caixa eletr\u00F4nico");
+		txtTopico5.setColumns(10);
+		txtTopico5.setBounds(52, 264, 436, 32);
+		introducaoPanel.add(txtTopico5);
+		
+		JLabel lblImgAjuda = new JLabel("");
+		lblImgAjuda.setIcon(new ImageIcon("D:\\Meus Documentos\\TSI\\Git\\tsi.too.bvb\\BVB\\src\\tsi\\too\\bvb\\recursos\\imagens\\Help-32.png"));
+		lblImgAjuda.setBounds(10, 334, 32, 32);
+		introducaoPanel.add(lblImgAjuda);
+		
+		JEditorPane dtrpnTxtDuvida = new JEditorPane();
+		dtrpnTxtDuvida.setEditable(false);
+		lblImgAjuda.setLabelFor(dtrpnTxtDuvida);
+		dtrpnTxtDuvida.setText("Para tirar d\u00FAvidas sobre o funcionamento do software, v\u00E1 na aba \"Outros\" e clique no bot\u00E3o de ajuda.");
+		dtrpnTxtDuvida.setForeground(Color.WHITE);
+		dtrpnTxtDuvida.setFont(new Font("Calibri", Font.PLAIN, 18));
+		dtrpnTxtDuvida.setBackground(new Color(44, 62, 80));
+		dtrpnTxtDuvida.setBounds(52, 324, 436, 52);
+		introducaoPanel.add(dtrpnTxtDuvida);
 		JPanel clientePanel = new JPanel(); // cria o primeiro painel
 		clientePanel.setBackground(midnigthBlue);
-		tabbedPane.addTab("Clientes",null,clientePanel,"First Panel");
+		tabbedPane.addTab("Clientes", null, clientePanel, "First Panel");
 		
 		cadClienteImgBtn = new JButton("");
 		cadClienteImgBtn.setBorder(new LineBorder(Color.WHITE));
@@ -212,7 +330,7 @@ public class IgMenuPrincipal extends JFrame {
 		consClienteImgBtn.addActionListener(new TEMouseMenuPrincipal(this));
 		consClienteImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\ID-Information-128.png"));
 		consClienteImgBtn.setBorder(new LineBorder(Color.WHITE));
-		consClienteImgBtn.setBackground(new Color(52, 152, 219));
+		consClienteImgBtn.setBackground(peterRiver);
 		consClienteImgBtn.setBounds(200, 77, 160, 160);
 		clientePanel.add(consClienteImgBtn);
 		
@@ -222,12 +340,12 @@ public class IgMenuPrincipal extends JFrame {
 		consClienteBtn.setForeground(Color.WHITE);
 		consClienteBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		consClienteBtn.setBorder(new LineBorder(Color.WHITE));
-		consClienteBtn.setBackground(new Color(52, 152, 219));
+		consClienteBtn.setBackground(peterRiver);
 		consClienteBtn.setBounds(200, 248, 160, 38);
 		clientePanel.add(consClienteBtn);
 		JPanel funcionarioPanel = new JPanel(); // cria o primeiro painel
 		funcionarioPanel.setBackground(midnigthBlue);
-		tabbedPane.addTab("Funcionário",null,funcionarioPanel,"Second Panel");
+		tabbedPane.addTab("Funcionários", null, funcionarioPanel, "Second Panel");
 		
 		cadFuncImgBtn = new JButton("");
 		cadFuncImgBtn.addActionListener(new TEMouseMenuPrincipal(this));
@@ -319,7 +437,7 @@ public class IgMenuPrincipal extends JFrame {
 		
 		JPanel agenciaPanel = new JPanel();
 		agenciaPanel.setBackground(midnigthBlue);
-		tabbedPane.addTab("Agência", null, agenciaPanel, null);
+		tabbedPane.addTab("Agências", null, agenciaPanel, null);
 		agenciaPanel.setLayout(null);
 		
 		cadAgImgBtn = new JButton("");
@@ -416,6 +534,87 @@ public class IgMenuPrincipal extends JFrame {
 		consAgBtn.setBackground(pumpkin);
 		consAgBtn.setBounds(200, 248, 160, 38);
 		agenciaPanel.add(consAgBtn);
+		
+		contaPanel = new JPanel();
+		contaPanel.setBackground(midnigthBlue);
+		tabbedPane.addTab("Contas", null, contaPanel, null);
+		contaPanel.setLayout(null);
+		
+		abrirContaImgBtn = new JButton("");
+		abrirContaImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\Account-Payable-128.png"));
+		abrirContaImgBtn.setBorder(new LineBorder(Color.WHITE));
+		abrirContaImgBtn.setBackground(turquoise);
+		abrirContaImgBtn.setAlignmentX(0.5f);
+		abrirContaImgBtn.setBounds(20, 77, 160, 160);
+		contaPanel.add(abrirContaImgBtn);
+		
+		abrirContaBtn = new JButton("Abrir");
+		abrirContaBtn.setMnemonic(KeyEvent.VK_A);
+		abrirContaBtn.setForeground(Color.WHITE);
+		abrirContaBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		abrirContaBtn.setBorder(new LineBorder(Color.WHITE));
+		abrirContaBtn.setBackground(turquoise);
+		abrirContaBtn.setAlignmentX(0.5f);
+		abrirContaBtn.setBounds(20, 248, 160, 38);
+		contaPanel.add(abrirContaBtn);
+		
+		depositarSalContaImgBtn = new JButton("");
+		depositarSalContaImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\Donate -128.png"));
+		depositarSalContaImgBtn.setBorder(new LineBorder(Color.WHITE));
+		depositarSalContaImgBtn.setBackground(turquoise);
+		depositarSalContaImgBtn.setAlignmentX(0.5f);
+		depositarSalContaImgBtn.setBounds(200, 77, 160, 160);
+		contaPanel.add(depositarSalContaImgBtn);
+		
+		depositarSalContaBtn = new JButton("Depositar Sal\u00E1rio");
+		depositarSalContaBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		depositarSalContaBtn.setMnemonic(KeyEvent.VK_D);
+		depositarSalContaBtn.setForeground(Color.WHITE);
+		depositarSalContaBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		depositarSalContaBtn.setBorder(new LineBorder(Color.WHITE));
+		depositarSalContaBtn.setBackground(turquoise);
+		depositarSalContaBtn.setAlignmentX(0.5f);
+		depositarSalContaBtn.setBounds(200, 248, 160, 38);
+		contaPanel.add(depositarSalContaBtn);
+		
+		criarAplicContaImgBtn = new JButton("");
+		criarAplicContaImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\Stock-Exchange-128.png"));
+		criarAplicContaImgBtn.setBorder(new LineBorder(Color.WHITE));
+		criarAplicContaImgBtn.setBackground(turquoise);
+		criarAplicContaImgBtn.setAlignmentX(0.5f);
+		criarAplicContaImgBtn.setBounds(560, 77, 160, 160);
+		contaPanel.add(criarAplicContaImgBtn);
+		
+		criarAplicContaBtn = new JButton("Criar Aplica\u00E7\u00E3o");
+		criarAplicContaBtn.setMnemonic(KeyEvent.VK_C);
+		criarAplicContaBtn.setForeground(Color.WHITE);
+		criarAplicContaBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		criarAplicContaBtn.setBorder(new LineBorder(Color.WHITE));
+		criarAplicContaBtn.setBackground(turquoise);
+		criarAplicContaBtn.setAlignmentX(0.5f);
+		criarAplicContaBtn.setBounds(560, 248, 160, 38);
+		contaPanel.add(criarAplicContaBtn);
+		
+		alterarAplicContaImgBtn = new JButton("");
+		alterarAplicContaImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\Money-Transfer-128.png"));
+		alterarAplicContaImgBtn.setBorder(new LineBorder(Color.WHITE));
+		alterarAplicContaImgBtn.setBackground(turquoise);
+		alterarAplicContaImgBtn.setAlignmentX(0.5f);
+		alterarAplicContaImgBtn.setBounds(740, 77, 160, 160);
+		contaPanel.add(alterarAplicContaImgBtn);
+		
+		alterarAplicContaBtn = new JButton("Alterar Aplica\u00E7\u00E3o");
+		alterarAplicContaBtn.setMnemonic(KeyEvent.VK_L);
+		alterarAplicContaBtn.setForeground(Color.WHITE);
+		alterarAplicContaBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		alterarAplicContaBtn.setBorder(new LineBorder(Color.WHITE));
+		alterarAplicContaBtn.setBackground(turquoise);
+		alterarAplicContaBtn.setAlignmentX(0.5f);
+		alterarAplicContaBtn.setBounds(740, 248, 160, 38);
+		contaPanel.add(alterarAplicContaBtn);
 		JPanel outrosPanel = new JPanel(); // cria o primeiro painel
 		outrosPanel.setBackground(midnigthBlue);
 		tabbedPane.addTab("Outros",null,outrosPanel,"Third Panel");
@@ -437,6 +636,40 @@ public class IgMenuPrincipal extends JFrame {
 		ajudaBtn.setBackground(sunFlower);
 		ajudaBtn.setBounds(380, 248, 160, 38);
 		outrosPanel.add(ajudaBtn);
+		
+		atmImgBtn = new JButton("");
+		atmImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\ATM-128.png"));
+		atmImgBtn.setBorder(new LineBorder(Color.WHITE));
+		atmImgBtn.setBackground(orange);
+		atmImgBtn.setAlignmentX(0.5f);
+		atmImgBtn.setBounds(560, 77, 160, 160);
+		outrosPanel.add(atmImgBtn);
+		
+		atmBtn = new JButton("ATM");
+		atmBtn.setMnemonic(KeyEvent.VK_T);
+		atmBtn.setForeground(Color.WHITE);
+		atmBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		atmBtn.setBorder(new LineBorder(Color.WHITE));
+		atmBtn.setBackground(orange);
+		atmBtn.setBounds(560, 248, 160, 38);
+		outrosPanel.add(atmBtn);
+		
+		alterarSenhaImgBtn = new JButton("");
+		alterarSenhaImgBtn.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\Key-Access-128.png"));
+		alterarSenhaImgBtn.setBorder(new LineBorder(Color.WHITE));
+		alterarSenhaImgBtn.setBackground(orange);
+		alterarSenhaImgBtn.setAlignmentX(0.5f);
+		alterarSenhaImgBtn.setBounds(200, 77, 160, 160);
+		outrosPanel.add(alterarSenhaImgBtn);
+		
+		alterarSenhaBtn = new JButton("Alterar Senha");
+		alterarSenhaBtn.setMnemonic(KeyEvent.VK_L);
+		alterarSenhaBtn.setForeground(Color.WHITE);
+		alterarSenhaBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		alterarSenhaBtn.setBorder(new LineBorder(Color.WHITE));
+		alterarSenhaBtn.setBackground(orange);
+		alterarSenhaBtn.setBounds(200, 248, 160, 38);
+		outrosPanel.add(alterarSenhaBtn);
 				
 		getContentPane().add(tabbedPane); // adiciona o JTabbedPane ao quadro
 		
@@ -455,22 +688,31 @@ public class IgMenuPrincipal extends JFrame {
 		
 		mntmSair = new JMenuItem("Sair");
 		mntmSair.addActionListener(new TEMouseMenuPrincipal(this));
+		
+		mntmLogout = new JMenuItem("Logout");
+		mntmLogout.setMnemonic(KeyEvent.VK_L);
+		mnArquivo.add(mntmLogout);
 		mntmSair.setMnemonic(KeyEvent.VK_S);
 		mnArquivo.add(mntmSair);
 		
 		JMenu mnSobre = new JMenu("Sobre");
-		mnSobre.setMnemonic(KeyEvent.VK_B);
+		mnSobre.setMnemonic(KeyEvent.VK_S);
 		menuBar.add(mnSobre);
 		
 		mntmAutor = new JMenuItem("Autor");
 		mntmAutor.addActionListener(new TEMouseMenuPrincipal(this));
-		mntmAutor.setMnemonic(KeyEvent.VK_U);
+		mntmAutor.setMnemonic(KeyEvent.VK_A);
 		mnSobre.add(mntmAutor);
+		
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 	
 	public void terminaPrograma() {
-
+		// Fecha a conexão com o banco de dados e finaliza a aplicação.
+		BancoDeDadosBVB.getInstance().fecharTudo();
+		IgMenuPrincipal.this.dispose();
+		System.exit(0);
 	}
 
 	public JButton getCadastrarClienteButton() {
@@ -581,6 +823,22 @@ public class IgMenuPrincipal extends JFrame {
 		return ajudaBtn;
 	}
 
+	public JButton getAtmImgBtn() {
+		return atmImgBtn;
+	}
+
+	public JButton getAtmBtn() {
+		return atmBtn;
+	}
+
+	public JButton getAlterarSenhaImgBtn() {
+		return alterarSenhaImgBtn;
+	}
+
+	public JButton getAlterarSenhaBtn() {
+		return alterarSenhaBtn;
+	}
+
 	public JButton getConsClienteImgBtn() {
 		return consClienteImgBtn;
 	}
@@ -605,6 +863,42 @@ public class IgMenuPrincipal extends JFrame {
 		return consAgBtn;
 	}
 
+	public JButton getDepositarSalContaImgBtn() {
+		return depositarSalContaImgBtn;
+	}
+
+	public JButton getDepositarSalContaBtn() {
+		return depositarSalContaBtn;
+	}
+
+	public JButton getCriarAplicContaImgBtn() {
+		return criarAplicContaImgBtn;
+	}
+
+	public JButton getCriarAplicContaBtn() {
+		return criarAplicContaBtn;
+	}
+
+	public JButton getAlterarAplicContaImgBtn() {
+		return alterarAplicContaImgBtn;
+	}
+
+	public JButton getAlterarAplicContaBtn() {
+		return alterarAplicContaBtn;
+	}
+
+	public JButton getAbrirContaImgBtn() {
+		return abrirContaImgBtn;
+	}
+
+	public JButton getAbrirContaBtn() {
+		return abrirContaBtn;
+	}
+
+	public JMenuItem getMntmLogout() {
+		return mntmLogout;
+	}
+
 	public JMenuItem getMntmSair() {
 		return mntmSair;
 	}
@@ -613,8 +907,4 @@ public class IgMenuPrincipal extends JFrame {
 		return mntmAutor;
 	}
 
-	public void setDtrpnTextoHome(String texto) {
-		this.dtrpnTextoHome.setText(texto);
-	}
-	
 } // class IgMenuPrincipal

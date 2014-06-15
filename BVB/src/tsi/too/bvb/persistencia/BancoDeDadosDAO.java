@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import tsi.too.bvb.gui.JanelaPopUpErro;
 
@@ -89,7 +91,7 @@ public abstract class BancoDeDadosDAO {
 		
 		try {
 			conn.close();
-			System.out.println("Conexão com o Banco de dados finalizada.");
+			System.out.println("Conexão com o Banco de dados finalizada: " + new SimpleDateFormat("yyyy/MM/dd  HH:mm").format(new Date()));
 		} catch (SQLException e) {
 			new JanelaPopUpErro(null, "BVB - ERRO", " Falha na finalização da conexão com o banco de dados!", e);
 		}
