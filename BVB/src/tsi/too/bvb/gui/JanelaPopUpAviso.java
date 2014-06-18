@@ -50,17 +50,17 @@ public class JanelaPopUpAviso extends JDialog {
 		contentPanel.add(separatorBtn);
 		
 		JLabel lblImg = new JLabel("img");
-		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\pins38.png"));
+		lblImg.setIcon(new ImageIcon(JanelaPopUpAviso.class.getResource("/tsi/too/bvb/recursos/imagens/pins38.png")));
 		lblImg.setBounds(402, 26, 32, 32);
 		contentPanel.add(lblImg);
 		
 		JEditorPane msgEditorPane = new JEditorPane();
 		msgEditorPane.setEditable(false);
-		msgEditorPane.setForeground(new Color(236, 240, 241));
+		msgEditorPane.setForeground(Color.BLACK);
 		msgEditorPane.setFont(new Font("Calibri", Font.BOLD, 14));
 		msgEditorPane.setText(msgAviso);
 		msgEditorPane.setBackground(new Color(241, 196, 15));
-		msgEditorPane.setBorder(new TitledBorder(new LineBorder(new Color(236, 240, 241), 1, true), "AVISO", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(236, 240, 241)));
+		msgEditorPane.setBorder(new TitledBorder(new LineBorder(Color.BLACK, 1, true), "AVISO", TitledBorder.CENTER, TitledBorder.TOP, null, Color.BLACK));
 		msgEditorPane.setBounds(10, 11, 382, 104);
 		contentPanel.add(msgEditorPane);
 		{

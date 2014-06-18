@@ -21,8 +21,8 @@ public class ClienteDAO {
 
 		try {
 			bdDao.executarComandoSQL(sql);
-			bdDao.getStmt().setString(1, cliente.getCpf().toLowerCase());
-			bdDao.getStmt().setString(2, cliente.getNome().toLowerCase());
+			bdDao.getStmt().setString(1, cliente.getCpf());
+			bdDao.getStmt().setString(2, cliente.getNome());
 			bdDao.getStmt().setString(3, cliente.getEndereco().getLogradouro());
 			bdDao.getStmt().setString(4, cliente.getEndereco().getNumero());
 			bdDao.getStmt().setString(5, cliente.getEndereco().getComplemento());
@@ -97,7 +97,7 @@ public class ClienteDAO {
 
 	public List<Cliente> pesquisarNome(BancoDeDadosDAO bdDao, String nome) {
 		List<Cliente> lista = new ArrayList<>();
-		final String sql = "SELECT * FROM cliente WHERE nome LIKE \'%" + nome.toLowerCase() + "%\'";
+		final String sql = "SELECT * FROM cliente WHERE LCASE (nome) LIKE \'%" + nome.toLowerCase() + "%\'";
 		
 		try {
 			bdDao.executarComandoSQL(sql);

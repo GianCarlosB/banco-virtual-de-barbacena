@@ -12,9 +12,10 @@ import javax.swing.border.LineBorder;
 
 import tsi.too.bvb.entidades.Mascara;
 import tsi.too.bvb.entidades.cliente.Cliente;
+import tsi.too.bvb.gui.TratadorDeCampos;
 import tsi.too.bvb.validacoes.ValidarDados;
 
-public class PainelCadContato extends JPanel implements PainelCliente {
+public class PainelCadContato extends JPanel implements TratadorDeCampos {
 	/**
 	 * 
 	 */
@@ -52,36 +53,35 @@ public class PainelCadContato extends JPanel implements PainelCliente {
 		add(telMovelFormTextField);
 		
 		JLabel lblTelFixoImg = new JLabel("Tel Fixo");
-		lblTelFixoImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\Telephone-03-32.png"));
+		lblTelFixoImg.setIcon(new ImageIcon(PainelCadContato.class.getResource("/tsi/too/bvb/recursos/imagens/Telephone-03-32.png")));
 		lblTelFixoImg.setDisplayedMnemonic(KeyEvent.VK_F);
 		lblTelFixoImg.setBounds(418, 16, 32, 32);
 		add(lblTelFixoImg);
 		
 		JLabel lblTelMovelImg = new JLabel("Tel Móvel");
-		lblTelMovelImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\Mobile-Phone-32.png"));
+		lblTelMovelImg.setIcon(new ImageIcon(PainelCadContato.class.getResource("/tsi/too/bvb/recursos/imagens/Mobile-Phone-32.png")));
 		lblTelMovelImg.setDisplayedMnemonic(KeyEvent.VK_M);
 		lblTelMovelImg.setBounds(418, 46, 32, 32);
 		add(lblTelMovelImg);
 	}
 
 	@Override
-	public void limpaCampos() {
+	public void limparCampos() {
 		telFixoFormTextField.setText("");
 		telMovelFormTextField.setText("");
 	}
 
 	@Override
-	public void salvarCampos(Cliente cliente) {
-		cliente.getContato().setTelefoneFixo(telFixoFormTextField.getText().replace("(", "").replace(")", "").replace("-", ""));
-		cliente.getContato().setTelefoneMovel(telMovelFormTextField.getText().replace("(", "").replace(")", "").replace("-", ""));
+	public void salvarCampos(Object cliente) {
+		((Cliente) cliente).getContato().setTelefoneFixo(telFixoFormTextField.getText().replace("(", "").replace(")", "").replace("-", ""));
+		((Cliente) cliente).getContato().setTelefoneMovel(telMovelFormTextField.getText().replace("(", "").replace(")", "").replace("-", ""));
 	}
 
 	@Override
 	public boolean validarCampos() {
 		boolean valido = true;
 		
-		if(ValidarDados.validarIntPositivo(telFixoFormTextField.getText().replace("(", "")
-				                           .replace(")", "").replace("-", "")) == false) {
+		if(!ValidarDados.validarIntPositivo(telFixoFormTextField.getText().replace("(", "").replace(")", "").replace("-", ""))) {
 			telFixoFormTextField.setBorder(new LineBorder(Color.RED));
 			valido = false;
 		}

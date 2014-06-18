@@ -53,7 +53,7 @@ public class JanelaPopUpPergunta extends JDialog {
 		contentPanel.add(separatorBtn);
 		
 		JLabel lblImg = new JLabel("img");
-		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\question3.png"));
+		lblImg.setIcon(new ImageIcon(JanelaPopUpPergunta.class.getResource("/tsi/too/bvb/recursos/imagens/question3.png")));
 		lblImg.setBounds(402, 26, 32, 32);
 		contentPanel.add(lblImg);
 		

@@ -14,11 +14,12 @@ public class AgenciaDAO {
 	}
 
 	public void criar(BancoDeDadosDAO bdDao, Agencia agencia) {
-		final String sql = "INSERT INTO agencia VALUES (NEXT VALUE FOR seq_agencia, ?)";
+		final String sql = "INSERT INTO agencia VALUES (?, ?)";
 
 		try {
 			bdDao.executarComandoSQL(sql);
-			bdDao.getStmt().setString(1, agencia.getDescricao().toLowerCase());
+			bdDao.getStmt().setInt(1, agencia.getCodAgencia());
+			bdDao.getStmt().setString(2, agencia.getDescricao());
 			bdDao.getStmt().executeUpdate();
 			
 			System.out.println("Agência inserida.");
@@ -26,6 +27,26 @@ public class AgenciaDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public int proximoValorSequencia(BancoDeDadosDAO bdDao) {
+		final String sql = "CALL NEXT VALUE FOR seq_agencia";
+		int proximoValor = 0;
+		
+		try {
+			bdDao.executarComandoSQL(sql);
+			ResultSet rSet = bdDao.obterResultSet();
+			
+			rSet.next();
+			
+			proximoValor = rSet.getInt(1);
+			System.out.println("Próxima chave: " + proximoValor);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return proximoValor;
 	}
 	
 	public List<Agencia> ler(BancoDeDadosDAO bdDao) {
@@ -72,7 +93,7 @@ public class AgenciaDAO {
 	
 	public List<Agencia> pesquisarDescricao(BancoDeDadosDAO bdDao, String descricao) {
 		List<Agencia> lista = new ArrayList<>();
-		final String sql = "SELECT * FROM agencia WHERE descricao LIKE \'%" + descricao.toLowerCase() + "%\'";
+		final String sql = "SELECT * FROM agencia WHERE LCASE (descricao) LIKE \'%" + descricao.toLowerCase() + "%\'";
 		
 		try {
 			bdDao.executarComandoSQL(sql);

@@ -1,6 +1,6 @@
 package tsi.too.bvb.entidades.movimentacao;
 
-import java.sql.Date;
+import java.util.Date;
 
 import tsi.too.bvb.entidades.tiposenumerados.TipoConta;
 import tsi.too.bvb.entidades.tiposenumerados.TipoOperacao;

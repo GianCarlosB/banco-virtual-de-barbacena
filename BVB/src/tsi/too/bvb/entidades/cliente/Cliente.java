@@ -1,5 +1,7 @@
 package tsi.too.bvb.entidades.cliente;
 
+import tsi.too.bvb.entidades.Mascara;
+
 public class Cliente {
 	
 	private String cpf, nome;
@@ -60,6 +62,20 @@ public class Cliente {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+	
+	public void insereMascara() {
+		cpf = Mascara.formatarString(cpf, "###.###.###-##");
+		endereco.setCep(Mascara.formatarString(endereco.getCep(), "#####-###"));
+		contato.setTelefoneFixo(Mascara.formatarString(contato.getTelefoneFixo(), "(##)####-####"));
+		contato.setTelefoneMovel(Mascara.formatarString(contato.getTelefoneMovel(), "(##)####-####"));
+	}
+	
+	public void removeMascara() {
+		cpf = cpf.replace(".", "").replace("-", "");
+		endereco.setCep(endereco.getCep().replace("-", ""));
+		contato.setTelefoneFixo(contato.getTelefoneFixo().replace("(", "").replace(")", "").replace("-", ""));
+		contato.setTelefoneMovel(contato.getTelefoneMovel().replace("(", "").replace(")", "").replace("-", ""));
 	}
 
 	@Override

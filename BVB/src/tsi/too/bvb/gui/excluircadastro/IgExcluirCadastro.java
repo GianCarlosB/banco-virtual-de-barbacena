@@ -23,7 +23,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-import tsi.too.bvb.eventos.excluircadastro.TEMouseExcluirCadastro;
+import tsi.too.bvb.eventos.excluircadastro.TEActionExcluirCadastro;
 
 public class IgExcluirCadastro extends JDialog {
 
@@ -84,7 +84,7 @@ public class IgExcluirCadastro extends JDialog {
 		getContentPane().add(txtpnSubTitulo);
 		
 		JLabel lblImg = new JLabel("Label Img");
-		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\Delete-48.png"));
+		lblImg.setIcon(new ImageIcon(IgExcluirCadastro.class.getResource("/tsi/too/bvb/recursos/imagens/Delete-48.png")));
 		lblImg.setBorder(new LineBorder(Color.WHITE, 1, true));
 		lblImg.setBounds(459, 11, 48, 48);
 		getContentPane().add(lblImg);
@@ -105,7 +105,7 @@ public class IgExcluirCadastro extends JDialog {
 		Btnpanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		btnExcluir = new JButton("Excluir");
-		btnExcluir.addActionListener(new TEMouseExcluirCadastro(this, tipo));
+		btnExcluir.addActionListener(new TEActionExcluirCadastro(this, tipo));
 		btnExcluir.setEnabled(false);
 		btnExcluir.setMnemonic(KeyEvent.VK_E);
 		Btnpanel.add(btnExcluir);
@@ -150,13 +150,13 @@ public class IgExcluirCadastro extends JDialog {
 		dadosScrollPane.setViewportView(dadosEditorPane);
 		
 		btnBuscar = new JButton("Buscar");
-		btnBuscar.addActionListener(new TEMouseExcluirCadastro(this, tipo));
+		btnBuscar.addActionListener(new TEActionExcluirCadastro(this, tipo));
 		btnBuscar.setMnemonic(KeyEvent.VK_B);
 		btnBuscar.setBounds(398, 91, 89, 23);
 		getContentPane().add(btnBuscar);
 		
 		btnAlterar = new JButton("Alterar");
-		btnAlterar.addActionListener(new TEMouseExcluirCadastro(this, tipo));
+		btnAlterar.addActionListener(new TEActionExcluirCadastro(this, tipo));
 		btnAlterar.setVisible(false);
 		btnAlterar.setMnemonic(KeyEvent.VK_A);
 		btnAlterar.setBounds(398, 91, 89, 23);

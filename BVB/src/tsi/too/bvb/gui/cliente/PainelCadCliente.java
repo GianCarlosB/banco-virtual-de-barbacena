@@ -14,12 +14,13 @@ import javax.swing.border.TitledBorder;
 
 import tsi.too.bvb.entidades.Mascara;
 import tsi.too.bvb.entidades.cliente.Cliente;
-import tsi.too.bvb.eventos.cliente.TEMouseCadastrarCliente;
+import tsi.too.bvb.eventos.cliente.TEActionCadastrarCliente;
+import tsi.too.bvb.gui.TratadorDeCampos;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 import tsi.too.bvb.persistencia.ClienteDAO;
 import tsi.too.bvb.validacoes.ValidarDados;
 
-public class PainelCadCliente extends JPanel implements PainelCliente {
+public class PainelCadCliente extends JPanel implements TratadorDeCampos {
 	/**
 	 * 
 	 */
@@ -50,13 +51,13 @@ public class PainelCadCliente extends JPanel implements PainelCliente {
 		
 		JLabel lblCpf = new JLabel("CPF:");
 		lblCpf.setDisplayedMnemonic(KeyEvent.VK_F);
-		lblCpf.setBounds(10, 75, 46, 14);
+		lblCpf.setBounds(10, 85, 46, 14);
 		add(lblCpf);
 		
 		cpfPanel = new JPanel();
 		cpfPanel.setLayout(null);
 		cpfPanel.setBorder(new TitledBorder(null, "N\u00E3o Validado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
-		cpfPanel.setBounds(100, 55, 407, 58);
+		cpfPanel.setBounds(100, 65, 407, 58);
 		add(cpfPanel);
 		
 		cpfFormattedTextField = new JFormattedTextField(new Mascara("###.###.###-##"));
@@ -66,7 +67,7 @@ public class PainelCadCliente extends JPanel implements PainelCliente {
 		cpfPanel.add(cpfFormattedTextField);
 		
 		btnValidar = new JButton("Validar");
-		btnValidar.addActionListener(new TEMouseCadastrarCliente(this));
+		btnValidar.addActionListener(new TEActionCadastrarCliente(this));
 
 		btnValidar.setMnemonic(KeyEvent.VK_V);
 		btnValidar.setBounds(308, 19, 89, 23);
@@ -74,29 +75,28 @@ public class PainelCadCliente extends JPanel implements PainelCliente {
 	}
 
 	@Override
-	public void limpaCampos() {
+	public void limparCampos() {
 		nomeTextField.setText("");
 		cpfFormattedTextField.setText("");
 	}
 
 	@Override
-	public void salvarCampos(Cliente cliente) {
-		cliente.setCpf(cpfFormattedTextField.getText().replace(".", "").replace("-", ""));
-		cliente.setNome(nomeTextField.getText());
+	public void salvarCampos(Object cliente) {
+		((Cliente) cliente).setCpf(cpfFormattedTextField.getText().replace(".", "").replace("-", ""));
+		((Cliente) cliente).setNome(nomeTextField.getText());
 	}
 
 	@Override
 	public boolean validarCampos() {
 		boolean valido = true;
 		
-		if(ValidarDados.validarVazio(nomeTextField.getText()) == false) {
+		if(!ValidarDados.validarVazio(nomeTextField.getText())) {
 			nomeTextField.setBorder(new LineBorder(Color.RED));
 			valido = false;
 		}
 		else nomeTextField.setBorder(UIManager.getBorder("TextField.border"));
 		
-		if(validarCampoCpf() == false)
-			valido = false;
+		if(!validarCampoCpf()) valido = false;
 		
 		return valido;
 	}
@@ -128,4 +128,4 @@ public class PainelCadCliente extends JPanel implements PainelCliente {
 		return btnValidar;
 	}
 	
-} // class PainelCadCliente
+} // class PainelCadDadosPrincipais

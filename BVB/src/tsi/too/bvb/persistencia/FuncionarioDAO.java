@@ -19,7 +19,7 @@ public class FuncionarioDAO {
 		
 		try {
 			bdDao.executarComandoSQL(sql);
-			bdDao.getStmt().setString(1, funcionario.getNomeUsuario().toLowerCase());
+			bdDao.getStmt().setString(1, funcionario.getNomeUsuario());
 			bdDao.getStmt().setString(2, funcionario.getSenha());
 			bdDao.getStmt().setString(3, Character.toString(funcionario.getTipoUsuario().getTipo()));
 			bdDao.getStmt().executeUpdate();
@@ -53,7 +53,7 @@ public class FuncionarioDAO {
 	
 	public Funcionario pesquisarLoginUnico(BancoDeDadosDAO bdDao, String login) {
 		Funcionario funcionario = new Funcionario();
-		final String sql = "SELECT * FROM funcionario WHERE nomeUsuario LIKE '" + login.toLowerCase() + "'";
+		final String sql = "SELECT * FROM funcionario WHERE LCASE (nomeUsuario) LIKE '" + login.toLowerCase() + "'";
 		
 		try {
 			bdDao.executarComandoSQL(sql);
@@ -76,7 +76,7 @@ public class FuncionarioDAO {
 	
 	public List<Funcionario> pesquisarLogin(BancoDeDadosDAO bdDao, String login) {
 		List<Funcionario> lista = new ArrayList<>();
-		final String sql = "SELECT * FROM funcionario WHERE nomeUsuario LIKE \'%" + login.toLowerCase() + "%\'";
+		final String sql = "SELECT * FROM funcionario WHERE LCASE (nomeUsuario) LIKE \'%" + login.toLowerCase() + "%\'";
 		
 		try {
 			bdDao.executarComandoSQL(sql);
@@ -100,7 +100,7 @@ public class FuncionarioDAO {
 	
 	public List<Funcionario> pesquisarTipo(BancoDeDadosDAO bdDao, char tipo) {
 		List<Funcionario> lista = new ArrayList<>();
-		final String sql = "SELECT * FROM funcionario WHERE tipoUsuario LIKE \'%" + tipo + "%\'";
+		final String sql = "SELECT * FROM funcionario WHERE UCASE (tipoUsuario) LIKE \'%" + tipo + "%\'";
 		
 		try {
 			bdDao.executarComandoSQL(sql);
@@ -122,7 +122,7 @@ public class FuncionarioDAO {
 	}
 
 	public void excluir(BancoDeDadosDAO bdDao, String login) {
-		final String sql = "DELETE FROM funcionario WHERE nomeUsuario LIKE '" + login.toLowerCase() + "'";
+		final String sql = "DELETE FROM funcionario WHERE LCASE (nomeUsuario) LIKE '" + login.toLowerCase() + "'";
 		
 		bdDao.executarComandoSQL(sql);
 		

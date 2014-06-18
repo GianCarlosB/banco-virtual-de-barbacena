@@ -57,7 +57,7 @@ public enum TipoUsuario {
 		return NUM_TIPOS;
 	}
 
-	public static String[] arrayTipos() {
+	public static String[] obterArrayTipos() {
 		String arrayTipos[] = new String[NUM_TIPOS];
 		int i = 0;
 		

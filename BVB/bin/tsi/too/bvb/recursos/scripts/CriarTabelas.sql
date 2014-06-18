@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS cliente (
 
 CREATE TABLE IF NOT EXISTS agencia (
 	codAgencia NUMERIC(4, 0) NOT NULL,
-	descricao VARCHAR(500),
+	descricao VARCHAR(250),
 
 	CONSTRAINT pk_agencia PRIMARY KEY (codAgencia)
 );

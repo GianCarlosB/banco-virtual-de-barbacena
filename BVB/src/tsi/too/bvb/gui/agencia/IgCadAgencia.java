@@ -3,7 +3,6 @@ package tsi.too.bvb.gui.agencia;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,18 +14,18 @@ import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
 
 import tsi.too.bvb.entidades.agencia.Agencia;
-import tsi.too.bvb.eventos.agencia.TEMouseCadastrarAgencia;
+import tsi.too.bvb.eventos.agencia.TEActionCadastrarAgencia;
+import tsi.too.bvb.gui.TratadorDeCampos;
+import tsi.too.bvb.validacoes.ValidarDados;
 
-public class IgCadAgencia extends JDialog {
+public class IgCadAgencia extends JDialog implements TratadorDeCampos {
 
 	/**
 	 * 
@@ -38,9 +37,8 @@ public class IgCadAgencia extends JDialog {
 	private JButton btnFinalizar;
 	private JButton btnLimpar;
 	private JButton btnCancelar;
-	private JEditorPane descricaoEditorPane;
 	private JLabel lblCamposErrados;
-	private JScrollPane scrollPane;
+	private JTextField descricaoTextField;
 
 	/**
 	 * Create the frame.
@@ -51,7 +49,7 @@ public class IgCadAgencia extends JDialog {
 		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
-		setTitle("Novo Cadastro de Ag\u00EAncia");
+		setTitle("BVB - Cadastro de Ag\u00EAncia");
 		setBounds(100, 100, 523, 506);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -68,7 +66,7 @@ public class IgCadAgencia extends JDialog {
 		
 		JLabel lblImg = new JLabel("Label Img");
 		lblImg.setBorder(new LineBorder(Color.WHITE, 1, true));
-		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\Building-48.png"));
+		lblImg.setIcon(new ImageIcon(IgCadAgencia.class.getResource("/tsi/too/bvb/recursos/imagens/Building-48.png")));
 		lblImg.setBounds(459, 11, 48, 48);
 		contentPane.add(lblImg);
 		
@@ -100,12 +98,12 @@ public class IgCadAgencia extends JDialog {
 		Btnpanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		btnFinalizar = new JButton("Finalizar");
-		btnFinalizar.addActionListener(new TEMouseCadastrarAgencia(this, agencia));
+		btnFinalizar.addActionListener(new TEActionCadastrarAgencia(this, agencia));
 		btnFinalizar.setMnemonic(KeyEvent.VK_F);
 		Btnpanel.add(btnFinalizar);
 		
 		btnLimpar = new JButton("Limpar");
-		btnLimpar.addActionListener(new TEMouseCadastrarAgencia(this, agencia));
+		btnLimpar.addActionListener(new TEActionCadastrarAgencia(this, agencia));
 		btnLimpar.setMnemonic(KeyEvent.VK_L);
 		Btnpanel.add(btnLimpar);
 		
@@ -123,32 +121,11 @@ public class IgCadAgencia extends JDialog {
 		lblCodigo.setBounds(10, 95, 60, 14);
 		contentPane.add(lblCodigo);
 		
-		JPanel panel = new JPanel();
-		panel.setLayout(null);
-		panel.setBorder(new TitledBorder(null, "Descri\u00E7\u00E3o", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
-		panel.setBounds(10, 145, 497, 154);
-		contentPane.add(panel);
-		
-		JLabel lblDescricao = new JLabel("Nome da cidade onde a ag\u00EAncia se localiza e demais descri\u00E7\u00F5es:");
-		lblDescricao.setDisplayedMnemonic(KeyEvent.VK_D);
-		lblDescricao.setBounds(10, 20, 380, 14);
-		panel.add(lblDescricao);
-		
-		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 45, 477, 98);
-		panel.add(scrollPane);
-		
-		descricaoEditorPane = new JEditorPane();
-		descricaoEditorPane.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio");
-		lblDescricao.setLabelFor(descricaoEditorPane);
-		scrollPane.setViewportView(descricaoEditorPane);
-		
 		codigoTextField = new JTextField();
+		codigoTextField.setEditable(false);
 		codigoTextField.setToolTipText("este campo \u00E9 gerado automaticamente");
 		lblCodigo.setLabelFor(codigoTextField);
-		codigoTextField.setText("O c\u00F3digo da ag\u00EAncia \u00E9 gerado automaticamente");
-		codigoTextField.setEnabled(false);
-		codigoTextField.setEditable(false);
+		codigoTextField.setText("XXXX");
 		codigoTextField.setColumns(10);
 		codigoTextField.setBounds(100, 92, 308, 20);
 		contentPane.add(codigoTextField);
@@ -159,12 +136,42 @@ public class IgCadAgencia extends JDialog {
 		lblCamposErrados.setBounds(10, 399, 497, 14);
 		contentPane.add(lblCamposErrados);
 		
+		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
+		lblDescricao.setBounds(10, 125, 75, 14);
+		contentPane.add(lblDescricao);
+		lblDescricao.setDisplayedMnemonic(KeyEvent.VK_D);
+		
+		descricaoTextField = new JTextField();
+		descricaoTextField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio");
+		lblDescricao.setLabelFor(descricaoTextField);
+		descricaoTextField.setBounds(100, 123, 308, 20);
+		contentPane.add(descricaoTextField);
+		descricaoTextField.setColumns(10);
+		
 		setLocationRelativeTo(janelaPai);
 		setVisible(true);
 	}
 	
-	public void salvarCampos(Agencia agencia) {
-		agencia.setDescricao(descricaoEditorPane.getText());
+	@Override
+	public void limparCampos() {
+		descricaoTextField.setText("");
+	}
+
+	@Override
+	public void salvarCampos(Object agencia) {
+		((Agencia) agencia).setDescricao(descricaoTextField.getText());
+	}
+
+	@Override
+	public boolean validarCampos() {
+		if(!ValidarDados.validarVazio(descricaoTextField.getText())) {
+			setLblCamposErrados(true);
+			descricaoTextField.setBorder(new LineBorder(Color.RED));
+			
+			return false;
+		}
+		
+		return true;
 	}
 
 	public JButton getBtnFinalizar() {
@@ -183,20 +190,16 @@ public class IgCadAgencia extends JDialog {
 		this.codigoTextField.setText(codAgencia);
 	}
 
-	public JEditorPane getDescricaoEditorPane() {
-		return descricaoEditorPane;
+	public void setDescricaoTextField(String descricao) {
+		this.descricaoTextField.setText(descricao);
 	}
 
-	public void setDescricaoEditorPane(String descricao) {
-		this.descricaoEditorPane.setText(descricao);
+	public JTextField getDescricaoTextField() {
+		return descricaoTextField;
 	}
 
 	public void setLblCamposErrados(boolean visivel) {
 		this.lblCamposErrados.setVisible(visivel);
 	}
 
-	public JScrollPane getScrollPane() {
-		return scrollPane;
-	}
-	
 } // class IgCadAgencia

@@ -54,12 +54,12 @@ public class JanelaPopUpErro extends JDialog {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBackground(new Color(231, 76, 60));
-		scrollPane.setBorder(new TitledBorder(new LineBorder(new Color(236, 240, 241), 1, true), "Stack Trace", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(236, 240, 241)));
+		scrollPane.setBorder(new TitledBorder(new LineBorder(Color.BLACK, 1, true), "Stack Trace", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 		scrollPane.setBounds(10, 82, 424, 133);
 		contentPanel.add(scrollPane);
 		
 		JTextPane erroTextPane = new JTextPane();
-		erroTextPane.setForeground(new Color(236, 240, 241));
+		erroTextPane.setForeground(Color.BLACK);
 		erroTextPane.setFont(new Font("Calibri", Font.PLAIN, 13));
 		erroTextPane.setEditable(false);
 		erroTextPane.setBackground(new Color(231, 76, 60));
@@ -71,17 +71,17 @@ public class JanelaPopUpErro extends JDialog {
 		contentPanel.add(separatorBtn);
 		
 		JLabel lblImg = new JLabel("img");
-		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\bug.png"));
+		lblImg.setIcon(new ImageIcon(JanelaPopUpErro.class.getResource("/tsi/too/bvb/recursos/imagens/bug.png")));
 		lblImg.setBounds(402, 26, 32, 32);
 		contentPanel.add(lblImg);
 		
 		JEditorPane msgEditorPane = new JEditorPane();
-		msgEditorPane.setForeground(new Color(236, 240, 241));
+		msgEditorPane.setForeground(Color.BLACK);
 		msgEditorPane.setFont(new Font("Calibri", Font.BOLD, 14));
 		msgEditorPane.setText(msgErro);
 		msgEditorPane.setEditable(false);
 		msgEditorPane.setBackground(new Color(231, 76, 60));
-		msgEditorPane.setBorder(new TitledBorder(new LineBorder(new Color(236, 240, 241), 1, true), "ERRO", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(236, 240, 241)));
+		msgEditorPane.setBorder(new TitledBorder(new LineBorder(Color.BLACK, 1, true), "ERRO", TitledBorder.CENTER, TitledBorder.TOP, null, Color.BLACK));
 		msgEditorPane.setBounds(10, 11, 382, 60);
 		contentPanel.add(msgEditorPane);
 		{
@@ -129,17 +129,17 @@ public class JanelaPopUpErro extends JDialog {
 		contentPanel.add(separatorBtn);
 		
 		JLabel lblImg = new JLabel("img");
-		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\bug.png"));
+		lblImg.setIcon(new ImageIcon(JanelaPopUpErro.class.getResource("/tsi/too/bvb/recursos/imagens/bug.png")));
 		lblImg.setBounds(402, 26, 32, 32);
 		contentPanel.add(lblImg);
 		
 		JEditorPane msgEditorPane = new JEditorPane();
 		msgEditorPane.setEditable(false);
-		msgEditorPane.setForeground(new Color(236, 240, 241));
+		msgEditorPane.setForeground(Color.BLACK);
 		msgEditorPane.setFont(new Font("Calibri", Font.BOLD, 14));
 		msgEditorPane.setText(msgErro);
 		msgEditorPane.setBackground(new Color(231, 76, 60));
-		msgEditorPane.setBorder(new TitledBorder(new LineBorder(new Color(236, 240, 241), 1, true), "ERRO", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(236, 240, 241)));
+		msgEditorPane.setBorder(new TitledBorder(new LineBorder(Color.BLACK, 1, true), "ERRO", TitledBorder.CENTER, TitledBorder.TOP, null, Color.BLACK));
 		msgEditorPane.setBounds(10, 11, 382, 104);
 		contentPanel.add(msgEditorPane);
 		{

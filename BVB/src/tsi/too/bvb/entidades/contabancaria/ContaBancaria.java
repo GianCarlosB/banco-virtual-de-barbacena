@@ -1,12 +1,15 @@
 package tsi.too.bvb.entidades.contabancaria;
 
+import java.util.Date;
+
 import tsi.too.bvb.entidades.tiposenumerados.TipoConta;
 
 public class ContaBancaria {
 	
 	private int codAgencia, numConta;
 	private TipoConta tipoConta;
-	private String cpf, dataAbertura, senhaNumerica, senhaAlfabetica;
+	private Date dataAbertura;
+	private String cpf, senhaNumerica, senhaAlfabetica;
 	private boolean contaSalario;
 	private double saldo;
 	
@@ -27,7 +30,7 @@ public class ContaBancaria {
 		this.tipoConta = tipoConta;
 	}
 
-	public ContaBancaria(String cpf, String dataAbertura, String senhaNumerica,
+	public ContaBancaria(String cpf, Date dataAbertura, String senhaNumerica,
 			String senhaAlfabetica, boolean contaSalario, double saldo) {
 		this();
 		this.cpf = cpf;
@@ -39,7 +42,7 @@ public class ContaBancaria {
 	}
 
 	public ContaBancaria(int codAgencia, int numConta, TipoConta tipoConta,
-			String cpf, String dataAbertura, String senhaNumerica,
+			String cpf, Date dataAbertura, String senhaNumerica,
 			String senhaAlfabetica, boolean contaSalario, double saldo) {
 		this();
 		this.codAgencia = codAgencia;
@@ -85,11 +88,11 @@ public class ContaBancaria {
 		this.cpf = cpf;
 	}
 	
-	public String getDataAbertura() {
+	public Date getDataAbertura() {
 		return dataAbertura;
 	}
 	
-	public void setDataAbertura(String dataAbertura) {
+	public void setDataAbertura(Date dataAbertura) {
 		this.dataAbertura = dataAbertura;
 	}
 	

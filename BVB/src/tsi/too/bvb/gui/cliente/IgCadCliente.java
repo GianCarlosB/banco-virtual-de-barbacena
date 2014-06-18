@@ -23,7 +23,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import tsi.too.bvb.entidades.cliente.Cliente;
-import tsi.too.bvb.eventos.cliente.TEMouseCadastrarCliente;
+import tsi.too.bvb.eventos.cliente.TEActionCadastrarCliente;
+import tsi.too.bvb.gui.PainelConfCad;
+import tsi.too.bvb.gui.TratadorDeCampos;
 
 public class IgCadCliente extends JDialog {
 	/**
@@ -40,7 +42,7 @@ public class IgCadCliente extends JDialog {
 	private PainelCadCliente pCadCliente = new PainelCadCliente();
 	private PainelCadEndereco pCadEndereco = new PainelCadEndereco();
 	private PainelCadContato pCadContato = new PainelCadContato();
-	private PainelConfCadCliente pConfCadCliente = new PainelConfCadCliente();
+	private PainelConfCad pConfCad = new PainelConfCad("Dados do Cliente");
 	private JButton btnAnterior;
 	private JButton btnProximo;
 	private JButton btnLimpar;
@@ -59,7 +61,7 @@ public class IgCadCliente extends JDialog {
 		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
-		setTitle("Novo Cadastro de Cliente");
+		setTitle("BVB - Cadastro de Cliente");
 		setBounds(100, 100, 523, 506);
 		
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -88,7 +90,7 @@ public class IgCadCliente extends JDialog {
 		
 		JLabel lblImg = new JLabel("Label Img");
 		lblImg.setBorder(new LineBorder(new Color(255, 255, 255), 1, true));
-		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\User-Login-48.png"));
+		lblImg.setIcon(new ImageIcon(IgCadCliente.class.getResource("/tsi/too/bvb/recursos/imagens/User-Login-48.png")));
 		lblImg.setBounds(459, 11, 48, 48);
 		contentPane.add(lblImg);
 		
@@ -98,24 +100,24 @@ public class IgCadCliente extends JDialog {
 		Btnpanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		btnAnterior = new JButton("< Anterior");
-		btnAnterior.addActionListener(new TEMouseCadastrarCliente(this, cliente));
+		btnAnterior.addActionListener(new TEActionCadastrarCliente(this, cliente));
 		btnAnterior.setVisible(false);
 		btnAnterior.setMnemonic(KeyEvent.VK_A);
 		Btnpanel.add(btnAnterior);
 		
 		btnProximo = new JButton("Pr\u00F3ximo >");
-		btnProximo.addActionListener(new TEMouseCadastrarCliente(this, cliente));
+		btnProximo.addActionListener(new TEActionCadastrarCliente(this, cliente));
 		btnProximo.setMnemonic(KeyEvent.VK_P);
 		Btnpanel.add(btnProximo);
 		
 		btnFinalizar = new JButton("Finalizar");
-		btnFinalizar.addActionListener(new TEMouseCadastrarCliente(this, cliente));
+		btnFinalizar.addActionListener(new TEActionCadastrarCliente(this, cliente));
 		btnFinalizar.setVisible(false);
 		btnFinalizar.setMnemonic(KeyEvent.VK_F);
 		Btnpanel.add(btnFinalizar);
 		
 		btnLimpar = new JButton("Limpar");
-		btnLimpar.addActionListener(new TEMouseCadastrarCliente(this, cliente));
+		btnLimpar.addActionListener(new TEActionCadastrarCliente(this, cliente));
 		btnLimpar.setMnemonic(KeyEvent.VK_L);
 		Btnpanel.add(btnLimpar);
 		
@@ -144,7 +146,7 @@ public class IgCadCliente extends JDialog {
 		cardPanel.add(pCadCliente, "clientePanel");
 		cardPanel.add(pCadEndereco, "enderecoPanel");
 		cardPanel.add(pCadContato, "contatoPanel");
-		cardPanel.add(pConfCadCliente, "confClientePanel");
+		cardPanel.add(pConfCad, "confClientePanel");
 		cardLayout.show(cardPanel, "clientePanel");
 		
 		JLabel label = new JLabel("Progresso do Cadastro:");
@@ -170,18 +172,18 @@ public class IgCadCliente extends JDialog {
 		setVisible(true);
 	}
 	
-	public PainelCliente obterPainelVisivel() {
+	public TratadorDeCampos obterPainelVisivel() {
 		int i = 0;
 		Component paineis[] = cardPanel.getComponents();
 		
-		if(paineis[i++].isVisible() == true)
+		if(paineis[i++].isVisible())
 			return pCadCliente;
-		if(paineis[i++].isVisible() == true)
+		if(paineis[i++].isVisible())
 			return pCadEndereco;
-		if(paineis[i++].isVisible() == true)
+		if(paineis[i++].isVisible())
 			return pCadContato;
-		if(paineis[i++].isVisible() == true)
-			return pConfCadCliente;
+		if(paineis[i++].isVisible())
+			return pConfCad;
 		
 		return null;
 	}
@@ -198,8 +200,8 @@ public class IgCadCliente extends JDialog {
 		return pCadContato;
 	}
 
-	public PainelConfCadCliente getpConfCadCliente() {
-		return pConfCadCliente;
+	public PainelConfCad getpConfCad() {
+		return pConfCad;
 	}
 
 	public CardLayout getCardLayout() {

@@ -16,9 +16,10 @@ import javax.swing.border.TitledBorder;
 import tsi.too.bvb.entidades.Mascara;
 import tsi.too.bvb.entidades.cliente.Cliente;
 import tsi.too.bvb.entidades.tiposenumerados.UF;
+import tsi.too.bvb.gui.TratadorDeCampos;
 import tsi.too.bvb.validacoes.ValidarDados;
 
-public class PainelCadEndereco extends JPanel implements PainelCliente {
+public class PainelCadEndereco extends JPanel implements TratadorDeCampos {
 	/**
 	 * 
 	 */
@@ -109,6 +110,7 @@ public class PainelCadEndereco extends JPanel implements PainelCliente {
 		RegionalPanel.add(lblCidade);
 		
 		ufComboBox = new JComboBox<Object>(UF.arrayUF());
+		ufComboBox.setToolTipText("selecione o UF de sua cidade");
 		lblUf.setLabelFor(ufComboBox);
 		ufComboBox.setBounds(100, 77, 50, 20);
 		RegionalPanel.add(ufComboBox);
@@ -133,55 +135,56 @@ public class PainelCadEndereco extends JPanel implements PainelCliente {
 	}
 
 	@Override
-	public void limpaCampos() {
+	public void limparCampos() {
 		logradouroTextField.setText("");
 		complementoTextField.setText("");
 		numeroTextField.setText("");
 		bairroTextField.setText("");
 		cidadeTextField.setText("");
 		cepFormTextField.setText("");
+		ufComboBox.setSelectedIndex(0);
 	}
 
 	@Override
-	public void salvarCampos(Cliente cliente) {
-		cliente.getEndereco().setBairro(bairroTextField.getText());
-		cliente.getEndereco().setCep(cepFormTextField.getText().replace("-", ""));
-		cliente.getEndereco().setCidade(cidadeTextField.getText());
-		cliente.getEndereco().setComplemento(complementoTextField.getText());
-		cliente.getEndereco().setLogradouro(logradouroTextField.getText());
-		cliente.getEndereco().setNumero(numeroTextField.getText());
-		cliente.getEndereco().setUf(UF.obterUF((String)ufComboBox.getSelectedItem()));
+	public void salvarCampos(Object cliente) {
+		((Cliente) cliente).getEndereco().setBairro(bairroTextField.getText());
+		((Cliente) cliente).getEndereco().setCep(cepFormTextField.getText().replace("-", ""));
+		((Cliente) cliente).getEndereco().setCidade(cidadeTextField.getText());
+		((Cliente) cliente).getEndereco().setComplemento(complementoTextField.getText());
+		((Cliente) cliente).getEndereco().setLogradouro(logradouroTextField.getText());
+		((Cliente) cliente).getEndereco().setNumero(numeroTextField.getText());
+		((Cliente) cliente).getEndereco().setUf(UF.obterUF((String)ufComboBox.getSelectedItem()));
 	}
 
 	@Override
 	public boolean validarCampos() {
 		boolean valido = true;
 		
-		if(ValidarDados.validarVazio(logradouroTextField.getText()) == false) {
+		if(!ValidarDados.validarVazio(logradouroTextField.getText())) {
 			logradouroTextField.setBorder(new LineBorder(Color.RED));
 			valido = false;
 		}
 		else logradouroTextField.setBorder(UIManager.getBorder("TextField.border"));
 		
-		if(ValidarDados.validarIntPositivo(numeroTextField.getText()) == false) {
+		if(!ValidarDados.validarIntPositivo(numeroTextField.getText())) {
 			numeroTextField.setBorder(new LineBorder(Color.RED));
 			valido = false;
 		}
 		else numeroTextField.setBorder(UIManager.getBorder("TextField.border"));
 		
-		if(ValidarDados.validarVazio(bairroTextField.getText()) == false) {
+		if(!ValidarDados.validarVazio(bairroTextField.getText())) {
 			bairroTextField.setBorder(new LineBorder(Color.RED));
 			valido = false;
 		}
 		else bairroTextField.setBorder(UIManager.getBorder("TextField.border"));
 		
-		if(ValidarDados.validarVazio(cidadeTextField.getText()) == false) {
+		if(!ValidarDados.validarVazio(cidadeTextField.getText())) {
 			cidadeTextField.setBorder(new LineBorder(Color.RED));
 			valido = false;
 		}
 		else cidadeTextField.setBorder(UIManager.getBorder("TextField.border"));
 		
-		if(ValidarDados.validarIntPositivo(cepFormTextField.getText().replace("-", "")) == false) {
+		if(!ValidarDados.validarIntPositivo(cepFormTextField.getText().replace("-", ""))) {
 			cepFormTextField.setBorder(new LineBorder(Color.RED));
 			valido = false;
 		}

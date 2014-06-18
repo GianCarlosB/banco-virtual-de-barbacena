@@ -57,7 +57,8 @@ public abstract class BancoDeDadosDAO {
 		try {
 			stmt = conn.prepareStatement(sql);
 		} catch (SQLException e) {
-			new JanelaPopUpErro(null, "BVB - ERRO", " Falha na execução de uma operação relacionada ao banco de dados!", e);
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return stmt;
@@ -69,7 +70,8 @@ public abstract class BancoDeDadosDAO {
 		try {
 			rset = stmt.executeQuery();
 		} catch (SQLException e) {
-			new JanelaPopUpErro(null, "BVB - ERRO", " Falha na obtenção de um resultado relacionado ao banco de dados!", e);
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return rset;

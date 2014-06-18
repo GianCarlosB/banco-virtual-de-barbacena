@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
 
 import tsi.too.bvb.entidades.funcionario.Funcionario;
 import tsi.too.bvb.entidades.tiposenumerados.TipoUsuario;
-import tsi.too.bvb.eventos.funcionario.TEMouseConsultarFuncionario;
+import tsi.too.bvb.eventos.funcionario.TEActionConsultarFuncionario;
 import tsi.too.bvb.eventos.funcionario.TETecladoConsultarFuncionario;
 
 public class IgConsultarFuncionario extends JDialog {
@@ -66,7 +66,7 @@ public class IgConsultarFuncionario extends JDialog {
 		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
-		setTitle("Novo Cadastro de Funcion\u00E1rio");
+		setTitle("BVB - Cadastro de Funcion\u00E1rio");
 		setBounds(100, 100, 523, 506);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -95,7 +95,7 @@ public class IgConsultarFuncionario extends JDialog {
 		
 		JLabel lblImg = new JLabel("Label Img");
 		lblImg.setBorder(new LineBorder(Color.WHITE, 1, true));
-		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\User-48.png"));
+		lblImg.setIcon(new ImageIcon(IgConsultarFuncionario.class.getResource("/tsi/too/bvb/recursos/imagens/User-48.png")));
 		lblImg.setBounds(459, 11, 48, 48);
 		contentPane.add(lblImg);
 		
@@ -116,7 +116,7 @@ public class IgConsultarFuncionario extends JDialog {
 		Btnpanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
 		btnLimpar = new JButton("Limpar");
-		btnLimpar.addActionListener(new TEMouseConsultarFuncionario(this));
+		btnLimpar.addActionListener(new TEActionConsultarFuncionario(this));
 		btnLimpar.setMnemonic(KeyEvent.VK_L);
 		Btnpanel.add(btnLimpar);
 		
@@ -141,13 +141,13 @@ public class IgConsultarFuncionario extends JDialog {
 		LoginTextField.setBounds(100, 92, 308, 20);
 		contentPane.add(LoginTextField);
 		
-		tipoUsuarioComboBox = new JComboBox<Object>(TipoUsuario.arrayTipos());
+		tipoUsuarioComboBox = new JComboBox<Object>(TipoUsuario.obterArrayTipos());
 		tipoUsuarioComboBox.setToolTipText("para pesquisar pelo tipo selecione um item da caixa e clique em buscar");
-		tipoUsuarioComboBox.setBounds(10, 120, 109, 20);
+		tipoUsuarioComboBox.setBounds(10, 125, 109, 20);
 		contentPane.add(tipoUsuarioComboBox);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 151, 497, 262);
+		scrollPane.setBounds(10, 156, 497, 257);
 		contentPane.add(scrollPane);
 		
 		tableConsulta = new JTable(new DefaultTableModel(linhasTabela, COLUNAS_FUNCIONARIO)) {
@@ -166,9 +166,9 @@ public class IgConsultarFuncionario extends JDialog {
 		scrollPane.setViewportView(tableConsulta);
 		
 		btnBuscar = new JButton("Buscar");
-		btnBuscar.addActionListener(new TEMouseConsultarFuncionario(this));
+		btnBuscar.addActionListener(new TEActionConsultarFuncionario(this));
 		btnBuscar.setMnemonic(KeyEvent.VK_B);
-		btnBuscar.setBounds(129, 119, 89, 23);
+		btnBuscar.setBounds(129, 124, 89, 23);
 		contentPane.add(btnBuscar);
 		
 		setLocationRelativeTo(janelaPai);
@@ -208,6 +208,11 @@ public class IgConsultarFuncionario extends JDialog {
 		model.setNumRows(num_linhas);
 		
 		return model;
+	}
+	
+	public void limpaCampos() {
+		LoginTextField.setText("");
+		tipoUsuarioComboBox.setSelectedIndex(0);
 	}
 	
 	public boolean pesquisaTabela(Funcionario funcionario) {

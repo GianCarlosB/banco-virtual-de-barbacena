@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
 
 import tsi.too.bvb.entidades.Mascara;
 import tsi.too.bvb.entidades.cliente.Cliente;
-import tsi.too.bvb.eventos.cliente.TEMouseConsultarCliente;
+import tsi.too.bvb.eventos.cliente.TEActionConsultarCliente;
 import tsi.too.bvb.eventos.cliente.TETecladoConsultarCliente;
 
 public class IgConsultarCliente extends JDialog {
@@ -74,8 +74,8 @@ public class IgConsultarCliente extends JDialog {
 		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
-		setTitle("Consulta de Cliente");
-		setBounds(100, 100, 784, 506);
+		setTitle("BVB - Consulta de Cliente");
+		setBounds(100, 100, 523, 506);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -103,14 +103,14 @@ public class IgConsultarCliente extends JDialog {
 		
 		JLabel lblImg = new JLabel("Label Img");
 		lblImg.setBorder(new LineBorder(Color.WHITE, 1, true));
-		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\User-Login-48.png"));
-		lblImg.setBounds(720, 11, 48, 48);
+		lblImg.setIcon(new ImageIcon(IgConsultarCliente.class.getResource("/tsi/too/bvb/recursos/imagens/User-Login-48.png")));
+		lblImg.setBounds(459, 11, 48, 48);
 		contentPanel.add(lblImg);
 		
 		JEditorPane dtrpnCampoTitulo = new JEditorPane();
 		dtrpnCampoTitulo.setBackground(peterRiver);
 		dtrpnCampoTitulo.setEditable(false);
-		dtrpnCampoTitulo.setBounds(0, 0, 778, 70);
+		dtrpnCampoTitulo.setBounds(0, 0, 517, 70);
 		contentPanel.add(dtrpnCampoTitulo);
 		
 		JLabel lblNome = new JLabel("Nome:");
@@ -123,29 +123,29 @@ public class IgConsultarCliente extends JDialog {
 		lblNome.setLabelFor(nomeTextField);
 		nomeTextField.setToolTipText("a pesquisa \u00E9 realizada automaticamente quando cada caracter \u00E9 digitado");
 		nomeTextField.setColumns(10);
-		nomeTextField.setBounds(66, 92, 231, 20);
+		nomeTextField.setBounds(100, 92, 308, 20);
 		contentPanel.add(nomeTextField);
 		
 		JLabel lblCpf = new JLabel("CPF:");
 		lblCpf.setDisplayedMnemonic(KeyEvent.VK_C);
-		lblCpf.setBounds(382, 95, 46, 14);
+		lblCpf.setBounds(10, 125, 46, 14);
 		contentPanel.add(lblCpf);
 		
 		cpfFormattedTextField = new JFormattedTextField(new Mascara("###.###.###-##"));
 		lblCpf.setLabelFor(cpfFormattedTextField);
 		cpfFormattedTextField.setToolTipText("para pesquisar utilizando o cpf clique no bot\u00E3o buscar");
-		cpfFormattedTextField.setBounds(438, 92, 231, 20);
+		cpfFormattedTextField.setBounds(100, 123, 308, 20);
 		contentPanel.add(cpfFormattedTextField);
 		
 		btnBuscar = new JButton("Buscar");
-		btnBuscar.addActionListener(new TEMouseConsultarCliente(this));
+		btnBuscar.addActionListener(new TEActionConsultarCliente(this));
 		btnBuscar.setMnemonic(KeyEvent.VK_B);
-		btnBuscar.setBounds(679, 91, 89, 23);
+		btnBuscar.setBounds(418, 121, 89, 23);
 		contentPanel.add(btnBuscar);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		scrollPane.setBounds(10, 125, 758, 288);
+		scrollPane.setBounds(10, 150, 497, 263);
 		contentPanel.add(scrollPane);
 
 		tableConsulta = new JTable(new DefaultTableModel(linhasTabela, COLUNAS_CLIENTE)) {
@@ -173,12 +173,12 @@ public class IgConsultarCliente extends JDialog {
 		tableConsulta.getColumn(COLUNA_TEL_MOVEL).setPreferredWidth(100);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 435, 778, 43);
+		panel.setBounds(0, 435, 517, 43);
 		contentPanel.add(panel);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
 		btnLimpar = new JButton("Limpar");
-		btnLimpar.addActionListener(new TEMouseConsultarCliente(this));
+		btnLimpar.addActionListener(new TEActionConsultarCliente(this));
 		btnLimpar.setMnemonic(KeyEvent.VK_L);
 		panel.add(btnLimpar);
 		
@@ -193,7 +193,7 @@ public class IgConsultarCliente extends JDialog {
 		panel.add(btnOk);
 		
 		JSeparator separatorBtn = new JSeparator();
-		separatorBtn.setBounds(0, 424, 778, 2);
+		separatorBtn.setBounds(0, 424, 517, 2);
 		contentPanel.add(separatorBtn);
 		
 		setLocationRelativeTo(janelaPai);
@@ -227,7 +227,8 @@ public class IgConsultarCliente extends JDialog {
 			Object[] linha = new Object[NUMERO_COLUNAS_TABELA];
 			
 			for(int i = 0; i < clientes.size(); i++, num_linhas++) {
-				linha[0] = Mascara.formatarString(clientes.get(i).getCpf(), "###.###.###-##");
+				clientes.get(i).insereMascara();
+				linha[0] = clientes.get(i).getCpf();
 				linha[1] = clientes.get(i).getNome();
 				linha[2] = clientes.get(i).getEndereco().getLogradouro();
 				linha[3] = clientes.get(i).getEndereco().getNumero();
@@ -235,9 +236,10 @@ public class IgConsultarCliente extends JDialog {
 				linha[5] = clientes.get(i).getEndereco().getBairro();
 				linha[6] = clientes.get(i).getEndereco().getCidade();
 				linha[7] = clientes.get(i).getEndereco().getUf().getUf();
-				linha[8] = Mascara.formatarString(clientes.get(i).getEndereco().getCep(), "#####-###");
-				linha[9] = Mascara.formatarString(clientes.get(i).getContato().getTelefoneFixo(), "(##)####-####");
-				linha[10] = Mascara.formatarString(clientes.get(i).getContato().getTelefoneMovel(), "(##)####-####");
+				linha[8] = clientes.get(i).getEndereco().getCep();
+				linha[9] = clientes.get(i).getContato().getTelefoneFixo();
+				linha[10] = clientes.get(i).getContato().getTelefoneMovel();
+				clientes.get(i).removeMascara();
 				model.addRow(linha);
 			}
 		}
@@ -259,6 +261,11 @@ public class IgConsultarCliente extends JDialog {
 		}
 		
 		return false;
+	}
+	
+	public void limpaCampos() {
+		nomeTextField.setText("");
+		cpfFormattedTextField.setText("");
 	}
 
 	public JTextField getNomeTextField() {

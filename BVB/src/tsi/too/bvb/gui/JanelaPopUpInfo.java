@@ -67,7 +67,7 @@ public class JanelaPopUpInfo extends JDialog {
 		contentPanel.add(separatorBtn);
 		
 		JLabel lblImg = new JLabel("img");
-		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\info.png"));
+		lblImg.setIcon(new ImageIcon(JanelaPopUpInfo.class.getResource("/tsi/too/bvb/recursos/imagens/info.png")));
 		lblImg.setBounds(402, 26, 32, 32);
 		contentPanel.add(lblImg);
 		
@@ -125,7 +125,7 @@ public class JanelaPopUpInfo extends JDialog {
 		contentPanel.add(separatorBtn);
 		
 		JLabel lblImg = new JLabel("img");
-		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\info.png"));
+		lblImg.setIcon(new ImageIcon(JanelaPopUpInfo.class.getResource("/tsi/too/bvb/recursos/imagens/info.png")));
 		lblImg.setBounds(402, 26, 32, 32);
 		contentPanel.add(lblImg);
 		

@@ -3,7 +3,7 @@ package tsi.too.bvb.entidades.tiposenumerados;
 public enum TipoConta {
 	
 	CONTA_CORRENTE(1, "Conta Corrente"),
-	POUPANCA(2, "Poupança"),
+	POUPANCA(2, "Conta Poupança"),
 	FIF_PRATICO(3, "BVB FIF Prático"),
 	FIF_EXECUTIVO(4, "BVB FIF Executivo");
 	
@@ -36,12 +36,20 @@ public enum TipoConta {
 		return NUM_TIPOS;
 	}
 
-	public static String[] arrayTipos() {
+	public static String[] obterArrayTiposComuns() {
 		String arrayTipos[] = new String[NUM_TIPOS];
 		int i = 0;
 		
 		arrayTipos[i++] = CONTA_CORRENTE.getDescricao();
 		arrayTipos[i++] = POUPANCA.getDescricao();
+		
+		return arrayTipos;
+	}
+	
+	public static String[] obterArrayTiposFIF() {
+		String arrayTipos[] = new String[NUM_TIPOS];
+		int i = 0;
+		
 		arrayTipos[i++] = FIF_PRATICO.getDescricao();
 		arrayTipos[i++] = FIF_EXECUTIVO.getDescricao();
 		

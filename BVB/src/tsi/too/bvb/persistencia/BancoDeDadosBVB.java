@@ -23,7 +23,7 @@ public class BancoDeDadosBVB extends BancoDeDadosDAO implements Runnable {
 	}
 	
 	/** Retorna a instancia do banco de dados do sistema
-	 * @return <code>BDEleicoes</code> com a instancia da classe
+	 * @return <code>BancoDeDadosBVB</code> com a instancia da classe
 	 */
 	public static BancoDeDadosBVB getInstance() {
 		return BANCO_DE_DADOS_BVB;

@@ -1,6 +1,7 @@
 package tsi.too.bvb.validacoes;
 
-import java.sql.Date;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.InputMismatchException;
 
 import tsi.too.bvb.entidades.tiposenumerados.TipoConta;
@@ -134,6 +135,17 @@ public class ValidarDados {
 		}
 	}
 	
+	public static boolean validarDoublePositivo(String str) {
+		try {
+			if(Double.parseDouble(str) >= 0)
+				return true;
+			
+			return false;
+		} catch(NumberFormatException e) {
+			return false;
+		}
+	}
+	
 	public static boolean validarUF(String uf) {
 		if(UF.obterUF(uf) == null)
 			return false;
@@ -162,23 +174,29 @@ public class ValidarDados {
 		return true;
 	}
 	
-	@SuppressWarnings("deprecation")
 	public static boolean validarData(Date data) {
-		if(data.getYear() < 2001)
+		int ano = -1;
+		
+		if(data != null) {
+			Calendar cal = Calendar.getInstance();
+	        cal.setTime(data);
+	        ano = cal.get(Calendar.YEAR);
+		}
+		if(ano < 2001)
 			return false;
 		
 		return true;
 	}
 	
-	public static boolean validarSenhaNumCB(String senha) {
-		if(senha.length() != SENHA_NUM)
+	public static boolean validarSenhaNumCB(char[] senha) {
+		if(senha.length != SENHA_NUM)
 			return false;
 		
 		return true;
 	}
 	
-	public static boolean validarSenhaAlfCB(String senha) {
-		if(senha.length() != SENHA_NUM)
+	public static boolean validarSenhaAlfCB(char[] senha) {
+		if(senha.length != SENHA_NUM)
 			return false;
 		
 		return true;
@@ -188,7 +206,7 @@ public class ValidarDados {
 		if(login.length() < FUNC_MIN || login.length() > FUNC_LOGIN_MAX)
 			return false;
 		
-		if(verificarCadeiaDeCaracteres(login, "[a-zA-Z0-9\\-\\_]*") == false)
+		if(!verificarCadeiaDeCaracteres(login, "[a-zA-Z0-9\\-\\_]*"))
 			return false;
 		
 		return true;
@@ -201,7 +219,7 @@ public class ValidarDados {
 		return true;
 	}
 	
-	public static boolean validarSenhaFunc(String senha1, String senha2) {
+	public static boolean validarSenhasIguais(String senha1, String senha2) {
 		if(!senha1.toString().equals(senha2.toString()))
 			return false;
 		

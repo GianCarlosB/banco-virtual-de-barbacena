@@ -25,7 +25,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import tsi.too.bvb.entidades.agencia.Agencia;
-import tsi.too.bvb.eventos.agencia.TEMouseConsultarAgencia;
+import tsi.too.bvb.eventos.agencia.TEActionConsultarAgencia;
 import tsi.too.bvb.eventos.agencia.TETecladoConsultarAgencia;
 
 public class IgConsultarAgencia extends JDialog {
@@ -61,7 +61,7 @@ public class IgConsultarAgencia extends JDialog {
 		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
-		setTitle("Consulta de Ag\u00EAncia");
+		setTitle("BVB - Consulta de Ag\u00EAncia");
 		setBounds(100, 100, 523, 506);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -74,7 +74,7 @@ public class IgConsultarAgencia extends JDialog {
 		
 		JLabel lblImg = new JLabel("Label Img");
 		lblImg.setBorder(new LineBorder(Color.WHITE, 1, true));
-		lblImg.setIcon(new ImageIcon("src\\tsi\\too\\bvb\\recursos\\imagens\\Building-48.png"));
+		lblImg.setIcon(new ImageIcon(IgConsultarAgencia.class.getResource("/tsi/too/bvb/recursos/imagens/Building-48.png")));
 		lblImg.setBounds(459, 11, 48, 48);
 		contentPane.add(lblImg);
 		
@@ -100,7 +100,7 @@ public class IgConsultarAgencia extends JDialog {
 		dtrpnCampoTitulo.setBounds(0, 0, 517, 70);
 		contentPane.add(dtrpnCampoTitulo);
 		
-		JLabel lblCodigo = new JLabel("C\u00F3digo");
+		JLabel lblCodigo = new JLabel("C\u00F3digo:");
 		lblCodigo.setDisplayedMnemonic(KeyEvent.VK_C);
 		lblCodigo.setBounds(10, 95, 60, 14);
 		contentPane.add(lblCodigo);
@@ -113,7 +113,7 @@ public class IgConsultarAgencia extends JDialog {
 		contentPane.add(codigoTextField);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 145, 497, 268);
+		scrollPane.setBounds(10, 150, 497, 263);
 		contentPane.add(scrollPane);
 		
 	    tableConsulta = new JTable(new DefaultTableModel(linhasTabela, COLUNAS_AGENCIA)) {
@@ -133,7 +133,7 @@ public class IgConsultarAgencia extends JDialog {
 
 		
 		btnBuscar = new JButton("Buscar");
-		btnBuscar.addActionListener(new TEMouseConsultarAgencia(this));
+		btnBuscar.addActionListener(new TEActionConsultarAgencia(this));
 		btnBuscar.setMnemonic(KeyEvent.VK_B);
 		btnBuscar.setBounds(418, 91, 89, 23);
 		contentPane.add(btnBuscar);
@@ -144,7 +144,7 @@ public class IgConsultarAgencia extends JDialog {
 		Btnpanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
 		btnLimpar = new JButton("Limpar");
-		btnLimpar.addActionListener(new TEMouseConsultarAgencia(this));
+		btnLimpar.addActionListener(new TEActionConsultarAgencia(this));
 		btnLimpar.setMnemonic(KeyEvent.VK_L);
 		Btnpanel.add(btnLimpar);
 		
@@ -162,16 +162,16 @@ public class IgConsultarAgencia extends JDialog {
 		separatorBtn.setBounds(0, 424, 517, 2);
 		contentPane.add(separatorBtn);
 		
-		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o");
+		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
 		lblDescricao.setDisplayedMnemonic(KeyEvent.VK_D);
-		lblDescricao.setBounds(10, 120, 65, 14);
+		lblDescricao.setBounds(10, 125, 65, 14);
 		contentPane.add(lblDescricao);
 		
 		descricaoTextField = new JTextField();
 		descricaoTextField.setToolTipText("a pesquisa \u00E9 realizada automaticamente quando cada caracter \u00E9 digitado");
 		descricaoTextField.addKeyListener(new TETecladoConsultarAgencia(this));
 		lblDescricao.setLabelFor(descricaoTextField);
-		descricaoTextField.setBounds(100, 117, 308, 20);
+		descricaoTextField.setBounds(100, 123, 308, 20);
 		contentPane.add(descricaoTextField);
 		descricaoTextField.setColumns(10);
 		
@@ -210,6 +210,11 @@ public class IgConsultarAgencia extends JDialog {
 		model.setNumRows(num_linhas);
 		
 		return model;
+	}
+	
+	public void limpaCampos() {
+		codigoTextField.setText("");
+		descricaoTextField.setText("");
 	}
 	
 	public boolean pesquisaTabela(Agencia agenca) {
