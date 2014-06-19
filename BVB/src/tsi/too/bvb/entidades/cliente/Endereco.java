@@ -82,7 +82,7 @@ public class Endereco {
 		builder.append("\n Logradouro: ").append(logradouro)
 				.append("\n Número: ").append(numero).append("\n Complemento: ")
 				.append(complemento).append("\n Bairro: ").append(bairro)
-				.append("\n Cidade: ").append(cidade).append("\n UF: ").append(uf)
+				.append("\n Cidade: ").append(cidade).append("\n UF: ").append(uf.getUf())
 				.append("\n CEP: ").append(cep);
 		return builder.toString();
 	}

@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
@@ -155,6 +156,7 @@ public class IgCadAgencia extends JDialog implements TratadorDeCampos {
 	@Override
 	public void limparCampos() {
 		descricaoTextField.setText("");
+		descricaoTextField.setBorder(UIManager.getBorder("TextField.border"));
 	}
 
 	@Override
@@ -170,6 +172,7 @@ public class IgCadAgencia extends JDialog implements TratadorDeCampos {
 			
 			return false;
 		}
+		else descricaoTextField.setBorder(UIManager.getBorder("TextField.border"));
 		
 		return true;
 	}

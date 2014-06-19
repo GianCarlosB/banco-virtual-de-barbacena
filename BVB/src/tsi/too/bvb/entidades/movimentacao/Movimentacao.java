@@ -108,7 +108,7 @@ public class Movimentacao {
 		builder.append(" Código da Agência: ").append(codAgencia)
 				.append("\n Número da Conta: ").append(numConta).append("\n Tipo da Conta: ")
 				.append(tipoConta).append("\n Tipo da Operação: ")
-				.append(tipoOperacao).append("\n Data: ").append(data)
+				.append(tipoOperacao.getDescricao()).append("\n Data: ").append(data)
 				.append("\n Hora: ").append(hora).append("\n Valor: ")
 				.append(valor);
 		return builder.toString();

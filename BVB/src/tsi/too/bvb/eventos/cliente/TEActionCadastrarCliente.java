@@ -41,8 +41,10 @@ public class TEActionCadastrarCliente implements ActionListener {
 		else {
 			TratadorDeCampos painelVisivel = igCadCliente.obterPainelVisivel();
 			
-			if(e.getSource() == igCadCliente.getBtnLimpar())
+			if(e.getSource() == igCadCliente.getBtnLimpar()) {
 				painelVisivel.limparCampos();
+				igCadCliente.setLblCamposErrados(false);
+			}
 			else if(e.getSource() == igCadCliente.getBtnProximo()) {
 				if(painelVisivel.validarCampos()) {
 					igCadCliente.setLblCamposErrados(false);

@@ -26,8 +26,10 @@ public class TEActionCadastrarAgencia implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
-		if(e.getSource() == igCadAgencia.getBtnLimpar())
+		if(e.getSource() == igCadAgencia.getBtnLimpar()) {
 			igCadAgencia.limparCampos();
+			igCadAgencia.setLblCamposErrados(false);
+		}
 		
 		else if(e.getSource() == igCadAgencia.getBtnFinalizar()) {
 			if(igCadAgencia.validarCampos()) {

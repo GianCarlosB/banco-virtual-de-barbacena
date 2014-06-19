@@ -41,8 +41,10 @@ public class TEActionCadastrarCB implements ActionListener {
 		else {
 			TratadorDeCampos painelVisivel = igAbrirContaBancaria.obterPainelVisivel();
 			
-			if(e.getSource() == igAbrirContaBancaria.getBtnLimpar())
+			if(e.getSource() == igAbrirContaBancaria.getBtnLimpar()) {
 				painelVisivel.limparCampos();
+				igAbrirContaBancaria.setLblCamposErrados(false);
+			}
 			else if(e.getSource() == igAbrirContaBancaria.getBtnProximo()) {
 				if(painelVisivel.validarCampos()) {
 					igAbrirContaBancaria.setLblCamposErrados(false);

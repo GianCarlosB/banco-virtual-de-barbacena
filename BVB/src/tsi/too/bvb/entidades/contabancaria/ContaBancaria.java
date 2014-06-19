@@ -142,7 +142,7 @@ public class ContaBancaria {
 		StringBuilder builder = new StringBuilder();
 		builder.append(" Código da Agência: ").append(codAgencia)
 				.append("\n Número da Conta: ").append(numConta).append("\n Tipo da Conta: ")
-				.append(tipoConta).append("\n CPF: ").append(cpf)
+				.append(tipoConta.getDescricao()).append("\n CPF: ").append(cpf)
 				.append("\n Data de Abertura: ").append(dataAbertura)
 				.append("\n Senha Númerica: ").append(senhaNumerica)
 				.append("\n Senha Alfabética: ").append(senhaAlfabetica)

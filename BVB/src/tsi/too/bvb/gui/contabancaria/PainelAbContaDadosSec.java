@@ -42,15 +42,16 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 		
 		JLabel lblCodAgencia = new JLabel("Data de Abertura:");
 		lblCodAgencia.setDisplayedMnemonic(KeyEvent.VK_D);
-		lblCodAgencia.setBounds(10, 25, 80, 14);
+		lblCodAgencia.setBounds(10, 25, 115, 14);
 		add(lblCodAgencia);
 
 		model = new UtilDateModel();
 		datePanel = new JDatePanelImpl(model);
 		datePicker = new JDatePickerImpl(datePanel);
-		datePicker.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio e o ano n\u00E3o pode ser menor que 2001");
+		datePicker.getJFormattedTextField().setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio, a data n\u00E3o pode ser maior que a data atual e o ano n\u00E3o pode ser menor que 2001 ");
+		datePicker.setToolTipText("");
 		lblCodAgencia.setLabelFor(datePicker.getJFormattedTextField());
-		datePicker.setBounds(100, 11, 112, 28);
+		datePicker.setBounds(130, 11, 112, 28);
 		datePanel.setBounds(100, 15, 112, 24);
 		add(datePicker);
 		
@@ -72,9 +73,10 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 		add(lblContaSalario);
 		
 		saldoTextField = new JNumberFormatField(new DecimalFormat("R$0.00"));
+		((JNumberFormatField) saldoTextField).setLimit(15);
 		saldoTextField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio e deve conter apenas d\u00EDgitos decimais");
 		lblSaldo.setLabelFor(saldoTextField);
-		saldoTextField.setBounds(100, 52, 308, 20);
+		saldoTextField.setBounds(130, 52, 254, 20);
 		saldoTextField.setColumns(10);
 		add(saldoTextField);
 	}
@@ -82,7 +84,11 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 	@Override
 	public void limparCampos() {
 		datePicker.getModel().setValue(null);
+		datePicker.setBorder(BorderFactory.createLineBorder(getBackground (), 2));
+		
 		saldoTextField.setText("");
+		saldoTextField.setBorder(UIManager.getBorder("TextField.border"));
+		
 		chckbxContaSalario.setSelected(false);
 	}
 
@@ -97,11 +103,12 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 	public boolean validarCampos() {
 		boolean valido = true;
 		
-		if(!ValidarDados.validarVazio(datePicker.getModel().getValue().toString())) {
+		if(ValidarDados.validarData((Date) datePicker.getModel().getValue()))
+			datePicker.setBorder(BorderFactory.createLineBorder(getBackground (), 2));
+		else {
 			datePicker.setBorder(new LineBorder(Color.RED));
 			valido = false;
 		}
-		else datePicker.setBorder(BorderFactory.createLineBorder (getBackground (), 2));
 		
 		if(!ValidarDados.validarDoublePositivo(saldoTextField.getText().replace(",", ".").replace("R", "").replace("$", ""))) {
 			saldoTextField.setBorder(new LineBorder(Color.RED));

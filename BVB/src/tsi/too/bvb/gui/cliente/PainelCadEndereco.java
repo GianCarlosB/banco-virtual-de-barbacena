@@ -148,11 +148,22 @@ public class PainelCadEndereco extends JPanel implements TratadorDeCampos {
 	@Override
 	public void salvarCampos(Object cliente) {
 		((Cliente) cliente).getEndereco().setBairro(bairroTextField.getText());
+		bairroTextField.setBorder(UIManager.getBorder("TextField.border"));
+		
 		((Cliente) cliente).getEndereco().setCep(cepFormTextField.getText().replace("-", ""));
+		cepFormTextField.setBorder(UIManager.getBorder("FormattedTextField.border"));
+		
 		((Cliente) cliente).getEndereco().setCidade(cidadeTextField.getText());
+		cidadeTextField.setBorder(UIManager.getBorder("TextField.border"));
+		
 		((Cliente) cliente).getEndereco().setComplemento(complementoTextField.getText());
+		
 		((Cliente) cliente).getEndereco().setLogradouro(logradouroTextField.getText());
+		logradouroTextField.setBorder(UIManager.getBorder("TextField.border"));
+		
 		((Cliente) cliente).getEndereco().setNumero(numeroTextField.getText());
+		numeroTextField.setBorder(UIManager.getBorder("TextField.border"));
+		
 		((Cliente) cliente).getEndereco().setUf(UF.obterUF((String)ufComboBox.getSelectedItem()));
 	}
 

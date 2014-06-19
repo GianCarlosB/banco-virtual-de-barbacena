@@ -159,21 +159,21 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 		buttonGroup.add(rdbtnAdministrador);
 		rdbtnAdministrador.setSelected(true);
 		rdbtnAdministrador.setMnemonic(KeyEvent.VK_A);
-		rdbtnAdministrador.setBounds(10, 20, 109, 23);
+		rdbtnAdministrador.setBounds(10, 20, 108, 23);
 		tipoUsuarioPanel.add(rdbtnAdministrador);
 		
 		rdbtnCaixa = new JRadioButton("Caixa");
 		rdbtnCaixa.setToolTipText("selecione se o funcion\u00E1rio for um caixa");
 		buttonGroup.add(rdbtnCaixa);
 		rdbtnCaixa.setMnemonic(KeyEvent.VK_I);
-		rdbtnCaixa.setBounds(120, 20, 80, 23);
+		rdbtnCaixa.setBounds(120, 20, 58, 23);
 		tipoUsuarioPanel.add(rdbtnCaixa);
 		
 		rdbtnGerente = new JRadioButton("Gerente");
 		rdbtnGerente.setToolTipText("selecione se o funcion\u00E1rio for um gerente");
 		buttonGroup.add(rdbtnGerente);
 		rdbtnGerente.setMnemonic(KeyEvent.VK_G);
-		rdbtnGerente.setBounds(220, 20, 109, 23);
+		rdbtnGerente.setBounds(220, 20, 72, 23);
 		tipoUsuarioPanel.add(rdbtnGerente);
 		
 		JLabel lblLogin = new JLabel("Login:");
@@ -218,8 +218,15 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 	@Override
 	public void limparCampos() {
 		loginTextField.setText("");
+		verificacaoPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "N\u00E3o Verificado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
+		loginTextField.setBorder(UIManager.getBorder("TextField.border"));
+		
 		passwordField.setText("");
+		passwordField.setBorder(UIManager.getBorder("PasswordField.border"));
+		
 		rPasswordField.setText("");
+		rPasswordField.setBorder(UIManager.getBorder("PasswordField.border"));
+		
 		rdbtnAdministrador.setSelected(true);
 	}
 	
@@ -231,24 +238,25 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 		((Funcionario) funcionario).setTipoUsuario(TipoUsuario.obterTipoUsuario(obterRadioBtnSelecionado()));
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean validarCampos() {
 		boolean valido = true;
 		
 		if(!validarLogin()) valido = false;
-		
-		if(!ValidarDados.validarSenhaFunc(passwordField.getPassword())) {
+
+		if(ValidarDados.validarSenhaFunc(passwordField.getPassword())) {
+			passwordField.setBorder(UIManager.getBorder("PasswordField.border"));
+			
+			if(!ValidarDados.validarSenhasIguais(passwordField.getPassword(), rPasswordField.getPassword())) {
+				rPasswordField.setBorder(new LineBorder(Color.RED));
+				valido = false;
+			}
+			else rPasswordField.setBorder(UIManager.getBorder("PasswordField.border"));
+		}
+		else {
 			passwordField.setBorder(new LineBorder(Color.RED));
 			valido = false;
 		}
-		else passwordField.setBorder(UIManager.getBorder("PasswordField.border"));
-			
-		if(!ValidarDados.validarSenhasIguais(passwordField.getText(), rPasswordField.getText())) {
-			rPasswordField.setBorder(new LineBorder(Color.RED));
-			valido = false;
-		}
-		else rPasswordField.setBorder(UIManager.getBorder("PasswordField.border"));
 		
 		return valido;
 	}

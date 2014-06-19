@@ -26,11 +26,13 @@ public class TEActionCadastrarFuncionario implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
-		if(e.getSource() == igCadFuncionario.getBtnLimpar())
+		if(e.getSource() == igCadFuncionario.getBtnLimpar()) {
 			igCadFuncionario.limparCampos();
+			igCadFuncionario.setLblCamposErrados(false);
+		}
 		
 		else if(e.getSource() == igCadFuncionario.getBtnFinalizar()) {
-			if(igCadFuncionario.validarLogin()) {
+			if(igCadFuncionario.validarCampos()) {
 				igCadFuncionario.setLblCamposErrados(false);
 				igCadFuncionario.salvarCampos(funcionario);
 				igCadFuncionario.getLoginTextField().setBorder(UIManager.getBorder("TextField.border"));

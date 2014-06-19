@@ -1,5 +1,6 @@
 package tsi.too.bvb.validacoes;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.InputMismatchException;
@@ -46,14 +47,7 @@ public class ValidarDados {
 		return ANO_MAX;
 	}
 	
-	private static String[] quebrarCadeiaDeCaracteres(String string, String expressaoRegular) {
-		// Obtém as Strings usando a expressão regular.
-		String strings[] = string.split(expressaoRegular);
-		
-		return strings;
-	}
-	
-	private static boolean verificarCadeiaDeCaracteres(String string, String expressaoRegular) {
+	public static boolean verificarCadeiaDeCaracteres(String string, String expressaoRegular) {
 		// Verifica se o valor do objeto String é igual ao padrão definido pela expressão regular.
 		if(string.matches(expressaoRegular))
 			return true;
@@ -182,26 +176,32 @@ public class ValidarDados {
 	        cal.setTime(data);
 	        ano = cal.get(Calendar.YEAR);
 		}
-		if(ano < 2001)
+		
+		if(ano < 2001) // Possível validação || data.compareTo(new Date()) > 0
 			return false;
 		
 		return true;
 	}
 	
-	public static boolean validarSenhaNumCB(char[] senha) {
-		if(senha.length != SENHA_NUM)
+	public static boolean validarSenhaNumCB(String senha) {
+		if(senha.length() != SENHA_NUM)
+			return false;
+		if(!verificarCadeiaDeCaracteres(senha, "[0-9]{4}"))
 			return false;
 		
 		return true;
 	}
 	
-	public static boolean validarSenhaAlfCB(char[] senha) {
-		if(senha.length != SENHA_ALF)
+	public static boolean validarSenhaAlfCB(String senha) {
+		if(senha.length() != SENHA_ALF)
+			return false;
+		
+		if(!verificarCadeiaDeCaracteres(senha, "[a-zA-Z]{6}"))
 			return false;
 		
 		return true;
 	}
-	
+
 	public static boolean validarLoginFunc(String login) {
 		if(login.length() < FUNC_MIN || login.length() > FUNC_LOGIN_MAX)
 			return false;
@@ -219,8 +219,8 @@ public class ValidarDados {
 		return true;
 	}
 	
-	public static boolean validarSenhasIguais(String senha1, String senha2) {
-		if(!senha1.toString().equals(senha2.toString()))
+	public static boolean validarSenhasIguais(char[] senha1, char[] senha2) {
+		if(!Arrays.equals(senha1, senha2))
 			return false;
 		
 		return true;

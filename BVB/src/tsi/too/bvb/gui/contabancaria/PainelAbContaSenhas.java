@@ -38,25 +38,25 @@ public class PainelAbContaSenhas extends JPanel implements TratadorDeCampos {
 		add(senhaNumPanel);
 		
 		JLabel lblSenhaNum = new JLabel("Senha Num\u00E9rica:");
-		lblSenhaNum.setBounds(10, 20, 80, 14);
+		lblSenhaNum.setBounds(10, 20, 115, 14);
 		senhaNumPanel.add(lblSenhaNum);
 		lblSenhaNum.setDisplayedMnemonic(KeyEvent.VK_S);
 		
 		senhaNumPasswordField = new JPasswordField();
 		senhaNumPasswordField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio e deve conter 4 d\u00EDgitos decimais");
-		senhaNumPasswordField.setBounds(100, 17, 308, 20);
+		senhaNumPasswordField.setBounds(130, 17, 254, 20);
 		senhaNumPanel.add(senhaNumPasswordField);
 		lblSenhaNum.setLabelFor(senhaNumPasswordField);
 		
-		JLabel lblRSenhaNum = new JLabel("Repita Senha Num\u00E9rica:");
+		JLabel lblRSenhaNum = new JLabel("Repita Senha:");
 		lblRSenhaNum.setDisplayedMnemonic(KeyEvent.VK_R);
-		lblRSenhaNum.setBounds(10, 56, 80, 14);
+		lblRSenhaNum.setBounds(10, 56, 115, 14);
 		senhaNumPanel.add(lblRSenhaNum);
 		
 		rSenhaNumPasswordField = new JPasswordField();
 		rSenhaNumPasswordField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio e as senhas devem conferir");
 		lblRSenhaNum.setLabelFor(rSenhaNumPasswordField);
-		rSenhaNumPasswordField.setBounds(100, 53, 308, 20);
+		rSenhaNumPasswordField.setBounds(130, 53, 254, 20);
 		senhaNumPanel.add(rSenhaNumPasswordField);
 		
 		JPanel senhaAlfPanel = new JPanel();
@@ -65,25 +65,25 @@ public class PainelAbContaSenhas extends JPanel implements TratadorDeCampos {
 		senhaAlfPanel.setBounds(10, 120, 497, 98);
 		add(senhaAlfPanel);
 		
-		JLabel lblRSenhaAlf = new JLabel("Repita Senha Alfab\u00E9tica:");
+		JLabel lblRSenhaAlf = new JLabel("Repita Senha:");
 		lblRSenhaAlf.setDisplayedMnemonic(KeyEvent.VK_P);
-		lblRSenhaAlf.setBounds(10, 56, 80, 14);
+		lblRSenhaAlf.setBounds(10, 56, 115, 14);
 		senhaAlfPanel.add(lblRSenhaAlf);
 		
 		rSenhaAlfPasswordField = new JPasswordField();
 		rSenhaAlfPasswordField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio e as senhas devem conferir");
 		lblRSenhaAlf.setLabelFor(rSenhaAlfPasswordField);
-		rSenhaAlfPasswordField.setBounds(100, 53, 308, 20);
+		rSenhaAlfPasswordField.setBounds(130, 53, 254, 20);
 		senhaAlfPanel.add(rSenhaAlfPasswordField);
 		
 		JLabel lblSenhaAlf = new JLabel("Senha Alfab\u00E9tica:");
-		lblSenhaAlf.setBounds(10, 20, 60, 14);
+		lblSenhaAlf.setBounds(10, 20, 115, 14);
 		senhaAlfPanel.add(lblSenhaAlf);
 		lblSenhaAlf.setDisplayedMnemonic(KeyEvent.VK_E);
 		
 		senhaAlfPasswordField = new JPasswordField();
 		senhaAlfPasswordField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio e deve conter 6 letras");
-		senhaAlfPasswordField.setBounds(100, 17, 308, 20);
+		senhaAlfPasswordField.setBounds(130, 17, 254, 20);
 		senhaAlfPanel.add(senhaAlfPasswordField);
 		lblSenhaAlf.setLabelFor(senhaAlfPasswordField);
 	}
@@ -91,9 +91,16 @@ public class PainelAbContaSenhas extends JPanel implements TratadorDeCampos {
 	@Override
 	public void limparCampos() {
 		senhaNumPasswordField.setText("");
+		senhaNumPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
+		
 		rSenhaNumPasswordField.setText("");
+		rSenhaNumPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
+		
 		senhaAlfPasswordField.setText("");
+		senhaAlfPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
+		
 		rSenhaAlfPasswordField.setText("");
+		rSenhaAlfPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
 	}
 
 	@SuppressWarnings("deprecation")
@@ -107,31 +114,35 @@ public class PainelAbContaSenhas extends JPanel implements TratadorDeCampos {
 	@Override
 	public boolean validarCampos() {
 		boolean valido = true;
-		
-		if(!ValidarDados.validarSenhaNumCB(senhaNumPasswordField.getPassword())) {
+
+		if(ValidarDados.validarSenhaNumCB(senhaNumPasswordField.getText())) {
+			senhaNumPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
+			
+			if(!ValidarDados.validarSenhasIguais(senhaNumPasswordField.getPassword(), rSenhaNumPasswordField.getPassword())) {
+				rSenhaNumPasswordField.setBorder(new LineBorder(Color.RED));
+				valido = false;
+			}
+			else  rSenhaNumPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
+		}
+		else {
 			senhaNumPasswordField.setBorder(new LineBorder(Color.RED));
 			valido = false;
 		}
-		else senhaNumPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
-		
-		if(!ValidarDados.validarSenhasIguais(senhaNumPasswordField.getText(), rSenhaNumPasswordField.getText())) {
-			rSenhaNumPasswordField.setBorder(new LineBorder(Color.RED));
-			valido = false;
-		}
-		else  rSenhaNumPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
 		// Fim das validações da senha numérica.
 		
-		if(!ValidarDados.validarSenhaAlfCB(senhaAlfPasswordField.getPassword())) {
+		if(ValidarDados.validarSenhaAlfCB(senhaAlfPasswordField.getText())) {
+			senhaAlfPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
+
+			if(!ValidarDados.validarSenhasIguais(senhaAlfPasswordField.getPassword(), rSenhaAlfPasswordField.getPassword())) {
+				rSenhaAlfPasswordField.setBorder(new LineBorder(Color.RED));
+				valido = false;
+			}
+			else rSenhaAlfPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
+		}
+		else {
 			senhaAlfPasswordField.setBorder(new LineBorder(Color.RED));
 			valido = false;
 		}
-		else senhaAlfPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
-		
-		if(!ValidarDados.validarSenhasIguais(senhaAlfPasswordField.getText(), rSenhaAlfPasswordField.getText())) {
-			rSenhaAlfPasswordField.setBorder(new LineBorder(Color.RED));
-			valido = false;
-		}
-		else rSenhaAlfPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
 		// Fim das validações da senha alfabética.
 		
 		return valido;

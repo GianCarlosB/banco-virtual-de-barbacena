@@ -49,21 +49,21 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 		
 		JLabel lblCodAgencia = new JLabel("C\u00F3digo da Ag\u00EAncia:");
 		lblCodAgencia.setDisplayedMnemonic(KeyEvent.VK_O);
-		lblCodAgencia.setBounds(10, 45, 80, 14);
+		lblCodAgencia.setBounds(10, 45, 115, 14);
 		add(lblCodAgencia);
 		
 		JLabel lblNumConta = new JLabel("N\u00FAmero da Conta:");
 		lblNumConta.setDisplayedMnemonic(KeyEvent.VK_N);
-		lblNumConta.setBounds(10, 178, 80, 14);
+		lblNumConta.setBounds(10, 178, 115, 14);
 		add(lblNumConta);
 		
 		numContaTextField = new JTextField();
 		numContaTextField.setEditable(false);
-		numContaTextField.setText("XXXX");
+		numContaTextField.setText("XXXXXXXXX");
 		lblNumConta.setLabelFor(numContaTextField);
 		numContaTextField.setToolTipText("este campo \u00E9 gerado automaticamente");
 		numContaTextField.setColumns(10);
-		numContaTextField.setBounds(100, 175, 308, 20);
+		numContaTextField.setBounds(130, 175, 254, 20);
 		add(numContaTextField);
 		
 		JPanel tipoContaPanel = new JPanel();
@@ -77,14 +77,14 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 		rdbtnCorrente.setToolTipText("selecione se a conta for corrente");
 		rdbtnCorrente.setSelected(true);
 		rdbtnCorrente.setMnemonic(KeyEvent.VK_R);
-		rdbtnCorrente.setBounds(10, 20, 109, 23);
+		rdbtnCorrente.setBounds(10, 20, 112, 23);
 		tipoContaPanel.add(rdbtnCorrente);
 		
 		rdbtnPoupanca = new JRadioButton("Conta Poupan\u00E7a");
 		buttonGroup.add(rdbtnPoupanca);
 		rdbtnPoupanca.setToolTipText("selecione se a conta for poupan\u00E7a");
 		rdbtnPoupanca.setMnemonic(KeyEvent.VK_U);
-		rdbtnPoupanca.setBounds(120, 20, 109, 23);
+		rdbtnPoupanca.setBounds(180, 20, 120, 23);
 		tipoContaPanel.add(rdbtnPoupanca);
 		
 		JLabel lblCpf = new JLabel("CPF:");
@@ -95,45 +95,51 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 		cpfPanel = new JPanel();
 		cpfPanel.setLayout(null);
 		cpfPanel.setBorder(new TitledBorder(null, "N\u00E3o Validado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
-		cpfPanel.setBounds(100, 96, 407, 58);
+		cpfPanel.setBounds(130, 96, 377, 58);
 		add(cpfPanel);
 		
 		cpfFormattedTextField = new JFormattedTextField(new Mascara("###.###.###-##"));
 		lblCpf.setLabelFor(cpfFormattedTextField);
-		cpfFormattedTextField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio, deve conter apenas d\u00EDgitos decimais e deve ser v\u00E1lido");
-		cpfFormattedTextField.setBounds(10, 20, 288, 20);
+		cpfFormattedTextField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio, deve conter apenas d\u00EDgitos decimais e deve estar cadastrado no sistema");
+		cpfFormattedTextField.setBounds(10, 20, 254, 20);
 		cpfPanel.add(cpfFormattedTextField);
 		
 		btnValidarCpf = new JButton("Validar");
 		btnValidarCpf.addActionListener(new TEActionCadastrarCB(this));
 		btnValidarCpf.setMnemonic(KeyEvent.VK_A);
-		btnValidarCpf.setBounds(308, 19, 89, 23);
+		btnValidarCpf.setBounds(276, 19, 89, 23);
 		cpfPanel.add(btnValidarCpf);
 		
 		codAgenciaPanel = new JPanel();
 		codAgenciaPanel.setLayout(null);
 		codAgenciaPanel.setBorder(new TitledBorder(null, "N\u00E3o Validado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
-		codAgenciaPanel.setBounds(100, 25, 407, 58);
+		codAgenciaPanel.setBounds(130, 25, 377, 58);
 		add(codAgenciaPanel);
 		
 		btnValidarCodAgencia = new JButton("Validar");
 		btnValidarCodAgencia.addActionListener(new TEActionCadastrarCB(this));
 		btnValidarCodAgencia.setMnemonic(KeyEvent.VK_V);
-		btnValidarCodAgencia.setBounds(308, 19, 89, 23);
+		btnValidarCodAgencia.setBounds(276, 19, 89, 23);
 		codAgenciaPanel.add(btnValidarCodAgencia);
 		
 		codAgenciaTextField = new JTextField();
 		lblCodAgencia.setLabelFor(codAgenciaTextField);
-		codAgenciaTextField.setBounds(10, 20, 288, 20);
+		codAgenciaTextField.setBounds(10, 20, 254, 20);
 		codAgenciaPanel.add(codAgenciaTextField);
-		codAgenciaTextField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio, deve conter apenas d\u00EDgitos decimais e deve ser v\u00E1lido");
+		codAgenciaTextField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio, deve conter apenas d\u00EDgitos decimais e deve estar cadastrado no sistema");
 		codAgenciaTextField.setColumns(10);
 	}
 
 	@Override
 	public void limparCampos() {
-		codAgenciaTextField.setText("");
 		cpfFormattedTextField.setText("");
+		cpfPanel.setBorder(new TitledBorder(null, "N\u00E3o Validado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
+		cpfFormattedTextField.setBorder(UIManager.getBorder("FormattedTextField.border"));
+		
+		codAgenciaPanel.setBorder(new TitledBorder(null, "N\u00E3o Validado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
+		codAgenciaTextField.setBorder(UIManager.getBorder("TextField.border"));
+		codAgenciaTextField.setText("");
+		
 		rdbtnCorrente.setSelected(true);
 	}
 
@@ -219,5 +225,4 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 	public JButton getBtnValidarCodAgencia() {
 		return btnValidarCodAgencia;
 	}
-
 } // class PainelAbContaDadosChave

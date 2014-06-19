@@ -76,8 +76,12 @@ public class PainelCadCliente extends JPanel implements TratadorDeCampos {
 
 	@Override
 	public void limparCampos() {
-		nomeTextField.setText("");
 		cpfFormattedTextField.setText("");
+		cpfPanel.setBorder(new TitledBorder(null, "N\u00E3o Validado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
+		cpfFormattedTextField.setBorder(UIManager.getBorder("FormattedTextField.border"));
+		
+		nomeTextField.setText("");
+		nomeTextField.setBorder(UIManager.getBorder("TextField.border"));
 	}
 
 	@Override

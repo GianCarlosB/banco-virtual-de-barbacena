@@ -151,7 +151,7 @@ public class IgAbrirContaBancaria extends JDialog {
 		cardLayout.show(cardPanel, "dadosChavePanel");
 		
 		JLabel lblProgressoDaAbertura = new JLabel("Progresso da Abertura:");
-		lblProgressoDaAbertura.setDisplayedMnemonic(KeyEvent.VK_R);
+		lblProgressoDaAbertura.setDisplayedMnemonic(KeyEvent.VK_G);
 		lblProgressoDaAbertura.setBounds(20, 402, 140, 14);
 		contentPane.add(lblProgressoDaAbertura);
 		

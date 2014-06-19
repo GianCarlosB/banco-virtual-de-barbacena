@@ -68,6 +68,8 @@ public class PainelCadContato extends JPanel implements TratadorDeCampos {
 	@Override
 	public void limparCampos() {
 		telFixoFormTextField.setText("");
+		telFixoFormTextField.setBorder(UIManager.getBorder("FormattedTextField.border"));
+		
 		telMovelFormTextField.setText("");
 	}
 
