@@ -36,6 +36,7 @@ public class JanelaPopUpPergunta extends JDialog {
 	 * Create the dialog.
 	 */
 	public JanelaPopUpPergunta(Window janelaPai, String titulo, String msgPergunta) {
+		setType(Type.POPUP);
 		setModal(true);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);

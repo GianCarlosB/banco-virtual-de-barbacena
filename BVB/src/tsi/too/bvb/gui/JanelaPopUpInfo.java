@@ -36,6 +36,7 @@ public class JanelaPopUpInfo extends JDialog {
 	 * @wbp.parser.constructor
 	 */
 	public JanelaPopUpInfo(Window janelaPai, String titulo, String msgInfo, String info) {
+		setType(Type.POPUP);
 		setModal(true);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
@@ -108,6 +109,7 @@ public class JanelaPopUpInfo extends JDialog {
 	 * Create the dialog.
 	 */
 	public JanelaPopUpInfo(Window janelaPai, String titulo, String msgInfo) {
+		setType(Type.POPUP);
 		setModal(true);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);

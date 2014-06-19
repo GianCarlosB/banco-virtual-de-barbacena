@@ -23,7 +23,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import tsi.too.bvb.entidades.contabancaria.ContaBancaria;
-import tsi.too.bvb.eventos.contabancaria.TEActionCadastrarCB;
+import tsi.too.bvb.eventos.contabancaria.TEActionAbrirCB;
 import tsi.too.bvb.gui.PainelConfCad;
 import tsi.too.bvb.gui.TratadorDeCampos;
 
@@ -101,24 +101,24 @@ public class IgAbrirContaBancaria extends JDialog {
 		Btnpanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		btnAnterior = new JButton("< Anterior");
-		btnAnterior.addActionListener(new TEActionCadastrarCB(this, contaBancaria));
+		btnAnterior.addActionListener(new TEActionAbrirCB(this, contaBancaria));
 		btnAnterior.setVisible(false);
 		btnAnterior.setMnemonic(KeyEvent.VK_A);
 		Btnpanel.add(btnAnterior);
 		
 		btnProximo = new JButton("Pr\u00F3ximo >");
-		btnProximo.addActionListener(new TEActionCadastrarCB(this, contaBancaria));
+		btnProximo.addActionListener(new TEActionAbrirCB(this, contaBancaria));
 		btnProximo.setMnemonic(KeyEvent.VK_P);
 		Btnpanel.add(btnProximo);
 		
 		btnFinalizar = new JButton("Finalizar");
-		btnFinalizar.addActionListener(new TEActionCadastrarCB(this, contaBancaria));
+		btnFinalizar.addActionListener(new TEActionAbrirCB(this, contaBancaria));
 		btnFinalizar.setVisible(false);
 		btnFinalizar.setMnemonic(KeyEvent.VK_F);
 		Btnpanel.add(btnFinalizar);
 		
 		btnLimpar = new JButton("Limpar");
-		btnLimpar.addActionListener(new TEActionCadastrarCB(this, contaBancaria));
+		btnLimpar.addActionListener(new TEActionAbrirCB(this, contaBancaria));
 		btnLimpar.setMnemonic(KeyEvent.VK_L);
 		Btnpanel.add(btnLimpar);
 		

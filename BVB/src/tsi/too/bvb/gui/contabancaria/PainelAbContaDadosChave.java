@@ -17,7 +17,7 @@ import javax.swing.border.TitledBorder;
 import tsi.too.bvb.entidades.Mascara;
 import tsi.too.bvb.entidades.contabancaria.ContaBancaria;
 import tsi.too.bvb.entidades.tiposenumerados.TipoConta;
-import tsi.too.bvb.eventos.contabancaria.TEActionCadastrarCB;
+import tsi.too.bvb.eventos.contabancaria.TEActionAbrirCB;
 import tsi.too.bvb.gui.TratadorDeCampos;
 import tsi.too.bvb.persistencia.AgenciaDAO;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
@@ -105,7 +105,7 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 		cpfPanel.add(cpfFormattedTextField);
 		
 		btnValidarCpf = new JButton("Validar");
-		btnValidarCpf.addActionListener(new TEActionCadastrarCB(this));
+		btnValidarCpf.addActionListener(new TEActionAbrirCB(this));
 		btnValidarCpf.setMnemonic(KeyEvent.VK_A);
 		btnValidarCpf.setBounds(276, 19, 89, 23);
 		cpfPanel.add(btnValidarCpf);
@@ -117,7 +117,7 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 		add(codAgenciaPanel);
 		
 		btnValidarCodAgencia = new JButton("Validar");
-		btnValidarCodAgencia.addActionListener(new TEActionCadastrarCB(this));
+		btnValidarCodAgencia.addActionListener(new TEActionAbrirCB(this));
 		btnValidarCodAgencia.setMnemonic(KeyEvent.VK_V);
 		btnValidarCodAgencia.setBounds(276, 19, 89, 23);
 		codAgenciaPanel.add(btnValidarCodAgencia);
@@ -225,4 +225,9 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 	public JButton getBtnValidarCodAgencia() {
 		return btnValidarCodAgencia;
 	}
+
+	public void setNumContaTextField(String numero) {
+		this.numContaTextField.setText(numero);
+	}
+	
 } // class PainelAbContaDadosChave

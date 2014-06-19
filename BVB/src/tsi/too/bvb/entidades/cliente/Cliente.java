@@ -77,6 +77,13 @@ public class Cliente {
 		contato.setTelefoneFixo(contato.getTelefoneFixo().replace("(", "").replace(")", "").replace("-", ""));
 		contato.setTelefoneMovel(contato.getTelefoneMovel().replace("(", "").replace(")", "").replace("-", ""));
 	}
+	
+	public String exibeDadosFormatados() {
+		insereMascara();
+		String dados = toString();
+		removeMascara();
+		return dados;
+	}
 
 	@Override
 	public String toString() {

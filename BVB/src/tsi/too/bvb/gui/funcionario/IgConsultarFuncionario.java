@@ -196,7 +196,7 @@ public class IgConsultarFuncionario extends JDialog {
 			for(int i = 0; i < funcionarios.size(); i++, num_linhas++) {
 				linha[0] = funcionarios.get(i).getNomeUsuario();
 				linha[1] = funcionarios.get(i).getSenha();
-				linha[2] = funcionarios.get(i).getTipoUsuario();
+				linha[2] = funcionarios.get(i).getTipoUsuario().getPerfil();
 				model.addRow(linha);
 			}
 		}

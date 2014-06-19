@@ -47,7 +47,7 @@ public class Funcionario {
 		StringBuilder builder = new StringBuilder();
 		builder.append(" Nome do Usuário: ").append(nomeUsuario)
 				.append("\n Senha: ").append(senha).append("\n Tipo do Usuário: ")
-				.append(tipoUsuario.getDescricao());
+				.append(tipoUsuario.getPerfil());
 		return builder.toString();
 	}
 	

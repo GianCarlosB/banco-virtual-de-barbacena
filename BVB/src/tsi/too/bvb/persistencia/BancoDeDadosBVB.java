@@ -33,7 +33,7 @@ public class BancoDeDadosBVB extends BancoDeDadosDAO implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		this.abrirConexao();  
-		System.out.println("Banco de dados iniciado: " + new SimpleDateFormat("yyyy/MM/dd  HH:mm").format( new Date()) +
+		System.out.println("Banco de dados iniciado: " + new SimpleDateFormat("dd/MM/yyyy  HH:mm").format( new Date()) +
 				           "\nURL da conexão: " + URL);
 	}
 

@@ -1,5 +1,6 @@
 package tsi.too.bvb.entidades.contabancaria;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import tsi.too.bvb.entidades.Mascara;
@@ -129,21 +130,40 @@ public class ContaBancaria {
 		this.saldo = saldo;
 	}
 	
-	public void insereMascara() {
-		cpf = Mascara.formatarString(cpf, "###.###.###-##");
-	}
-	
-	public void removeMascara() {
-		cpf = cpf.replace(".", "").replace("-", "");
+	public String exibeDadosFormatados() {
+		String contaSalario = "Não";
+		String cpf = this.cpf;
+		Date dataAbertura = this.dataAbertura;
+		
+		if(this.contaSalario)
+			contaSalario = "Sim";
+		
+		StringBuilder builder = new StringBuilder();
+		builder.append(" Código da Agência: ").append(codAgencia)
+				.append("\n Número da Conta: ").append("XXXXXXXXX").append("\n Tipo da Conta: ")
+				.append(tipoConta.getDescricao()).append("\n CPF: ").append(Mascara.formatarString(cpf, "###.###.###-##"))
+				.append("\n Data de Abertura: ").append(new SimpleDateFormat("dd/MM/yyyy  HH:mm").format(dataAbertura))
+				.append("\n Senha Númerica: ").append(senhaNumerica)
+				.append("\n Senha Alfabética: ").append(senhaAlfabetica)
+				.append("\n Conta Sálario: ").append(contaSalario)
+				.append("\n Saldo: R$").append(saldo);
+		return builder.toString();
 	}
 
 	@Override
 	public String toString() {
+		String contaSalario = "Não";
+		String cpf = this.cpf;
+		Date dataAbertura = this.dataAbertura;
+		
+		if(this.contaSalario)
+			contaSalario = "Sim";
+		
 		StringBuilder builder = new StringBuilder();
 		builder.append(" Código da Agência: ").append(codAgencia)
 				.append("\n Número da Conta: ").append(numConta).append("\n Tipo da Conta: ")
-				.append(tipoConta.getDescricao()).append("\n CPF: ").append(cpf)
-				.append("\n Data de Abertura: ").append(dataAbertura)
+				.append(tipoConta.getDescricao()).append("\n CPF: ").append(Mascara.formatarString(cpf, "###.###.###-##"))
+				.append("\n Data de Abertura: ").append(new SimpleDateFormat("dd/MM/yyyy  HH:mm").format(dataAbertura))
 				.append("\n Senha Númerica: ").append(senhaNumerica)
 				.append("\n Senha Alfabética: ").append(senhaAlfabetica)
 				.append("\n Conta Sálario: ").append(contaSalario)

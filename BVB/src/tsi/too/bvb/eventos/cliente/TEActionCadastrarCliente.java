@@ -67,9 +67,7 @@ public class TEActionCadastrarCliente implements ActionListener {
 						igCadCliente.getCardLayout().show(igCadCliente.getCardPanel(), "confClientePanel");
 						igCadCliente.setTxtpnSubTitulo("Confirme os dados do novo cliente.");
 						igCadCliente.setProgressBar(100);
-						cliente.insereMascara();
-						igCadCliente.getpConfCad().setDadosEditorPane(cliente.toString());
-						cliente.removeMascara();
+						igCadCliente.getpConfCad().setDadosEditorPane(cliente.exibeDadosFormatados());
 						igCadCliente.getpConfCad().setVisible(true);
 						igCadCliente.getBtnLimpar().setVisible(false);
 						igCadCliente.getBtnProximo().setVisible(false);
@@ -112,9 +110,8 @@ public class TEActionCadastrarCliente implements ActionListener {
 				ClienteDAO clienteDAO = new ClienteDAO();
 				clienteDAO.criar(BancoDeDadosBVB.getInstance(), cliente);
 				
-				cliente.insereMascara();
-				new JanelaPopUpInfo(igCadCliente, "BVB - Cadastro de Cliente", " Cadastro do Cliente Realizado com Sucesso!", cliente.toString());
-				cliente.removeMascara();
+				new JanelaPopUpInfo(igCadCliente, "BVB - Cadastro de Cliente", " Cadastro do Cliente Realizado com Sucesso!",
+						            cliente.exibeDadosFormatados());
 				igCadCliente.dispose();
 			} // fim if(e.getSource() == igCadCliente.getBtnFinalizar())
 		} // fim else

@@ -33,6 +33,7 @@ public class JanelaPopUpAviso extends JDialog {
 	 * Create the dialog.
 	 */
 	public JanelaPopUpAviso(Window janelaPai, String titulo, String msgAviso) {
+		setType(Type.POPUP);
 		setModal(true);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);

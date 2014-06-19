@@ -125,7 +125,6 @@ public class IgMenuPrincipal extends JFrame {
 		tabbedPane.setBorder(null);
 		tabbedPane.setBackground(midnigthBlue);
 		
-		// Cria o painel Home
 		JPanel homePanel = new JPanel(); 
 		homePanel.setBackground(midnigthBlue);
 		tabbedPane.addTab("Home",null,homePanel,"First Panel");

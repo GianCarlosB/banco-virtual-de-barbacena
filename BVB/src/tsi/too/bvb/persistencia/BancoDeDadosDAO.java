@@ -53,7 +53,7 @@ public abstract class BancoDeDadosDAO {
 		}
 	}
 	
-	public PreparedStatement executarComandoSQL(String sql) {
+	public PreparedStatement obterPreparedStatement(String sql) {
 		try {
 			stmt = conn.prepareStatement(sql);
 		} catch (SQLException e) {
@@ -93,7 +93,7 @@ public abstract class BancoDeDadosDAO {
 		
 		try {
 			conn.close();
-			System.out.println("Conexão com o Banco de dados finalizada: " + new SimpleDateFormat("yyyy/MM/dd  HH:mm").format(new Date()));
+			System.out.println("Conexão com o Banco de dados finalizada: " + new SimpleDateFormat("dd/MM/yyyy  HH:mm").format(new Date()));
 		} catch (SQLException e) {
 			new JanelaPopUpErro(null, "BVB - ERRO", " Falha na finalização da conexão com o banco de dados!", e);
 		}

@@ -18,7 +18,7 @@ public class FuncionarioDAO {
 		final String sql = "INSERT INTO funcionario VALUES (?, ?, ?)";
 		
 		try {
-			bdDao.executarComandoSQL(sql);
+			bdDao.obterPreparedStatement(sql);
 			bdDao.getStmt().setString(1, funcionario.getNomeUsuario());
 			bdDao.getStmt().setString(2, funcionario.getSenha());
 			bdDao.getStmt().setString(3, Character.toString(funcionario.getTipoUsuario().getTipo()));
@@ -31,32 +31,12 @@ public class FuncionarioDAO {
 		}
 	}
 	
-	public List<Funcionario> ler(BancoDeDadosDAO bdDao) {
-		List<Funcionario> lista = new ArrayList<>();
-		final String sql = "SELECT * FROM funcionario";
-		
-		try {
-			bdDao.executarComandoSQL(sql);
-			ResultSet rSet = bdDao.obterResultSet();
-			
-			while(rSet.next())
-				lista.add(new Funcionario(rSet.getString(1), rSet.getString(2), TipoUsuario.obterTipoUsuario(rSet.getString(3))));
-			
-			BancoDeDadosDAO.fecharResultSet(rSet);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return lista;
-	}
-	
 	public Funcionario pesquisarLoginUnico(BancoDeDadosDAO bdDao, String login) {
 		Funcionario funcionario = new Funcionario();
 		final String sql = "SELECT * FROM funcionario WHERE LCASE (nomeUsuario) LIKE '" + login.toLowerCase() + "'";
 		
 		try {
-			bdDao.executarComandoSQL(sql);
+			bdDao.obterPreparedStatement(sql);
 			ResultSet rSet = bdDao.obterResultSet();
 			
 			if(!rSet.next()) return null;
@@ -79,7 +59,7 @@ public class FuncionarioDAO {
 		final String sql = "SELECT * FROM funcionario WHERE LCASE (nomeUsuario) LIKE \'%" + login.toLowerCase() + "%\'";
 		
 		try {
-			bdDao.executarComandoSQL(sql);
+			bdDao.obterPreparedStatement(sql);
 			ResultSet rSet = bdDao.obterResultSet();
 			
 			while(rSet.next()) {
@@ -103,11 +83,11 @@ public class FuncionarioDAO {
 		final String sql = "SELECT * FROM funcionario WHERE UCASE (tipoUsuario) LIKE \'%" + tipo + "%\'";
 		
 		try {
-			bdDao.executarComandoSQL(sql);
+			bdDao.obterPreparedStatement(sql);
 			ResultSet rSet = bdDao.obterResultSet();
 			
 			while(rSet.next()) {
-				Funcionario funcionario = new Funcionario(rSet.getString(1), rSet.getString(2), TipoUsuario.obterTipoUsuario(rSet.getString(3)));
+				Funcionario funcionario = new Funcionario(rSet.getString(1), rSet.getString(2), TipoUsuario.obterTipoUsuario(rSet.getString(3).charAt(0)));
 				
 				lista.add(funcionario);
 			}
@@ -124,7 +104,7 @@ public class FuncionarioDAO {
 	public void excluir(BancoDeDadosDAO bdDao, String login) {
 		final String sql = "DELETE FROM funcionario WHERE LCASE (nomeUsuario) LIKE '" + login.toLowerCase() + "'";
 		
-		bdDao.executarComandoSQL(sql);
+		bdDao.obterPreparedStatement(sql);
 		
 		try {
 			bdDao.getStmt().executeUpdate();

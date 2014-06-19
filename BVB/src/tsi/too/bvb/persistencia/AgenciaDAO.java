@@ -17,7 +17,7 @@ public class AgenciaDAO {
 		final String sql = "INSERT INTO agencia VALUES (?, ?)";
 
 		try {
-			bdDao.executarComandoSQL(sql);
+			bdDao.obterPreparedStatement(sql);
 			bdDao.getStmt().setInt(1, agencia.getCodAgencia());
 			bdDao.getStmt().setString(2, agencia.getDescricao());
 			bdDao.getStmt().executeUpdate();
@@ -34,13 +34,13 @@ public class AgenciaDAO {
 		int proximoValor = 0;
 		
 		try {
-			bdDao.executarComandoSQL(sql);
+			bdDao.obterPreparedStatement(sql);
 			ResultSet rSet = bdDao.obterResultSet();
 			
 			rSet.next();
 			
 			proximoValor = rSet.getInt(1);
-			System.out.println("Próxima chave: " + proximoValor);
+			System.out.println("Próxima chave agência: " + proximoValor);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,32 +49,12 @@ public class AgenciaDAO {
 		return proximoValor;
 	}
 	
-	public List<Agencia> ler(BancoDeDadosDAO bdDao) {
-		List<Agencia> lista = new ArrayList<>();
-		final String sql = "SELECT * FROM agencia";
-		
-		try {
-			bdDao.executarComandoSQL(sql);
-			ResultSet rSet = bdDao.obterResultSet();
-			
-			while(rSet.next())
-				lista.add(new Agencia(rSet.getInt(1), rSet.getString(2)));
-			
-			BancoDeDadosDAO.fecharResultSet(rSet);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return lista;
-	}
-	
 	public Agencia pesquisarCodigo(BancoDeDadosDAO bdDao, String codigo) {
 		Agencia agencia = new Agencia();
 		final String sql = "SELECT * FROM agencia WHERE codAgencia = " + codigo;
 		
 		try {
-			bdDao.executarComandoSQL(sql);
+			bdDao.obterPreparedStatement(sql);
 			ResultSet rSet = bdDao.obterResultSet();
 			
 			if(!rSet.next()) return null;
@@ -96,7 +76,7 @@ public class AgenciaDAO {
 		final String sql = "SELECT * FROM agencia WHERE LCASE (descricao) LIKE \'%" + descricao.toLowerCase() + "%\'";
 		
 		try {
-			bdDao.executarComandoSQL(sql);
+			bdDao.obterPreparedStatement(sql);
 			ResultSet rSet = bdDao.obterResultSet();
 			
 			while(rSet.next()) {
@@ -117,7 +97,7 @@ public class AgenciaDAO {
 	public void excluir(BancoDeDadosDAO bdDao, String codigo) {
 		final String sql = "DELETE FROM agencia WHERE codAgencia = " + codigo;
 		
-		bdDao.executarComandoSQL(sql);
+		bdDao.obterPreparedStatement(sql);
 		
 		try {
 			bdDao.getStmt().executeUpdate();

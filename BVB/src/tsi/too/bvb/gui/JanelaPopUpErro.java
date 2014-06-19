@@ -38,6 +38,7 @@ public class JanelaPopUpErro extends JDialog {
 	 * @wbp.parser.constructor
 	 */
 	public JanelaPopUpErro(Window janelaPai, String titulo, String msgErro, Exception e) {
+		setType(Type.POPUP);
 		setModal(true);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
@@ -112,6 +113,7 @@ public class JanelaPopUpErro extends JDialog {
 	 * Create the dialog.
 	 */
 	public JanelaPopUpErro(Window janelaPai, String titulo, String msgErro) {
+		setType(Type.POPUP);
 		setModal(true);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);

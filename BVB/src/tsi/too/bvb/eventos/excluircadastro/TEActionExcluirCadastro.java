@@ -3,7 +3,6 @@ package tsi.too.bvb.eventos.excluircadastro;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import tsi.too.bvb.entidades.Mascara;
 import tsi.too.bvb.entidades.agencia.Agencia;
 import tsi.too.bvb.entidades.cliente.Cliente;
 import tsi.too.bvb.entidades.funcionario.Funcionario;
@@ -45,12 +44,8 @@ public class TEActionExcluirCadastro implements ActionListener {
 							new JanelaPopUpAviso(igExcluirCadastro, "BVB - Exclusão de Cliente", " Nenhum cliente com o CPF '" +
 								             	 igExcluirCadastro.getPexCliente().getCpfFormattedTextField().getText() + "' foi encontrado.");
 						else {
-							cliente.setCpf(Mascara.formatarString(cliente.getCpf(), "###.###.###-##"));
-							cliente.getEndereco().setCep(Mascara.formatarString(cliente.getEndereco().getCep(), "#####-###"));
-							cliente.getContato().setTelefoneFixo(Mascara.formatarString(cliente.getContato().getTelefoneFixo(), "(##)####-####"));
-							cliente.getContato().setTelefoneFixo(Mascara.formatarString(cliente.getContato().getTelefoneMovel(), "(##)####-####"));
 							igExcluirCadastro.getPexCliente().getCpfFormattedTextField().setEnabled(false);
-							igExcluirCadastro.exibeOpcoesExcluir(cliente.toString());
+							igExcluirCadastro.exibeOpcoesExcluir(cliente.exibeDadosFormatados());
 						}
 					}
 					else

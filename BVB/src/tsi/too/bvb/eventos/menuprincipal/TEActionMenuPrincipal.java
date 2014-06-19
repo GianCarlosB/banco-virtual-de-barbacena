@@ -40,7 +40,11 @@ public class TEActionMenuPrincipal implements ActionListener {
 		else if(e.getSource() == igMenuPrincipal.getMntmLogout()){}
 		
 		else if(e.getSource() == igMenuPrincipal.getMntmAutor())
-			new JanelaPopUpInfo(igMenuPrincipal, "BVB - Sobre", " Criado por:\n\n Diego Oliveira   &   Gian Carlos Barros Honório");
+			new JanelaPopUpInfo(igMenuPrincipal, "BVB - Sobre", " Criado por:\n     Diego Oliveira   &   Gian Carlos Barros Honório",
+					"© Software criado por Diego Oliveira & Gian Carlos "
+					+ "para avaliação na disciplina de Tecnologia de"
+					+ "Orientação a Objetos do Curso Superior de Tecnologia em Sistemas para internet do Instituto Federal"
+					+ "do Sudeste de Minas Gerais Câmpus Barbacena. Prof. Márlon.");
 		
 		else if(e.getSource() == igMenuPrincipal.getMntmSair())
 			igMenuPrincipal.terminaPrograma();

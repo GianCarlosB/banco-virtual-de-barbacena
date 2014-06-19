@@ -20,7 +20,7 @@ public class ClienteDAO {
 		final String sql = "INSERT INTO cliente VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
-			bdDao.executarComandoSQL(sql);
+			bdDao.obterPreparedStatement(sql);
 			bdDao.getStmt().setString(1, cliente.getCpf());
 			bdDao.getStmt().setString(2, cliente.getNome());
 			bdDao.getStmt().setString(3, cliente.getEndereco().getLogradouro());
@@ -41,41 +41,12 @@ public class ClienteDAO {
 		}
 	}
 	
-	public List<Cliente> ler(BancoDeDadosDAO bdDao) {
-		List<Cliente> lista = new ArrayList<>();
-		final String sql = "SELECT * FROM cliente";
-		
-		try {
-			bdDao.executarComandoSQL(sql);
-			ResultSet rSet = bdDao.obterResultSet();
-			
-			while(rSet.next()) {
-				Cliente cliente = new Cliente(rSet.getString(1), rSet.getString(2));
-				Endereco endereco = new Endereco(rSet.getString(3), rSet.getString(4), rSet.getString(5), rSet.getString(6),
-						                         rSet.getString(7), UF.obterUF(rSet.getString(8)), rSet.getString(9));
-				Contato contato = new Contato(rSet.getString(10), rSet.getString(11));
-				
-				cliente.setEndereco(endereco);
-				cliente.setContato(contato);
-				
-				lista.add(cliente);
-			}
-			
-			BancoDeDadosDAO.fecharResultSet(rSet);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return lista;
-	}
-	
 	public Cliente pesquisarCpf(BancoDeDadosDAO bdDao, String cpf) {
 		Cliente cliente = new Cliente();
 		final String sql = "SELECT * FROM cliente WHERE cpf = " + cpf;
 		
 		try {
-			bdDao.executarComandoSQL(sql);
+			bdDao.obterPreparedStatement(sql);
 			ResultSet rSet = bdDao.obterResultSet();
 			
 			if(!rSet.next()) return null;
@@ -100,7 +71,7 @@ public class ClienteDAO {
 		final String sql = "SELECT * FROM cliente WHERE LCASE (nome) LIKE \'%" + nome.toLowerCase() + "%\'";
 		
 		try {
-			bdDao.executarComandoSQL(sql);
+			bdDao.obterPreparedStatement(sql);
 			ResultSet rSet = bdDao.obterResultSet();
 			
 			while(rSet.next()) {
@@ -127,7 +98,7 @@ public class ClienteDAO {
 	public void excluir(BancoDeDadosDAO bdDao, String cpf) {
 		final String sql = "DELETE FROM cliente WHERE cpf = " + cpf;
 		
-		bdDao.executarComandoSQL(sql);
+		bdDao.obterPreparedStatement(sql);
 		
 		try {
 			bdDao.getStmt().executeUpdate();
