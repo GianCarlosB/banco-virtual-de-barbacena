@@ -7,6 +7,7 @@ import tsi.too.bvb.entidades.agencia.Agencia;
 import tsi.too.bvb.entidades.cliente.Cliente;
 import tsi.too.bvb.entidades.cliente.Contato;
 import tsi.too.bvb.entidades.cliente.Endereco;
+import tsi.too.bvb.entidades.contabancaria.ContaBancaria;
 import tsi.too.bvb.entidades.funcionario.Funcionario;
 import tsi.too.bvb.gui.JanelaPopUpErro;
 import tsi.too.bvb.gui.JanelaPopUpInfo;
@@ -14,6 +15,7 @@ import tsi.too.bvb.gui.agencia.IgCadAgencia;
 import tsi.too.bvb.gui.agencia.IgConsultarAgencia;
 import tsi.too.bvb.gui.cliente.IgCadCliente;
 import tsi.too.bvb.gui.cliente.IgConsultarCliente;
+import tsi.too.bvb.gui.contabancaria.IgAbrirContaBancaria;
 import tsi.too.bvb.gui.excluircadastro.IgExcluirCadastro;
 import tsi.too.bvb.gui.funcionario.IgCadFuncionario;
 import tsi.too.bvb.gui.funcionario.IgConsultarFuncionario;
@@ -95,7 +97,8 @@ public class TEActionMenuPrincipal implements ActionListener {
 			// Fim dos botões da aba "agência".
 			
 			
-			else if((e.getSource() == igMenuPrincipal.getAbrirContaBtn()) || (e.getSource() == igMenuPrincipal.getAbrirContaImgBtn())){}
+			else if((e.getSource() == igMenuPrincipal.getAbrirContaBtn()) || (e.getSource() == igMenuPrincipal.getAbrirContaImgBtn()))
+				new IgAbrirContaBancaria(igMenuPrincipal, new ContaBancaria());
 			
 			else if((e.getSource() == igMenuPrincipal.getDepositarSalContaBtn()) || (e.getSource() == igMenuPrincipal.getDepositarSalContaImgBtn())){}
 			

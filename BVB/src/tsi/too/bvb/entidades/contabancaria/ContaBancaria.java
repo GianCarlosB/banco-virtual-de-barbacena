@@ -2,6 +2,7 @@ package tsi.too.bvb.entidades.contabancaria;
 
 import java.util.Date;
 
+import tsi.too.bvb.entidades.Mascara;
 import tsi.too.bvb.entidades.tiposenumerados.TipoConta;
 
 public class ContaBancaria {
@@ -127,6 +128,14 @@ public class ContaBancaria {
 	public void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}
+	
+	public void insereMascara() {
+		cpf = Mascara.formatarString(cpf, "###.###.###-##");
+	}
+	
+	public void removeMascara() {
+		cpf = cpf.replace(".", "").replace("-", "");
+	}
 
 	@Override
 	public String toString() {
@@ -138,7 +147,7 @@ public class ContaBancaria {
 				.append("\n Senha Númerica: ").append(senhaNumerica)
 				.append("\n Senha Alfabética: ").append(senhaAlfabetica)
 				.append("\n Conta Sálario: ").append(contaSalario)
-				.append("\n Saldo: ").append(saldo);
+				.append("\n Saldo: R$").append(saldo);
 		return builder.toString();
 	}
 	

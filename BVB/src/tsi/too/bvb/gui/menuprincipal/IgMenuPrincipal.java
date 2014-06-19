@@ -162,27 +162,27 @@ public class IgMenuPrincipal extends JFrame {
 		lblImgSeta1 = new JLabel("");
 		lblImgSeta1.addMouseListener(new TEMouseMenuPrincipal(this));
 		lblImgSeta1.setDisplayedMnemonic(KeyEvent.VK_1);
-		lblImgSeta1.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Arrowhead-Right-32.png")));
+		lblImgSeta1.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Arrowhead-Right-32 (cinza).png")));
 		lblImgSeta1.setBounds(20, 89, 32, 32);
 		introducaoPanel.add(lblImgSeta1);
 		
 		lblImgSeta2 = new JLabel("");
 		lblImgSeta2.addMouseListener(new TEMouseMenuPrincipal(this));
 		lblImgSeta2.setDisplayedMnemonic(KeyEvent.VK_2);
-		lblImgSeta2.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Arrowhead-Right-32.png")));
+		lblImgSeta2.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Arrowhead-Right-32 (cinza).png")));
 		lblImgSeta2.setBounds(20, 129, 32, 32);
 		introducaoPanel.add(lblImgSeta2);
 		
 		lblImgSeta3 = new JLabel("");
 		lblImgSeta3.addMouseListener(new TEMouseMenuPrincipal(this));
 		lblImgSeta3.setDisplayedMnemonic(KeyEvent.VK_3);
-		lblImgSeta3.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Arrowhead-Right-32.png")));
+		lblImgSeta3.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Arrowhead-Right-32 (cinza).png")));
 		lblImgSeta3.setBounds(20, 169, 32, 32);
 		introducaoPanel.add(lblImgSeta3);
 		
 		lblImgSeta4 = new JLabel("");
 		lblImgSeta4.addMouseListener(new TEMouseMenuPrincipal(this));
-		lblImgSeta4.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Arrowhead-Right-32.png")));
+		lblImgSeta4.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Arrowhead-Right-32 (cinza).png")));
 		lblImgSeta4.setDisplayedMnemonic(KeyEvent.VK_4);
 		lblImgSeta4.setBounds(20, 209, 32, 32);
 		introducaoPanel.add(lblImgSeta4);
@@ -190,14 +190,14 @@ public class IgMenuPrincipal extends JFrame {
 		lblImgSeta5 = new JLabel("");
 		lblImgSeta5.addMouseListener(new TEMouseMenuPrincipal(this));
 		lblImgSeta5.setDisplayedMnemonic(KeyEvent.VK_5);
-		lblImgSeta5.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Arrowhead-Right-32.png")));
+		lblImgSeta5.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Arrowhead-Right-32 (cinza).png")));
 		lblImgSeta5.setBounds(20, 249, 32, 32);
 		introducaoPanel.add(lblImgSeta5);
 		
 		lblImgSeta6 = new JLabel("");
 		lblImgSeta6.addMouseListener(new TEMouseMenuPrincipal(this));
 		lblImgSeta6.setDisplayedMnemonic(KeyEvent.VK_6);
-		lblImgSeta6.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Arrowhead-Right-32.png")));
+		lblImgSeta6.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Arrowhead-Right-32 (cinza).png")));
 		lblImgSeta6.setBounds(20, 289, 32, 32);
 		introducaoPanel.add(lblImgSeta6);
 		
@@ -276,7 +276,7 @@ public class IgMenuPrincipal extends JFrame {
 		lblImgAjuda = new JLabel("");
 		lblImgAjuda.addMouseListener(new TEMouseMenuPrincipal(this));
 		lblImgAjuda.setDisplayedMnemonic(KeyEvent.VK_H);
-		lblImgAjuda.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Help-24.png")));
+		lblImgAjuda.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Help-24 (cinza).png")));
 		lblImgAjuda.setBounds(155, 350, 24, 24);
 		introducaoPanel.add(lblImgAjuda);
 		
@@ -578,6 +578,7 @@ public class IgMenuPrincipal extends JFrame {
 		contaPanel.setLayout(null);
 		
 		abrirContaImgBtn = new JButton("");
+		abrirContaImgBtn.addActionListener(new TEActionMenuPrincipal(this));
 		abrirContaImgBtn.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Account-Payable-128.png")));
 		abrirContaImgBtn.setBorder(new LineBorder(Color.WHITE));
 		abrirContaImgBtn.setBackground(turquoise);
@@ -586,6 +587,7 @@ public class IgMenuPrincipal extends JFrame {
 		contaPanel.add(abrirContaImgBtn);
 		
 		abrirContaBtn = new JButton("Abrir");
+		abrirContaBtn.addActionListener(new TEActionMenuPrincipal(this));
 		abrirContaBtn.setMnemonic(KeyEvent.VK_A);
 		abrirContaBtn.setForeground(Color.WHITE);
 		abrirContaBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));

@@ -196,7 +196,7 @@ public class ValidarDados {
 	}
 	
 	public static boolean validarSenhaAlfCB(char[] senha) {
-		if(senha.length != SENHA_NUM)
+		if(senha.length != SENHA_ALF)
 			return false;
 		
 		return true;

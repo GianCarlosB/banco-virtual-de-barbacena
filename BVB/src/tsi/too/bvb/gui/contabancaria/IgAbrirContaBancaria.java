@@ -22,7 +22,8 @@ import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import tsi.too.bvb.entidades.cliente.Cliente;
+import tsi.too.bvb.entidades.contabancaria.ContaBancaria;
+import tsi.too.bvb.eventos.contabancaria.TEActionCadastrarCB;
 import tsi.too.bvb.gui.PainelConfCad;
 import tsi.too.bvb.gui.TratadorDeCampos;
 
@@ -55,7 +56,7 @@ public class IgAbrirContaBancaria extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public IgAbrirContaBancaria(Window janelaPai, Cliente cliente) {
+	public IgAbrirContaBancaria(Window janelaPai, ContaBancaria contaBancaria) {
 		setModal(true);
 		Color turquoise = new Color(26, 188, 156);
 		
@@ -100,20 +101,24 @@ public class IgAbrirContaBancaria extends JDialog {
 		Btnpanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		btnAnterior = new JButton("< Anterior");
+		btnAnterior.addActionListener(new TEActionCadastrarCB(this, contaBancaria));
 		btnAnterior.setVisible(false);
 		btnAnterior.setMnemonic(KeyEvent.VK_A);
 		Btnpanel.add(btnAnterior);
 		
 		btnProximo = new JButton("Pr\u00F3ximo >");
+		btnProximo.addActionListener(new TEActionCadastrarCB(this, contaBancaria));
 		btnProximo.setMnemonic(KeyEvent.VK_P);
 		Btnpanel.add(btnProximo);
 		
 		btnFinalizar = new JButton("Finalizar");
+		btnFinalizar.addActionListener(new TEActionCadastrarCB(this, contaBancaria));
 		btnFinalizar.setVisible(false);
 		btnFinalizar.setMnemonic(KeyEvent.VK_F);
 		Btnpanel.add(btnFinalizar);
 		
 		btnLimpar = new JButton("Limpar");
+		btnLimpar.addActionListener(new TEActionCadastrarCB(this, contaBancaria));
 		btnLimpar.setMnemonic(KeyEvent.VK_L);
 		Btnpanel.add(btnLimpar);
 		
@@ -206,6 +211,42 @@ public class IgAbrirContaBancaria extends JDialog {
 
 	public JButton getBtnFinalizar() {
 		return btnFinalizar;
+	}
+
+	public CardLayout getCardLayout() {
+		return cardLayout;
+	}
+	
+	public JPanel getCardPanel() {
+		return cardPanel;
+	}
+
+	public PainelAbContaDadosChave getpAbContaDadosChave() {
+		return pAbContaDadosChave;
+	}
+
+	public PainelAbContaDadosSec getpAbContaDadosSec() {
+		return pAbContaDadosSec;
+	}
+
+	public PainelAbContaSenhas getpAbContaSenhas() {
+		return pAbContaSenhas;
+	}
+
+	public PainelConfCad getpConfCad() {
+		return pConfCad;
+	}
+
+	public void setTxtpnSubTitulo(String subTitulo) {
+		this.txtpnSubTitulo.setText(subTitulo);
+	}
+
+	public void setProgressBar(int valor) {
+		this.progressBar.setValue(valor);
+	}
+	
+	public void setLblCamposErrados(boolean visivel) {
+		this.lblCamposErrados.setVisible(visivel);
 	}
 	
 } // class IgAbrirContaBancaria
