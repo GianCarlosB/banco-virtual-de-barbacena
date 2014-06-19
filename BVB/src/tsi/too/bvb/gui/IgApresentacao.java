@@ -34,7 +34,7 @@ public class IgApresentacao extends JFrame {
 		threadCarregamento.start();
 		setUndecorated(true);
 		Color concrete = new Color(127, 140, 141);
-		Color peterRiver = new Color(52, 152, 219);
+		Color belizaHole = new Color(41, 128, 185);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(463, 310);
@@ -47,7 +47,7 @@ public class IgApresentacao extends JFrame {
 		lblBanner.setIcon(new ImageIcon(IgApresentacao.class.getResource("/tsi/too/bvb/recursos/imagens/Banner Apresenta\u00E7\u00E3o - BVB.png")));
 		lblBanner.setBounds(10, 11, 432, 120);
 		contentPane.add(lblBanner);
-		progressBar.setForeground(peterRiver);
+		progressBar.setForeground(belizaHole);
 		
 		progressBar.setBounds(10, 269, 443, 30);
 		contentPane.add(progressBar);

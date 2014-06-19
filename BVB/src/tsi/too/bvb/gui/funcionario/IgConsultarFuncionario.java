@@ -1,6 +1,7 @@
 package tsi.too.bvb.gui.funcionario;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Window;
@@ -24,6 +25,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import tsi.too.bvb.entidades.funcionario.Funcionario;
@@ -62,7 +64,8 @@ public class IgConsultarFuncionario extends JDialog {
 	 */
 	public IgConsultarFuncionario(Window janelaPai) {
 		setModal(true);
-		Color nephritis = new Color(39, 174, 96);
+		final Color nephritis = new Color(39, 174, 96);
+		final Color emerald = new Color(46, 204, 113);
 		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
@@ -157,6 +160,22 @@ public class IgConsultarFuncionario extends JDialog {
 				return false;
 			}
 		};
+		tableConsulta.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {  
+		    /**
+			 * 
+			 */
+			private static final long serialVersionUID = -2860037545840868142L;
+
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {  
+		        super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);  
+		        if(row % 2 == 0)
+		            setBackground(nephritis);  
+		        else 
+		            setBackground(emerald);  
+		        
+		        return this;  
+		    }  
+		});
 		tableConsulta.setForeground(Color.WHITE);
 		tableConsulta.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		tableConsulta.setColumnSelectionAllowed(true);
@@ -180,7 +199,7 @@ public class IgConsultarFuncionario extends JDialog {
 		model.setNumRows(num_linhas++);
 		
 		Object[] linha = new Object[NUMERO_COLUNAS_TABELA];
-		
+
 		linha[0] = funcionario.getNomeUsuario();
 		linha[1] = funcionario.getSenha();
 		linha[2] = funcionario.getTipoUsuario();
@@ -202,8 +221,10 @@ public class IgConsultarFuncionario extends JDialog {
 		}
 	}
 	
+	
 	public DefaultTableModel limpaTabela() {
 		DefaultTableModel model = ((DefaultTableModel)(tableConsulta.getModel()));
+
 		num_linhas = 0;
 		model.setNumRows(num_linhas);
 		

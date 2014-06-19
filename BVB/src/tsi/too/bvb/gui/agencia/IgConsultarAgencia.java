@@ -1,6 +1,7 @@
 package tsi.too.bvb.gui.agencia;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Window;
@@ -22,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import tsi.too.bvb.entidades.agencia.Agencia;
@@ -57,7 +59,8 @@ public class IgConsultarAgencia extends JDialog {
 	 */
 	public IgConsultarAgencia(Window janelaPai) {
 		setModal(true);
-		Color pumpkin = new Color(211, 84, 0);
+		final Color pumpkin = new Color(211, 84, 0);
+		final Color carrot = new Color(230, 126, 34);
 		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
@@ -123,6 +126,22 @@ public class IgConsultarAgencia extends JDialog {
 	                return false;               
 	        };
 	    };
+		tableConsulta.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {  
+		    /**
+			 * 
+			 */
+			private static final long serialVersionUID = -2860037545840868142L;
+
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {  
+		        super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);  
+		        if(row % 2 == 0)
+		            setBackground(pumpkin);  
+		        else 
+		            setBackground(carrot);  
+		        
+		        return this;  
+		    }  
+		});
 	    tableConsulta.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		tableConsulta.setCellSelectionEnabled(true);
 		tableConsulta.setColumnSelectionAllowed(true);

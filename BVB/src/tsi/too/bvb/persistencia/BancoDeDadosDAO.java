@@ -37,7 +37,7 @@ public abstract class BancoDeDadosDAO {
 		return URL;
 	}
 
-	protected void abrirConexao() {
+	protected boolean abrirConexao() {
 		/*
 		 * Não há mais necessidade de carregar o driver para acessar o banco de dados
 		 * apartir da versão Java 1.6 (JDBC 4). O driver é reconhecido automaticamente.
@@ -47,9 +47,11 @@ public abstract class BancoDeDadosDAO {
 		
 		try {
 			conn = DriverManager.getConnection(URL, "admin", "123");
+			return true;
 		} catch (SQLException e) {
 			conn = null;
 			new JanelaPopUpErro(null, "BVB - ERRO", " Falha na aquisição de bloqueio do banco de dados!", e);
+			return false;
 		}
 	}
 	

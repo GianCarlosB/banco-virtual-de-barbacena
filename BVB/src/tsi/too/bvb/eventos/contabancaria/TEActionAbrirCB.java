@@ -116,7 +116,7 @@ public class TEActionAbrirCB implements ActionListener {
 				
 				igAbrirContaBancaria.getpConfCad().setDadosEditorPane(contaBancaria.toString());
 				igAbrirContaBancaria.getpAbContaDadosChave().setNumContaTextField(Integer.toString(contaBancaria.getNumConta()));
-				new JanelaPopUpInfo(igAbrirContaBancaria, "BVB - Cadastro de contaBancaria", " Cadastro de contaBancaria Realizado com Sucesso!",
+				new JanelaPopUpInfo(igAbrirContaBancaria, "BVB - Cadastro de Conta Bancária", " Cadastro de Conta Bancária Realizado com Sucesso!",
 				                    contaBancaria.toString());
 				igAbrirContaBancaria.dispose();
 			} // fim if(e.getSource() == igAbrirContaBancaria.getBtnFinalizar())
