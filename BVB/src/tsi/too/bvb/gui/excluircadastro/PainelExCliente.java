@@ -28,8 +28,8 @@ public class PainelExCliente extends JPanel {
 		
 		cpfFormattedTextField = new JFormattedTextField(new Mascara("###.###.###-##"));
 		lblCpf.setLabelFor(cpfFormattedTextField);
-		cpfFormattedTextField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio, deve conter apenas d\u00EDgitos decimais e deve ser v\u00E1lido");
-		cpfFormattedTextField.setBounds(100, 22, 288, 20);
+		cpfFormattedTextField.setToolTipText("insira o cpf do cliente que deseja excluir e clique em buscar");
+		cpfFormattedTextField.setBounds(100, 22, 308, 20);
 		add(cpfFormattedTextField);
 
 	}

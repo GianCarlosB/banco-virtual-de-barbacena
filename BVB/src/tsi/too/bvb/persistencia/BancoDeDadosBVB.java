@@ -41,7 +41,7 @@ public class BancoDeDadosBVB extends BancoDeDadosDAO implements Runnable {
 						           "\nURL da conexão: " + URL);
 			else
 				System.err.println("Banco de dados NÃO iniciado: " + new SimpleDateFormat("dd/MM/yyyy  HH:mm").format( new Date()) +
-				           "\nURL da conexão: " + URL);
+				                   "\nURL da conexão: " + URL);
 		}
 	}
 

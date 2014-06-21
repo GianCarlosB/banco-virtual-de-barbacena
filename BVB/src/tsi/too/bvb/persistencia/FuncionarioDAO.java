@@ -33,10 +33,11 @@ public class FuncionarioDAO {
 	
 	public Funcionario pesquisarLoginUnico(BancoDeDadosDAO bdDao, String login) {
 		Funcionario funcionario = new Funcionario();
-		final String sql = "SELECT * FROM funcionario WHERE LCASE (nomeUsuario) LIKE '" + login.toLowerCase() + "'";
+		final String sql = "SELECT * FROM funcionario WHERE LCASE (nomeUsuario) LIKE ?";
 		
 		try {
 			bdDao.obterPreparedStatement(sql);
+			bdDao.getStmt().setString(1, "%" + login.toLowerCase() + "%");
 			ResultSet rSet = bdDao.obterResultSet();
 			
 			if(!rSet.next()) return null;
@@ -56,10 +57,11 @@ public class FuncionarioDAO {
 	
 	public List<Funcionario> pesquisarLogin(BancoDeDadosDAO bdDao, String login) {
 		List<Funcionario> lista = new ArrayList<>();
-		final String sql = "SELECT * FROM funcionario WHERE LCASE (nomeUsuario) LIKE \'%" + login.toLowerCase() + "%\'";
+		final String sql = "SELECT * FROM funcionario WHERE LCASE (nomeUsuario) LIKE ?";
 		
 		try {
 			bdDao.obterPreparedStatement(sql);
+			bdDao.getStmt().setString(1, "%" + login.toLowerCase() + "%");
 			ResultSet rSet = bdDao.obterResultSet();
 			
 			while(rSet.next()) {
@@ -80,10 +82,11 @@ public class FuncionarioDAO {
 	
 	public List<Funcionario> pesquisarTipo(BancoDeDadosDAO bdDao, char tipo) {
 		List<Funcionario> lista = new ArrayList<>();
-		final String sql = "SELECT * FROM funcionario WHERE UCASE (tipoUsuario) LIKE \'%" + tipo + "%\'";
+		final String sql = "SELECT * FROM funcionario WHERE UCASE (tipoUsuario) LIKE ?";
 		
 		try {
 			bdDao.obterPreparedStatement(sql);
+			bdDao.getStmt().setString(1, "%" + Character.toString(tipo).toUpperCase() + "%");
 			ResultSet rSet = bdDao.obterResultSet();
 			
 			while(rSet.next()) {
@@ -102,11 +105,11 @@ public class FuncionarioDAO {
 	}
 
 	public void excluir(BancoDeDadosDAO bdDao, String login) {
-		final String sql = "DELETE FROM funcionario WHERE LCASE (nomeUsuario) LIKE '" + login.toLowerCase() + "'";
-		
-		bdDao.obterPreparedStatement(sql);
+		final String sql = "DELETE FROM funcionario WHERE LCASE (nomeUsuario) LIKE ?";
 		
 		try {
+			bdDao.obterPreparedStatement(sql);
+			bdDao.getStmt().setString(1, "%" + login.toLowerCase() + "%");
 			bdDao.getStmt().executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

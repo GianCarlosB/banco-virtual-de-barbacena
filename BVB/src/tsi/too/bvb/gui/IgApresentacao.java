@@ -2,6 +2,7 @@ package tsi.too.bvb.gui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JEditorPane;
@@ -9,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 public class IgApresentacao extends JFrame {
 
@@ -31,6 +32,7 @@ public class IgApresentacao extends JFrame {
 	 * Create the frame.
 	 */
 	public IgApresentacao() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(IgApresentacao.class.getResource("/tsi/too/bvb/recursos/imagens/BVB - \u00EDcone.png")));
 		threadCarregamento.start();
 		setUndecorated(true);
 		Color concrete = new Color(127, 140, 141);
@@ -40,13 +42,15 @@ public class IgApresentacao extends JFrame {
 		setSize(463, 310);
 		contentPane = new JPanel();
 		contentPane.setBackground(concrete);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		lblBanner.setIcon(new ImageIcon(IgApresentacao.class.getResource("/tsi/too/bvb/recursos/imagens/Banner Apresenta\u00E7\u00E3o - BVB.png")));
 		lblBanner.setBounds(10, 11, 432, 120);
 		contentPane.add(lblBanner);
+		progressBar.setIndeterminate(true);
+		progressBar.setName("");
 		progressBar.setForeground(belizaHole);
 		
 		progressBar.setBounds(10, 269, 443, 30);
@@ -62,7 +66,7 @@ public class IgApresentacao extends JFrame {
 		JEditorPane dtrpnCriadoPorDiego = new JEditorPane();
 		dtrpnCriadoPorDiego.setEditable(false);
 		dtrpnCriadoPorDiego.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		dtrpnCriadoPorDiego.setText("\u00A9 Software criado por Diego Oliveira & Gian Carlos para avalia\u00E7\u00E3o na disciplina de Tecnologia de\r\nOrienta\u00E7\u00E3o a Objetos do Curso Superior de Tecnologia em Sistemas para internet do Instituto Federal\r\ndo Sudeste de Minas Gerais C\u00E2mpus Barbacena. Prof. M\u00E1rlon.");
+		dtrpnCriadoPorDiego.setText("Copyright \u00A9 2001-2014, BVB vers\u00E3o 1.04. Software criado por Diego Oliveira & Gian Carlos para\r\navalia\u00E7\u00E3o na disciplina de Tecnologia de Orienta\u00E7\u00E3o a Objetos do Curso Superior de Tecnologia em\r\nSistemas para internet do Instituto Federal do Sudeste de Minas Gerais C\u00E2mpus Barbacena. Prof. M\u00E1rlon.");
 		dtrpnCriadoPorDiego.setForeground(Color.WHITE);
 		dtrpnCriadoPorDiego.setBackground(concrete);
 		dtrpnCriadoPorDiego.setBounds(10, 229, 443, 39);
@@ -83,10 +87,8 @@ public class IgApresentacao extends JFrame {
 		@Override
 		public void run() {
 			// TODO Auto-generated method stub
-			for(int i = 0, progresso = 0, carregar = 0; isRunning; i++, progresso += 10, carregar += 25) {
-				if(progresso > 100) progresso = 0;
+			for(int i = 0, carregar = 0; isRunning; i++, carregar += 25) {
 				if(carregar > 100) carregar = 0;
-
 				if(carregar == 0) lblCarregando.setText(textoCarregando);
 				else if(carregar == 25) lblCarregando.setText(textoCarregando + ".");
 				else if(carregar == 50) lblCarregando.setText(textoCarregando + "..");
@@ -95,11 +97,10 @@ public class IgApresentacao extends JFrame {
 
 				if(i % 2 == 0)
 					lblBanner.setIcon(new ImageIcon(IgApresentacao.class.getResource("/tsi/too/bvb/recursos/imagens/Banner " +
-							                                                              "Apresenta\u00E7\u00E3o(invertido) - BVB.png")));
+							                                                         "Apresenta\u00E7\u00E3o(invertido) - BVB.png")));
 				else
 					lblBanner.setIcon(new ImageIcon(IgApresentacao.class.getResource("/tsi/too/bvb/recursos/imagens/Banner " +
 							                                                         "Apresenta\u00E7\u00E3o - BVB.png")));
-				progressBar.setValue(progresso);
 				
 				try {
 					Thread.sleep(500);

@@ -7,6 +7,8 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -91,6 +93,12 @@ public class IgMenuPrincipal extends JFrame {
 	private JLabel lblImgSeta4;
 	private JTextField txtTopico4;
 	private JLabel lblBanner;
+	private JLabel lblCopyrightHome;
+	private JLabel lblCopyrightClientes;
+	private JLabel lblCopyrightFuncionarios;
+	private JLabel lblCopyrightAgencias;
+	private JLabel lblCopyrightContas;
+	private JLabel lblCopyrightOutros;
 
 	public IgMenuPrincipal() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/BVB - \u00EDcone.png")));
@@ -129,6 +137,12 @@ public class IgMenuPrincipal extends JFrame {
 		homePanel.setBackground(midnigthBlue);
 		tabbedPane.addTab("Home",null,homePanel,"First Panel");
 		homePanel.setLayout(null);
+		
+		lblCopyrightHome = new JLabel("Copyright \u00A9 2001-2014, BVB vers\u00E3o 1.04");
+		lblCopyrightHome.setBounds(725, 418, 175, 16);
+		homePanel.add(lblCopyrightHome);
+		lblCopyrightHome.setForeground(Color.WHITE);
+		lblCopyrightHome.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		
 		JLabel lblTituloHome = new JLabel("Seja Bem Vindo Sr(a). 'Nome' ");
 		lblTituloHome.setBounds(0, 11, 915, 26);
@@ -379,6 +393,12 @@ public class IgMenuPrincipal extends JFrame {
 		consClienteBtn.setBackground(peterRiver);
 		consClienteBtn.setBounds(200, 248, 160, 38);
 		clientePanel.add(consClienteBtn);
+		
+		lblCopyrightClientes = new JLabel("Copyright \u00A9 2001-2014, BVB vers\u00E3o 1.04");
+		lblCopyrightClientes.setForeground(Color.WHITE);
+		lblCopyrightClientes.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		lblCopyrightClientes.setBounds(725, 418, 175, 16);
+		clientePanel.add(lblCopyrightClientes);
 		JPanel funcionarioPanel = new JPanel(); // cria o primeiro painel
 		funcionarioPanel.setBackground(midnigthBlue);
 		tabbedPane.addTab("Funcionários", null, funcionarioPanel, "Second Panel");
@@ -470,6 +490,12 @@ public class IgMenuPrincipal extends JFrame {
 		consFuncBtn.setBackground(nephritis);
 		consFuncBtn.setBounds(200, 248, 160, 38);
 		funcionarioPanel.add(consFuncBtn);
+		
+		lblCopyrightFuncionarios = new JLabel("Copyright \u00A9 2001-2014, BVB vers\u00E3o 1.04");
+		lblCopyrightFuncionarios.setForeground(Color.WHITE);
+		lblCopyrightFuncionarios.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		lblCopyrightFuncionarios.setBounds(725, 418, 175, 16);
+		funcionarioPanel.add(lblCopyrightFuncionarios);
 		
 		JPanel agenciaPanel = new JPanel();
 		agenciaPanel.setBackground(midnigthBlue);
@@ -571,6 +597,12 @@ public class IgMenuPrincipal extends JFrame {
 		consAgBtn.setBounds(200, 248, 160, 38);
 		agenciaPanel.add(consAgBtn);
 		
+		lblCopyrightAgencias = new JLabel("Copyright \u00A9 2001-2014, BVB vers\u00E3o 1.04");
+		lblCopyrightAgencias.setForeground(Color.WHITE);
+		lblCopyrightAgencias.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		lblCopyrightAgencias.setBounds(725, 418, 175, 16);
+		agenciaPanel.add(lblCopyrightAgencias);
+		
 		JPanel contaPanel = new JPanel();
 		contaPanel.setBackground(midnigthBlue);
 		tabbedPane.addTab("Contas", null, contaPanel, null);
@@ -597,6 +629,7 @@ public class IgMenuPrincipal extends JFrame {
 		contaPanel.add(abrirContaBtn);
 		
 		depositarSalContaImgBtn = new JButton("");
+		depositarSalContaImgBtn.addActionListener(new TEActionMenuPrincipal(this));
 		depositarSalContaImgBtn.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Donate -128.png")));
 		depositarSalContaImgBtn.setBorder(new LineBorder(Color.WHITE));
 		depositarSalContaImgBtn.setBackground(turquoise);
@@ -605,6 +638,7 @@ public class IgMenuPrincipal extends JFrame {
 		contaPanel.add(depositarSalContaImgBtn);
 		
 		depositarSalContaBtn = new JButton("Depositar Sal\u00E1rio");
+		depositarSalContaBtn.addActionListener(new TEActionMenuPrincipal(this));
 		depositarSalContaBtn.setMnemonic(KeyEvent.VK_D);
 		depositarSalContaBtn.setForeground(Color.WHITE);
 		depositarSalContaBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -649,6 +683,12 @@ public class IgMenuPrincipal extends JFrame {
 		alterarAplicContaBtn.setAlignmentX(0.5f);
 		alterarAplicContaBtn.setBounds(740, 248, 160, 38);
 		contaPanel.add(alterarAplicContaBtn);
+		
+		lblCopyrightContas = new JLabel("Copyright \u00A9 2001-2014, BVB vers\u00E3o 1.04");
+		lblCopyrightContas.setForeground(Color.WHITE);
+		lblCopyrightContas.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		lblCopyrightContas.setBounds(725, 418, 175, 16);
+		contaPanel.add(lblCopyrightContas);
 		JPanel outrosPanel = new JPanel(); // cria o primeiro painel
 		outrosPanel.setBackground(midnigthBlue);
 		tabbedPane.addTab("Outros",null,outrosPanel,"Third Panel");
@@ -704,6 +744,12 @@ public class IgMenuPrincipal extends JFrame {
 		alterarSenhaBtn.setBackground(orange);
 		alterarSenhaBtn.setBounds(200, 248, 160, 38);
 		outrosPanel.add(alterarSenhaBtn);
+		
+		lblCopyrightOutros = new JLabel("Copyright \u00A9 2001-2014, BVB vers\u00E3o 1.04");
+		lblCopyrightOutros.setForeground(Color.WHITE);
+		lblCopyrightOutros.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		lblCopyrightOutros.setBounds(725, 418, 175, 16);
+		outrosPanel.add(lblCopyrightOutros);
 				
 		getContentPane().add(tabbedPane); // adiciona o JTabbedPane ao quadro
 		
@@ -751,7 +797,9 @@ public class IgMenuPrincipal extends JFrame {
 	
 	public void terminaPrograma() {
 		// Fecha a conexão com o banco de dados e finaliza a aplicação.
-		BancoDeDadosBVB.getInstance().fecharTudo();
+		if(BancoDeDadosBVB.getInstance().fecharTudo())
+			System.out.println("Conexão com o Banco de dados finalizada: " + new SimpleDateFormat("dd/MM/yyyy  HH:mm").format(new Date()));
+		
 		IgMenuPrincipal.this.dispose();
 		System.exit(0);
 	}

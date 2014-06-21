@@ -51,10 +51,11 @@ public class AgenciaDAO {
 	
 	public Agencia pesquisarCodigo(BancoDeDadosDAO bdDao, String codigo) {
 		Agencia agencia = new Agencia();
-		final String sql = "SELECT * FROM agencia WHERE codAgencia = " + codigo;
+		final String sql = "SELECT * FROM agencia WHERE codAgencia = ?";
 		
 		try {
 			bdDao.obterPreparedStatement(sql);
+			bdDao.getStmt().setString(1, codigo);
 			ResultSet rSet = bdDao.obterResultSet();
 			
 			if(!rSet.next()) return null;
@@ -73,10 +74,11 @@ public class AgenciaDAO {
 	
 	public List<Agencia> pesquisarDescricao(BancoDeDadosDAO bdDao, String descricao) {
 		List<Agencia> lista = new ArrayList<>();
-		final String sql = "SELECT * FROM agencia WHERE LCASE (descricao) LIKE \'%" + descricao.toLowerCase() + "%\'";
+		final String sql = "SELECT * FROM agencia WHERE LCASE (descricao) LIKE ?";
 		
 		try {
 			bdDao.obterPreparedStatement(sql);
+			bdDao.getStmt().setString(1, "%" + descricao.toLowerCase() + "%");
 			ResultSet rSet = bdDao.obterResultSet();
 			
 			while(rSet.next()) {
@@ -95,11 +97,11 @@ public class AgenciaDAO {
 	}
 	
 	public void excluir(BancoDeDadosDAO bdDao, String codigo) {
-		final String sql = "DELETE FROM agencia WHERE codAgencia = " + codigo;
-		
-		bdDao.obterPreparedStatement(sql);
-		
+		final String sql = "DELETE FROM agencia WHERE codAgencia = ?";
+
 		try {
+			bdDao.obterPreparedStatement(sql);
+			bdDao.getStmt().setString(1, codigo);
 			bdDao.getStmt().executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

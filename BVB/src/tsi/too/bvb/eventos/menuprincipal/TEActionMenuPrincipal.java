@@ -16,6 +16,7 @@ import tsi.too.bvb.gui.agencia.IgConsultarAgencia;
 import tsi.too.bvb.gui.cliente.IgCadCliente;
 import tsi.too.bvb.gui.cliente.IgConsultarCliente;
 import tsi.too.bvb.gui.contabancaria.IgAbrirContaBancaria;
+import tsi.too.bvb.gui.contabancaria.IgDepositarSal;
 import tsi.too.bvb.gui.excluircadastro.IgExcluirCadastro;
 import tsi.too.bvb.gui.funcionario.IgCadFuncionario;
 import tsi.too.bvb.gui.funcionario.IgConsultarFuncionario;
@@ -41,10 +42,11 @@ public class TEActionMenuPrincipal implements ActionListener {
 		
 		else if(e.getSource() == igMenuPrincipal.getMntmAutor())
 			new JanelaPopUpInfo(igMenuPrincipal, "BVB - Sobre", " Criado por:\n     Diego Oliveira   &   Gian Carlos Barros Honório",
-					"© Software criado por Diego Oliveira & Gian Carlos "
-					+ "para avaliação na disciplina de Tecnologia de"
-					+ "Orientação a Objetos do Curso Superior de Tecnologia em Sistemas para internet do Instituto Federal"
-					+ "do Sudeste de Minas Gerais Câmpus Barbacena. Prof. Márlon.");
+					"Copyright \u00A9 2001-2014, BVB vers\u00E3o 1.04. Software criado por"
+					+ "\nDiego Oliveira & Gian Carlos para avalia\u00E7\u00E3o na disciplina"
+					+ "\nde Tecnologia de Orienta\u00E7\u00E3o a Objetos do Curso Superior de"
+					+ "\nTecnologia em Sistemas para internet do Instituto Federal do Sudeste"
+					+ "\nde Minas Gerais C\u00E2mpus Barbacena. Prof. M\u00E1rlon.");
 		
 		else if(e.getSource() == igMenuPrincipal.getMntmSair())
 			igMenuPrincipal.terminaPrograma();
@@ -104,7 +106,8 @@ public class TEActionMenuPrincipal implements ActionListener {
 			else if((e.getSource() == igMenuPrincipal.getAbrirContaBtn()) || (e.getSource() == igMenuPrincipal.getAbrirContaImgBtn()))
 				new IgAbrirContaBancaria(igMenuPrincipal, new ContaBancaria());
 			
-			else if((e.getSource() == igMenuPrincipal.getDepositarSalContaBtn()) || (e.getSource() == igMenuPrincipal.getDepositarSalContaImgBtn())){}
+			else if((e.getSource() == igMenuPrincipal.getDepositarSalContaBtn()) || (e.getSource() == igMenuPrincipal.getDepositarSalContaImgBtn()))
+				new IgDepositarSal(igMenuPrincipal);
 			
 			else if((e.getSource() == igMenuPrincipal.getCriarAplicContaBtn()) || (e.getSource() == igMenuPrincipal.getCriarAplicContaImgBtn())){}
 			

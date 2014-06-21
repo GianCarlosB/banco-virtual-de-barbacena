@@ -120,10 +120,11 @@ public class IgExcluirCadastro extends JDialog {
 		Btnpanel.add(btnCancelar);
 		
 		cardPanel = new JPanel();
-		cardPanel.setBounds(0, 70, 395, 48);
+		cardPanel.setBounds(0, 70, 415, 48);
 		getContentPane().add(cardPanel);
 		cardPanel.setLayout(cardLayout);
 		pExCliente.getCpfFormattedTextField().setToolTipText("para pesquisar utilizando o cpf clique no bot\u00E3o buscar");
+		pExCliente.getCpfFormattedTextField().setBounds(100, 22, 308, 20);
 		cardPanel.add(pExCliente, "clientePanel");
 		pExFuncionario.getLoginTextField().setToolTipText("para pesquisar utilizando o login clique no bot\u00E3o buscar");
 		cardPanel.add(pExFuncionario, "funcionarioPanel");
@@ -152,14 +153,14 @@ public class IgExcluirCadastro extends JDialog {
 		btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new TEActionExcluirCadastro(this, tipo));
 		btnBuscar.setMnemonic(KeyEvent.VK_B);
-		btnBuscar.setBounds(398, 91, 89, 23);
+		btnBuscar.setBounds(418, 91, 89, 23);
 		getContentPane().add(btnBuscar);
 		
 		btnAlterar = new JButton("Alterar");
 		btnAlterar.addActionListener(new TEActionExcluirCadastro(this, tipo));
 		btnAlterar.setVisible(false);
 		btnAlterar.setMnemonic(KeyEvent.VK_A);
-		btnAlterar.setBounds(398, 91, 89, 23);
+		btnAlterar.setBounds(418, 91, 89, 23);
 		getContentPane().add(btnAlterar);
 		setVisible(true);
 	}

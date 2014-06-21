@@ -64,7 +64,7 @@ public class IgConsultarCliente extends JDialog {
 	private JTable tableConsulta;
 	private JFormattedTextField cpfFormattedTextField;
 	private JButton btnLimpar;
-	private JButton btnOk;
+	private JButton btnCancelar;
 	private JButton btnBuscar;
 
 	/**
@@ -130,7 +130,7 @@ public class IgConsultarCliente extends JDialog {
 		contentPanel.add(nomeTextField);
 		
 		JLabel lblCpf = new JLabel("CPF:");
-		lblCpf.setDisplayedMnemonic(KeyEvent.VK_C);
+		lblCpf.setDisplayedMnemonic(KeyEvent.VK_P);
 		lblCpf.setBounds(10, 125, 46, 14);
 		contentPanel.add(lblCpf);
 		
@@ -194,22 +194,22 @@ public class IgConsultarCliente extends JDialog {
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 435, 517, 43);
 		contentPanel.add(panel);
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		btnLimpar = new JButton("Limpar");
 		btnLimpar.addActionListener(new TEActionConsultarCliente(this));
 		btnLimpar.setMnemonic(KeyEvent.VK_L);
 		panel.add(btnLimpar);
 		
-		btnOk = new JButton("OK");
-		btnOk.addActionListener(new ActionListener() {
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				IgConsultarCliente.this.dispose();
 			}
 		});
-		btnOk.setMnemonic(KeyEvent.VK_O);
-		btnOk.setActionCommand("OK");
-		panel.add(btnOk);
+		btnCancelar.setMnemonic(KeyEvent.VK_C);
+		btnCancelar.setActionCommand("OK");
+		panel.add(btnCancelar);
 		
 		JSeparator separatorBtn = new JSeparator();
 		separatorBtn.setBounds(0, 424, 517, 2);

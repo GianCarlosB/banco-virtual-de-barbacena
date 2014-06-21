@@ -31,24 +31,31 @@ public class TEActionConsultarCliente implements ActionListener {
 		else if(e.getSource() == igConsultarCliente.getBtnBuscar()) {
 			String cpfFormatado = igConsultarCliente.getCpfFormattedTextField().getText();
 			String cpf = igConsultarCliente.getCpfFormattedTextField().getText().replace(".", "").replace("-", "");
-			
-			if(ValidarDados.validarIntPositivo(cpf)) {
-				Cliente cliente = new ClienteDAO().pesquisarCpf(BancoDeDadosBVB.getInstance(), cpf);
-				
-				if(cliente != null) {
-					if(!igConsultarCliente.pesquisaTabela(cliente))
-						igConsultarCliente.addLinhasTabela(cliente);
+
+			if(!igConsultarCliente.getCpfFormattedTextField().getText().replace(".", "").replace("-", "").replace(" ", "").isEmpty()) {
+				if(ValidarDados.validarCPF(cpf)) {
+					Cliente cliente = new ClienteDAO().pesquisarCpf(BancoDeDadosBVB.getInstance(), cpf);
+					
+					if(cliente != null) {
+						if(!igConsultarCliente.pesquisaTabela(cliente))
+							igConsultarCliente.addLinhasTabela(cliente);
+						else
+							new JanelaPopUpAviso(igConsultarCliente, "BVB - Consulta de Cliente", " O cliente de cpf '" +
+									             cpfFormatado + "' já foi consultado.");
+					}
 					else
-						new JanelaPopUpAviso(igConsultarCliente, "BVB - Consulta de Cliente", " O cliente de cpf '" +
-								             cpfFormatado + "' já foi consultado.");
+						new JanelaPopUpAviso(igConsultarCliente, "BVB - Consulta de Cliente", " Nenhum cliente com o cpf '" +
+								             cpfFormatado + "' foi encontrado.");
 				}
 				else
-					new JanelaPopUpAviso(igConsultarCliente, "BVB - Consulta de Cliente", " Nenhum cliente com o cpf '" +
-							             cpfFormatado + "' foi encontrado.");
+					new JanelaPopUpErro(igConsultarCliente, "BVB - Consulta de Cliente", " O nº de CPF '" +
+							            cpfFormatado + "' é inválido!" +
+				                        "\n O campo de busca deve receber 11 dígitos decimais" +
+				                        "\n de um CPF válido.");
 			}
 			else
 				new JanelaPopUpErro(igConsultarCliente, "BVB - Consulta de Cliente", " Entrada inválida!\n" +
-						             " O campo de busca não pode ser vazio,\n e deve receber 11 valores inteiros e positivos.");
+			                        " O campo de busca não pode ser vazio.");
 		} // fim if(e.getSource() == igConsultarCliente.getBtnBuscar())
 	}
 

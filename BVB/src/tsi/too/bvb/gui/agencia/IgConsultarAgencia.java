@@ -51,8 +51,8 @@ public class IgConsultarAgencia extends JDialog {
 	private JTable tableConsulta;
 	private JButton btnBuscar;
 	private JButton btnLimpar;
-	private JButton btnOk;
 	private JTextField descricaoTextField;
+	private JButton btnCancelar;
 
 	/**
 	 * Create the frame.
@@ -84,9 +84,9 @@ public class IgConsultarAgencia extends JDialog {
 		JTextPane txtpnSubTitulo = new JTextPane();
 		txtpnSubTitulo.setForeground(Color.WHITE);
 		txtpnSubTitulo.setBackground(pumpkin);
-		txtpnSubTitulo.setText("Pesquise uma ag\u00EAncia pelo c\u00F3digo.");
+		txtpnSubTitulo.setText("Pesquise uma ag\u00EAncia pelo c\u00F3digo ou pela descri\u00E7\u00E3o.");
 		txtpnSubTitulo.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtpnSubTitulo.setBounds(20, 36, 260, 22);
+		txtpnSubTitulo.setBounds(20, 36, 320, 22);
 		contentPane.add(txtpnSubTitulo);
 		
 		JTextPane txtpnConsultaDeAgncia = new JTextPane();
@@ -104,7 +104,7 @@ public class IgConsultarAgencia extends JDialog {
 		contentPane.add(dtrpnCampoTitulo);
 		
 		JLabel lblCodigo = new JLabel("C\u00F3digo:");
-		lblCodigo.setDisplayedMnemonic(KeyEvent.VK_C);
+		lblCodigo.setDisplayedMnemonic(KeyEvent.VK_O);
 		lblCodigo.setBounds(10, 95, 60, 14);
 		contentPane.add(lblCodigo);
 		
@@ -160,22 +160,22 @@ public class IgConsultarAgencia extends JDialog {
 		JPanel Btnpanel = new JPanel();
 		Btnpanel.setBounds(0, 435, 517, 43);
 		contentPane.add(Btnpanel);
-		Btnpanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		Btnpanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		btnLimpar = new JButton("Limpar");
 		btnLimpar.addActionListener(new TEActionConsultarAgencia(this));
 		btnLimpar.setMnemonic(KeyEvent.VK_L);
 		Btnpanel.add(btnLimpar);
 		
-		btnOk = new JButton("OK");
-		btnOk.addActionListener(new ActionListener() {
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				IgConsultarAgencia.this.dispose();
 			}
 		});
-		btnOk.setMnemonic(KeyEvent.VK_O);
-		btnOk.setActionCommand("OK");
-		Btnpanel.add(btnOk);
+		btnCancelar.setMnemonic(KeyEvent.VK_C);
+		btnCancelar.setActionCommand("OK");
+		Btnpanel.add(btnCancelar);
 		
 		JSeparator separatorBtn = new JSeparator();
 		separatorBtn.setBounds(0, 424, 517, 2);

@@ -44,7 +44,7 @@ public class PainelAbContaSenhas extends JPanel implements TratadorDeCampos {
 		
 		senhaNumPasswordField = new JPasswordField();
 		senhaNumPasswordField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio e deve conter 4 d\u00EDgitos decimais");
-		senhaNumPasswordField.setBounds(130, 17, 254, 20);
+		senhaNumPasswordField.setBounds(130, 17, 269, 20);
 		senhaNumPanel.add(senhaNumPasswordField);
 		lblSenhaNum.setLabelFor(senhaNumPasswordField);
 		
@@ -56,7 +56,7 @@ public class PainelAbContaSenhas extends JPanel implements TratadorDeCampos {
 		rSenhaNumPasswordField = new JPasswordField();
 		rSenhaNumPasswordField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio e as senhas devem conferir");
 		lblRSenhaNum.setLabelFor(rSenhaNumPasswordField);
-		rSenhaNumPasswordField.setBounds(130, 53, 254, 20);
+		rSenhaNumPasswordField.setBounds(130, 53, 269, 20);
 		senhaNumPanel.add(rSenhaNumPasswordField);
 		
 		JPanel senhaAlfPanel = new JPanel();
@@ -73,7 +73,7 @@ public class PainelAbContaSenhas extends JPanel implements TratadorDeCampos {
 		rSenhaAlfPasswordField = new JPasswordField();
 		rSenhaAlfPasswordField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio e as senhas devem conferir");
 		lblRSenhaAlf.setLabelFor(rSenhaAlfPasswordField);
-		rSenhaAlfPasswordField.setBounds(130, 53, 254, 20);
+		rSenhaAlfPasswordField.setBounds(130, 53, 269, 20);
 		senhaAlfPanel.add(rSenhaAlfPasswordField);
 		
 		JLabel lblSenhaAlf = new JLabel("Senha Alfab\u00E9tica:");
@@ -83,7 +83,7 @@ public class PainelAbContaSenhas extends JPanel implements TratadorDeCampos {
 		
 		senhaAlfPasswordField = new JPasswordField();
 		senhaAlfPasswordField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio e deve conter 6 letras");
-		senhaAlfPasswordField.setBounds(130, 17, 254, 20);
+		senhaAlfPasswordField.setBounds(130, 17, 269, 20);
 		senhaAlfPanel.add(senhaAlfPasswordField);
 		lblSenhaAlf.setLabelFor(senhaAlfPasswordField);
 	}

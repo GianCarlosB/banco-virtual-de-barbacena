@@ -63,7 +63,7 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 		lblNumConta.setLabelFor(numContaTextField);
 		numContaTextField.setToolTipText("este campo \u00E9 gerado automaticamente");
 		numContaTextField.setColumns(10);
-		numContaTextField.setBounds(130, 175, 254, 20);
+		numContaTextField.setBounds(130, 175, 269, 20);
 		add(numContaTextField);
 		
 		JPanel tipoContaPanel = new JPanel();

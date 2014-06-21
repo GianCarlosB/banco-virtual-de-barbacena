@@ -43,10 +43,11 @@ public class ClienteDAO {
 	
 	public Cliente pesquisarCpf(BancoDeDadosDAO bdDao, String cpf) {
 		Cliente cliente = new Cliente();
-		final String sql = "SELECT * FROM cliente WHERE cpf = " + cpf;
+		final String sql = "SELECT * FROM cliente WHERE cpf = ?";
 		
 		try {
 			bdDao.obterPreparedStatement(sql);
+			bdDao.getStmt().setString(1, cpf);
 			ResultSet rSet = bdDao.obterResultSet();
 			
 			if(!rSet.next()) return null;
@@ -68,10 +69,11 @@ public class ClienteDAO {
 
 	public List<Cliente> pesquisarNome(BancoDeDadosDAO bdDao, String nome) {
 		List<Cliente> lista = new ArrayList<>();
-		final String sql = "SELECT * FROM cliente WHERE LCASE (nome) LIKE \'%" + nome.toLowerCase() + "%\'";
+		final String sql = "SELECT * FROM cliente WHERE LCASE (nome) LIKE ?";
 		
 		try {
 			bdDao.obterPreparedStatement(sql);
+			bdDao.getStmt().setString(1, "%" + nome.toLowerCase() + "%");
 			ResultSet rSet = bdDao.obterResultSet();
 			
 			while(rSet.next()) {
@@ -96,11 +98,11 @@ public class ClienteDAO {
 	}
 	
 	public void excluir(BancoDeDadosDAO bdDao, String cpf) {
-		final String sql = "DELETE FROM cliente WHERE cpf = " + cpf;
-		
-		bdDao.obterPreparedStatement(sql);
+		final String sql = "DELETE FROM cliente WHERE cpf = ?";
 		
 		try {
+			bdDao.obterPreparedStatement(sql);
+			bdDao.getStmt().setString(1, cpf);
 			bdDao.getStmt().executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

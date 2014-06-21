@@ -55,7 +55,7 @@ public class IgConsultarFuncionario extends JDialog {
 	private JTextField LoginTextField;
 	private JComboBox<Object> tipoUsuarioComboBox;
 	private JButton btnLimpar;
-	private JButton btnOk;
+	private JButton btnCancelar;
 	private JTable tableConsulta;
 	private JButton btnBuscar;
 
@@ -116,22 +116,22 @@ public class IgConsultarFuncionario extends JDialog {
 		JPanel Btnpanel = new JPanel();
 		Btnpanel.setBounds(0, 435, 517, 43);
 		contentPane.add(Btnpanel);
-		Btnpanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		Btnpanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		btnLimpar = new JButton("Limpar");
 		btnLimpar.addActionListener(new TEActionConsultarFuncionario(this));
 		btnLimpar.setMnemonic(KeyEvent.VK_L);
 		Btnpanel.add(btnLimpar);
 		
-		btnOk = new JButton("OK");
-		btnOk.addActionListener(new ActionListener() {
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				IgConsultarFuncionario.this.dispose();
 			}
 		});
-		btnOk.setMnemonic(KeyEvent.VK_O);
-		btnOk.setActionCommand("OK");
-		Btnpanel.add(btnOk);
+		btnCancelar.setMnemonic(KeyEvent.VK_C);
+		btnCancelar.setActionCommand("OK");
+		Btnpanel.add(btnCancelar);
 		
 		JSeparator separatorBtn = new JSeparator();
 		separatorBtn.setBounds(0, 424, 517, 2);

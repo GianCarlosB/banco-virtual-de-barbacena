@@ -73,10 +73,10 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 		add(lblContaSalario);
 		
 		saldoTextField = new JNumberFormatField(new DecimalFormat("R$0.00"));
-		((JNumberFormatField) saldoTextField).setLimit(15);
+		((JNumberFormatField) saldoTextField).setLimit(17);
 		saldoTextField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio e deve conter apenas d\u00EDgitos decimais");
 		lblSaldo.setLabelFor(saldoTextField);
-		saldoTextField.setBounds(130, 52, 254, 20);
+		saldoTextField.setBounds(130, 52, 269, 20);
 		saldoTextField.setColumns(10);
 		add(saldoTextField);
 	}

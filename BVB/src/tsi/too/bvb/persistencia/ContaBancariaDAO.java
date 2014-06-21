@@ -57,10 +57,11 @@ public class ContaBancariaDAO {
 	
 	public ContaBancaria pesquisarNumConta(BancoDeDadosDAO bdDao, String numero) {
 		ContaBancaria contaBancaria = new ContaBancaria();
-		final String sql = "SELECT * FROM conta_bancaria WHERE numeroConta = " + numero;
+		final String sql = "SELECT * FROM conta_bancaria WHERE numeroConta = ?";
 		
 		try {
 			bdDao.obterPreparedStatement(sql);
+			bdDao.getStmt().setString(1, numero);
 			ResultSet rSet = bdDao.obterResultSet();
 			
 			if(!rSet.next()) return null;
@@ -82,6 +83,22 @@ public class ContaBancariaDAO {
 		}
 		
 		return contaBancaria;
+	}
+	
+	public void alterarSaldo(BancoDeDadosDAO bdDao, ContaBancaria contaBancaria) {
+		final String sql = "UPDATE conta_bancaria SET saldo = ? WHERE numeroConta = ?";
+
+		try {
+			bdDao.obterPreparedStatement(sql);
+			bdDao.getStmt().setDouble(1, contaBancaria.getSaldo());
+			bdDao.getStmt().setInt(2, contaBancaria.getNumConta());
+			bdDao.getStmt().executeUpdate();
+			
+			System.out.println("Saldo da Conta Bancária Atualizado.");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 } // class ContaBancariaDAO

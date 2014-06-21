@@ -26,9 +26,9 @@ public class PainelExFuncionario extends JPanel {
 		
 		loginTextField = new JTextField();
 		lblLogin.setLabelFor(loginTextField);
-		loginTextField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio, deve conter no m\u00EDnimo 6 e no m\u00E1ximo 20 caracteres (letras, d\u00EDgitos e os s\u00EDmbolos underscore (_) ou ponto (.)) e deve ser \u00FAnico");
+		loginTextField.setToolTipText("insira o login do funcion\u00E1rio que deseja excluir e clique em buscar");
 		loginTextField.setColumns(10);
-		loginTextField.setBounds(100, 22, 288, 20);
+		loginTextField.setBounds(100, 22, 308, 20);
 		add(loginTextField);
 
 	}

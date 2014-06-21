@@ -5,8 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import tsi.too.bvb.gui.JanelaPopUpErro;
 
@@ -50,7 +48,7 @@ public abstract class BancoDeDadosDAO {
 			return true;
 		} catch (SQLException e) {
 			conn = null;
-			new JanelaPopUpErro(null, "BVB - ERRO", " Falha na aquisição de bloqueio do banco de dados!", e);
+			new JanelaPopUpErro(null, "BVB - ERRO", " Falha na aquisição do bloqueio do banco de dados!", e);
 			return false;
 		}
 	}
@@ -61,6 +59,7 @@ public abstract class BancoDeDadosDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
 		
 		return stmt;
@@ -74,47 +73,48 @@ public abstract class BancoDeDadosDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
 		
 		return rset;
 	}
 	
-	public void fecharPreparedStatement() {
-		if(stmt == null) return;
+	public boolean fecharPreparedStatement() {
+		if(stmt == null) return false;
 		
 		try {
 			stmt.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			return true;
+		} catch (SQLException e) { return false; }
 	}
 	
-	public void fecharConexao() {
-		if(conn == null) return;
+	public boolean fecharConexao() {
+		if(conn == null) return false;
 		
 		try {
 			conn.close();
-			System.out.println("Conexão com o Banco de dados finalizada: " + new SimpleDateFormat("dd/MM/yyyy  HH:mm").format(new Date()));
-		} catch (SQLException e) {
+			return true;
+		} catch (SQLException e) { 
 			new JanelaPopUpErro(null, "BVB - ERRO", " Falha na finalização da conexão com o banco de dados!", e);
+			return false; 
 		}
 	}
 	
-	public static void fecharResultSet(ResultSet rSet) {
-		if(rSet == null) return;
+	public static boolean fecharResultSet(ResultSet rSet) {
+		if(rSet == null) return false;
 		
 		try {
 			rSet.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			return true;
+		} catch (SQLException e) { return false; }
 	}
 	
-	public void fecharTudo() {
+	public boolean fecharTudo() {
 		fecharPreparedStatement();
-		fecharConexao();
+		if(!fecharConexao())
+			return false;
+		
+		return true;
 	}
 
 	@Override

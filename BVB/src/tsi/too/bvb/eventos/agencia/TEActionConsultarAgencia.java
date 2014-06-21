@@ -31,23 +31,28 @@ public class TEActionConsultarAgencia implements ActionListener {
 		else if(e.getSource() == igConsultarAgencia.getBtnBuscar()) {
 			String codigo = igConsultarAgencia.getCodigoTextField().getText();
 			
-			if(ValidarDados.validarIntPositivo(codigo)) {
-				Agencia agencia = new AgenciaDAO().pesquisarCodigo(BancoDeDadosBVB.getInstance(), codigo);
-				
-				if(agencia != null) {
-					if(!igConsultarAgencia.pesquisaTabela(agencia))
-						igConsultarAgencia.addLinhasTabela(agencia);
+			if(!igConsultarAgencia.getCodigoTextField().getText().isEmpty()) {
+				if(ValidarDados.validarIntPositivo(codigo)) {
+					Agencia agencia = new AgenciaDAO().pesquisarCodigo(BancoDeDadosBVB.getInstance(), codigo);
+					
+					if(agencia != null) {
+						if(!igConsultarAgencia.pesquisaTabela(agencia))
+							igConsultarAgencia.addLinhasTabela(agencia);
+						else
+							new JanelaPopUpAviso(igConsultarAgencia, "BVB - Consulta de Agência", " A agência de código '" +
+									             codigo + "' já foi consultada.");
+					}
 					else
-						new JanelaPopUpAviso(igConsultarAgencia, "BVB - Consulta de Agência", " A agência de código '" +
-								             codigo + "' já foi consultada.");
+						new JanelaPopUpAviso(igConsultarAgencia, "BVB - Consulta de Agência", " Nenhuma agência com o código '" +
+								             codigo + "' foi encontrada.");
 				}
 				else
-					new JanelaPopUpAviso(igConsultarAgencia, "BVB - Consulta de Agência", " Nenhuma agência com o código '" +
-							             codigo + "' foi encontrada.");
+					new JanelaPopUpErro(igConsultarAgencia, "BVB - Consulta de Agência", " O código de agência '" +
+							            codigo + "' é inválido!\n O campo de busca deve receber um valor inteiro e positivo.");
 			}
 			else
 				new JanelaPopUpErro(igConsultarAgencia, "BVB - Consulta de Agência", " Entrada inválida!\n" +
-						             " O campo de busca não pode ser vazio,\n e deve receber um valor inteiro e positivo.");
+                                    " O campo de busca não pode ser vazio.");
 		} // fim if(e.getSource() == igConsultarAgencia.getBtnBuscar())
 	}
 
