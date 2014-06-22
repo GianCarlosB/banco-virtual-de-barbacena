@@ -22,7 +22,7 @@ public class bvbApp {
 			new JanelaPopUpErro(null, "BVB - ERRO", " Ocorreu uma interrupção durante a conexão com o banco de dados!", e);
 			System.exit(0);
 		}
-		
+
 		igApresentacao.finalizarThread();
 		igApresentacao.dispose();
 		new IgMenuPrincipal(); // Cria a janela que contém o menu principal

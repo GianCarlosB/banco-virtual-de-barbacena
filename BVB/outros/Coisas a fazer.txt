@@ -1,1 +1,0 @@
--arrumar os eventos dos botões do menu principal.

@@ -9,8 +9,10 @@ import tsi.too.bvb.entidades.cliente.Contato;
 import tsi.too.bvb.entidades.cliente.Endereco;
 import tsi.too.bvb.entidades.contabancaria.ContaBancaria;
 import tsi.too.bvb.entidades.funcionario.Funcionario;
+import tsi.too.bvb.gui.JanelaPopUpAviso;
 import tsi.too.bvb.gui.JanelaPopUpErro;
 import tsi.too.bvb.gui.JanelaPopUpInfo;
+import tsi.too.bvb.gui.JanelaPopUpPergunta;
 import tsi.too.bvb.gui.agencia.IgCadAgencia;
 import tsi.too.bvb.gui.agencia.IgConsultarAgencia;
 import tsi.too.bvb.gui.cliente.IgCadCliente;
@@ -41,17 +43,49 @@ public class TEActionMenuPrincipal implements ActionListener {
 		else if(e.getSource() == igMenuPrincipal.getMntmLogout()){}
 		
 		else if(e.getSource() == igMenuPrincipal.getMntmAutor())
-			new JanelaPopUpInfo(igMenuPrincipal, "BVB - Sobre", " Criado por:\n     Diego Oliveira   &   Gian Carlos Barros HonÛrio",
+			new JanelaPopUpInfo(igMenuPrincipal, "BVB - Sobre", " Criado por:\n     Diego Oliveira   &   Gian Carlos Barros Hon√≥rio",
 					"Copyright \u00A9 2001-2014, BVB vers\u00E3o 1.04. Software criado por"
 					+ "\nDiego Oliveira & Gian Carlos para avalia\u00E7\u00E3o na disciplina"
 					+ "\nde Tecnologia de Orienta\u00E7\u00E3o a Objetos do Curso Superior de"
 					+ "\nTecnologia em Sistemas para internet do Instituto Federal do Sudeste"
 					+ "\nde Minas Gerais C\u00E2mpus Barbacena. Prof. M\u00E1rlon.");
 		
+		else if(e.getSource() == igMenuPrincipal.getMntmTema())
+			new JanelaPopUpInfo(igMenuPrincipal, "BVB - Tema", " Tema utilizado: javax.swing.plaf.metal.");
+		
 		else if(e.getSource() == igMenuPrincipal.getMntmSair())
 			igMenuPrincipal.terminaPrograma();
 		
 		else if(BancoDeDadosBVB.getInstance().getConn() != null) {
+			if((e.getSource() == igMenuPrincipal.getMntmLimparBD())) {
+				JanelaPopUpPergunta janelaPopUpPergunta = new JanelaPopUpPergunta(igMenuPrincipal, "BVB - Limpar Banco de Dados",
+						" Esta opera√ß√£o ir√° excluir permanentemente TODOS os"
+						+ "\n registros do banco de dados!"
+						+ "\n\n Deseja continuar assim mesmo?");
+				
+				if(janelaPopUpPergunta.isSim()) {
+					int resultado = BancoDeDadosBVB.resetarDadosBD();
+					
+					if(resultado == 0) {
+						new JanelaPopUpInfo(igMenuPrincipal, "BVB - Limpar Banco de Dados", " O banco de dados foi Limpo com sucesso!"
+								+ "\n Para Logar novamente, use o login e a senha padr√£o.", " Login: Admin_BVB\n Senha: 123456");
+						new JanelaPopUpAviso(igMenuPrincipal, "BVB - Limpar Banco de Dados", " Para que as mudan√ßas sejam devidamente aplicadas,"
+								+ "\n o aplicativo ser√° finalizado.");
+						igMenuPrincipal.dispose();System.exit(0);
+					
+					}
+					else if(resultado == 1)
+						new JanelaPopUpErro(igMenuPrincipal, "BVB - Limpar Banco de Dados", " Erro gerado por m√° configura√ß√£o do"
+								+ "\n banco de dados!");
+					else if(resultado == 2)
+						new JanelaPopUpErro(igMenuPrincipal, "BVB - Limpar Banco de Dados", " Erro ao abrir um arquivo necess√°rio para executar"
+								+ "\n a limpeza do banco de dados!");
+				}
+			}
+			
+			// Fim do menu item "limparBD".
+			
+			
 			if((e.getSource() == igMenuPrincipal.getCadClienteBtn()) || (e.getSource() == igMenuPrincipal.getCadClienteImgBtn()))
 				new IgCadCliente(igMenuPrincipal, new Cliente(new Contato(), new Endereco()));
 			
@@ -61,12 +95,12 @@ public class TEActionMenuPrincipal implements ActionListener {
 			else if((e.getSource() == igMenuPrincipal.getAltClienteBtn()) || (e.getSource() == igMenuPrincipal.getAltClienteImgBtn())){}
 			
 			else if((e.getSource() == igMenuPrincipal.getExClienteBtn()) || (e.getSource() == igMenuPrincipal.getExClienteImgBtn()))
-				new IgExcluirCadastro(igMenuPrincipal, "BVB - Exclus„o de Cliente", "Exclus„o de Cliente",
+				new IgExcluirCadastro(igMenuPrincipal, "BVB - Exclus√£o de Cliente", "Exclus√£o de Cliente",
 						              "Insira o CPF do cliente que desja excluir.", 1);
 			
 			else if((e.getSource() == igMenuPrincipal.getRelClienteBtn()) || (e.getSource() == igMenuPrincipal.getRelClienteImgBtn())){}
 		
-			// Fim dos botıes da aba "cliente".
+			// Fim dos bot√µes da aba "cliente".
 			
 			
 			else if((e.getSource() == igMenuPrincipal.getCadFuncBtn()) || (e.getSource() == igMenuPrincipal.getCadFuncImgBtn()))
@@ -78,12 +112,12 @@ public class TEActionMenuPrincipal implements ActionListener {
 			else if((e.getSource() == igMenuPrincipal.getAltFuncBtn()) || (e.getSource() == igMenuPrincipal.getAltFuncImgBtn())){}
 			
 			else if((e.getSource() == igMenuPrincipal.getExFuncBtn()) || (e.getSource() == igMenuPrincipal.getExFuncImgBtn()))
-				new IgExcluirCadastro(igMenuPrincipal, "BVB - Exclus„o de Funcion·rio", "Exclus„o de Funcion·rio",
-			                          "Insira o Login do funcion·rio que desja excluir.", 2);
+				new IgExcluirCadastro(igMenuPrincipal, "BVB - Exclus√£o de Funcion√°rio", "Exclus√£o de Funcion√°rio",
+			                          "Insira o Login do funcion√°rio que desja excluir.", 2);
 			
 			else if((e.getSource() == igMenuPrincipal.getRelFuncBtn()) || (e.getSource() == igMenuPrincipal.getRelFuncImgBtn())){}
 	
-			// Fim dos botıes da aba "funcion·rio".
+			// Fim dos bot√µes da aba "funcion√°rio".
 			
 			
 			else if((e.getSource() == igMenuPrincipal.getCadAgBtn()) || (e.getSource() == igMenuPrincipal.getCadAgImgBtn()))
@@ -95,12 +129,12 @@ public class TEActionMenuPrincipal implements ActionListener {
 			else if((e.getSource() == igMenuPrincipal.getAltAgBtn()) || (e.getSource() == igMenuPrincipal.getAltAgImgBtn())){}
 			
 			else if((e.getSource() == igMenuPrincipal.getExAgBtn()) || (e.getSource() == igMenuPrincipal.getExAgImgBtn()))
-				new IgExcluirCadastro(igMenuPrincipal, "BVB - Exclus„o de AgÍncia", "Exclus„o de AgÍncia",
-                                      "Insira o cÛdigo da agÍncia que desja excluir.", 3);
+				new IgExcluirCadastro(igMenuPrincipal, "BVB - Exclus√£o de Ag√™ncia", "Exclus√£o de Ag√™ncia",
+                                      "Insira o c√≥digo da ag√™ncia que desja excluir.", 3);
 			
 			else if((e.getSource() == igMenuPrincipal.getRelAgBtn()) || (e.getSource() == igMenuPrincipal.getRelAgImgBtn())){}
 			
-			// Fim dos botıes da aba "agÍncia".
+			// Fim dos bot√µes da aba "ag√™ncia".
 			
 			
 			else if((e.getSource() == igMenuPrincipal.getAbrirContaBtn()) || (e.getSource() == igMenuPrincipal.getAbrirContaImgBtn()))
@@ -113,18 +147,18 @@ public class TEActionMenuPrincipal implements ActionListener {
 			
 			else if((e.getSource() == igMenuPrincipal.getAlterarAplicContaBtn()) || (e.getSource() == igMenuPrincipal.getAlterarAplicContaImgBtn())){}
 			
-			// Fim dos botıes da aba "conta".
+			// Fim dos bot√µes da aba "conta".
 			
 			
 			else if((e.getSource() == igMenuPrincipal.getAtmBtn()) || (e.getSource() == igMenuPrincipal.getAtmImgBtn())){}
 			
 			else if((e.getSource() == igMenuPrincipal.getAlterarSenhaBtn()) || (e.getSource() == igMenuPrincipal.getAlterarSenhaImgBtn())){}
 			
-			// Fim dos botıes da aba "outros".
+			// Fim dos bot√µes da aba "outros".
 		} // fim if(BancoDeDadosBVB.getInstance().getConn() != null)
 		else
-			new JanelaPopUpErro(igMenuPrincipal, "BVB - ERRO", " A conex„o com o banco de dados n„o foi estabelecida!\n" +
-					            " Para realizar esta operaÁ„o reinicie a aplicaÁ„o!");
+			new JanelaPopUpErro(igMenuPrincipal, "BVB - ERRO", " A conex√£o com o banco de dados n√£o foi estabelecida!\n" +
+					            " Para realizar esta opera√ß√£o reinicie a aplica√ß√£o!");
 	}
 	
 } // class TEActionMenuPrincipal

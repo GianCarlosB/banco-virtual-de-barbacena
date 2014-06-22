@@ -72,7 +72,7 @@ public class IgExcluirCadastro extends JDialog {
 		txtpnTitulo.setForeground(Color.WHITE);
 		txtpnTitulo.setFont(new Font("Tahoma", Font.BOLD, 13));
 		txtpnTitulo.setBackground(pomergante);
-		txtpnTitulo.setBounds(10, 11, 150, 22);
+		txtpnTitulo.setBounds(10, 11, 330, 22);
 		getContentPane().add(txtpnTitulo);
 		
 		JTextPane txtpnSubTitulo = new JTextPane();
@@ -80,7 +80,7 @@ public class IgExcluirCadastro extends JDialog {
 		txtpnSubTitulo.setForeground(Color.WHITE);
 		txtpnSubTitulo.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		txtpnSubTitulo.setBackground(pomergante);
-		txtpnSubTitulo.setBounds(20, 36, 260, 22);
+		txtpnSubTitulo.setBounds(20, 36, 330, 22);
 		getContentPane().add(txtpnSubTitulo);
 		
 		JLabel lblImg = new JLabel("Label Img");

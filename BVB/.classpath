@@ -3,18 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="lib" path="lib/hsqldb/lib/hsqldb.jar"/>
-	<classpathentry kind="lib" path="lib/jgoodies-looks-2.6.0/jgoodies-looks-2.6.0-javadoc.jar"/>
-	<classpathentry kind="lib" path="lib/jgoodies-looks-2.6.0/jgoodies-looks-2.6.0-sources.jar"/>
-	<classpathentry kind="lib" path="lib/jgoodies-looks-2.6.0/jgoodies-looks-2.6.0-tests.jar"/>
-	<classpathentry kind="lib" path="lib/jgoodies-looks-2.6.0/jgoodies-looks-2.6.0.jar"/>
-	<classpathentry kind="lib" path="lib/jgoodies-common-1.8.0/jgoodies-common-1.8.0-javadoc.jar"/>
-	<classpathentry kind="lib" path="lib/jgoodies-common-1.8.0/jgoodies-common-1.8.0-sources.jar"/>
-	<classpathentry kind="lib" path="lib/jgoodies-common-1.8.0/jgoodies-common-1.8.0-tests.jar"/>
-	<classpathentry kind="lib" path="lib/jgoodies-common-1.8.0/jgoodies-common-1.8.0.jar"/>
-	<classpathentry kind="lib" path="lib/weblaf-1.27/weblaf-1.27.jar"/>
-	<classpathentry kind="lib" path="lib/seaglass-demo/seaglass-demo.jar"/>
 	<classpathentry kind="lib" path="lib/jdatepicker/jdatepicker-1.3.2.jar"/>
-	<classpathentry kind="lib" path="lib/swingx/swingx-all-1.6.3.jar"/>
-	<classpathentry kind="lib" path="lib/swingx/swingx-beaninfo-1.6.3.jar"/>
+	<classpathentry kind="lib" path="lib/hsqldb/lib/sqltool.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

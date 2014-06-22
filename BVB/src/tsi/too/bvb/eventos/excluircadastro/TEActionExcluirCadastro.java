@@ -135,7 +135,7 @@ public class TEActionExcluirCadastro implements ActionListener {
 			
 			case 2:
 				janelaPopUpPergunta = new JanelaPopUpPergunta(igExcluirCadastro, "BVB - Exclusão de Funcionário", " Esta operação irá excluir " +
-                                                              "permanentemente o funcionário.\n Deseja continuar assim mesmo?");
+                                                              "permanentemente o funcionário.\n\n Deseja continuar assim mesmo?");
 				if(janelaPopUpPergunta.isSim())
 					new FuncionarioDAO().excluir(BancoDeDadosBVB.getInstance(), igExcluirCadastro.getPexExFuncionario().getLoginTextField()
 							                     .getText());

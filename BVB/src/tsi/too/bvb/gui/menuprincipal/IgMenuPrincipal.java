@@ -19,6 +19,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -82,7 +83,7 @@ public class IgMenuPrincipal extends JFrame {
 	private JButton alterarSenhaImgBtn;
 	private JButton alterarSenhaBtn;
 	private JMenuItem mntmLogout;
-	private JMenu mnTemas;
+	private JMenu mnAparência;
 	private JLabel lblImgSeta1;
 	private JLabel lblImgSeta2;
 	private JLabel lblImgSeta3;
@@ -99,6 +100,8 @@ public class IgMenuPrincipal extends JFrame {
 	private JLabel lblCopyrightAgencias;
 	private JLabel lblCopyrightContas;
 	private JLabel lblCopyrightOutros;
+	private JMenuItem mntmTema;
+	private JMenuItem mntmLimparBD;
 
 	public IgMenuPrincipal() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/BVB - \u00EDcone.png")));
@@ -108,7 +111,7 @@ public class IgMenuPrincipal extends JFrame {
 				terminaPrograma();
 			}
 		});
-		
+
 		// Cores Flat
 		Color peterRiver = new Color(52, 152, 219);
 		Color sunFlower = new Color(241, 196, 15);
@@ -750,8 +753,9 @@ public class IgMenuPrincipal extends JFrame {
 		lblCopyrightOutros.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		lblCopyrightOutros.setBounds(725, 418, 175, 16);
 		outrosPanel.add(lblCopyrightOutros);
-				
-		getContentPane().add(tabbedPane); // adiciona o JTabbedPane ao quadro
+		
+		// adiciona o JTabbedPane ao quadro
+		getContentPane().add(tabbedPane); 
 		
 		lblBanner = new JLabel("");
 		lblBanner.addMouseListener(new TEMouseMenuPrincipal(this));
@@ -770,23 +774,41 @@ public class IgMenuPrincipal extends JFrame {
 		menuBar.add(mnArquivo);
 		
 		mntmSair = new JMenuItem("Sair");
+		mntmSair.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Fire-Exit-24.png")));
 		mntmSair.addActionListener(new TEActionMenuPrincipal(this));
 		
+		mntmLimparBD = new JMenuItem("Limpar Banco de Dados");
+		mntmLimparBD.addActionListener(new TEActionMenuPrincipal(this));
+		mntmLimparBD.setMnemonic(KeyEvent.VK_L);
+		mntmLimparBD.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Data-Delete-24.png")));
+		mnArquivo.add(mntmLimparBD);
+		
+		JSeparator menuArquivoSeparator = new JSeparator();
+		mnArquivo.add(menuArquivoSeparator);
+		
 		mntmLogout = new JMenuItem("Logout");
-		mntmLogout.setMnemonic(KeyEvent.VK_L);
+		mntmLogout.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Logout-24.png")));
+		mntmLogout.setMnemonic(KeyEvent.VK_O);
 		mnArquivo.add(mntmLogout);
 		mntmSair.setMnemonic(KeyEvent.VK_S);
 		mnArquivo.add(mntmSair);
 		
-		mnTemas = new JMenu("Temas");
-		mnTemas.setMnemonic(KeyEvent.VK_T);
-		menuBar.add(mnTemas);
+		mnAparência = new JMenu("Apar\u00EAncia");
+		mnAparência.setMnemonic(KeyEvent.VK_P);
+		menuBar.add(mnAparência);
+		
+		mntmTema = new JMenuItem("Tema");
+		mntmTema.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Black-Board-24.png")));
+		mntmTema.addActionListener(new TEActionMenuPrincipal(this));
+		mntmTema.setMnemonic(KeyEvent.VK_T);
+		mnAparência.add(mntmTema);
 		
 		JMenu mnSobre = new JMenu("Sobre");
 		mnSobre.setMnemonic(KeyEvent.VK_S);
 		menuBar.add(mnSobre);
 		
 		mntmAutor = new JMenuItem("Autor");
+		mntmAutor.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Graduate-01-24.png")));
 		mntmAutor.addActionListener(new TEActionMenuPrincipal(this));
 		mntmAutor.setMnemonic(KeyEvent.VK_A);
 		mnSobre.add(mntmAutor);
@@ -804,7 +826,7 @@ public class IgMenuPrincipal extends JFrame {
 		System.exit(0);
 	}
 	
-	// Geters dos botões
+	/// ===== * Início dos Geters dos botões * ===== ///
 	public JButton getAltClienteImgBtn() {
 		return altClienteImgBtn;
 	}
@@ -988,12 +1010,9 @@ public class IgMenuPrincipal extends JFrame {
 	public JButton getAlterarSenhaBtn() {
 		return alterarSenhaBtn;
 	}
-	// Fim dos geters dos botões
-
-	public JMenuItem getMntmLogout() {
-		return mntmLogout;
-	}
-
+	/// ===== * Fim dos Geters dos botões * ===== ///
+	
+	/// ===== * Início dos Geters dos itens da aba Home * ===== ///
 	public JLabel getLblImgSeta1() {
 		return lblImgSeta1;
 	}
@@ -1024,6 +1043,19 @@ public class IgMenuPrincipal extends JFrame {
 
 	public JLabel getLblBanner() {
 		return lblBanner;
+	}
+	/// ===== * Fim dos Geters dos itens da aba Home * ===== ///
+
+	public JMenuItem getMntmLogout() {
+		return mntmLogout;
+	}
+
+	public JMenuItem getMntmTema() {
+		return mntmTema;
+	}
+	
+	public JMenuItem getMntmLimparBD() {
+		return mntmLimparBD;
 	}
 
 	public JTabbedPane getTabbedPane() {

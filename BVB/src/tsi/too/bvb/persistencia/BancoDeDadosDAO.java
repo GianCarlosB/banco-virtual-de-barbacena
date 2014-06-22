@@ -1,16 +1,23 @@
 package tsi.too.bvb.persistencia;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.hsqldb.cmdline.SqlFile;
+import org.hsqldb.cmdline.SqlToolError;
+
 import tsi.too.bvb.gui.JanelaPopUpErro;
 
 public abstract class BancoDeDadosDAO {
 	
-	private final String URL;
+	private final String LOGIN_BD = "admin",
+						 SENHA_BD = "123",
+						 URL;
 	private Connection conn;
 	private PreparedStatement stmt;
 	
@@ -44,7 +51,7 @@ public abstract class BancoDeDadosDAO {
 		 */
 		
 		try {
-			conn = DriverManager.getConnection(URL, "admin", "123");
+			conn = DriverManager.getConnection(URL, LOGIN_BD, SENHA_BD);
 			return true;
 		} catch (SQLException e) {
 			conn = null;
@@ -115,6 +122,34 @@ public abstract class BancoDeDadosDAO {
 			return false;
 		
 		return true;
+	}
+	
+	// Executa arquivos .sql
+	/** Abre e executa os comando de um arquivo SQL
+	 * @param enderecoArqSQL <code>String</code> com o endereco do arquivo sql
+	 * @return <code>boolean</code> com <code>true</code> se o arquivo foi aberto e executado e <code>false</code> senão.
+	 * @throws SQLException possível erro gerado por má configuração do banco de dados
+	 * @throws IOException possivel erro ao abrir o arquivo
+	 */
+	protected boolean abrirArquivoSQL(String enderecoArqSQL) throws SQLException, IOException {
+		File arquivo = new File(enderecoArqSQL);
+		SqlFile arquivoSql = new SqlFile(arquivo);
+		boolean abriu = true;
+		
+		arquivoSql.setConnection(conn);
+		
+		try{
+			arquivoSql.execute();
+			abriu = true;
+		}
+		catch(SqlToolError e) {
+			e.printStackTrace();
+			abriu = false;
+		}
+		
+		arquivoSql.closeReader();
+		
+		return abriu;
 	}
 
 	@Override
