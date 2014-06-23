@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tsi.too.bvb.entidades.agencia.Agencia;
+import tsi.too.bvb.gui.JanelaPopUpErro;
 
 public class AgenciaDAO {
 	
@@ -14,10 +15,10 @@ public class AgenciaDAO {
 	}
 
 	public void criar(BancoDeDadosDAO bdDao, Agencia agencia) {
-		final String sql = "INSERT INTO agencia VALUES (?, ?)";
+		final String SQL = "INSERT INTO agencia VALUES (?, ?)";
 
 		try {
-			bdDao.obterPreparedStatement(sql);
+			bdDao.obterPreparedStatement(SQL);
 			bdDao.getStmt().setInt(1, agencia.getCodAgencia());
 			bdDao.getStmt().setString(2, agencia.getDescricao());
 			bdDao.getStmt().executeUpdate();
@@ -25,16 +26,16 @@ public class AgenciaDAO {
 			System.out.println("Agência inserida.");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
 		}
 	}
 	
 	public int proximoValorSequencia(BancoDeDadosDAO bdDao) {
-		final String sql = "CALL NEXT VALUE FOR seq_agencia";
+		final String SQL = "CALL NEXT VALUE FOR seq_agencia";
 		int proximoValor = 0;
 		
 		try {
-			bdDao.obterPreparedStatement(sql);
+			bdDao.obterPreparedStatement(SQL);
 			ResultSet rSet = bdDao.obterResultSet();
 			
 			rSet.next();
@@ -43,7 +44,7 @@ public class AgenciaDAO {
 			System.out.println("Próxima chave agência: " + proximoValor);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
 		}
 		
 		return proximoValor;
@@ -51,10 +52,10 @@ public class AgenciaDAO {
 	
 	public Agencia pesquisarCodigo(BancoDeDadosDAO bdDao, String codigo) {
 		Agencia agencia = new Agencia();
-		final String sql = "SELECT * FROM agencia WHERE codAgencia = ?";
+		final String SQL = "SELECT * FROM agencia WHERE codAgencia = ?";
 		
 		try {
-			bdDao.obterPreparedStatement(sql);
+			bdDao.obterPreparedStatement(SQL);
 			bdDao.getStmt().setString(1, codigo);
 			ResultSet rSet = bdDao.obterResultSet();
 			
@@ -66,7 +67,7 @@ public class AgenciaDAO {
 			BancoDeDadosDAO.fecharResultSet(rSet);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
 		}
 		
 		return agencia;
@@ -74,10 +75,10 @@ public class AgenciaDAO {
 	
 	public List<Agencia> pesquisarDescricao(BancoDeDadosDAO bdDao, String descricao) {
 		List<Agencia> lista = new ArrayList<>();
-		final String sql = "SELECT * FROM agencia WHERE LCASE (descricao) LIKE ?";
+		final String SQL = "SELECT * FROM agencia WHERE LCASE (descricao) LIKE ?";
 		
 		try {
-			bdDao.obterPreparedStatement(sql);
+			bdDao.obterPreparedStatement(SQL);
 			bdDao.getStmt().setString(1, "%" + descricao.toLowerCase() + "%");
 			ResultSet rSet = bdDao.obterResultSet();
 			
@@ -90,22 +91,22 @@ public class AgenciaDAO {
 			BancoDeDadosDAO.fecharResultSet(rSet);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
 		}
 		
 		return lista;
 	}
 	
 	public void excluir(BancoDeDadosDAO bdDao, String codigo) {
-		final String sql = "DELETE FROM agencia WHERE codAgencia = ?";
+		final String SQL = "DELETE FROM agencia WHERE codAgencia = ?";
 
 		try {
-			bdDao.obterPreparedStatement(sql);
+			bdDao.obterPreparedStatement(SQL);
 			bdDao.getStmt().setString(1, codigo);
 			bdDao.getStmt().executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
 		}
 	}
 

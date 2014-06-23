@@ -11,8 +11,6 @@ import java.sql.SQLException;
 import org.hsqldb.cmdline.SqlFile;
 import org.hsqldb.cmdline.SqlToolError;
 
-import tsi.too.bvb.gui.JanelaPopUpErro;
-
 public abstract class BancoDeDadosDAO {
 	
 	private final String LOGIN_BD = "admin",
@@ -26,23 +24,27 @@ public abstract class BancoDeDadosDAO {
 		this.URL = URL;
 	}
 
+	protected void setConn(Connection conn) {
+		this.conn = conn;
+	}
+
 	public Connection getConn() {
 		return conn;
 	}
 
+	protected void setStmt(PreparedStatement stmt) {
+		this.stmt = stmt;
+	}
+	
 	public PreparedStatement getStmt() {
 		return stmt;
-	}
-
-	public void setStmt(PreparedStatement stmt) {
-		this.stmt = stmt;
 	}
 
 	public String getURL() {
 		return URL;
 	}
 
-	protected boolean abrirConexao() {
+	protected void abrirConexao() throws SQLException {
 		/*
 		 * Não há mais necessidade de carregar o driver para acessar o banco de dados
 		 * apartir da versão Java 1.6 (JDBC 4). O driver é reconhecido automaticamente.
@@ -50,78 +52,32 @@ public abstract class BancoDeDadosDAO {
 		 * Class.forName("org.hsqldb.jdbcDriver");
 		 */
 		
-		try {
-			conn = DriverManager.getConnection(URL, LOGIN_BD, SENHA_BD);
-			return true;
-		} catch (SQLException e) {
-			conn = null;
-			new JanelaPopUpErro(null, "BVB - ERRO", " Falha na aquisição do bloqueio do banco de dados!", e);
-			return false;
-		}
+		conn = DriverManager.getConnection(URL, LOGIN_BD, SENHA_BD);
 	}
 	
-	public PreparedStatement obterPreparedStatement(String sql) {
-		try {
-			stmt = conn.prepareStatement(sql);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-		
-		return stmt;
+	public PreparedStatement obterPreparedStatement(String sql) throws SQLException {
+		return stmt = conn.prepareStatement(sql);
 	}
 	
-	public ResultSet obterResultSet() {
-		ResultSet rset = null;
-		
-		try {
-			rset = stmt.executeQuery();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-		
-		return rset;
+	public ResultSet obterResultSet() throws SQLException {
+		return stmt.executeQuery();
 	}
 	
-	public boolean fecharPreparedStatement() {
-		if(stmt == null) return false;
-		
-		try {
-			stmt.close();
-			return true;
-		} catch (SQLException e) { return false; }
+	public void fecharPreparedStatement() throws SQLException {
+		stmt.close();
 	}
 	
-	public boolean fecharConexao() {
-		if(conn == null) return false;
-		
-		try {
-			conn.close();
-			return true;
-		} catch (SQLException e) { 
-			new JanelaPopUpErro(null, "BVB - ERRO", " Falha na finalização da conexão com o banco de dados!", e);
-			return false; 
-		}
+	public void fecharConexao() throws SQLException {
+		conn.close();
 	}
 	
-	public static boolean fecharResultSet(ResultSet rSet) {
-		if(rSet == null) return false;
-		
-		try {
-			rSet.close();
-			return true;
-		} catch (SQLException e) { return false; }
+	public static void fecharResultSet(ResultSet rSet) throws SQLException {
+		rSet.close();
 	}
 	
-	public boolean fecharTudo() {
+	public void fecharTudo() throws SQLException {
 		fecharPreparedStatement();
-		if(!fecharConexao())
-			return false;
-		
-		return true;
+		fecharConexao();
 	}
 	
 	// Executa arquivos .sql
@@ -143,6 +99,7 @@ public abstract class BancoDeDadosDAO {
 			abriu = true;
 		}
 		catch(SqlToolError e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 			abriu = false;
 		}

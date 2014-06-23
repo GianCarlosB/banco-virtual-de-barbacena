@@ -1,5 +1,6 @@
 package tsi.too.bvb.gui;
 
+import java.applet.Applet;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -102,6 +103,7 @@ public class JanelaPopUpInfo extends JDialog {
 		}
 		
 		JanelaPopUpInfo.this.setLocationRelativeTo(janelaPai);
+		executarSomInfo();
 		setVisible(true);
 	}
 	
@@ -161,7 +163,12 @@ public class JanelaPopUpInfo extends JDialog {
 		}
 		
 		JanelaPopUpInfo.this.setLocationRelativeTo(janelaPai);
+		executarSomInfo();
 		setVisible(true);
+	}
+	
+	public void executarSomInfo() {
+		Applet.newAudioClip(JanelaPopUpErro.class.getResource("/tsi/too/bvb/recursos/sons/chimes.wav")).play();
 	}
 	
 } // class JanelaPopUpInfo

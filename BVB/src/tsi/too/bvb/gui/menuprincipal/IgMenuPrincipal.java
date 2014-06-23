@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -27,6 +28,7 @@ import javax.swing.border.LineBorder;
 
 import tsi.too.bvb.eventos.menuprincipal.TEActionMenuPrincipal;
 import tsi.too.bvb.eventos.menuprincipal.TEMouseMenuPrincipal;
+import tsi.too.bvb.gui.JanelaPopUpErro;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 
 public class IgMenuPrincipal extends JFrame {
@@ -818,12 +820,27 @@ public class IgMenuPrincipal extends JFrame {
 	}
 	
 	public void terminaPrograma() {
-		// Fecha a conexão com o banco de dados e finaliza a aplicação.
-		if(BancoDeDadosBVB.getInstance().fecharTudo())
-			System.out.println("Conexão com o Banco de dados finalizada: " + new SimpleDateFormat("dd/MM/yyyy  HH:mm").format(new Date()));
-		
-		IgMenuPrincipal.this.dispose();
-		System.exit(0);
+		// Fecha o PreparedStatement.
+		try {
+			BancoDeDadosBVB.getInstance().fecharPreparedStatement();
+		} catch (SQLException eStmt) {
+			// TODO Auto-generated catch block
+			new JanelaPopUpErro(null, "BVB - ERRO", eStmt);
+		} finally {
+			// Fecha a conexão com o banco de dados e finaliza a aplicação.
+			try {
+				BancoDeDadosBVB.getInstance().fecharConexao();
+				System.out.println("Conexão com o Banco de dados finalizada: " + new SimpleDateFormat("dd/MM/yyyy  HH:mm").format(new Date()));
+			} catch (SQLException eConn) {
+				// TODO Auto-generated catch block
+				new JanelaPopUpErro(null, "BVB - ERRO", eConn);
+				System.err.println("Conexão com o Banco de dados NÃO finalizada: " + new SimpleDateFormat("dd/MM/yyyy  HH:mm").format(new Date()));
+			} finally {
+				// Libera os recursos.
+				IgMenuPrincipal.this.dispose();
+				System.exit(0);
+			}
+		}
 	}
 	
 	/// ===== * Início dos Geters dos botões * ===== ///

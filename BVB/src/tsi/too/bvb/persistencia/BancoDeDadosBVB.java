@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import tsi.too.bvb.gui.JanelaPopUpErro;
+
 
 public class BancoDeDadosBVB extends BancoDeDadosDAO implements Runnable {
 	
@@ -34,22 +36,22 @@ public class BancoDeDadosBVB extends BancoDeDadosDAO implements Runnable {
 		return BANCO_DE_DADOS_BVB;
 	}
 	
-	public static int resetarDadosBD() {
+	public static boolean resetarDadosBD() {
 		try {
 			BANCO_DE_DADOS_BVB.abrirArquivoSQL(ARQ_SQL_DELETAR_TABELAS);
 			BANCO_DE_DADOS_BVB.abrirArquivoSQL(ARQ_SQL_CRIAR_TABELAS);
 			BANCO_DE_DADOS_BVB.abrirArquivoSQL(ARQ_SQL_INSERIR_ADM);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return 1;
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
+			return false;
 		} catch (IOException e) {
 			// TODO: handle exception
-			e.printStackTrace();
-			return 2;
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
+			return false;
 		}
 		
-		return 0;
+		return true;
 	}
 
 	@Override
@@ -59,12 +61,17 @@ public class BancoDeDadosBVB extends BancoDeDadosDAO implements Runnable {
 			Thread.sleep(2500);
 		} catch (InterruptedException e) {}
 		finally {
-			if(this.abrirConexao())  
+			try {
+				this.abrirConexao();
 				System.out.println("Banco de dados iniciado: " + new SimpleDateFormat("dd/MM/yyyy  HH:mm").format( new Date()) +
-						           "\nURL da conexão: " + URL);
-			else
-				System.err.println("Banco de dados NÃO iniciado: " + new SimpleDateFormat("dd/MM/yyyy  HH:mm").format( new Date()) +
 				                   "\nURL da conexão: " + URL);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				new JanelaPopUpErro(null, "BVB - ERRO", e);
+				System.err.println("Banco de dados NÃO iniciado: " + new SimpleDateFormat("dd/MM/yyyy  HH:mm").format( new Date()) +
+		                           "\nURL da conexão: " + URL);
+				BANCO_DE_DADOS_BVB.setConn(null);
+			}
 		}
 	}
 

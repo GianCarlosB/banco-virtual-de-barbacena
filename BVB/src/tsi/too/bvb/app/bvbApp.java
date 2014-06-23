@@ -19,7 +19,7 @@ public class bvbApp {
 			threadBancoDeDados.join(); // Faz o programa só iniciar após o banco de dados iniciar
 		}
 		catch (InterruptedException e) {
-			new JanelaPopUpErro(null, "BVB - ERRO", " Ocorreu uma interrupção durante a conexão com o banco de dados!", e);
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
 			System.exit(0);
 		}
 

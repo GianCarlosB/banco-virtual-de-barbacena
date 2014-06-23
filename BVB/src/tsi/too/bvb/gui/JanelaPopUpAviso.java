@@ -1,5 +1,6 @@
 package tsi.too.bvb.gui;
 
+import java.applet.Applet;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -85,7 +86,12 @@ public class JanelaPopUpAviso extends JDialog {
 		}
 		
 		JanelaPopUpAviso.this.setLocationRelativeTo(janelaPai);
+		executarSomAviso();
 		setVisible(true);
+	}
+	
+	public void executarSomAviso() {
+		Applet.newAudioClip(JanelaPopUpErro.class.getResource("/tsi/too/bvb/recursos/sons/Windows Exclamation.wav")).play();
 	}
 	
 } // class JanelaPopUpAviso

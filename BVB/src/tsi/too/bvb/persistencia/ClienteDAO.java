@@ -9,6 +9,7 @@ import tsi.too.bvb.entidades.cliente.Cliente;
 import tsi.too.bvb.entidades.cliente.Contato;
 import tsi.too.bvb.entidades.cliente.Endereco;
 import tsi.too.bvb.entidades.tiposenumerados.UF;
+import tsi.too.bvb.gui.JanelaPopUpErro;
 
 public class ClienteDAO {
 	
@@ -17,10 +18,10 @@ public class ClienteDAO {
 	}
 
 	public void criar(BancoDeDadosDAO bdDao, Cliente cliente) {
-		final String sql = "INSERT INTO cliente VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		final String SQL = "INSERT INTO cliente VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
-			bdDao.obterPreparedStatement(sql);
+			bdDao.obterPreparedStatement(SQL);
 			bdDao.getStmt().setString(1, cliente.getCpf());
 			bdDao.getStmt().setString(2, cliente.getNome());
 			bdDao.getStmt().setString(3, cliente.getEndereco().getLogradouro());
@@ -37,16 +38,16 @@ public class ClienteDAO {
 			System.out.println("Cliente inserido.");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
 		}
 	}
 	
 	public Cliente pesquisarCpf(BancoDeDadosDAO bdDao, String cpf) {
 		Cliente cliente = new Cliente();
-		final String sql = "SELECT * FROM cliente WHERE cpf = ?";
+		final String SQL = "SELECT * FROM cliente WHERE cpf = ?";
 		
 		try {
-			bdDao.obterPreparedStatement(sql);
+			bdDao.obterPreparedStatement(SQL);
 			bdDao.getStmt().setString(1, cpf);
 			ResultSet rSet = bdDao.obterResultSet();
 			
@@ -61,7 +62,7 @@ public class ClienteDAO {
 			BancoDeDadosDAO.fecharResultSet(rSet);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
 		}
 		
 		return cliente;
@@ -69,10 +70,10 @@ public class ClienteDAO {
 
 	public List<Cliente> pesquisarNome(BancoDeDadosDAO bdDao, String nome) {
 		List<Cliente> lista = new ArrayList<>();
-		final String sql = "SELECT * FROM cliente WHERE LCASE (nome) LIKE ?";
+		final String SQL = "SELECT * FROM cliente WHERE LCASE (nome) LIKE ?";
 		
 		try {
-			bdDao.obterPreparedStatement(sql);
+			bdDao.obterPreparedStatement(SQL);
 			bdDao.getStmt().setString(1, "%" + nome.toLowerCase() + "%");
 			ResultSet rSet = bdDao.obterResultSet();
 			
@@ -91,22 +92,22 @@ public class ClienteDAO {
 			BancoDeDadosDAO.fecharResultSet(rSet);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
 		}
 		
 		return lista;
 	}
 	
 	public void excluir(BancoDeDadosDAO bdDao, String cpf) {
-		final String sql = "DELETE FROM cliente WHERE cpf = ?";
+		final String SQL = "DELETE FROM cliente WHERE cpf = ?";
 		
 		try {
-			bdDao.obterPreparedStatement(sql);
+			bdDao.obterPreparedStatement(SQL);
 			bdDao.getStmt().setString(1, cpf);
 			bdDao.getStmt().executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
 		}
 	}
 	

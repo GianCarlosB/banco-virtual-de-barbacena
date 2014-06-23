@@ -7,6 +7,7 @@ import java.util.List;
 
 import tsi.too.bvb.entidades.funcionario.Funcionario;
 import tsi.too.bvb.entidades.tiposenumerados.TipoUsuario;
+import tsi.too.bvb.gui.JanelaPopUpErro;
 
 public class FuncionarioDAO {
 	
@@ -15,10 +16,10 @@ public class FuncionarioDAO {
 	}
 
 	public void criar(BancoDeDadosDAO bdDao, Funcionario funcionario) {
-		final String sql = "INSERT INTO funcionario VALUES (?, ?, ?)";
+		final String SQL = "INSERT INTO funcionario VALUES (?, ?, ?)";
 		
 		try {
-			bdDao.obterPreparedStatement(sql);
+			bdDao.obterPreparedStatement(SQL);
 			bdDao.getStmt().setString(1, funcionario.getNomeUsuario());
 			bdDao.getStmt().setString(2, funcionario.getSenha());
 			bdDao.getStmt().setString(3, Character.toString(funcionario.getTipoUsuario().getTipo()));
@@ -27,16 +28,16 @@ public class FuncionarioDAO {
 			System.out.println("Funcionário inserido.");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
 		}
 	}
 	
 	public Funcionario pesquisarLoginUnico(BancoDeDadosDAO bdDao, String login) {
 		Funcionario funcionario = new Funcionario();
-		final String sql = "SELECT * FROM funcionario WHERE LCASE (nomeUsuario) LIKE ?";
+		final String SQL = "SELECT * FROM funcionario WHERE LCASE (nomeUsuario) LIKE ?";
 		
 		try {
-			bdDao.obterPreparedStatement(sql);
+			bdDao.obterPreparedStatement(SQL);
 			bdDao.getStmt().setString(1, "%" + login.toLowerCase() + "%");
 			ResultSet rSet = bdDao.obterResultSet();
 			
@@ -49,7 +50,7 @@ public class FuncionarioDAO {
 			BancoDeDadosDAO.fecharResultSet(rSet);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
 		}
 		
 		return funcionario;
@@ -57,10 +58,10 @@ public class FuncionarioDAO {
 	
 	public List<Funcionario> pesquisarLogin(BancoDeDadosDAO bdDao, String login) {
 		List<Funcionario> lista = new ArrayList<>();
-		final String sql = "SELECT * FROM funcionario WHERE LCASE (nomeUsuario) LIKE ?";
+		final String SQL = "SELECT * FROM funcionario WHERE LCASE (nomeUsuario) LIKE ?";
 		
 		try {
-			bdDao.obterPreparedStatement(sql);
+			bdDao.obterPreparedStatement(SQL);
 			bdDao.getStmt().setString(1, "%" + login.toLowerCase() + "%");
 			ResultSet rSet = bdDao.obterResultSet();
 			
@@ -74,7 +75,7 @@ public class FuncionarioDAO {
 			BancoDeDadosDAO.fecharResultSet(rSet);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
 		}
 		
 		return lista;
@@ -82,10 +83,10 @@ public class FuncionarioDAO {
 	
 	public List<Funcionario> pesquisarTipo(BancoDeDadosDAO bdDao, char tipo) {
 		List<Funcionario> lista = new ArrayList<>();
-		final String sql = "SELECT * FROM funcionario WHERE UCASE (tipoUsuario) LIKE ?";
+		final String SQL = "SELECT * FROM funcionario WHERE UCASE (tipoUsuario) LIKE ?";
 		
 		try {
-			bdDao.obterPreparedStatement(sql);
+			bdDao.obterPreparedStatement(SQL);
 			bdDao.getStmt().setString(1, "%" + Character.toString(tipo).toUpperCase() + "%");
 			ResultSet rSet = bdDao.obterResultSet();
 			
@@ -98,22 +99,22 @@ public class FuncionarioDAO {
 			BancoDeDadosDAO.fecharResultSet(rSet);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
 		}
 		
 		return lista;
 	}
 
 	public void excluir(BancoDeDadosDAO bdDao, String login) {
-		final String sql = "DELETE FROM funcionario WHERE LCASE (nomeUsuario) LIKE ?";
+		final String SQL = "DELETE FROM funcionario WHERE LCASE (nomeUsuario) LIKE ?";
 		
 		try {
-			bdDao.obterPreparedStatement(sql);
+			bdDao.obterPreparedStatement(SQL);
 			bdDao.getStmt().setString(1, "%" + login.toLowerCase() + "%");
 			bdDao.getStmt().executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
 		}
 	}
 	

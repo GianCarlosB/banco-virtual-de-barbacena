@@ -1,5 +1,6 @@
 package tsi.too.bvb.gui;
 
+import java.applet.Applet;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -99,11 +100,16 @@ public class JanelaPopUpPergunta extends JDialog {
 		}
 		
 		JanelaPopUpPergunta.this.setLocationRelativeTo(janelaPai);
+		executarSomPergunta();
 		setVisible(true);
 	}
 	
 	public boolean isSim() {
 		return sim;
+	}
+	
+	public void executarSomPergunta() {
+		Applet.newAudioClip(JanelaPopUpErro.class.getResource("/tsi/too/bvb/recursos/sons/notify.wav")).play();
 	}
 
 } // class JanelaPopUpPergunta

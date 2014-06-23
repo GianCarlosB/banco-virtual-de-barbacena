@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import tsi.too.bvb.entidades.contabancaria.ContaBancaria;
 import tsi.too.bvb.entidades.tiposenumerados.TipoConta;
+import tsi.too.bvb.gui.JanelaPopUpErro;
 
 public class ContaBancariaDAO {
 	
@@ -13,10 +14,10 @@ public class ContaBancariaDAO {
 	}
 	
 	public void criar(BancoDeDadosDAO bdDao, ContaBancaria contaBancaria) {
-		final String sql = "INSERT INTO conta_bancaria VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		final String SQL = "INSERT INTO conta_bancaria VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
-			bdDao.obterPreparedStatement(sql);
+			bdDao.obterPreparedStatement(SQL);
 			bdDao.getStmt().setInt(1, contaBancaria.getCodAgencia());
 			bdDao.getStmt().setInt(2, contaBancaria.getNumConta());
 			bdDao.getStmt().setInt(3, contaBancaria.getTipoConta().getTipo());
@@ -31,16 +32,16 @@ public class ContaBancariaDAO {
 			System.out.println("Conta Bancária inserida.");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
 		}
 	}
 	
 	public int proximoValorSequencia(BancoDeDadosDAO bdDao) {
-		final String sql = "CALL NEXT VALUE FOR seq_conta_bancaria";
+		final String SQL = "CALL NEXT VALUE FOR seq_conta_bancaria";
 		int proximoValor = 0;
 		
 		try {
-			bdDao.obterPreparedStatement(sql);
+			bdDao.obterPreparedStatement(SQL);
 			ResultSet rSet = bdDao.obterResultSet();
 			
 			rSet.next();
@@ -49,7 +50,7 @@ public class ContaBancariaDAO {
 			System.out.println("Próxima chave conta bancária: " + proximoValor);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
 		}
 		
 		return proximoValor;
@@ -57,10 +58,10 @@ public class ContaBancariaDAO {
 	
 	public ContaBancaria pesquisarNumConta(BancoDeDadosDAO bdDao, String numero) {
 		ContaBancaria contaBancaria = new ContaBancaria();
-		final String sql = "SELECT * FROM conta_bancaria WHERE numeroConta = ?";
+		final String SQL = "SELECT * FROM conta_bancaria WHERE numeroConta = ?";
 		
 		try {
-			bdDao.obterPreparedStatement(sql);
+			bdDao.obterPreparedStatement(SQL);
 			bdDao.getStmt().setString(1, numero);
 			ResultSet rSet = bdDao.obterResultSet();
 			
@@ -79,17 +80,17 @@ public class ContaBancariaDAO {
 			BancoDeDadosDAO.fecharResultSet(rSet);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
 		}
 		
 		return contaBancaria;
 	}
 	
 	public void alterarSaldo(BancoDeDadosDAO bdDao, ContaBancaria contaBancaria) {
-		final String sql = "UPDATE conta_bancaria SET saldo = ? WHERE numeroConta = ?";
+		final String SQL = "UPDATE conta_bancaria SET saldo = ? WHERE numeroConta = ?";
 
 		try {
-			bdDao.obterPreparedStatement(sql);
+			bdDao.obterPreparedStatement(SQL);
 			bdDao.getStmt().setDouble(1, contaBancaria.getSaldo());
 			bdDao.getStmt().setInt(2, contaBancaria.getNumConta());
 			bdDao.getStmt().executeUpdate();
@@ -97,7 +98,7 @@ public class ContaBancariaDAO {
 			System.out.println("Saldo da Conta Bancária Atualizado.");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
 		}
 	}
 

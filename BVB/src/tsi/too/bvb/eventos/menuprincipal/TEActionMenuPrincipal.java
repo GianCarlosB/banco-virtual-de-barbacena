@@ -64,22 +64,15 @@ public class TEActionMenuPrincipal implements ActionListener {
 						+ "\n\n Deseja continuar assim mesmo?");
 				
 				if(janelaPopUpPergunta.isSim()) {
-					int resultado = BancoDeDadosBVB.resetarDadosBD();
-					
-					if(resultado == 0) {
+					if(BancoDeDadosBVB.resetarDadosBD()) {
 						new JanelaPopUpInfo(igMenuPrincipal, "BVB - Limpar Banco de Dados", " O banco de dados foi Limpo com sucesso!"
 								+ "\n Para Logar novamente, use o login e a senha padrão.", " Login: Admin_BVB\n Senha: 123456");
 						new JanelaPopUpAviso(igMenuPrincipal, "BVB - Limpar Banco de Dados", " Para que as mudanças sejam devidamente aplicadas,"
 								+ "\n o aplicativo será finalizado.");
-						igMenuPrincipal.dispose();System.exit(0);
-					
+						
+						igMenuPrincipal.dispose();
+						System.exit(0);
 					}
-					else if(resultado == 1)
-						new JanelaPopUpErro(igMenuPrincipal, "BVB - Limpar Banco de Dados", " Erro gerado por má configuração do"
-								+ "\n banco de dados!");
-					else if(resultado == 2)
-						new JanelaPopUpErro(igMenuPrincipal, "BVB - Limpar Banco de Dados", " Erro ao abrir um arquivo necessário para executar"
-								+ "\n a limpeza do banco de dados!");
 				}
 			}
 			
