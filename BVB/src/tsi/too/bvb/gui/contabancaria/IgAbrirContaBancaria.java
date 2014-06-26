@@ -52,6 +52,7 @@ public class IgAbrirContaBancaria extends JDialog {
 	private JTextPane txtpnSubTitulo;
 	private JProgressBar progressBar;
 	private JLabel lblCamposErrados;
+	private JSeparator separator;
 
 	/**
 	 * Create the frame.
@@ -152,21 +153,25 @@ public class IgAbrirContaBancaria extends JDialog {
 		
 		JLabel lblProgressoDaAbertura = new JLabel("Progresso da Abertura:");
 		lblProgressoDaAbertura.setDisplayedMnemonic(KeyEvent.VK_G);
-		lblProgressoDaAbertura.setBounds(20, 402, 140, 14);
+		lblProgressoDaAbertura.setBounds(20, 403, 140, 14);
 		contentPane.add(lblProgressoDaAbertura);
 		
 		progressBar = new JProgressBar();
 		progressBar.setForeground(turquoise);
 		lblProgressoDaAbertura.setLabelFor(progressBar);
 		progressBar.setStringPainted(true);
-		progressBar.setBounds(170, 402, 238, 14);
+		progressBar.setBounds(178, 403, 238, 14);
 		contentPane.add(progressBar);
 		
 		lblCamposErrados = new JLabel("* Os campos destacados de vermelho n\u00E3o foram preenchidos corretamente!");
 		lblCamposErrados.setVisible(false);
 		lblCamposErrados.setForeground(Color.RED);
-		lblCamposErrados.setBounds(10, 377, 497, 14);
+		lblCamposErrados.setBounds(10, 368, 497, 14);
 		contentPane.add(lblCamposErrados);
+		
+		separator = new JSeparator();
+		separator.setBounds(0, 394, 517, 2);
+		contentPane.add(separator);
 		
 		setLocationRelativeTo(janelaPai);
 		setVisible(true);

@@ -151,21 +151,25 @@ public class IgCadCliente extends JDialog {
 		
 		JLabel label = new JLabel("Progresso do Cadastro:");
 		label.setDisplayedMnemonic(KeyEvent.VK_R);
-		label.setBounds(20, 402, 140, 14);
+		label.setBounds(20, 403, 140, 14);
 		contentPane.add(label);
 		
 		progressBar = new JProgressBar();
+		progressBar.setBounds(178, 403, 238, 14);
+		contentPane.add(progressBar);
 		progressBar.setForeground(peterRiver);
 		label.setLabelFor(progressBar);
 		progressBar.setStringPainted(true);
-		progressBar.setBounds(170, 402, 238, 14);
-		contentPane.add(progressBar);
+		
+		JSeparator separatorPB = new JSeparator();
+		separatorPB.setBounds(0, 394, 517, 2);
+		contentPane.add(separatorPB);
 		
 		lblCamposErrados = new JLabel("* Os campos destacados de vermelho n\u00E3o foram preenchidos corretamente!");
+		lblCamposErrados.setBounds(10, 368, 497, 14);
+		contentPane.add(lblCamposErrados);
 		lblCamposErrados.setVisible(false);
 		lblCamposErrados.setForeground(Color.RED);
-		lblCamposErrados.setBounds(10, 377, 497, 14);
-		contentPane.add(lblCamposErrados);
 		
 		setLocationRelativeTo(janelaPai);
 		setVisible(true);
@@ -246,5 +250,4 @@ public class IgCadCliente extends JDialog {
 	public void setLblCamposErrados(boolean visivel) {
 		this.lblCamposErrados.setVisible(visivel);
 	}
-	
 } // class IgPrincipalCadCliente
