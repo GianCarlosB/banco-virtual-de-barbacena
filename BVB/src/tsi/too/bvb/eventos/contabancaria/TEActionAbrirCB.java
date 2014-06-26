@@ -56,20 +56,20 @@ public class TEActionAbrirCB implements ActionListener {
 					if(painelVisivel instanceof PainelAbContaDadosChave) {
 						igAbrirContaBancaria.getCardLayout().show(igAbrirContaBancaria.getCardPanel(), "dadosSecundarioPanel");
 						igAbrirContaBancaria.setTxtpnSubTitulo("Insira os dados secundários da nova conta bancária.");
-						igAbrirContaBancaria.setProgressBar(50);
+						igAbrirContaBancaria.setProgressBar(25);
 						igAbrirContaBancaria.getpAbContaDadosSec().setVisible(true);
 						igAbrirContaBancaria.getBtnAnterior().setVisible(true);
 					}
 					else if(painelVisivel instanceof PainelAbContaDadosSec) {
 						igAbrirContaBancaria.getCardLayout().show(igAbrirContaBancaria.getCardPanel(), "senhasPanel");
 						igAbrirContaBancaria.setTxtpnSubTitulo("Insera as senhas da nova conta bancária.");
-						igAbrirContaBancaria.setProgressBar(75);
+						igAbrirContaBancaria.setProgressBar(50);
 						igAbrirContaBancaria.getpAbContaSenhas().setVisible(true);
 					}
 					else if(painelVisivel instanceof PainelAbContaSenhas) {
 						igAbrirContaBancaria.getCardLayout().show(igAbrirContaBancaria.getCardPanel(), "confCadPanel");
 						igAbrirContaBancaria.setTxtpnSubTitulo("Confirme os dados da nova conta bancária.");
-						igAbrirContaBancaria.setProgressBar(100);
+						igAbrirContaBancaria.setProgressBar(75);
 						igAbrirContaBancaria.getpConfCad().setDadosEditorPane(contaBancaria.exibeDadosFormatados());
 						igAbrirContaBancaria.getpConfCad().setVisible(true);
 						igAbrirContaBancaria.getBtnLimpar().setVisible(false);
@@ -85,7 +85,7 @@ public class TEActionAbrirCB implements ActionListener {
 				if(painelVisivel instanceof PainelAbContaDadosSec) {
 					igAbrirContaBancaria.getCardLayout().show(igAbrirContaBancaria.getCardPanel(), "dadosChavePanel");
 					igAbrirContaBancaria.setTxtpnSubTitulo("Insira os dados chave da nova conta bancária.");
-					igAbrirContaBancaria.setProgressBar(25);
+					igAbrirContaBancaria.setProgressBar(0);
 					igAbrirContaBancaria.setLblCamposErrados(false);
 					igAbrirContaBancaria.getpAbContaDadosChave().setVisible(true);
 					igAbrirContaBancaria.getBtnAnterior().setVisible(false);
@@ -93,14 +93,14 @@ public class TEActionAbrirCB implements ActionListener {
 				else if(painelVisivel instanceof PainelAbContaSenhas) {
 					igAbrirContaBancaria.getCardLayout().show(igAbrirContaBancaria.getCardPanel(), "dadosSecundarioPanel");
 					igAbrirContaBancaria.setTxtpnSubTitulo("Insira os dados secundários da nova conta bancária.");
-					igAbrirContaBancaria.setProgressBar(50);
+					igAbrirContaBancaria.setProgressBar(25);
 					igAbrirContaBancaria.setLblCamposErrados(false);
 					igAbrirContaBancaria.getpAbContaDadosSec().setVisible(true);
 				}
 				else if(painelVisivel instanceof PainelConfCad) {
 					igAbrirContaBancaria.getCardLayout().show(igAbrirContaBancaria.getCardPanel(), "senhasPanel");
 					igAbrirContaBancaria.setTxtpnSubTitulo("Insera as senhas da nova conta bancária.");
-					igAbrirContaBancaria.setProgressBar(75);
+					igAbrirContaBancaria.setProgressBar(50);
 					igAbrirContaBancaria.setLblCamposErrados(false);
 					igAbrirContaBancaria.getpAbContaSenhas().setVisible(true);
 					igAbrirContaBancaria.getBtnLimpar().setVisible(true);
@@ -113,6 +113,7 @@ public class TEActionAbrirCB implements ActionListener {
 				ContaBancariaDAO contaBancariaDAO = new ContaBancariaDAO();
 				contaBancaria.setNumConta(contaBancariaDAO.proximoValorSequencia(BancoDeDadosBVB.getInstance()));
 				contaBancariaDAO.criar(BancoDeDadosBVB.getInstance(), contaBancaria);
+				igAbrirContaBancaria.setProgressBar(100);
 				
 				igAbrirContaBancaria.getpConfCad().setDadosEditorPane(contaBancaria.toString());
 				igAbrirContaBancaria.getpAbContaDadosChave().setNumContaTextField(Integer.toString(contaBancaria.getNumConta()));

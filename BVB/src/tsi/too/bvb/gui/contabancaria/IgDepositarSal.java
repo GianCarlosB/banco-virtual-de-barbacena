@@ -54,7 +54,7 @@ public class IgDepositarSal extends JDialog {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setTitle("BVB - Dep\u00F3sito de Sal\u00E1rio");
-		setBounds(100, 100, 523, 506);
+		setBounds(100, 100, 523, (int)(506 * 0.55));
 		
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -87,7 +87,7 @@ public class IgDepositarSal extends JDialog {
 		contentPane.add(lblImg);
 		
 		JPanel Btnpanel = new JPanel();
-		Btnpanel.setBounds(0, 435, 517, 43);
+		Btnpanel.setBounds(0, 207, 517, 43);
 		contentPane.add(Btnpanel);
 		Btnpanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
@@ -113,7 +113,7 @@ public class IgDepositarSal extends JDialog {
 		contentPane.add(dtrpnCampoTitulo);
 		
 		JSeparator separatorBtn = new JSeparator();
-		separatorBtn.setBounds(0, 424, 517, 2);
+		separatorBtn.setBounds(0, 196, 517, 2);
 		contentPane.add(separatorBtn);
 		
 		JLabel lblNmeroDaConta = new JLabel("N\u00FAmero da Conta:");

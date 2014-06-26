@@ -157,7 +157,6 @@ public class IgCadCliente extends JDialog {
 		progressBar = new JProgressBar();
 		progressBar.setForeground(peterRiver);
 		label.setLabelFor(progressBar);
-		progressBar.setValue(25);
 		progressBar.setStringPainted(true);
 		progressBar.setBounds(170, 402, 238, 14);
 		contentPane.add(progressBar);

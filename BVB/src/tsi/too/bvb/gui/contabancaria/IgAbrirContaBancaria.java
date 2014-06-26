@@ -158,7 +158,6 @@ public class IgAbrirContaBancaria extends JDialog {
 		progressBar = new JProgressBar();
 		progressBar.setForeground(turquoise);
 		lblProgressoDaAbertura.setLabelFor(progressBar);
-		progressBar.setValue(25);
 		progressBar.setStringPainted(true);
 		progressBar.setBounds(170, 402, 238, 14);
 		contentPane.add(progressBar);
@@ -248,5 +247,4 @@ public class IgAbrirContaBancaria extends JDialog {
 	public void setLblCamposErrados(boolean visivel) {
 		this.lblCamposErrados.setVisible(visivel);
 	}
-	
 } // class IgAbrirContaBancaria

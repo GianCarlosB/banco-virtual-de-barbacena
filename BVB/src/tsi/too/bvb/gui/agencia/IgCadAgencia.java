@@ -51,7 +51,7 @@ public class IgCadAgencia extends JDialog implements TratadorDeCampos {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setTitle("BVB - Cadastro de Ag\u00EAncia");
-		setBounds(100, 100, 523, 506);
+		setBounds(100, 100, 523, (int)(506 * 0.55));
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -62,7 +62,7 @@ public class IgCadAgencia extends JDialog implements TratadorDeCampos {
 		contentPane.add(separatorTitulo);
 		
 		JSeparator separatorBtn = new JSeparator();
-		separatorBtn.setBounds(0, 424, 517, 2);
+		separatorBtn.setBounds(0, 196, 517, 2);
 		contentPane.add(separatorBtn);
 		
 		JLabel lblImg = new JLabel("Label Img");
@@ -94,7 +94,7 @@ public class IgCadAgencia extends JDialog implements TratadorDeCampos {
 		contentPane.add(dtrpnCampoTitulo);
 		
 		JPanel Btnpanel = new JPanel();
-		Btnpanel.setBounds(0, 435, 517, 43);
+		Btnpanel.setBounds(0, 207, 517, 43);
 		contentPane.add(Btnpanel);
 		Btnpanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
@@ -134,7 +134,7 @@ public class IgCadAgencia extends JDialog implements TratadorDeCampos {
 		lblCamposErrados = new JLabel("* Os campos destacados de vermelho n\u00E3o foram preenchidos corretamente!");
 		lblCamposErrados.setVisible(false);
 		lblCamposErrados.setForeground(Color.RED);
-		lblCamposErrados.setBounds(10, 399, 497, 14);
+		lblCamposErrados.setBounds(10, 171, 497, 14);
 		contentPane.add(lblCamposErrados);
 		
 		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");

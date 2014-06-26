@@ -65,14 +65,14 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setTitle("BVB - Cadastro de Funcion\u00E1rio");
-		setBounds(100, 100, 523, 506);
+		setBounds(100, 100, 523, (int)(506 * 0.85));
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JSeparator separatorBtn = new JSeparator();
-		separatorBtn.setBounds(0, 424, 517, 2);
+		separatorBtn.setBounds(0, 348, 517, 2);
 		contentPane.add(separatorBtn);
 		
 		JSeparator separatorTitulo = new JSeparator();
@@ -108,7 +108,7 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 		contentPane.add(dtrpnCampoTitulo);
 		
 		JPanel Btnpanel = new JPanel();
-		Btnpanel.setBounds(0, 435, 517, 43);
+		Btnpanel.setBounds(0, 359, 517, 43);
 		contentPane.add(Btnpanel);
 		Btnpanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
@@ -197,7 +197,7 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 		lblCamposErrados = new JLabel("* Os campos destacados de vermelho n\u00E3o foram preenchidos corretamente!");
 		lblCamposErrados.setVisible(false);
 		lblCamposErrados.setForeground(Color.RED);
-		lblCamposErrados.setBounds(10, 399, 497, 14);
+		lblCamposErrados.setBounds(10, 323, 497, 14);
 		contentPane.add(lblCamposErrados);
 		
 		JLabel lblRepetirSenha = new JLabel("Repita a Senha:");

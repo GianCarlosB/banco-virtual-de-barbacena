@@ -53,20 +53,20 @@ public class TEActionCadastrarCliente implements ActionListener {
 					if(painelVisivel instanceof PainelCadCliente) {
 						igCadCliente.getCardLayout().show(igCadCliente.getCardPanel(), "enderecoPanel");
 						igCadCliente.setTxtpnSubTitulo("Insera o endere\u00E7o do novo cliente.");
-						igCadCliente.setProgressBar(50);
+						igCadCliente.setProgressBar(25);
 						igCadCliente.getpCadEndereco().setVisible(true);
 						igCadCliente.getBtnAnterior().setVisible(true);
 					}
 					else if(painelVisivel instanceof PainelCadEndereco) {
 						igCadCliente.getCardLayout().show(igCadCliente.getCardPanel(), "contatoPanel");
 						igCadCliente.setTxtpnSubTitulo("Insera o contato do novo cliente.");
-						igCadCliente.setProgressBar(75);
+						igCadCliente.setProgressBar(50);
 						igCadCliente.getpCadContato().setVisible(true);
 					}
 					else if(painelVisivel instanceof PainelCadContato) {
 						igCadCliente.getCardLayout().show(igCadCliente.getCardPanel(), "confClientePanel");
 						igCadCliente.setTxtpnSubTitulo("Confirme os dados do novo cliente.");
-						igCadCliente.setProgressBar(100);
+						igCadCliente.setProgressBar(75);
 						igCadCliente.getpConfCad().setDadosEditorPane(cliente.exibeDadosFormatados());
 						igCadCliente.getpConfCad().setVisible(true);
 						igCadCliente.getBtnLimpar().setVisible(false);
@@ -82,7 +82,7 @@ public class TEActionCadastrarCliente implements ActionListener {
 				if(painelVisivel instanceof PainelCadEndereco) {
 					igCadCliente.getCardLayout().show(igCadCliente.getCardPanel(), "clientePanel");
 					igCadCliente.setTxtpnSubTitulo("Insira o nome e o CPF do novo cliente.");
-					igCadCliente.setProgressBar(25);
+					igCadCliente.setProgressBar(0);
 					igCadCliente.setLblCamposErrados(false);
 					igCadCliente.getpCadCliente().setVisible(true);
 					igCadCliente.getBtnAnterior().setVisible(false);
@@ -90,14 +90,14 @@ public class TEActionCadastrarCliente implements ActionListener {
 				else if(painelVisivel instanceof PainelCadContato) {
 					igCadCliente.getCardLayout().show(igCadCliente.getCardPanel(), "enderecoPanel");
 					igCadCliente.setTxtpnSubTitulo("Insera o endere\u00E7o do novo cliente.");
-					igCadCliente.setProgressBar(50);
+					igCadCliente.setProgressBar(25);
 					igCadCliente.setLblCamposErrados(false);
 					igCadCliente.getpCadEndereco().setVisible(true);
 				}
 				else if(painelVisivel instanceof PainelConfCad) {
 					igCadCliente.getCardLayout().show(igCadCliente.getCardPanel(), "contatoPanel");
 					igCadCliente.setTxtpnSubTitulo("Insera o contato do novo cliente.");
-					igCadCliente.setProgressBar(75);
+					igCadCliente.setProgressBar(50);
 					igCadCliente.setLblCamposErrados(false);
 					igCadCliente.getpCadContato().setVisible(true);
 					igCadCliente.getBtnLimpar().setVisible(true);
@@ -109,6 +109,7 @@ public class TEActionCadastrarCliente implements ActionListener {
 			else if(e.getSource() == igCadCliente.getBtnFinalizar()) {
 				ClienteDAO clienteDAO = new ClienteDAO();
 				clienteDAO.criar(BancoDeDadosBVB.getInstance(), cliente);
+				igCadCliente.setProgressBar(100);
 				
 				new JanelaPopUpInfo(igCadCliente, "BVB - Cadastro de Cliente", " Cadastro do Cliente Realizado com Sucesso!",
 						            cliente.exibeDadosFormatados());
