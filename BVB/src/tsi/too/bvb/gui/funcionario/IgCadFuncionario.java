@@ -230,11 +230,10 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 		rdbtnAdministrador.setSelected(true);
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public void salvarCampos(Object funcionario) {
 		((Funcionario) funcionario).setNomeUsuario(loginTextField.getText());
-		((Funcionario) funcionario).setSenha(passwordField.getText().toString());
+		((Funcionario) funcionario).setSenha(new String(passwordField.getPassword()));
 		((Funcionario) funcionario).setTipoUsuario(TipoUsuario.obterTipoUsuario(obterRadioBtnSelecionado()));
 	}
 

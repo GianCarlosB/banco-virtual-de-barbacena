@@ -103,19 +103,17 @@ public class PainelAbContaSenhas extends JPanel implements TratadorDeCampos {
 		rSenhaAlfPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void salvarCampos(Object contaBancaria) {
-		((ContaBancaria) contaBancaria).setSenhaNumerica(senhaNumPasswordField.getText());
-		((ContaBancaria) contaBancaria).setSenhaAlfabetica(senhaAlfPasswordField.getText());
+		((ContaBancaria) contaBancaria).setSenhaNumerica(new String(senhaNumPasswordField.getPassword()));
+		((ContaBancaria) contaBancaria).setSenhaAlfabetica(new String(senhaAlfPasswordField.getPassword()));
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean validarCampos() {
 		boolean valido = true;
 
-		if(ValidarDados.validarSenhaNumCB(senhaNumPasswordField.getText())) {
+		if(ValidarDados.validarSenhaNumCB(new String(senhaNumPasswordField.getPassword()))) {
 			senhaNumPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
 			
 			if(!ValidarDados.validarSenhasIguais(senhaNumPasswordField.getPassword(), rSenhaNumPasswordField.getPassword())) {
@@ -130,7 +128,7 @@ public class PainelAbContaSenhas extends JPanel implements TratadorDeCampos {
 		}
 		// Fim das validações da senha numérica.
 		
-		if(ValidarDados.validarSenhaAlfCB(senhaAlfPasswordField.getText())) {
+		if(ValidarDados.validarSenhaAlfCB(new String(senhaAlfPasswordField.getPassword()))) {
 			senhaAlfPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
 
 			if(!ValidarDados.validarSenhasIguais(senhaAlfPasswordField.getPassword(), rSenhaAlfPasswordField.getPassword())) {

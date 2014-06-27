@@ -1,11 +1,13 @@
 package tsi.too.bvb.persistencia;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import tsi.too.bvb.entidades.contabancaria.ContaBancaria;
 import tsi.too.bvb.entidades.tiposenumerados.TipoConta;
 import tsi.too.bvb.gui.JanelaPopUpErro;
+import tsi.too.bvb.validacoes.Criptografia;
 
 public class ContaBancariaDAO {
 	
@@ -25,12 +27,12 @@ public class ContaBancariaDAO {
 			bdDao.getStmt().setBoolean(5, contaBancaria.isContaSalario());
 			bdDao.getStmt().setDate(6, new java.sql.Date(contaBancaria.getDataAbertura().getTime()));
 			bdDao.getStmt().setDouble(7, contaBancaria.getSaldo());
-			bdDao.getStmt().setString(8, contaBancaria.getSenhaNumerica());
-			bdDao.getStmt().setString(9, contaBancaria.getSenhaAlfabetica());
+			bdDao.getStmt().setString(8, Criptografia.converterSenhaParaMD5(contaBancaria.getSenhaNumerica()));
+			bdDao.getStmt().setString(9, Criptografia.converterSenhaParaMD5(contaBancaria.getSenhaAlfabetica()));
 			bdDao.getStmt().executeUpdate();
 			
-			System.out.println("Conta Bancária inserida.");
-		} catch (SQLException e) {
+			System.out.println("Conta Bancária inserida");
+		} catch (SQLException | NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			new JanelaPopUpErro(null, "BVB - ERRO", e);
 		}
@@ -95,7 +97,7 @@ public class ContaBancariaDAO {
 			bdDao.getStmt().setInt(2, contaBancaria.getNumConta());
 			bdDao.getStmt().executeUpdate();
 			
-			System.out.println("Saldo da Conta Bancária Atualizado.");
+			System.out.println("Saldo da Conta Bancária Atualizado");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			new JanelaPopUpErro(null, "BVB - ERRO", e);

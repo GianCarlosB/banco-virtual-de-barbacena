@@ -1,5 +1,6 @@
 package tsi.too.bvb.persistencia;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.List;
 import tsi.too.bvb.entidades.funcionario.Funcionario;
 import tsi.too.bvb.entidades.tiposenumerados.TipoUsuario;
 import tsi.too.bvb.gui.JanelaPopUpErro;
+import tsi.too.bvb.validacoes.Criptografia;
 
 public class FuncionarioDAO {
 	
@@ -21,12 +23,12 @@ public class FuncionarioDAO {
 		try {
 			bdDao.obterPreparedStatement(SQL);
 			bdDao.getStmt().setString(1, funcionario.getNomeUsuario());
-			bdDao.getStmt().setString(2, funcionario.getSenha());
+			bdDao.getStmt().setString(2, Criptografia.converterSenhaParaMD5(funcionario.getSenha()));
 			bdDao.getStmt().setString(3, Character.toString(funcionario.getTipoUsuario().getTipo()));
 			bdDao.getStmt().executeUpdate();
 			
-			System.out.println("Funcionário inserido.");
-		} catch (SQLException e) {
+			System.out.println("Funcionário inserido");
+		} catch (SQLException | NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			new JanelaPopUpErro(null, "BVB - ERRO", e);
 		}
@@ -112,6 +114,8 @@ public class FuncionarioDAO {
 			bdDao.obterPreparedStatement(SQL);
 			bdDao.getStmt().setString(1, "%" + login.toLowerCase() + "%");
 			bdDao.getStmt().executeUpdate();
+			
+			System.out.println("Funcionário deletado");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			new JanelaPopUpErro(null, "BVB - ERRO", e);

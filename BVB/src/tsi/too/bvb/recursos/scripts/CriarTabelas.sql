@@ -31,8 +31,8 @@ CREATE TABLE IF NOT EXISTS conta_bancaria (
 	contaSalario boolean DEFAULT false,
 	dataAbertura Date,
 	saldo NUMERIC(15, 2) DEFAULT 0,
-	senhaNumerica VARCHAR(4),
-	senhaAlfabetica VARCHAR(6),
+	senhaNumerica VARCHAR(32),
+	senhaAlfabetica VARCHAR(32),
 
 	CONSTRAINT fk_conta_bancaria_agencia FOREIGN KEY (codAgencia) REFERENCES agencia(codAgencia) ON DELETE CASCADE,
 	CONSTRAINT fk_conta_bancaria_cliente FOREIGN KEY (CPF) REFERENCES cliente(CPF) ON DELETE CASCADE,
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS movimentacao (
 
 CREATE TABLE IF NOT EXISTS funcionario (
 	nomeUsuario VARCHAR(20) NOT NULL ,
-	senha VARCHAR(10),
+	senha VARCHAR(32),
 	tipoUsuario CHAR,
 
 	CONSTRAINT pk_funcionario PRIMARY KEY (nomeUsuario)

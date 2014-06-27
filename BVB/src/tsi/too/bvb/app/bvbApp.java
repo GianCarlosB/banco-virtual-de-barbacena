@@ -22,7 +22,7 @@ public class bvbApp {
 			new JanelaPopUpErro(null, "BVB - ERRO", e);
 			System.exit(0);
 		}
-
+		
 		igApresentacao.finalizarThread();
 		igApresentacao.dispose();
 		new IgMenuPrincipal(); // Cria a janela que contém o menu principal

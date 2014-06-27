@@ -23,7 +23,7 @@ public class AgenciaDAO {
 			bdDao.getStmt().setString(2, agencia.getDescricao());
 			bdDao.getStmt().executeUpdate();
 			
-			System.out.println("Agência inserida.");
+			System.out.println("Agência inserida");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			new JanelaPopUpErro(null, "BVB - ERRO", e);
@@ -104,6 +104,8 @@ public class AgenciaDAO {
 			bdDao.obterPreparedStatement(SQL);
 			bdDao.getStmt().setString(1, codigo);
 			bdDao.getStmt().executeUpdate();
+			
+			System.out.println("Agência deletada");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			new JanelaPopUpErro(null, "BVB - ERRO", e);

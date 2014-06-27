@@ -35,7 +35,7 @@ public class ClienteDAO {
 			bdDao.getStmt().setString(11, cliente.getContato().getTelefoneMovel());
 			bdDao.getStmt().executeUpdate();
 			
-			System.out.println("Cliente inserido.");
+			System.out.println("Cliente inserido");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			new JanelaPopUpErro(null, "BVB - ERRO", e);
@@ -105,6 +105,8 @@ public class ClienteDAO {
 			bdDao.obterPreparedStatement(SQL);
 			bdDao.getStmt().setString(1, cpf);
 			bdDao.getStmt().executeUpdate();
+			
+			System.out.println("Cliente deletado");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			new JanelaPopUpErro(null, "BVB - ERRO", e);

@@ -5,9 +5,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 
-public class ConvertPasswordToMD5 {
+public class Criptografia {
 	 
-	public static String convertPasswordToMD5(String password) throws NoSuchAlgorithmException {
+	public static String converterSenhaParaMD5(String password) throws NoSuchAlgorithmException {
 		MessageDigest md = MessageDigest.getInstance("MD5");
 		BigInteger hash = new BigInteger(1, md.digest(password.getBytes()));
  
