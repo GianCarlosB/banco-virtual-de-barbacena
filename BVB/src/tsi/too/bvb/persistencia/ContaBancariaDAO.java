@@ -3,6 +3,8 @@ package tsi.too.bvb.persistencia;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import tsi.too.bvb.entidades.contabancaria.ContaBancaria;
 import tsi.too.bvb.entidades.tiposenumerados.TipoConta;
@@ -88,6 +90,35 @@ public class ContaBancariaDAO {
 		return contaBancaria;
 	}
 	
+	public List<ContaBancaria> pesquisarCorrentista(BancoDeDadosDAO bdDao, String cpf, TipoConta tipoConta) {
+		List<ContaBancaria> lista = new ArrayList<>();
+		final String SQL = "SELECT * FROM conta_bancaria WHERE CPF = ?  AND tipoConta = ?";
+		
+		try {
+			bdDao.obterPreparedStatement(SQL);
+			bdDao.getStmt().setString(1, cpf);
+			bdDao.getStmt().setInt(2, tipoConta.getTipo());
+			ResultSet rSet = bdDao.obterResultSet();
+			
+			if(!rSet.next()) return null;
+			
+			while(rSet.next()) {
+				ContaBancaria contaBancaria = new ContaBancaria(rSet.getInt(1), rSet.getInt(2), TipoConta.obterTipoConta(rSet.getInt(3)),
+						                                        rSet.getString(4), rSet.getDate(6), rSet.getString(8), rSet.getString(9),
+						                                        rSet.getBoolean(5), rSet.getDouble(7));
+				
+				lista.add(contaBancaria);
+			}
+			
+			BancoDeDadosDAO.fecharResultSet(rSet);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
+		}
+		
+		return lista;
+	}
+	
 	public void alterarSaldo(BancoDeDadosDAO bdDao, ContaBancaria contaBancaria) {
 		final String SQL = "UPDATE conta_bancaria SET saldo = ? WHERE numeroConta = ?";
 
@@ -98,6 +129,22 @@ public class ContaBancariaDAO {
 			bdDao.getStmt().executeUpdate();
 			
 			System.out.println("Saldo da Conta Bancária Atualizado");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
+		}
+	}
+	
+	public void alterarTipoConta(BancoDeDadosDAO bdDao, ContaBancaria contaBancaria) {
+		final String SQL = "UPDATE conta_bancaria SET tipoConta = ? WHERE numeroConta = ?";
+
+		try {
+			bdDao.obterPreparedStatement(SQL);
+			bdDao.getStmt().setInt(1, contaBancaria.getTipoConta().getTipo());
+			bdDao.getStmt().setInt(2, contaBancaria.getNumConta());
+			bdDao.getStmt().executeUpdate();
+			
+			System.out.println("Tipo da Conta Bancária Atualizado");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			new JanelaPopUpErro(null, "BVB - ERRO", e);

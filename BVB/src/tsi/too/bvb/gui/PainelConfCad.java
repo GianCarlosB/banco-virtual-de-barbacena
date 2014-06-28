@@ -55,4 +55,7 @@ public class PainelConfCad extends JPanel implements TratadorDeCampos {
 	public boolean validarCampos() {
 		return false;
 	}
+
+	@Override
+	public void inserirBordasPadrao() {}
 } // PainelConfCadCliente

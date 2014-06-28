@@ -136,12 +136,15 @@ public class PainelCadEndereco extends JPanel implements TratadorDeCampos {
 
 	@Override
 	public void limparCampos() {
+		inserirBordasPadrao();
+		
 		logradouroTextField.setText("");
 		complementoTextField.setText("");
 		numeroTextField.setText("");
 		bairroTextField.setText("");
 		cidadeTextField.setText("");
 		cepFormTextField.setText("");
+
 		ufComboBox.setSelectedIndex(0);
 	}
 
@@ -202,6 +205,15 @@ public class PainelCadEndereco extends JPanel implements TratadorDeCampos {
 		else cepFormTextField.setBorder(UIManager.getBorder("FormattedTextField.border"));
 		
 		return valido;
+	}
+
+	@Override
+	public void inserirBordasPadrao() {
+		logradouroTextField.setBorder(UIManager.getBorder("TextField.border"));
+		numeroTextField.setBorder(UIManager.getBorder("TextField.border"));
+		bairroTextField.setBorder(UIManager.getBorder("TextField.border"));
+		cidadeTextField.setBorder(UIManager.getBorder("TextField.border"));
+		cepFormTextField.setBorder(UIManager.getBorder("FormattedTextField.border"));
 	}
 	
 } // class PainelCadEndereco

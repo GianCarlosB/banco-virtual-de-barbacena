@@ -22,6 +22,7 @@ import tsi.too.bvb.gui.TratadorDeCampos;
 import tsi.too.bvb.persistencia.AgenciaDAO;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 import tsi.too.bvb.persistencia.ClienteDAO;
+import tsi.too.bvb.persistencia.ContaBancariaDAO;
 import tsi.too.bvb.validacoes.ValidarDados;
 
 public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos {
@@ -32,8 +33,8 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 	
 	private JTextField codAgenciaTextField;
 	private JTextField numContaTextField;
-	private JRadioButton rdbtnCorrente;
-	private JRadioButton rdbtnPoupanca;
+	private JRadioButton rdbtnTipoConta1;
+	private JRadioButton rdbtnTipoConta2;
 	private JPanel cpfPanel;
 	private JFormattedTextField cpfFormattedTextField;
 	private JButton btnValidarCpf;
@@ -44,7 +45,7 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 	/**
 	 * Create the panel.
 	 */
-	public PainelAbContaDadosChave() {
+	public PainelAbContaDadosChave(String tipoConta1, String tipoConta2) {
 		setLayout(null);
 		
 		JLabel lblCodAgencia = new JLabel("C\u00F3digo da Ag\u00EAncia:");
@@ -72,20 +73,20 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 		tipoContaPanel.setBounds(10, 208, 497, 58);
 		add(tipoContaPanel);
 		
-		rdbtnCorrente = new JRadioButton("Conta Corrente");
-		buttonGroup.add(rdbtnCorrente);
-		rdbtnCorrente.setToolTipText("selecione se a conta for corrente");
-		rdbtnCorrente.setSelected(true);
-		rdbtnCorrente.setMnemonic(KeyEvent.VK_R);
-		rdbtnCorrente.setBounds(10, 20, 112, 23);
-		tipoContaPanel.add(rdbtnCorrente);
+		rdbtnTipoConta1 = new JRadioButton(tipoConta1);
+		buttonGroup.add(rdbtnTipoConta1);
+		rdbtnTipoConta1.setToolTipText("selecione se for " + tipoConta1.toLowerCase());
+		rdbtnTipoConta1.setSelected(true);
+		rdbtnTipoConta1.setMnemonic(KeyEvent.VK_R);
+		rdbtnTipoConta1.setBounds(10, 20, 150, 23);
+		tipoContaPanel.add(rdbtnTipoConta1);
 		
-		rdbtnPoupanca = new JRadioButton("Conta Poupan\u00E7a");
-		buttonGroup.add(rdbtnPoupanca);
-		rdbtnPoupanca.setToolTipText("selecione se a conta for poupan\u00E7a");
-		rdbtnPoupanca.setMnemonic(KeyEvent.VK_U);
-		rdbtnPoupanca.setBounds(180, 20, 120, 23);
-		tipoContaPanel.add(rdbtnPoupanca);
+		rdbtnTipoConta2 = new JRadioButton(tipoConta2);
+		buttonGroup.add(rdbtnTipoConta2);
+		rdbtnTipoConta2.setToolTipText("selecione se a conta for " + tipoConta2.toLowerCase());
+		rdbtnTipoConta2.setMnemonic(KeyEvent.VK_U);
+		rdbtnTipoConta2.setBounds(180, 20, 150, 23);
+		tipoContaPanel.add(rdbtnTipoConta2);
 		
 		JLabel lblCpf = new JLabel("CPF:");
 		lblCpf.setDisplayedMnemonic(KeyEvent.VK_P);
@@ -100,7 +101,7 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 		
 		cpfFormattedTextField = new JFormattedTextField(new Mascara("###.###.###-##"));
 		lblCpf.setLabelFor(cpfFormattedTextField);
-		cpfFormattedTextField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio, deve conter apenas d\u00EDgitos decimais e deve estar cadastrado no sistema");
+		cpfFormattedTextField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio, deve conter apenas d\u00EDgitos decimais, estar cadastrado no sistema e pertencer a um correntista caso o tipo da conta seja fif");
 		cpfFormattedTextField.setBounds(10, 20, 254, 20);
 		cpfPanel.add(cpfFormattedTextField);
 		
@@ -132,15 +133,12 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 
 	@Override
 	public void limparCampos() {
-		cpfFormattedTextField.setText("");
-		cpfPanel.setBorder(new TitledBorder(null, "N\u00E3o Validado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
-		cpfFormattedTextField.setBorder(UIManager.getBorder("FormattedTextField.border"));
+		inserirBordasPadrao();
 		
-		codAgenciaPanel.setBorder(new TitledBorder(null, "N\u00E3o Validado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
-		codAgenciaTextField.setBorder(UIManager.getBorder("TextField.border"));
+		cpfFormattedTextField.setText("");
 		codAgenciaTextField.setText("");
 		
-		rdbtnCorrente.setSelected(true);
+		rdbtnTipoConta1.setSelected(true);
 	}
 
 	@Override
@@ -161,6 +159,14 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 		return valido;
 	}
 	
+	@Override
+	public void inserirBordasPadrao() {
+		cpfPanel.setBorder(new TitledBorder(null, "N\u00E3o Validado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
+		cpfFormattedTextField.setBorder(UIManager.getBorder("FormattedTextField.border"));
+		codAgenciaPanel.setBorder(new TitledBorder(null, "N\u00E3o Validado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
+		codAgenciaTextField.setBorder(UIManager.getBorder("TextField.border"));
+	}
+
 	public boolean validarCampoCodAgencia() {
 		String codAgencia = codAgenciaTextField.getText();
 		
@@ -189,10 +195,19 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 
 		if(ValidarDados.validarCPF(cpf)) {
 			if(new ClienteDAO().pesquisarCpf(BancoDeDadosBVB.getInstance(), cpf) != null) {
-				cpfPanel.setBorder(new TitledBorder(null, "Encontrado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
-				cpfFormattedTextField.setBorder(UIManager.getBorder("FormattedTextField.border"));
+				if((rdbtnTipoConta1.getText().equals("BVB FIF Pr\u00E1tico") || rdbtnTipoConta2.getText().equals("BVB FIF Executivo")) &&
+				   (new ContaBancariaDAO().pesquisarCorrentista(BancoDeDadosBVB.getInstance(), cpf, TipoConta.CONTA_CORRENTE)) == null) {
+					cpfPanel.setBorder(new TitledBorder(null, "Não Correntista", TitledBorder.LEADING, TitledBorder.TOP,
+							           null, new Color(255, 0, 0)));
+					cpfFormattedTextField.setBorder(new LineBorder(Color.RED));
+				}
+				else {
+					cpfPanel.setBorder(new TitledBorder(null, "Encontrado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
+					cpfFormattedTextField.setBorder(UIManager.getBorder("FormattedTextField.border"));
+					
+					return true;
+				}
 				
-				return true;
 			}
 			else {
 				cpfPanel.setBorder(new TitledBorder(null, "Não Encontrado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 0, 0)));
@@ -207,13 +222,13 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 		return false;
 	}
 	
-	private String obterRadioBtnSelecionado() {
+	public String obterRadioBtnSelecionado() {
 		String radioBtnTxt;
 		
-		if(rdbtnCorrente.isSelected())
-			radioBtnTxt = rdbtnCorrente.getText();
+		if(rdbtnTipoConta1.isSelected())
+			radioBtnTxt = rdbtnTipoConta1.getText();
 		else
-			radioBtnTxt = rdbtnPoupanca.getText();
+			radioBtnTxt = rdbtnTipoConta2.getText();
 		
 		return radioBtnTxt;
 	}
@@ -228,6 +243,14 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 
 	public void setNumContaTextField(String numero) {
 		this.numContaTextField.setText(numero);
+	}
+
+	public boolean rdbtnTipoConta1isSelected() {
+		return rdbtnTipoConta1.isSelected();
+	}
+
+	public boolean rdbtnTipoConta2isSelected() {
+		return rdbtnTipoConta2.isSelected();
 	}
 	
 } // class PainelAbContaDadosChave

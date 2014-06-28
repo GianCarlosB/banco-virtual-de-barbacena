@@ -155,8 +155,9 @@ public class IgCadAgencia extends JDialog implements TratadorDeCampos {
 	
 	@Override
 	public void limparCampos() {
+		inserirBordasPadrao();
+		
 		descricaoTextField.setText("");
-		descricaoTextField.setBorder(UIManager.getBorder("TextField.border"));
 	}
 
 	@Override
@@ -175,6 +176,11 @@ public class IgCadAgencia extends JDialog implements TratadorDeCampos {
 		else descricaoTextField.setBorder(UIManager.getBorder("TextField.border"));
 		
 		return true;
+	}
+
+	@Override
+	public void inserirBordasPadrao() {
+		descricaoTextField.setBorder(UIManager.getBorder("TextField.border"));
 	}
 
 	public JButton getBtnFinalizar() {

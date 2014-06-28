@@ -24,8 +24,8 @@ CREATE TABLE IF NOT EXISTS agencia (
 );
 
 CREATE TABLE IF NOT EXISTS conta_bancaria (
-	codAgencia NUMERIC(4, 0) NOT NULL,
 	numeroConta NUMERIC(9, 0) NOT NULL,
+	codAgencia NUMERIC(4, 0) NOT NULL,
 	tipoConta NUMERIC(1, 0) NOT NULL,
 	CPF VARCHAR(11),
 	contaSalario boolean DEFAULT false,
@@ -36,12 +36,12 @@ CREATE TABLE IF NOT EXISTS conta_bancaria (
 
 	CONSTRAINT fk_conta_bancaria_agencia FOREIGN KEY (codAgencia) REFERENCES agencia(codAgencia) ON DELETE CASCADE,
 	CONSTRAINT fk_conta_bancaria_cliente FOREIGN KEY (CPF) REFERENCES cliente(CPF) ON DELETE CASCADE,
-	CONSTRAINT pk_conta_bancaria PRIMARY KEY (codAgencia, numeroConta, tipoConta)
+	CONSTRAINT pk_conta_bancaria PRIMARY KEY (numeroConta, codAgencia, tipoConta)
 );
 
 CREATE TABLE IF NOT EXISTS movimentacao (
-	codAgencia NUMERIC(4, 0) NOT NULL,
 	numeroConta NUMERIC(9, 0)  NOT NULL,
+	codAgencia NUMERIC(4, 0) NOT NULL,
 	tipoConta NUMERIC(1, 0) NOT NULL,
 	data Date NOT NULL,
 	hora DateTime NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS movimentacao (
 	tipoOperacao NUMERIC(1, 0),
 
 	CONSTRAINT fk_movimentacao_conta_bancaria FOREIGN KEY (codAgencia, numeroConta, tipoConta) REFERENCES conta_bancaria(codAgencia, numeroConta, tipoConta) ON DELETE CASCADE,
-	CONSTRAINT pk_movimentacao PRIMARY KEY (codAgencia, numeroConta, tipoConta, data, hora)
+	CONSTRAINT pk_movimentacao PRIMARY KEY (numeroConta, codAgencia, tipoConta, data, hora)
 );
 
 CREATE TABLE IF NOT EXISTS funcionario (

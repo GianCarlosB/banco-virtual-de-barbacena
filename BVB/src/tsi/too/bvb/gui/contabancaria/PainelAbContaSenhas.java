@@ -90,17 +90,12 @@ public class PainelAbContaSenhas extends JPanel implements TratadorDeCampos {
 
 	@Override
 	public void limparCampos() {
+		inserirBordasPadrao();
+		
 		senhaNumPasswordField.setText("");
-		senhaNumPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
-		
 		rSenhaNumPasswordField.setText("");
-		rSenhaNumPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
-		
 		senhaAlfPasswordField.setText("");
-		senhaAlfPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
-		
 		rSenhaAlfPasswordField.setText("");
-		rSenhaAlfPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
 	}
 
 	@Override
@@ -144,6 +139,14 @@ public class PainelAbContaSenhas extends JPanel implements TratadorDeCampos {
 		// Fim das validações da senha alfabética.
 		
 		return valido;
+	}
+
+	@Override
+	public void inserirBordasPadrao() {
+		senhaNumPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
+		rSenhaNumPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
+		senhaAlfPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
+		rSenhaAlfPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
 	}
 	
 } // class PainelAbContaSenhas

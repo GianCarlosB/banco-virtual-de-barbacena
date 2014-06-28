@@ -217,15 +217,11 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 	
 	@Override
 	public void limparCampos() {
+		inserirBordasPadrao();
+		
 		loginTextField.setText("");
-		verificacaoPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "N\u00E3o Verificado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
-		loginTextField.setBorder(UIManager.getBorder("TextField.border"));
-		
 		passwordField.setText("");
-		passwordField.setBorder(UIManager.getBorder("PasswordField.border"));
-		
 		rPasswordField.setText("");
-		rPasswordField.setBorder(UIManager.getBorder("PasswordField.border"));
 		
 		rdbtnAdministrador.setSelected(true);
 	}
@@ -260,6 +256,14 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 		return valido;
 	}
 	
+	@Override
+	public void inserirBordasPadrao() {
+		verificacaoPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "N\u00E3o Verificado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
+		loginTextField.setBorder(UIManager.getBorder("TextField.border"));
+		passwordField.setBorder(UIManager.getBorder("PasswordField.border"));
+		rPasswordField.setBorder(UIManager.getBorder("PasswordField.border"));
+	}
+
 	private String obterRadioBtnSelecionado() {
 		String radioBtnTxt;
 		

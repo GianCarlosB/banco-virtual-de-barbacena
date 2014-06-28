@@ -18,6 +18,8 @@ import tsi.too.bvb.gui.agencia.IgConsultarAgencia;
 import tsi.too.bvb.gui.cliente.IgCadCliente;
 import tsi.too.bvb.gui.cliente.IgConsultarCliente;
 import tsi.too.bvb.gui.contabancaria.IgAbrirContaBancaria;
+import tsi.too.bvb.gui.contabancaria.IgAlterarTipoAplicacao;
+import tsi.too.bvb.gui.contabancaria.IgCriarAplicacao;
 import tsi.too.bvb.gui.contabancaria.IgDepositarSal;
 import tsi.too.bvb.gui.excluircadastro.IgExcluirCadastro;
 import tsi.too.bvb.gui.funcionario.IgCadFuncionario;
@@ -59,8 +61,8 @@ public class TEActionMenuPrincipal implements ActionListener {
 		else if(BancoDeDadosBVB.getInstance().getConn() != null) {
 			if((e.getSource() == igMenuPrincipal.getMntmLimparBD())) {
 				JanelaPopUpPergunta janelaPopUpPergunta = new JanelaPopUpPergunta(igMenuPrincipal, "BVB - Limpar Banco de Dados",
-						" Esta operação irá excluir permanentemente TODOS os"
-						+ "\n registros do banco de dados!"
+						" Esta operação irá excluir permanentemente TODOS"
+						+ "\n os registros do banco de dados!"
 						+ "\n\n Deseja continuar assim mesmo?");
 				
 				if(janelaPopUpPergunta.isSim()) {
@@ -136,14 +138,16 @@ public class TEActionMenuPrincipal implements ActionListener {
 			else if((e.getSource() == igMenuPrincipal.getDepositarSalContaBtn()) || (e.getSource() == igMenuPrincipal.getDepositarSalContaImgBtn()))
 				new IgDepositarSal(igMenuPrincipal);
 			
-			else if((e.getSource() == igMenuPrincipal.getCriarAplicContaBtn()) || (e.getSource() == igMenuPrincipal.getCriarAplicContaImgBtn())){}
+			else if((e.getSource() == igMenuPrincipal.getCriarAplicContaBtn()) || (e.getSource() == igMenuPrincipal.getCriarAplicContaImgBtn()))
+				new IgCriarAplicacao(igMenuPrincipal, new ContaBancaria());
 			
-			else if((e.getSource() == igMenuPrincipal.getAlterarAplicContaBtn()) || (e.getSource() == igMenuPrincipal.getAlterarAplicContaImgBtn())){}
+			else if((e.getSource() == igMenuPrincipal.getAlterarAplicContaBtn()) || (e.getSource() == igMenuPrincipal.getAlterarAplicContaImgBtn()))
+				new IgAlterarTipoAplicacao(igMenuPrincipal);
 			
 			// Fim dos botões da aba "conta".
 			
 			
-			else if((e.getSource() == igMenuPrincipal.getAtmBtn()) || (e.getSource() == igMenuPrincipal.getAtmImgBtn())){}
+			else if((e.getSource() == igMenuPrincipal.getCaixaEletronicoBtn()) || (e.getSource() == igMenuPrincipal.getCaixaEletronicoImgBtn())){}
 			
 			else if((e.getSource() == igMenuPrincipal.getAlterarSenhaBtn()) || (e.getSource() == igMenuPrincipal.getAlterarSenhaImgBtn())){}
 			

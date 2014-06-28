@@ -37,23 +37,23 @@ public class TEActionDepositarSal implements ActionListener {
 						if(igDepositarSal.getContaBancaria().isContaSalario()) {
 							igDepositarSal.getNumContaTextField().setEnabled(false);
 							igDepositarSal.exibeOpcoesDepositar();
-						}
+						} // fim if(igDepositarSal.getContaBancaria().isContaSalario())
 						else
 							new JanelaPopUpAviso(igDepositarSal, "BVB - Depósito de Salário", " A conta bancária de número '" +
 						                         igDepositarSal.getNumContaTextField().getText() + "' não é conta salário." +
 						                         "\n Insera o número de uma conta bancária que esteja" +
 						                         "\n habilitada a receber salários.");
-					}
-				}
+					} // fim else
+				} // fim if(ValidarDados.validarIntPositivo(igDepositarSal.getNumContaTextField().getText()))
 				else
 					new JanelaPopUpErro(igDepositarSal, "BVB - Depósito de Salário", " O nº de conta bancária '" +
 							            igDepositarSal.getNumContaTextField().getText() + "' é inválido!" +
 							             "\n O campo de busca deve receber um valor inteiro e positivo.");
-			}
+			} // fim if(!igDepositarSal.getNumContaTextField().getText().isEmpty())
 			else
 				new JanelaPopUpErro(igDepositarSal, "BVB - Depósito de Salário", " Entrada inválida!\n" +
                                     " O campo de busca não pode ser vazio.");
-		}
+		} // fim if(e.getSource() == igDepositarSal.getBtnBuscar())
 		
 		else if(e.getSource() == igDepositarSal.getBtnDepositar()) {
 			double deposito = Double.parseDouble(igDepositarSal.getDepositoTextField().getText().replace(",", ".").replace("R", "").replace("$", "")),
@@ -66,8 +66,6 @@ public class TEActionDepositarSal implements ActionListener {
 				
 				igDepositarSal.escondeOpcoesDepositar();
 				igDepositarSal.getNumContaTextField().setEnabled(true);
-				igDepositarSal.setNumContaTextField("");
-				igDepositarSal.setDepositoTextField("");
 			}
 			else
 				new JanelaPopUpErro(igDepositarSal, "BVB - Depósito de Salário", " O valor do depósito não pode ser igual a '0'!");

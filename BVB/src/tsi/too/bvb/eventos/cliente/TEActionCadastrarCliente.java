@@ -53,6 +53,7 @@ public class TEActionCadastrarCliente implements ActionListener {
 					if(painelVisivel instanceof PainelCadCliente) {
 						igCadCliente.getCardLayout().show(igCadCliente.getCardPanel(), "enderecoPanel");
 						igCadCliente.setTxtpnSubTitulo("Insera o endere\u00E7o do novo cliente.");
+						igCadCliente.getpCadEndereco().inserirBordasPadrao();
 						igCadCliente.setProgressBar(25);
 						igCadCliente.getpCadEndereco().setVisible(true);
 						igCadCliente.getBtnAnterior().setVisible(true);
@@ -60,6 +61,7 @@ public class TEActionCadastrarCliente implements ActionListener {
 					else if(painelVisivel instanceof PainelCadEndereco) {
 						igCadCliente.getCardLayout().show(igCadCliente.getCardPanel(), "contatoPanel");
 						igCadCliente.setTxtpnSubTitulo("Insera o contato do novo cliente.");
+						igCadCliente.getpCadContato().inserirBordasPadrao();
 						igCadCliente.setProgressBar(50);
 						igCadCliente.getpCadContato().setVisible(true);
 					}

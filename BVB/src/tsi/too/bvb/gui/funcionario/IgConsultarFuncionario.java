@@ -69,7 +69,7 @@ public class IgConsultarFuncionario extends JDialog {
 		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
-		setTitle("BVB - Cadastro de Funcion\u00E1rio");
+		setTitle("BVB - Consulta de Funcion\u00E1rio");
 		setBounds(100, 100, 523, 506);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

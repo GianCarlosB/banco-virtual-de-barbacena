@@ -23,26 +23,26 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import tsi.too.bvb.entidades.contabancaria.ContaBancaria;
-import tsi.too.bvb.eventos.contabancaria.TEActionAbrirCB;
+import tsi.too.bvb.eventos.contabancaria.TEActionCriarAP;
 import tsi.too.bvb.gui.PainelConfCad;
 import tsi.too.bvb.gui.TratadorDeCampos;
 
-public class IgAbrirContaBancaria extends JDialog {
+public class IgCriarAplicacao extends JDialog {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6372789872654518383L;
+	private static final long serialVersionUID = 8561764312511187261L;
 
 	private CardLayout cardLayout= new CardLayout();
 	
 	private JPanel contentPane = new JPanel();
 	private JPanel cardPanel = new JPanel();
 	private final int NUM_CARDS = 4;
-	private String radioBtnContaCorrenteTxt = "Conta Corrente",
-			       radioBtnContaPoupancaTxt = "Conta Poupan\u00E7a";
+	private String radioBtnFifPraticoTxt = "BVB FIF Pr\u00E1tico",
+			       radioBtnFifExecutivoTxt = "BVB FIF Executivo";
 	
-	private PainelAbContaDadosChave pAbContaDadosChave = new PainelAbContaDadosChave(radioBtnContaCorrenteTxt, radioBtnContaPoupancaTxt);
+	private PainelAbContaDadosChave pAbContaDadosChave = new PainelAbContaDadosChave(radioBtnFifPraticoTxt, radioBtnFifExecutivoTxt);
 	private PainelAbContaDadosSec pAbContaDadosSec = new PainelAbContaDadosSec();
 	private PainelAbContaSenhas pAbContaSenhas = new PainelAbContaSenhas();
 	private PainelConfCad pConfCad = new PainelConfCad("Dados da Conta");
@@ -59,13 +59,13 @@ public class IgAbrirContaBancaria extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public IgAbrirContaBancaria(Window janelaPai, ContaBancaria contaBancaria) {
+	public IgCriarAplicacao(Window janelaPai, ContaBancaria contaBancaria) {
 		setModal(true);
 		Color turquoise = new Color(26, 188, 156);
 		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
-		setTitle("BVB - Abertura de Conta Banc\u00E1ria");
+		setTitle("BVB - Cria\u00E7\u00E3o de Aplica\u00E7\u00E3o");
 		setBounds(100, 100, 523, 506);
 		
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -79,22 +79,22 @@ public class IgAbrirContaBancaria extends JDialog {
 		txtpnSubTitulo = new JTextPane();
 		txtpnSubTitulo.setForeground(Color.WHITE);
 		txtpnSubTitulo.setBackground(turquoise);
-		txtpnSubTitulo.setText("Insira os dados chave da nova conta banc\u00E1ria.");
+		txtpnSubTitulo.setText("Insira os dados chave da nova aplica\u00E7\u00E3o financeira.");
 		txtpnSubTitulo.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtpnSubTitulo.setBounds(20, 36, 290, 22);
+		txtpnSubTitulo.setBounds(20, 36, 330, 22);
 		contentPane.add(txtpnSubTitulo);
 		
 		JTextPane txtpnTitulo = new JTextPane();
 		txtpnTitulo.setForeground(Color.WHITE);
 		txtpnTitulo.setBackground(turquoise);
-		txtpnTitulo.setText("Abertura de Conta Banc\u00E1ria");
+		txtpnTitulo.setText("Cria\u00E7\u00E3o de Aplica\u00E7\u00E3o");
 		txtpnTitulo.setFont(new Font("Tahoma", Font.BOLD, 13));
-		txtpnTitulo.setBounds(10, 11, 270, 22);
+		txtpnTitulo.setBounds(10, 11, 200, 22);
 		contentPane.add(txtpnTitulo);
 		
 		JLabel lblImg = new JLabel("Label Img");
 		lblImg.setBorder(new LineBorder(new Color(255, 255, 255), 1, true));
-		lblImg.setIcon(new ImageIcon(IgAbrirContaBancaria.class.getResource("/tsi/too/bvb/recursos/imagens/Payment-01-48.png")));
+		lblImg.setIcon(new ImageIcon(IgCriarAplicacao.class.getResource("/tsi/too/bvb/recursos/imagens/Payment-01-48.png")));
 		lblImg.setBounds(459, 11, 48, 48);
 		contentPane.add(lblImg);
 		
@@ -104,31 +104,31 @@ public class IgAbrirContaBancaria extends JDialog {
 		Btnpanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		btnAnterior = new JButton("< Anterior");
-		btnAnterior.addActionListener(new TEActionAbrirCB(this, contaBancaria));
+		btnAnterior.addActionListener(new TEActionCriarAP(this, contaBancaria));
 		btnAnterior.setVisible(false);
 		btnAnterior.setMnemonic(KeyEvent.VK_A);
 		Btnpanel.add(btnAnterior);
 		
 		btnProximo = new JButton("Pr\u00F3ximo >");
-		btnProximo.addActionListener(new TEActionAbrirCB(this, contaBancaria));
+		btnProximo.addActionListener(new TEActionCriarAP(this, contaBancaria));
 		btnProximo.setMnemonic(KeyEvent.VK_P);
 		Btnpanel.add(btnProximo);
 		
 		btnFinalizar = new JButton("Finalizar");
-		btnFinalizar.addActionListener(new TEActionAbrirCB(this, contaBancaria));
+		btnFinalizar.addActionListener(new TEActionCriarAP(this, contaBancaria));
 		btnFinalizar.setVisible(false);
 		btnFinalizar.setMnemonic(KeyEvent.VK_F);
 		Btnpanel.add(btnFinalizar);
 		
 		btnLimpar = new JButton("Limpar");
-		btnLimpar.addActionListener(new TEActionAbrirCB(this, contaBancaria));
+		btnLimpar.addActionListener(new TEActionCriarAP(this, contaBancaria));
 		btnLimpar.setMnemonic(KeyEvent.VK_L);
 		Btnpanel.add(btnLimpar);
 		
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				IgAbrirContaBancaria.this.dispose();
+				IgCriarAplicacao.this.dispose();
 			}
 		});
 		btnCancelar.setMnemonic(KeyEvent.VK_C);
@@ -153,14 +153,14 @@ public class IgAbrirContaBancaria extends JDialog {
 		cardPanel.add(pConfCad, "confCadPanel");
 		cardLayout.show(cardPanel, "dadosChavePanel");
 		
-		JLabel lblProgressoDaAbertura = new JLabel("Progresso da Abertura:");
-		lblProgressoDaAbertura.setDisplayedMnemonic(KeyEvent.VK_G);
-		lblProgressoDaAbertura.setBounds(20, 403, 140, 14);
-		contentPane.add(lblProgressoDaAbertura);
+		JLabel lblProgressoDaCriacao = new JLabel("Progresso da Cria\u00E7\u00E3o:");
+		lblProgressoDaCriacao.setDisplayedMnemonic(KeyEvent.VK_G);
+		lblProgressoDaCriacao.setBounds(20, 403, 140, 14);
+		contentPane.add(lblProgressoDaCriacao);
 		
 		progressBar = new JProgressBar();
 		progressBar.setForeground(turquoise);
-		lblProgressoDaAbertura.setLabelFor(progressBar);
+		lblProgressoDaCriacao.setLabelFor(progressBar);
 		progressBar.setStringPainted(true);
 		progressBar.setBounds(178, 403, 238, 14);
 		contentPane.add(progressBar);
@@ -254,4 +254,4 @@ public class IgAbrirContaBancaria extends JDialog {
 	public void setLblCamposErrados(boolean visivel) {
 		this.lblCamposErrados.setVisible(visivel);
 	}
-} // class IgAbrirContaBancaria
+} // class IgCriarAplicacao

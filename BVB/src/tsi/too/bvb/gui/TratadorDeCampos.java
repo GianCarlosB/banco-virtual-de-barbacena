@@ -8,4 +8,6 @@ public interface TratadorDeCampos {
 	
 	public boolean validarCampos();
 	
+	public void inserirBordasPadrao();
+	
 } // interface PainelCliente

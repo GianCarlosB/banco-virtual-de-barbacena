@@ -80,8 +80,8 @@ public class IgMenuPrincipal extends JFrame {
 	private JButton alterarAplicContaBtn;
 	private JButton abrirContaImgBtn;
 	private JButton abrirContaBtn;
-	private JButton atmImgBtn;
-	private JButton atmBtn;
+	private JButton caixaEletronicoImgBtn;
+	private JButton caixaEletronicoBtn;
 	private JButton alterarSenhaImgBtn;
 	private JButton alterarSenhaBtn;
 	private JMenuItem mntmLogout;
@@ -654,6 +654,7 @@ public class IgMenuPrincipal extends JFrame {
 		contaPanel.add(depositarSalContaBtn);
 		
 		criarAplicContaImgBtn = new JButton("");
+		criarAplicContaImgBtn.addActionListener(new TEActionMenuPrincipal(this));
 		criarAplicContaImgBtn.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Stock-Exchange-128.png")));
 		criarAplicContaImgBtn.setBorder(new LineBorder(Color.WHITE));
 		criarAplicContaImgBtn.setBackground(turquoise);
@@ -662,6 +663,7 @@ public class IgMenuPrincipal extends JFrame {
 		contaPanel.add(criarAplicContaImgBtn);
 		
 		criarAplicContaBtn = new JButton("Criar Aplica\u00E7\u00E3o");
+		criarAplicContaBtn.addActionListener(new TEActionMenuPrincipal(this));
 		criarAplicContaBtn.setMnemonic(KeyEvent.VK_C);
 		criarAplicContaBtn.setForeground(Color.WHITE);
 		criarAplicContaBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -672,6 +674,7 @@ public class IgMenuPrincipal extends JFrame {
 		contaPanel.add(criarAplicContaBtn);
 		
 		alterarAplicContaImgBtn = new JButton("");
+		alterarAplicContaImgBtn.addActionListener(new TEActionMenuPrincipal(this));
 		alterarAplicContaImgBtn.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Money-Transfer-128.png")));
 		alterarAplicContaImgBtn.setBorder(new LineBorder(Color.WHITE));
 		alterarAplicContaImgBtn.setBackground(turquoise);
@@ -680,6 +683,7 @@ public class IgMenuPrincipal extends JFrame {
 		contaPanel.add(alterarAplicContaImgBtn);
 		
 		alterarAplicContaBtn = new JButton("Alterar Aplica\u00E7\u00E3o");
+		alterarAplicContaBtn.addActionListener(new TEActionMenuPrincipal(this));
 		alterarAplicContaBtn.setMnemonic(KeyEvent.VK_L);
 		alterarAplicContaBtn.setForeground(Color.WHITE);
 		alterarAplicContaBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -716,22 +720,22 @@ public class IgMenuPrincipal extends JFrame {
 		ajudaBtn.setBounds(380, 248, 160, 38);
 		outrosPanel.add(ajudaBtn);
 		
-		atmImgBtn = new JButton("");
-		atmImgBtn.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/ATM-128.png")));
-		atmImgBtn.setBorder(new LineBorder(Color.WHITE));
-		atmImgBtn.setBackground(orange);
-		atmImgBtn.setAlignmentX(0.5f);
-		atmImgBtn.setBounds(560, 77, 160, 160);
-		outrosPanel.add(atmImgBtn);
+		caixaEletronicoImgBtn = new JButton("");
+		caixaEletronicoImgBtn.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/ATM-128.png")));
+		caixaEletronicoImgBtn.setBorder(new LineBorder(Color.WHITE));
+		caixaEletronicoImgBtn.setBackground(orange);
+		caixaEletronicoImgBtn.setAlignmentX(0.5f);
+		caixaEletronicoImgBtn.setBounds(560, 77, 160, 160);
+		outrosPanel.add(caixaEletronicoImgBtn);
 		
-		atmBtn = new JButton("ATM");
-		atmBtn.setMnemonic(KeyEvent.VK_T);
-		atmBtn.setForeground(Color.WHITE);
-		atmBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		atmBtn.setBorder(new LineBorder(Color.WHITE));
-		atmBtn.setBackground(orange);
-		atmBtn.setBounds(560, 248, 160, 38);
-		outrosPanel.add(atmBtn);
+		caixaEletronicoBtn = new JButton("Caixa Eletr\u00F4nico");
+		caixaEletronicoBtn.setMnemonic(KeyEvent.VK_C);
+		caixaEletronicoBtn.setForeground(Color.WHITE);
+		caixaEletronicoBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		caixaEletronicoBtn.setBorder(new LineBorder(Color.WHITE));
+		caixaEletronicoBtn.setBackground(orange);
+		caixaEletronicoBtn.setBounds(560, 248, 160, 38);
+		outrosPanel.add(caixaEletronicoBtn);
 		
 		alterarSenhaImgBtn = new JButton("");
 		alterarSenhaImgBtn.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Key-Access-128.png")));
@@ -1012,12 +1016,12 @@ public class IgMenuPrincipal extends JFrame {
 		return abrirContaBtn;
 	}
 
-	public JButton getAtmImgBtn() {
-		return atmImgBtn;
+	public JButton getCaixaEletronicoImgBtn() {
+		return caixaEletronicoImgBtn;
 	}
 
-	public JButton getAtmBtn() {
-		return atmBtn;
+	public JButton getCaixaEletronicoBtn() {
+		return caixaEletronicoBtn;
 	}
 
 	public JButton getAlterarSenhaImgBtn() {

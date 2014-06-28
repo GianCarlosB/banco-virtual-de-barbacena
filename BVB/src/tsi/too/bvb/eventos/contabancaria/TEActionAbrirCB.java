@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import tsi.too.bvb.entidades.contabancaria.ContaBancaria;
+import tsi.too.bvb.entidades.tiposenumerados.TipoConta;
 import tsi.too.bvb.gui.JanelaPopUpInfo;
 import tsi.too.bvb.gui.PainelConfCad;
 import tsi.too.bvb.gui.TratadorDeCampos;
@@ -54,8 +55,16 @@ public class TEActionAbrirCB implements ActionListener {
 					painelVisivel.salvarCampos(contaBancaria);
 					
 					if(painelVisivel instanceof PainelAbContaDadosChave) {
+						igAbrirContaBancaria.getpAbContaDadosSec().setTipoConta(TipoConta.obterTipoConta(igAbrirContaBancaria
+								                                                .getpAbContaDadosChave().obterRadioBtnSelecionado()));		
+                		// Exibe ou esconde as opções da conta salário de acordo com o tipo da conta escolhido.
+						igAbrirContaBancaria.getpAbContaDadosSec().visualizacaoOpcContaSal();
+						// Atualiza o 'Tool Tip Text' do campo Saldo do painel de dados secundários.
+						igAbrirContaBancaria.getpAbContaDadosSec().atualizaToolTipTextSaldo();
+
 						igAbrirContaBancaria.getCardLayout().show(igAbrirContaBancaria.getCardPanel(), "dadosSecundarioPanel");
 						igAbrirContaBancaria.setTxtpnSubTitulo("Insira os dados secundários da nova conta bancária.");
+						igAbrirContaBancaria.getpAbContaDadosSec().inserirBordasPadrao();
 						igAbrirContaBancaria.setProgressBar(25);
 						igAbrirContaBancaria.getpAbContaDadosSec().setVisible(true);
 						igAbrirContaBancaria.getBtnAnterior().setVisible(true);
@@ -63,6 +72,7 @@ public class TEActionAbrirCB implements ActionListener {
 					else if(painelVisivel instanceof PainelAbContaDadosSec) {
 						igAbrirContaBancaria.getCardLayout().show(igAbrirContaBancaria.getCardPanel(), "senhasPanel");
 						igAbrirContaBancaria.setTxtpnSubTitulo("Insera as senhas da nova conta bancária.");
+						igAbrirContaBancaria.getpAbContaSenhas().inserirBordasPadrao();
 						igAbrirContaBancaria.setProgressBar(50);
 						igAbrirContaBancaria.getpAbContaSenhas().setVisible(true);
 					}
@@ -117,7 +127,7 @@ public class TEActionAbrirCB implements ActionListener {
 				
 				igAbrirContaBancaria.getpConfCad().setDadosEditorPane(contaBancaria.toString());
 				igAbrirContaBancaria.getpAbContaDadosChave().setNumContaTextField(Integer.toString(contaBancaria.getNumConta()));
-				new JanelaPopUpInfo(igAbrirContaBancaria, "BVB - Cadastro de Conta Bancária", " Cadastro de Conta Bancária Realizado com Sucesso!",
+				new JanelaPopUpInfo(igAbrirContaBancaria, "BVB - Abertura de Conta Bancária", " Aberuta de Conta Bancária Realizada com Sucesso!",
 				                    contaBancaria.toString());
 				igAbrirContaBancaria.dispose();
 			} // fim if(e.getSource() == igAbrirContaBancaria.getBtnFinalizar())

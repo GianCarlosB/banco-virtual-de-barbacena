@@ -7,7 +7,6 @@ import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.text.DecimalFormat;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,38 +20,38 @@ import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import tsi.too.bvb.entidades.JNumberFormatField;
 import tsi.too.bvb.entidades.contabancaria.ContaBancaria;
-import tsi.too.bvb.eventos.contabancaria.TEActionDepositarSal;
+import tsi.too.bvb.eventos.contabancaria.TEActionAlterarTipoAP;
 
-public class IgDepositarSal extends JDialog {
+public class IgAlterarTipoAplicacao extends JDialog {
 
+		
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6436257862267205473L;
-		
+	private static final long serialVersionUID = 7929634524170684414L;
+	
 	private JPanel contentPane = new JPanel();
 	private JButton btnCancelar;
-	private JButton btnDepositar;
+	private JButton btnAtualizar;
 	private JTextPane txtpnSubTitulo;
 	private JTextField numContaTextField;
-	private JNumberFormatField depositoTextField;
 	private JButton btnBuscar;
 	private JButton btnAlterar;
 	
 	private ContaBancaria contaBancaria = new ContaBancaria();
+	private JTextField saldoTextField;
 
 	/**
 	 * Create the frame.
 	 */
-	public IgDepositarSal(Window janelaPai) {
+	public IgAlterarTipoAplicacao(Window janelaPai) {
 		setModal(true);
 		Color turquoise = new Color(26, 188, 156);
 		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
-		setTitle("BVB - Dep\u00F3sito de Sal\u00E1rio");
+		setTitle("BVB - Altera\u00E7\u00E3o do Tipo da Aplica\u00E7\u00E3o");
 		setBounds(100, 100, 523, (int)(506 * 0.55));
 		
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -66,15 +65,15 @@ public class IgDepositarSal extends JDialog {
 		txtpnSubTitulo = new JTextPane();
 		txtpnSubTitulo.setForeground(Color.WHITE);
 		txtpnSubTitulo.setBackground(turquoise);
-		txtpnSubTitulo.setText("Insira o n\u00FAmero da conta sal\u00E1rio na qual ser\u00E1 realizado o dep\u00F3sito.");
+		txtpnSubTitulo.setText("Insira o n\u00FAmero da conta BVB FIF Pr\u00E1tico na qual ser\u00E1 realizada a altera\u00E7\u00E3o.");
 		txtpnSubTitulo.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtpnSubTitulo.setBounds(20, 36, 390, 22);
+		txtpnSubTitulo.setBounds(20, 36, 430, 22);
 		contentPane.add(txtpnSubTitulo);
 		
 		JTextPane txtpnTitulo = new JTextPane();
 		txtpnTitulo.setForeground(Color.WHITE);
 		txtpnTitulo.setBackground(turquoise);
-		txtpnTitulo.setText("Dep\u00F3sito de Sal\u00E1rio");
+		txtpnTitulo.setText("Altera\u00E7\u00E3o do Tipo da Aplica\u00E7\u00E3o");
 		txtpnTitulo.setFont(new Font("Tahoma", Font.BOLD, 13));
 		txtpnTitulo.setBounds(10, 11, 270, 22);
 		contentPane.add(txtpnTitulo);
@@ -90,16 +89,16 @@ public class IgDepositarSal extends JDialog {
 		contentPane.add(Btnpanel);
 		Btnpanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
-		btnDepositar = new JButton("Depositar");
-		btnDepositar.addActionListener(new TEActionDepositarSal(this));
-		btnDepositar.setEnabled(false);
-		btnDepositar.setMnemonic(KeyEvent.VK_D);
-		Btnpanel.add(btnDepositar);
+		btnAtualizar = new JButton("Atualizar");
+		btnAtualizar.addActionListener(new TEActionAlterarTipoAP(this));
+		btnAtualizar.setEnabled(false);
+		btnAtualizar.setMnemonic(KeyEvent.VK_A);
+		Btnpanel.add(btnAtualizar);
 		
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				IgDepositarSal.this.dispose();
+				IgAlterarTipoAplicacao.this.dispose();
 			}
 		});
 		btnCancelar.setMnemonic(KeyEvent.VK_C);
@@ -121,55 +120,53 @@ public class IgDepositarSal extends JDialog {
 		contentPane.add(lblNmeroDaConta);
 		
 		numContaTextField = new JTextField();
-		numContaTextField.setToolTipText("insira o n\u00FAmero da conta sal\u00E1rio na qual deseja realizar o dep\u00F3sito do sal\u00E1rio, e clique em buscar");
+		numContaTextField.setToolTipText("insira o n\u00FAmero da conta bvb fif pr\u00E1tico na qual deseja realizar a altera\u00E7\u00E3o de tipo, e clique em buscar");
 		lblNmeroDaConta.setLabelFor(numContaTextField);
 		numContaTextField.setBounds(130, 92, 269, 20);
 		contentPane.add(numContaTextField);
 		numContaTextField.setColumns(10);
 		
 		btnBuscar = new JButton("Buscar");
-		btnBuscar.addActionListener(new TEActionDepositarSal(this));
+		btnBuscar.addActionListener(new TEActionAlterarTipoAP(this));
 		btnBuscar.setMnemonic(KeyEvent.VK_B);
 		btnBuscar.setBounds(418, 91, 89, 23);
 		contentPane.add(btnBuscar);
 		
 		btnAlterar = new JButton("Alterar");
-		btnAlterar.addActionListener(new TEActionDepositarSal(this));
+		btnAlterar.addActionListener(new TEActionAlterarTipoAP(this));
 		btnAlterar.setMnemonic(KeyEvent.VK_A);
 		btnAlterar.setBounds(418, 91, 89, 23);
 		contentPane.add(btnAlterar);
 		
-		JLabel lblDeposito = new JLabel("Dep\u00F3sito:");
-		lblDeposito.setDisplayedMnemonic(KeyEvent.VK_S);
-		lblDeposito.setBounds(10, 125, 75, 14);
-		contentPane.add(lblDeposito);
+		JLabel lblSaldo = new JLabel("Saldo:");
+		lblSaldo.setDisplayedMnemonic(KeyEvent.VK_S);
+		lblSaldo.setBounds(10, 125, 75, 14);
+		contentPane.add(lblSaldo);
 		
-		depositoTextField = new JNumberFormatField(new DecimalFormat("R$0.00"));
-		depositoTextField.setEnabled(false);
-		lblDeposito.setLabelFor(depositoTextField);
-		depositoTextField.setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio e deve conter apenas d\u00EDgitos decimais");
-		((JNumberFormatField) depositoTextField).setLimit(17);
-		depositoTextField.setColumns(10);
-		depositoTextField.setBounds(130, 122, 269, 20);
-		contentPane.add(depositoTextField);
+		saldoTextField = new JTextField();
+		saldoTextField.setEditable(false);
+		saldoTextField.setToolTipText("o saldo da conta bvb fif pr\u00E1tico precisa ser igual ou superior a R$ 15.000,00 para poder ser atualizada para bvb fif executivo");
+		saldoTextField.setText("R$");
+		lblSaldo.setLabelFor(saldoTextField);
+		saldoTextField.setBounds(130, 122, 269, 20);
+		contentPane.add(saldoTextField);
+		saldoTextField.setColumns(10);
 		
 		setLocationRelativeTo(janelaPai);
 		setVisible(true);
 	}
 	
-	public void exibeOpcoesDepositar() {
-		btnDepositar.setEnabled(true);
+	public void exibeOpcoesAtualizar() {
+		btnAtualizar.setEnabled(true);
 		btnBuscar.setVisible(false);
 		btnAlterar.setVisible(true);
-		depositoTextField.setEnabled(true);
 	}
 	
-	public void escondeOpcoesDepositar() {
-		btnDepositar.setEnabled(false);
+	public void escondeOpcoesAtualizar() {
+		btnAtualizar.setEnabled(false);
 		btnBuscar.setVisible(true);
 		btnAlterar.setVisible(false);
-		depositoTextField.setEnabled(false);
-		depositoTextField.setText("");
+		saldoTextField.setText("R$");
 		numContaTextField.setText("");
 	}
 
@@ -180,13 +177,13 @@ public class IgDepositarSal extends JDialog {
 	public void setContaBancaria(ContaBancaria contaBancaria) {
 		this.contaBancaria = contaBancaria;
 	}
-	
+
 	public JButton getBtnCancelar() {
 		return btnCancelar;
 	}
 
 	public JButton getBtnDepositar() {
-		return btnDepositar;
+		return btnAtualizar;
 	}
 
 	public JButton getBtnBuscar() {
@@ -205,12 +202,12 @@ public class IgDepositarSal extends JDialog {
 		return numContaTextField;
 	}
 
-	public void setDepositoTextField(String deposito) {
-		this.depositoTextField.setText(deposito);
+	public JTextField getSaldoTextField() {
+		return saldoTextField;
 	}
 
-	public JNumberFormatField getDepositoTextField() {
-		return depositoTextField;
+	public void setSaldoTextField(String saldo) {
+		this.saldoTextField.setText("R$" + saldo);
 	}
-	
-} // class IgDepositarSal
+
+} // class IgAlterarTipoAplicacao

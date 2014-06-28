@@ -67,9 +67,9 @@ public class PainelCadContato extends JPanel implements TratadorDeCampos {
 
 	@Override
 	public void limparCampos() {
-		telFixoFormTextField.setText("");
-		telFixoFormTextField.setBorder(UIManager.getBorder("FormattedTextField.border"));
+		inserirBordasPadrao();
 		
+		telFixoFormTextField.setText("");
 		telMovelFormTextField.setText("");
 	}
 
@@ -90,6 +90,11 @@ public class PainelCadContato extends JPanel implements TratadorDeCampos {
 		else telFixoFormTextField.setBorder(UIManager.getBorder("FormattedTextField.border"));
 		
 		return valido;
+	}
+
+	@Override
+	public void inserirBordasPadrao() {
+		telFixoFormTextField.setBorder(UIManager.getBorder("FormattedTextField.border"));
 	}
 	
 } // class PainelCadContato

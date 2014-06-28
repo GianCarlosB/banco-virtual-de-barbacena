@@ -18,6 +18,7 @@ import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
 import tsi.too.bvb.entidades.JNumberFormatField;
 import tsi.too.bvb.entidades.contabancaria.ContaBancaria;
+import tsi.too.bvb.entidades.tiposenumerados.TipoConta;
 import tsi.too.bvb.gui.TratadorDeCampos;
 import tsi.too.bvb.validacoes.ValidarDados;
 
@@ -27,12 +28,15 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 	 * 
 	 */
 	private static final long serialVersionUID = -690399083609439414L;
+	
+	private TipoConta tipoConta;
 	private JCheckBox chckbxContaSalario;
 	private JLabel lblSaldo;
 	private JTextField saldoTextField;
 	private UtilDateModel model;
 	private JDatePanelImpl datePanel;
 	private JDatePickerImpl datePicker;
+	private JLabel lblContaSalario;
 
 	/**
 	 * Create the panel.
@@ -61,12 +65,14 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 		add(lblSaldo);
 		
 		chckbxContaSalario = new JCheckBox("Conta Sal\u00E1rio");
-		chckbxContaSalario.setToolTipText("marque se usar esta conta para receber seu sal\u00E1rio. O dep\u00F3sito inicial deve ser de no m\u00EDnimo R$ 300,00 se esta conta n\u00E3o for utilizada como conta sal\u00E1rio");
+		chckbxContaSalario.setEnabled(false);
+		chckbxContaSalario.setToolTipText("marque se a conta for utilizada para receber sal\u00E1rio");
 		chckbxContaSalario.setMnemonic(KeyEvent.VK_O);
 		chckbxContaSalario.setBounds(100, 109, 112, 24);
 		add(chckbxContaSalario);
 		
-		JLabel lblContaSalario = new JLabel("Deseja utilizar esta conta para receber seu sal\u00E1rio?");
+		lblContaSalario = new JLabel("Deseja utilizar esta conta para receber seu sal\u00E1rio?");
+		lblContaSalario.setEnabled(false);
 		lblContaSalario.setLabelFor(chckbxContaSalario);
 		lblContaSalario.setDisplayedMnemonic(KeyEvent.VK_E);
 		lblContaSalario.setBounds(10, 85, 378, 16);
@@ -83,11 +89,10 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 
 	@Override
 	public void limparCampos() {
-		datePicker.getModel().setValue(null);
-		datePicker.setBorder(BorderFactory.createLineBorder(getBackground (), 2));
+		inserirBordasPadrao();
 		
+		datePicker.getModel().setValue(null);
 		saldoTextField.setText("");
-		saldoTextField.setBorder(UIManager.getBorder("TextField.border"));
 		
 		chckbxContaSalario.setSelected(false);
 	}
@@ -115,18 +120,88 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 			valido = false;
 		}
 		else {
-			if(!chckbxContaSalario.isSelected() && Double.parseDouble(saldoTextField.getText()
-			   .replace(",", ".").replace("R", "").replace("$", "")) < 300) {
-				saldoTextField.setBorder(new LineBorder(Color.RED));
-				chckbxContaSalario.setForeground(Color.RED);
-				valido = false;
+			// Conta Corrente
+			if(tipoConta.getTipo() == TipoConta.CONTA_CORRENTE.getTipo()) {
+				if(!chckbxContaSalario.isSelected() && Double.parseDouble(saldoTextField.getText()
+				   .replace(",", ".").replace("R", "").replace("$", "")) < 300) {
+					saldoTextField.setBorder(new LineBorder(Color.RED));
+					valido = false;
+				}
+				else
+					saldoTextField.setBorder(UIManager.getBorder("TextField.border"));
 			}
-			else {
-				saldoTextField.setBorder(UIManager.getBorder("TextField.border"));
-				chckbxContaSalario.setForeground(new Color(51, 51, 51));
+			
+			// Conta Poupança
+			else if(tipoConta.getTipo() == TipoConta.CONTA_POUPANCA.getTipo()) {
+				if(Double.parseDouble(saldoTextField.getText().replace(",", ".").replace("R", "").replace("$", "")) < 50) {
+					saldoTextField.setBorder(new LineBorder(Color.RED));
+					valido = false;
+				}
+				else
+					saldoTextField.setBorder(UIManager.getBorder("TextField.border"));
+			}
+			
+			// Conta FIF Prático
+			else if(tipoConta.getTipo() == TipoConta.FIF_PRATICO.getTipo()) {
+				if(Double.parseDouble(saldoTextField.getText().replace(",", ".").replace("R", "").replace("$", "")) < 2000) {
+					saldoTextField.setBorder(new LineBorder(Color.RED));
+					valido = false;
+				}
+				else
+					saldoTextField.setBorder(UIManager.getBorder("TextField.border"));
+			}
+			
+			// Conta FIF Executivo
+			else if(tipoConta.getTipo() == TipoConta.FIF_EXECUTIVO.getTipo()) {
+				if(Double.parseDouble(saldoTextField.getText().replace(",", ".").replace("R", "").replace("$", "")) < 15000) {
+					saldoTextField.setBorder(new LineBorder(Color.RED));
+					valido = false;
+				}
+				else
+					saldoTextField.setBorder(UIManager.getBorder("TextField.border"));
 			}
 		}
 		
 		return valido;
 	}
+	
+	@Override
+	public void inserirBordasPadrao() {
+		datePicker.setBorder(BorderFactory.createLineBorder(getBackground (), 2));
+		saldoTextField.setBorder(UIManager.getBorder("TextField.border"));
+	}
+
+	public void visualizacaoOpcContaSal() {
+		boolean mostrar = true;
+		
+		if(tipoConta.getTipo() != TipoConta.CONTA_CORRENTE.getTipo()) {
+			mostrar = false;
+			chckbxContaSalario.setSelected(mostrar);
+		}
+		
+		lblContaSalario.setEnabled(mostrar);
+		chckbxContaSalario.setEnabled(mostrar);
+	}
+	
+	public void atualizaToolTipTextSaldo() {
+		final String SALDO_TOOLTIPTEXT = "este campo \u00E9 de preenchimento obrigat\u00F3rio, deve conter apenas d\u00EDgitos decimais";
+		
+		if(tipoConta.getTipo() == TipoConta.CONTA_CORRENTE.getTipo())
+			saldoTextField.setToolTipText(SALDO_TOOLTIPTEXT + " e valor de no mínimo R$ 300,00 se esta conta não for utilizada como conta salário");
+		else if(tipoConta.getTipo() == TipoConta.CONTA_POUPANCA.getTipo())
+			saldoTextField.setToolTipText(SALDO_TOOLTIPTEXT + " e valor de no mínimo R$ 50,00");
+		else if(tipoConta.getTipo() == TipoConta.FIF_PRATICO.getTipo())
+			saldoTextField.setToolTipText(SALDO_TOOLTIPTEXT + " e valor de no mínimo R$ 2.000,00");
+		else if(tipoConta.getTipo() == TipoConta.FIF_EXECUTIVO.getTipo())
+			saldoTextField.setToolTipText(SALDO_TOOLTIPTEXT + " e valor de no mínimo R$ 15.000,00");
+	}
+
+	public TipoConta getTipoConta() {
+		return tipoConta;
+	}
+
+	public void setTipoConta(TipoConta tipoConta) {
+		this.tipoConta = tipoConta;
+	}
+	
 } // class PainelAbContaDadosSec

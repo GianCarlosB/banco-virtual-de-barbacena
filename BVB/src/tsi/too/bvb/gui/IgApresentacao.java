@@ -58,9 +58,9 @@ public class IgApresentacao extends JFrame {
 		lblCarregando.setBorder(null);
 		
 		lblCarregando.setForeground(Color.WHITE);
-		lblCarregando.setFont(new Font("Sakkal Majalla", Font.PLAIN, 26));
+		lblCarregando.setFont(new Font("Segoe Condensed", Font.PLAIN, 24));
 		lblCarregando.setLabelFor(progressBar);
-		lblCarregando.setBounds(52, 188, 175, 30);
+		lblCarregando.setBounds(52, 188, 230, 30);
 		contentPane.add(lblCarregando);
 		
 		JEditorPane dtrpnCriadoPorDiego = new JEditorPane();

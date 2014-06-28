@@ -76,12 +76,10 @@ public class PainelCadCliente extends JPanel implements TratadorDeCampos {
 
 	@Override
 	public void limparCampos() {
-		cpfFormattedTextField.setText("");
-		cpfPanel.setBorder(new TitledBorder(null, "N\u00E3o Validado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
-		cpfFormattedTextField.setBorder(UIManager.getBorder("FormattedTextField.border"));
+		inserirBordasPadrao();
 		
+		cpfFormattedTextField.setText("");
 		nomeTextField.setText("");
-		nomeTextField.setBorder(UIManager.getBorder("TextField.border"));
 	}
 
 	@Override
@@ -105,6 +103,13 @@ public class PainelCadCliente extends JPanel implements TratadorDeCampos {
 		return valido;
 	}
 	
+	@Override
+	public void inserirBordasPadrao() {
+		cpfPanel.setBorder(new TitledBorder(null, "N\u00E3o Validado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
+		cpfFormattedTextField.setBorder(UIManager.getBorder("FormattedTextField.border"));
+		nomeTextField.setBorder(UIManager.getBorder("TextField.border"));
+	}
+
 	public boolean validarCampoCpf() {
 		String cpf = cpfFormattedTextField.getText().replace(".", "").replace("-", "");
 
