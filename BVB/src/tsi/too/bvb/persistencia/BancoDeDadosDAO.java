@@ -7,10 +7,20 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import org.hsqldb.cmdline.SqlFile;
 import org.hsqldb.cmdline.SqlToolError;
 
+/** Classe para manipular o banco de dados
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * 
+ * @see Connection
+ * @see Statement
+ *
+ */
 public abstract class BancoDeDadosDAO {
 	
 	private final String LOGIN_BD = "admin",

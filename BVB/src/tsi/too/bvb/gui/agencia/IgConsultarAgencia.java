@@ -82,6 +82,7 @@ public class IgConsultarAgencia extends JDialog {
 		contentPane.add(lblImg);
 		
 		JTextPane txtpnSubTitulo = new JTextPane();
+		txtpnSubTitulo.setEditable(false);
 		txtpnSubTitulo.setForeground(Color.WHITE);
 		txtpnSubTitulo.setBackground(pumpkin);
 		txtpnSubTitulo.setText("Pesquise uma ag\u00EAncia pelo c\u00F3digo ou pela descri\u00E7\u00E3o.");
@@ -90,6 +91,7 @@ public class IgConsultarAgencia extends JDialog {
 		contentPane.add(txtpnSubTitulo);
 		
 		JTextPane txtpnConsultaDeAgncia = new JTextPane();
+		txtpnConsultaDeAgncia.setEditable(false);
 		txtpnConsultaDeAgncia.setForeground(Color.WHITE);
 		txtpnConsultaDeAgncia.setBackground(pumpkin);
 		txtpnConsultaDeAgncia.setText("Consulta de Ag\u00EAncia");

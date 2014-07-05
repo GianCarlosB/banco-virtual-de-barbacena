@@ -72,6 +72,7 @@ public class IgCadAgencia extends JDialog implements TratadorDeCampos {
 		contentPane.add(lblImg);
 		
 		JTextPane txtpnSubTitulo = new JTextPane();
+		txtpnSubTitulo.setEditable(false);
 		txtpnSubTitulo.setForeground(Color.WHITE);
 		txtpnSubTitulo.setBackground(pumpkin);
 		txtpnSubTitulo.setText("Insera a descri\u00E7\u00E3o da nova ag\u00EAncia.");
@@ -80,6 +81,7 @@ public class IgCadAgencia extends JDialog implements TratadorDeCampos {
 		contentPane.add(txtpnSubTitulo);
 		
 		JTextPane txtpnTitulo = new JTextPane();
+		txtpnTitulo.setEditable(false);
 		txtpnTitulo.setForeground(Color.WHITE);
 		txtpnTitulo.setBackground(pumpkin);
 		txtpnTitulo.setText("Cadastro de Ag\u00EAncia");

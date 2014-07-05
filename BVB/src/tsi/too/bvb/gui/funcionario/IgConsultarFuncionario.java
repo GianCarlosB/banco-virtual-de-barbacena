@@ -81,6 +81,7 @@ public class IgConsultarFuncionario extends JDialog {
 		contentPane.add(separatorTitulo);
 		
 		JTextPane txtpnSubTitulo = new JTextPane();
+		txtpnSubTitulo.setEditable(false);
 		txtpnSubTitulo.setForeground(Color.WHITE);
 		txtpnSubTitulo.setBackground(nephritis);
 		txtpnSubTitulo.setText("Pesquise um funcion\u00E1rio pelo login ou pelo tipo.");
@@ -89,6 +90,7 @@ public class IgConsultarFuncionario extends JDialog {
 		contentPane.add(txtpnSubTitulo);
 		
 		JTextPane txtpnTitulo = new JTextPane();
+		txtpnTitulo.setEditable(false);
 		txtpnTitulo.setForeground(Color.WHITE);
 		txtpnTitulo.setBackground(nephritis);
 		txtpnTitulo.setText("Consulta de Funcion\u00E1rio");

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -23,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
@@ -138,9 +140,10 @@ public class IgMenuPrincipal extends JFrame {
 		tabbedPane.setBorder(null);
 		tabbedPane.setBackground(midnigthBlue);
 		
-		JPanel homePanel = new JPanel(); 
+		JPanel homePanel = new JPanel();  // Cria o painel Home.
 		homePanel.setBackground(midnigthBlue);
-		tabbedPane.addTab("Home",null,homePanel,"First Panel");
+		tabbedPane.addTab("Home", new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Home-24.png")),
+				          homePanel, "painel inicial");
 		homePanel.setLayout(null);
 		
 		lblCopyrightHome = new JLabel("Copyright \u00A9 2001-2014, BVB vers\u00E3o 1.04");
@@ -307,9 +310,10 @@ public class IgMenuPrincipal extends JFrame {
 		dtrpnTxtDuvida.setBackground(new Color(44, 62, 80));
 		dtrpnTxtDuvida.setBounds(10, 333, 478, 43);
 		introducaoPanel.add(dtrpnTxtDuvida);
-		JPanel clientePanel = new JPanel(); // cria o primeiro painel
+		JPanel clientePanel = new JPanel(); // Cria o painel Clientes.
 		clientePanel.setBackground(midnigthBlue);
-		tabbedPane.addTab("Clientes", null, clientePanel, "First Panel");
+		tabbedPane.addTab("Clientes", new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/User-Login-24.png")),
+				          clientePanel, "painel de controle de clientes");
 		
 		cadClienteImgBtn = new JButton("");
 		cadClienteImgBtn.setBorder(new LineBorder(Color.WHITE));
@@ -404,9 +408,10 @@ public class IgMenuPrincipal extends JFrame {
 		lblCopyrightClientes.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		lblCopyrightClientes.setBounds(725, 418, 175, 16);
 		clientePanel.add(lblCopyrightClientes);
-		JPanel funcionarioPanel = new JPanel(); // cria o primeiro painel
+		JPanel funcionarioPanel = new JPanel(); // Cria o painel Funcionários.
 		funcionarioPanel.setBackground(midnigthBlue);
-		tabbedPane.addTab("Funcionários", null, funcionarioPanel, "Second Panel");
+		tabbedPane.addTab("Funcionários", new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/User-24.png")),
+				          funcionarioPanel, "painel de controle de funcionários");
 		
 		cadFuncImgBtn = new JButton("");
 		cadFuncImgBtn.addActionListener(new TEActionMenuPrincipal(this));
@@ -502,9 +507,10 @@ public class IgMenuPrincipal extends JFrame {
 		lblCopyrightFuncionarios.setBounds(725, 418, 175, 16);
 		funcionarioPanel.add(lblCopyrightFuncionarios);
 		
-		JPanel agenciaPanel = new JPanel();
+		JPanel agenciaPanel = new JPanel(); // Cria o painel Agênicas.
 		agenciaPanel.setBackground(midnigthBlue);
-		tabbedPane.addTab("Agências", null, agenciaPanel, null);
+		tabbedPane.addTab("Agências", new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Building-24.png")),
+				          agenciaPanel, "painel de controle de agências");
 		agenciaPanel.setLayout(null);
 		
 		cadAgImgBtn = new JButton("");
@@ -608,9 +614,10 @@ public class IgMenuPrincipal extends JFrame {
 		lblCopyrightAgencias.setBounds(725, 418, 175, 16);
 		agenciaPanel.add(lblCopyrightAgencias);
 		
-		JPanel contaPanel = new JPanel();
+		JPanel contaPanel = new JPanel(); // Cria o painel Conta.
 		contaPanel.setBackground(midnigthBlue);
-		tabbedPane.addTab("Contas", null, contaPanel, null);
+		tabbedPane.addTab("Contas Bancárias", new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Payment-01-24.png")),
+				          contaPanel, "painel de controle de contas bancárias");
 		contaPanel.setLayout(null);
 		
 		abrirContaImgBtn = new JButton("");
@@ -698,12 +705,14 @@ public class IgMenuPrincipal extends JFrame {
 		lblCopyrightContas.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		lblCopyrightContas.setBounds(725, 418, 175, 16);
 		contaPanel.add(lblCopyrightContas);
-		JPanel outrosPanel = new JPanel(); // cria o primeiro painel
+		JPanel outrosPanel = new JPanel(); // Cria o painel Outros.
 		outrosPanel.setBackground(midnigthBlue);
-		tabbedPane.addTab("Outros",null,outrosPanel,"Third Panel");
+		tabbedPane.addTab("Outros", new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Gear-24.png")),
+				          outrosPanel, "painel de outras opções");
 		outrosPanel.setLayout(null);
 		
 		ajudaImgBtn = new JButton("");
+		ajudaImgBtn.addActionListener(new TEActionMenuPrincipal(this));
 		ajudaImgBtn.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Help-128.png")));
 		ajudaImgBtn.setBorder(new LineBorder(Color.WHITE));
 		ajudaImgBtn.setBackground(sunFlower);
@@ -712,6 +721,7 @@ public class IgMenuPrincipal extends JFrame {
 		outrosPanel.add(ajudaImgBtn);
 		
 		ajudaBtn = new JButton("Ajuda");
+		ajudaBtn.addActionListener(new TEActionMenuPrincipal(this));
 		ajudaBtn.setMnemonic(KeyEvent.VK_A);
 		ajudaBtn.setForeground(Color.WHITE);
 		ajudaBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -780,10 +790,12 @@ public class IgMenuPrincipal extends JFrame {
 		menuBar.add(mnArquivo);
 		
 		mntmSair = new JMenuItem("Sair");
+		mntmSair.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
 		mntmSair.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Fire-Exit-24.png")));
 		mntmSair.addActionListener(new TEActionMenuPrincipal(this));
 		
 		mntmLimparBD = new JMenuItem("Limpar Banco de Dados");
+		mntmLimparBD.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
 		mntmLimparBD.addActionListener(new TEActionMenuPrincipal(this));
 		mntmLimparBD.setMnemonic(KeyEvent.VK_L);
 		mntmLimparBD.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Data-Delete-24.png")));
@@ -793,6 +805,7 @@ public class IgMenuPrincipal extends JFrame {
 		mnArquivo.add(menuArquivoSeparator);
 		
 		mntmLogout = new JMenuItem("Logout");
+		mntmLogout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK));
 		mntmLogout.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Logout-24.png")));
 		mntmLogout.setMnemonic(KeyEvent.VK_O);
 		mnArquivo.add(mntmLogout);
@@ -804,6 +817,7 @@ public class IgMenuPrincipal extends JFrame {
 		menuBar.add(mnAparência);
 		
 		mntmTema = new JMenuItem("Tema");
+		mntmTema.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
 		mntmTema.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Black-Board-24.png")));
 		mntmTema.addActionListener(new TEActionMenuPrincipal(this));
 		mntmTema.setMnemonic(KeyEvent.VK_T);
@@ -814,6 +828,7 @@ public class IgMenuPrincipal extends JFrame {
 		menuBar.add(mnSobre);
 		
 		mntmAutor = new JMenuItem("Autor");
+		mntmAutor.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
 		mntmAutor.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Graduate-01-24.png")));
 		mntmAutor.addActionListener(new TEActionMenuPrincipal(this));
 		mntmAutor.setMnemonic(KeyEvent.VK_A);

@@ -25,6 +25,7 @@ public class bvbApp {
 		
 		igApresentacao.finalizarThread();
 		igApresentacao.dispose();
+		
 		new IgMenuPrincipal(); // Cria a janela que contém o menu principal
 	} // main()
 	

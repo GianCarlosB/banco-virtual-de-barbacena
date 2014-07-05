@@ -9,6 +9,7 @@ import tsi.too.bvb.entidades.cliente.Contato;
 import tsi.too.bvb.entidades.cliente.Endereco;
 import tsi.too.bvb.entidades.contabancaria.ContaBancaria;
 import tsi.too.bvb.entidades.funcionario.Funcionario;
+import tsi.too.bvb.gui.IgAjuda;
 import tsi.too.bvb.gui.JanelaPopUpAviso;
 import tsi.too.bvb.gui.JanelaPopUpErro;
 import tsi.too.bvb.gui.JanelaPopUpInfo;
@@ -40,7 +41,8 @@ public class TEActionMenuPrincipal implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
-		if(e.getSource() == igMenuPrincipal.getAjudaImgBtn()){}
+		if((e.getSource() == igMenuPrincipal.getAjudaBtn()) || (e.getSource() == igMenuPrincipal.getAjudaImgBtn()))
+			new IgAjuda(igMenuPrincipal);
 		
 		else if(e.getSource() == igMenuPrincipal.getMntmLogout()){}
 		
@@ -53,7 +55,9 @@ public class TEActionMenuPrincipal implements ActionListener {
 					+ "\nde Minas Gerais C\u00E2mpus Barbacena. Prof. M\u00E1rlon.");
 		
 		else if(e.getSource() == igMenuPrincipal.getMntmTema())
-			new JanelaPopUpInfo(igMenuPrincipal, "BVB - Tema", " Tema utilizado: javax.swing.plaf.metal.");
+			new JanelaPopUpInfo(igMenuPrincipal, "BVB - Tema", " Tema utilizado: javax.swing.plaf.metal."
+					+ "\n\n OBS:: A utilização de outros temas pode causar problemas"
+					+ "\n na visualização do aplicativo!");
 		
 		else if(e.getSource() == igMenuPrincipal.getMntmSair())
 			igMenuPrincipal.terminaPrograma();

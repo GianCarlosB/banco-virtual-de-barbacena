@@ -7,7 +7,12 @@ import java.util.Date;
 
 import tsi.too.bvb.gui.JanelaPopUpErro;
 
-
+/** Classe para manipular o banco de dados do sistema
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see BancoDeDadosDAO
+ */
 public class BancoDeDadosBVB extends BancoDeDadosDAO implements Runnable {
 	
 	private final static String DIRETORIO = "database\\bvbdb", // URL de accesso ao banco de dados.

@@ -80,6 +80,7 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 		contentPane.add(separatorTitulo);
 		
 		JTextPane txtpnSubTitulo = new JTextPane();
+		txtpnSubTitulo.setEditable(false);
 		txtpnSubTitulo.setForeground(Color.WHITE);
 		txtpnSubTitulo.setBackground(nephritis);
 		txtpnSubTitulo.setText("Insira o login e a senha do novo funcion\u00E1rio.");
@@ -88,6 +89,7 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 		contentPane.add(txtpnSubTitulo);
 		
 		JTextPane txtpnTitulo = new JTextPane();
+		txtpnTitulo.setEditable(false);
 		txtpnTitulo.setForeground(Color.WHITE);
 		txtpnTitulo.setBackground(nephritis);
 		txtpnTitulo.setText("Cadastro de Funcion\u00E1rio");

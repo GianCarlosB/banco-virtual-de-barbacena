@@ -73,6 +73,7 @@ public class IgCadCliente extends JDialog {
 		contentPane.add(separatorTitulo);
 		
 		txtpnSubTitulo = new JTextPane();
+		txtpnSubTitulo.setEditable(false);
 		txtpnSubTitulo.setForeground(Color.WHITE);
 		txtpnSubTitulo.setBackground(peterRiver);
 		txtpnSubTitulo.setText("Insira o nome e o CPF do novo cliente.");
@@ -81,6 +82,7 @@ public class IgCadCliente extends JDialog {
 		contentPane.add(txtpnSubTitulo);
 		
 		JTextPane txtpnTitulo = new JTextPane();
+		txtpnTitulo.setEditable(false);
 		txtpnTitulo.setForeground(Color.WHITE);
 		txtpnTitulo.setBackground(peterRiver);
 		txtpnTitulo.setText("Cadastro de Cliente");

@@ -77,6 +77,7 @@ public class IgCriarAplicacao extends JDialog {
 		contentPane.add(separatorTitulo);
 		
 		txtpnSubTitulo = new JTextPane();
+		txtpnSubTitulo.setEditable(false);
 		txtpnSubTitulo.setForeground(Color.WHITE);
 		txtpnSubTitulo.setBackground(turquoise);
 		txtpnSubTitulo.setText("Insira os dados chave da nova aplica\u00E7\u00E3o financeira.");
@@ -85,6 +86,7 @@ public class IgCriarAplicacao extends JDialog {
 		contentPane.add(txtpnSubTitulo);
 		
 		JTextPane txtpnTitulo = new JTextPane();
+		txtpnTitulo.setEditable(false);
 		txtpnTitulo.setForeground(Color.WHITE);
 		txtpnTitulo.setBackground(turquoise);
 		txtpnTitulo.setText("Cria\u00E7\u00E3o de Aplica\u00E7\u00E3o");

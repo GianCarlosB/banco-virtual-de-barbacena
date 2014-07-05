@@ -64,6 +64,7 @@ public class IgDepositarSal extends JDialog {
 		contentPane.add(separatorTitulo);
 		
 		txtpnSubTitulo = new JTextPane();
+		txtpnSubTitulo.setEditable(false);
 		txtpnSubTitulo.setForeground(Color.WHITE);
 		txtpnSubTitulo.setBackground(turquoise);
 		txtpnSubTitulo.setText("Insira o n\u00FAmero da conta sal\u00E1rio na qual ser\u00E1 realizado o dep\u00F3sito.");
@@ -72,6 +73,7 @@ public class IgDepositarSal extends JDialog {
 		contentPane.add(txtpnSubTitulo);
 		
 		JTextPane txtpnTitulo = new JTextPane();
+		txtpnTitulo.setEditable(false);
 		txtpnTitulo.setForeground(Color.WHITE);
 		txtpnTitulo.setBackground(turquoise);
 		txtpnTitulo.setText("Dep\u00F3sito de Sal\u00E1rio");

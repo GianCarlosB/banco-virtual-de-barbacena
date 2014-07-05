@@ -29,12 +29,13 @@ public class PainelConfCad extends JPanel implements TratadorDeCampos {
 		add(panelDadosCliente);
 		
 		JScrollPane dadosScrollPane = new JScrollPane();
+		dadosScrollPane.setBorder(null);
 		dadosScrollPane.setBounds(10, 20, 477, 243);
 		panelDadosCliente.add(dadosScrollPane);
 		
 		dadosEditorPane = new JEditorPane();
 		dadosEditorPane.setForeground(Color.BLACK);
-		dadosEditorPane.setBackground(Color.WHITE);
+		dadosEditorPane.setBackground(SystemColor.control);
 		dadosScrollPane.setViewportView(dadosEditorPane);
 		dadosEditorPane.setFont(new Font("Arial", Font.BOLD, 14));
 		dadosEditorPane.setToolTipText("este campo exibe os dados inseridos nas janelas anteriores");

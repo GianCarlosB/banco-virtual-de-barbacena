@@ -77,6 +77,7 @@ public class IgAbrirContaBancaria extends JDialog {
 		contentPane.add(separatorTitulo);
 		
 		txtpnSubTitulo = new JTextPane();
+		txtpnSubTitulo.setEditable(false);
 		txtpnSubTitulo.setForeground(Color.WHITE);
 		txtpnSubTitulo.setBackground(turquoise);
 		txtpnSubTitulo.setText("Insira os dados chave da nova conta banc\u00E1ria.");
@@ -85,6 +86,7 @@ public class IgAbrirContaBancaria extends JDialog {
 		contentPane.add(txtpnSubTitulo);
 		
 		JTextPane txtpnTitulo = new JTextPane();
+		txtpnTitulo.setEditable(false);
 		txtpnTitulo.setForeground(Color.WHITE);
 		txtpnTitulo.setBackground(turquoise);
 		txtpnTitulo.setText("Abertura de Conta Banc\u00E1ria");

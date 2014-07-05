@@ -82,8 +82,8 @@ public class TEActionExcluirCadastro implements ActionListener {
 					else
 						new JanelaPopUpErro(igExcluirCadastro, "BVB - Exclusão de Funcionário", " O login de funcionário '" +
 								            login + "' é inválido!" +
-								            "\n O campo de busca deve receber no mínimo 6 e no máximo 20" +
-								            "\n caracteres letras, dígitos e os símbolos underscore (_)" +
+								            "\n O campo de busca deve receber no mínimo 6 e no máximo" +
+								            "\n 20 caracteres letras, dígitos e os símbolos underscore (_)" +
 								            "\n ou ponto (.).");
 				}
 				else

@@ -89,6 +89,7 @@ public class IgConsultarCliente extends JDialog {
 		contentPanel.add(separatorTitulo);
 		
 		JTextPane txtpnSubTitulo = new JTextPane();
+		txtpnSubTitulo.setEditable(false);
 		txtpnSubTitulo.setForeground(Color.WHITE);
 		txtpnSubTitulo.setBackground(peterRiver);
 		txtpnSubTitulo.setText("Pesquise um cliente pelo nome ou pelo CPF.");
@@ -97,6 +98,7 @@ public class IgConsultarCliente extends JDialog {
 		contentPanel.add(txtpnSubTitulo);
 		
 		JTextPane txtpnTitulo = new JTextPane();
+		txtpnTitulo.setEditable(false);
 		txtpnTitulo.setForeground(Color.WHITE);
 		txtpnTitulo.setBackground(peterRiver);
 		txtpnTitulo.setText("Consulta de Cliente");

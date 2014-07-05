@@ -24,6 +24,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import tsi.too.bvb.eventos.excluircadastro.TEActionExcluirCadastro;
+import java.awt.SystemColor;
 
 public class IgExcluirCadastro extends JDialog {
 
@@ -68,6 +69,7 @@ public class IgExcluirCadastro extends JDialog {
 		getContentPane().add(separatorTitulo);
 		
 		JTextPane txtpnTitulo = new JTextPane();
+		txtpnTitulo.setEditable(false);
 		txtpnTitulo.setText(txtTitulo);
 		txtpnTitulo.setForeground(Color.WHITE);
 		txtpnTitulo.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -76,6 +78,7 @@ public class IgExcluirCadastro extends JDialog {
 		getContentPane().add(txtpnTitulo);
 		
 		JTextPane txtpnSubTitulo = new JTextPane();
+		txtpnSubTitulo.setEditable(false);
 		txtpnSubTitulo.setText(txtSubTitulo);
 		txtpnSubTitulo.setForeground(Color.WHITE);
 		txtpnSubTitulo.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -139,6 +142,7 @@ public class IgExcluirCadastro extends JDialog {
 		getContentPane().add(panelDados);
 		
 		JScrollPane dadosScrollPane = new JScrollPane();
+		dadosScrollPane.setBorder(null);
 		dadosScrollPane.setBounds(10, 20, 477, 253);
 		panelDados.add(dadosScrollPane);
 		
@@ -147,7 +151,7 @@ public class IgExcluirCadastro extends JDialog {
 		dadosEditorPane.setForeground(Color.BLACK);
 		dadosEditorPane.setFont(new Font("Arial", Font.BOLD, 14));
 		dadosEditorPane.setEditable(false);
-		dadosEditorPane.setBackground(Color.WHITE);
+		dadosEditorPane.setBackground(SystemColor.control);
 		dadosScrollPane.setViewportView(dadosEditorPane);
 		
 		btnBuscar = new JButton("Buscar");
