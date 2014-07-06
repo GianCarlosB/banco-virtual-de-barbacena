@@ -3,9 +3,10 @@ package tsi.too.bvb.eventos.agencia;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -74,8 +75,7 @@ public class TEActionRelatorioAgencia implements ActionListener {
 			calFin.set(Calendar.YEAR, Integer.parseInt(anoFin));
 			
 			Date dataIni = (Date) calIni.getTime(), // Data incial.
-					 dataFin = (Date) calFin.getTime(), // Data final.
-					 data; // Variável para armazenar a data de cada interação no loop que percorre a coleção 'set'.
+					 dataFin = (Date) calFin.getTime(); // Data final.
 			
 			if(!ValidarDados.validarPeriodo(dataIni, dataFin))
 				new JanelaPopUpErro(igRelatorioAgencia, "BVB - Relatório de Agência", " A data inicial não pode ser maior que a data final!");
@@ -95,16 +95,18 @@ public class TEActionRelatorioAgencia implements ActionListener {
 				double saldoTotal[]; // Array de números reais para armazenar o valor total em reais dos 4 tipos de contas.
 	
 				ContaBancariaDAO contaBancariaDAO = new ContaBancariaDAO();
-				Set<Date> set = contaBancariaDAO.pesquisarDatasContasAgencia(BancoDeDadosBVB.getInstance(), codAgencia, dataIni, dataFin);
+				Set<Date> setDatas = contaBancariaDAO.pesquisarDatasContasAgencia(BancoDeDadosBVB.getInstance(), codAgencia, dataIni, dataFin);
 				
-				if(set == null)
+				if(setDatas == null)
 					new JanelaPopUpAviso(igRelatorioAgencia, "BVB - Relatório de Agência", " Nenhuma conta bancária foi encontrada na agência de" +
 							             "\n código '" + codAgencia + "', no período de " + mesIni + " de " + anoIni +
 							             " a " + mesFin + " de " + anoFin + ".");
 				else {
-					// Loop para percorrer a coleção 'set' e procurar as contas bancárias.
-					for(Iterator<Date> i = set.iterator(); i.hasNext();) {
-						data = i.next();
+					List<Date> listDatas = new ArrayList<Date>(setDatas); // Converte a coleção 'Set' para 'Array List'.
+					Collections.sort(listDatas); // Ordena a lista de datas.
+					
+					// Loop para percorrer a coleção 'listDatas' e procurar as contas bancárias.
+					for(Date data : listDatas) {
 						dataFormatada = new SimpleDateFormat("MM/yyyy").format(data.getTime());
 								
 						List<ContaBancaria> contasBancarias = contaBancariaDAO.pesquisarContasAgencia(BancoDeDadosBVB.getInstance(),
