@@ -7,38 +7,39 @@ import tsi.too.bvb.entidades.tiposenumerados.TipoOperacao;
 
 public class Movimentacao {
 	
-	private int codAgencia, numConta;
+	private int numConta;
+	private int codAgencia;
 	private TipoConta tipoConta;
 	private TipoOperacao tipoOperacao;
 	private Date data;
-	private String hora;
+	private Date hora;
 	private double valor;
 	
 	public Movimentacao() {
 		super();
 	}
 
-	public Movimentacao(int codAgencia, int numConta, TipoConta tipoConta,
+	public Movimentacao(int numConta, int codAgencia, TipoConta tipoConta,
 			TipoOperacao tipoOperacao) {
 		this();
-		this.codAgencia = codAgencia;
 		this.numConta = numConta;
+		this.codAgencia = codAgencia;
 		this.tipoConta = tipoConta;
 		this.tipoOperacao = tipoOperacao;
 	}
 
-	public Movimentacao(Date data, String hora, double valor) {
+	public Movimentacao(Date data, Date hora, double valor) {
 		this();
 		this.data = data;
 		this.hora = hora;
 		this.valor = valor;
 	}
 
-	public Movimentacao(int codAgencia, int numConta, TipoConta tipoConta,
-			TipoOperacao tipoOperacao, Date data, String hora, double valor) {
+	public Movimentacao(int numConta, int codAgencia, TipoConta tipoConta,
+			TipoOperacao tipoOperacao, Date data, Date hora, double valor) {
 		this();
-		this.codAgencia = codAgencia;
 		this.numConta = numConta;
+		this.codAgencia = codAgencia;
 		this.tipoConta = tipoConta;
 		this.tipoOperacao = tipoOperacao;
 		this.data = data;
@@ -86,11 +87,11 @@ public class Movimentacao {
 		this.data = data;
 	}
 
-	public String getHora() {
+	public Date getHora() {
 		return hora;
 	}
 
-	public void setHora(String hora) {
+	public void setHora(Date hora) {
 		this.hora = hora;
 	}
 

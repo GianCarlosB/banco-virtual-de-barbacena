@@ -58,7 +58,7 @@ public enum UF {
 		return NUM_ESTADOS;
 	}
 	
-	public static String[] arrayUF() {
+	public static String[] obterArrayUF() {
 		String arrayUF[] = new String[NUM_ESTADOS];
 		int i = 0;
 		

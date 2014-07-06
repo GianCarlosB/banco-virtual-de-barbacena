@@ -32,7 +32,7 @@ public class TEActionConsultarFuncionario implements ActionListener {
 		}
 		else if(e.getSource() == igConsultarFuncionario.getBtnBuscar()) {
 			List<Funcionario> funcionarios = new FuncionarioDAO().pesquisarTipo(BancoDeDadosBVB.getInstance(), TipoUsuario.obterTipoUsuario
-					                                                     (igConsultarFuncionario.getTipoUsuarioComboBox()).getTipo());
+					                                                     (igConsultarFuncionario.getTipoUsuarioComboBox()).getCaractere());
 			if(!funcionarios.isEmpty())
 				igConsultarFuncionario.addLinhasTabela(funcionarios);
 			else

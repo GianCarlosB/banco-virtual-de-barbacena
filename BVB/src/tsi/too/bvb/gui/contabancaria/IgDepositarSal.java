@@ -136,6 +136,7 @@ public class IgDepositarSal extends JDialog {
 		contentPane.add(btnBuscar);
 		
 		btnAlterar = new JButton("Alterar");
+		btnAlterar.setVisible(false);
 		btnAlterar.addActionListener(new TEActionDepositarSal(this));
 		btnAlterar.setMnemonic(KeyEvent.VK_A);
 		btnAlterar.setBounds(418, 91, 89, 23);

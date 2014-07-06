@@ -2,7 +2,8 @@ package tsi.too.bvb.entidades.cliente;
 
 public class Contato {
 	
-	private String telefoneFixo, telefoneMovel;
+	private String telefoneFixo;
+	private String telefoneMovel;
 	
 	public Contato() {}
 

@@ -76,7 +76,7 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 		contentPane.add(separatorBtn);
 		
 		JSeparator separatorTitulo = new JSeparator();
-		separatorTitulo.setBounds(0, 69, 517, 4);
+		separatorTitulo.setBounds(0, 69, 517, 2);
 		contentPane.add(separatorTitulo);
 		
 		JTextPane txtpnSubTitulo = new JTextPane();

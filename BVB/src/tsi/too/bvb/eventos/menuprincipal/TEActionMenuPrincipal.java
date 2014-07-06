@@ -16,8 +16,10 @@ import tsi.too.bvb.gui.JanelaPopUpInfo;
 import tsi.too.bvb.gui.JanelaPopUpPergunta;
 import tsi.too.bvb.gui.agencia.IgCadAgencia;
 import tsi.too.bvb.gui.agencia.IgConsultarAgencia;
+import tsi.too.bvb.gui.agencia.IgRelatorioAgencia;
 import tsi.too.bvb.gui.cliente.IgCadCliente;
 import tsi.too.bvb.gui.cliente.IgConsultarCliente;
+import tsi.too.bvb.gui.cliente.IgRelatorioCliente;
 import tsi.too.bvb.gui.contabancaria.IgAbrirContaBancaria;
 import tsi.too.bvb.gui.contabancaria.IgAlterarTipoAplicacao;
 import tsi.too.bvb.gui.contabancaria.IgCriarAplicacao;
@@ -95,9 +97,10 @@ public class TEActionMenuPrincipal implements ActionListener {
 			
 			else if((e.getSource() == igMenuPrincipal.getExClienteBtn()) || (e.getSource() == igMenuPrincipal.getExClienteImgBtn()))
 				new IgExcluirCadastro(igMenuPrincipal, "BVB - Exclusão de Cliente", "Exclusão de Cliente",
-						              "Insira o CPF do cliente que desja excluir.", 1);
+						              "Insira o CPF do cliente que deseja excluir.", 1);
 			
-			else if((e.getSource() == igMenuPrincipal.getRelClienteBtn()) || (e.getSource() == igMenuPrincipal.getRelClienteImgBtn())){}
+			else if((e.getSource() == igMenuPrincipal.getRelClienteBtn()) || (e.getSource() == igMenuPrincipal.getRelClienteImgBtn()))
+				new IgRelatorioCliente(igMenuPrincipal);
 		
 			// Fim dos botões da aba "cliente".
 			
@@ -112,7 +115,7 @@ public class TEActionMenuPrincipal implements ActionListener {
 			
 			else if((e.getSource() == igMenuPrincipal.getExFuncBtn()) || (e.getSource() == igMenuPrincipal.getExFuncImgBtn()))
 				new IgExcluirCadastro(igMenuPrincipal, "BVB - Exclusão de Funcionário", "Exclusão de Funcionário",
-			                          "Insira o Login do funcionário que desja excluir.", 2);
+			                          "Insira o Login do funcionário que deseja excluir.", 2);
 			
 			else if((e.getSource() == igMenuPrincipal.getRelFuncBtn()) || (e.getSource() == igMenuPrincipal.getRelFuncImgBtn())){}
 	
@@ -129,9 +132,10 @@ public class TEActionMenuPrincipal implements ActionListener {
 			
 			else if((e.getSource() == igMenuPrincipal.getExAgBtn()) || (e.getSource() == igMenuPrincipal.getExAgImgBtn()))
 				new IgExcluirCadastro(igMenuPrincipal, "BVB - Exclusão de Agência", "Exclusão de Agência",
-                                      "Insira o código da agência que desja excluir.", 3);
+                                      "Insira o código da agência que deseja excluir.", 3);
 			
-			else if((e.getSource() == igMenuPrincipal.getRelAgBtn()) || (e.getSource() == igMenuPrincipal.getRelAgImgBtn())){}
+			else if((e.getSource() == igMenuPrincipal.getRelAgBtn()) || (e.getSource() == igMenuPrincipal.getRelAgImgBtn()))
+				new IgRelatorioAgencia(igMenuPrincipal);
 			
 			// Fim dos botões da aba "agência".
 			

@@ -4,8 +4,11 @@ import java.util.Date;
 
 public class Conexao {
 	
-	private String nomeUsuario, horaInicial, horaFinal;
-	private Date dataInicial, dataFinal;
+	private String nomeUsuario;
+	private Date horaInicial;
+	private Date horaFinal;
+	private Date dataInicial;
+	private Date dataFinal;
 	
 	public Conexao() {
 		super();
@@ -16,19 +19,15 @@ public class Conexao {
 		this.nomeUsuario = nomeUsuario;
 	}
 
-	public Conexao(String horaInicial, String horaFinal) {
+	public Conexao(Date dataInicial, Date dataFinal, Date horaInicial, Date horaFinal) {
 		this();
 		this.horaInicial = horaInicial;
 		this.horaFinal = horaFinal;
-	}
-	
-	public Conexao(Date dataInicial, Date dataFinal) {
-		this();
 		this.dataInicial = dataInicial;
 		this.dataFinal = dataFinal;
 	}
 
-	public Conexao(String nomeUsuario, String horaInicial, String horaFinal,
+	public Conexao(String nomeUsuario, Date horaInicial, Date horaFinal,
 			Date dataInicial, Date dataFinal) {
 		this();
 		this.nomeUsuario = nomeUsuario;
@@ -54,11 +53,11 @@ public class Conexao {
 		this.dataInicial = dataInicial;
 	}
 
-	public String getHoraInicial() {
+	public Date getHoraInicial() {
 		return horaInicial;
 	}
 
-	public void setHoraInicial(String horaInicial) {
+	public void setHoraInicial(Date horaInicial) {
 		this.horaInicial = horaInicial;
 	}
 
@@ -70,11 +69,11 @@ public class Conexao {
 		this.dataFinal = dataFinal;
 	}
 
-	public String getHoraFinal() {
+	public Date getHoraFinal() {
 		return horaFinal;
 	}
 
-	public void setHoraFinal(String horaFinal) {
+	public void setHoraFinal(Date horaFinal) {
 		this.horaFinal = horaFinal;
 	}
 

@@ -7,21 +7,21 @@ public enum TipoOperacao {
 	TRANSFERENCIA(3, "Transferência"),
 	RESGATE(4, "Resgate");
 	
-	private int tipo;
+	private int numero;
 	private String descricao;
 	private final static int NUM_TIPOS = 4;
 
-	private TipoOperacao(int tipo, String descricao) {
-		this.tipo = tipo;
+	private TipoOperacao(int numero, String descricao) {
+		this.numero = numero;
 		this.descricao = descricao;
 	}
 
-	public int getTipo() {
-		return tipo;
+	public int getNumero() {
+		return numero;
 	}
 
-	public void setTipo(int tipo) {
-		this.tipo = tipo;
+	public void setNumero(int numero) {
+		this.numero = numero;
 	}
 
 	public String getDescricao() {
@@ -48,27 +48,27 @@ public enum TipoOperacao {
 		return arrayTipos;
 	}
 	
-	public static TipoOperacao obterTipoOperacao(String tipo) {
-		if(tipo.equalsIgnoreCase(SAQUE.getDescricao()))
+	public static TipoOperacao obterTipoOperacao(String numero) {
+		if(numero.equalsIgnoreCase(SAQUE.getDescricao()))
 			return SAQUE;
-		else if(tipo.equalsIgnoreCase(DEPOSITO.getDescricao()))
+		else if(numero.equalsIgnoreCase(DEPOSITO.getDescricao()))
 			return DEPOSITO;
-		else if(tipo.equalsIgnoreCase(TRANSFERENCIA.getDescricao()))
+		else if(numero.equalsIgnoreCase(TRANSFERENCIA.getDescricao()))
 			return TRANSFERENCIA;
-		else if(tipo.equalsIgnoreCase(RESGATE.getDescricao()))
+		else if(numero.equalsIgnoreCase(RESGATE.getDescricao()))
 			return RESGATE;
 		
 		return null;
 	}
 	
-	public static TipoOperacao obterTipoOperacao(int tipo) {
-		if(tipo == SAQUE.getTipo())
+	public static TipoOperacao obterTipoOperacao(int numero) {
+		if(numero == SAQUE.getNumero())
 			return SAQUE;
-		else if(tipo == DEPOSITO.getTipo())
+		else if(numero == DEPOSITO.getNumero())
 			return DEPOSITO;
-		else if(tipo == TRANSFERENCIA.getTipo())
+		else if(numero == TRANSFERENCIA.getNumero())
 			return TRANSFERENCIA;
-		else if(tipo == RESGATE.getTipo())
+		else if(numero == RESGATE.getNumero())
 			return RESGATE;
 		
 		return null;

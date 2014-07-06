@@ -19,22 +19,22 @@ public enum TipoUsuario {
 			+ "4. alterar o tipo de conta bancária de um cliente;\n"
 			+ "5. ativar e desativar o módulo Caixa Eletrônico.");
 	
-	private char tipo;
+	private char caractere;
 	private String perfil, descricao;
 	private final static int NUM_TIPOS = 3;
 
-	private TipoUsuario(char tipo, String perfil, String descricao) {
-		this.tipo = tipo;
+	private TipoUsuario(char caractere, String perfil, String descricao) {
+		this.caractere = caractere;
 		this.perfil = perfil;
 		this.descricao = descricao;
 	}
 
-	public char getTipo() {
-		return tipo;
+	public char getCaractere() {
+		return caractere;
 	}
 
-	public void setTipo(char tipo) {
-		this.tipo = tipo;
+	public void setCaractere(char caractere) {
+		this.caractere = caractere;
 	}
 
 	public String getPerfil() {
@@ -68,23 +68,23 @@ public enum TipoUsuario {
 		return arrayTipos;
 	}
 	
-	public static TipoUsuario obterTipoUsuario(String tipo) {
-		if(tipo.equalsIgnoreCase(ADMINISTRADOR.getPerfil()))
+	public static TipoUsuario obterTipoUsuario(String caractere) {
+		if(caractere.equalsIgnoreCase(ADMINISTRADOR.getPerfil()))
 			return ADMINISTRADOR;
-		else if(tipo.equalsIgnoreCase(CAIXA.getPerfil()))
+		else if(caractere.equalsIgnoreCase(CAIXA.getPerfil()))
 			return CAIXA;
-		else if(tipo.equalsIgnoreCase(GERENTE.getPerfil()))
+		else if(caractere.equalsIgnoreCase(GERENTE.getPerfil()))
 			return GERENTE;
 		
 		return null;
 	}
 	
-	public static TipoUsuario obterTipoUsuario(char tipo) {
-		if(tipo == ADMINISTRADOR.getTipo())
+	public static TipoUsuario obterTipoUsuario(char caractere) {
+		if(caractere == ADMINISTRADOR.getCaractere())
 			return ADMINISTRADOR;
-		else if(tipo == CAIXA.getTipo())
+		else if(caractere == CAIXA.getCaractere())
 			return CAIXA;
-		else if(tipo == GERENTE.getTipo())
+		else if(caractere == GERENTE.getCaractere())
 			return GERENTE;
 		
 		return null;

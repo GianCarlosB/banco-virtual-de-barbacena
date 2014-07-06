@@ -4,7 +4,12 @@ import tsi.too.bvb.entidades.tiposenumerados.UF;
 
 public class Endereco {
 	
-	private String logradouro, numero, complemento, bairro, cidade, cep;
+	private String logradouro;
+	private String numero;
+	private String complemento;
+	private String bairro;
+	private String cidade;
+	private String cep;
 	private UF uf;
 	
 	public Endereco() {}

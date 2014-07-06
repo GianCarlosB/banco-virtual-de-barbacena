@@ -23,10 +23,14 @@ import org.hsqldb.cmdline.SqlToolError;
  */
 public abstract class BancoDeDadosDAO {
 	
-	private final String LOGIN_BD = "admin",
-						 SENHA_BD = "123",
-						 URL;
+	private final String LOGIN_BD = "admin";
+	
+	private final String SENHA_BD = "123";
+	
+	private final String URL;
+	
 	private Connection conn;
+	
 	private PreparedStatement stmt;
 	
 	public BancoDeDadosDAO(String URL) {

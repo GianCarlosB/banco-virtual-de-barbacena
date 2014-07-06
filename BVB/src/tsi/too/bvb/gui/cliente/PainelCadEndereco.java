@@ -109,10 +109,10 @@ public class PainelCadEndereco extends JPanel implements TratadorDeCampos {
 		lblCidade.setBounds(10, 50, 46, 14);
 		RegionalPanel.add(lblCidade);
 		
-		ufComboBox = new JComboBox<Object>(UF.arrayUF());
+		ufComboBox = new JComboBox<Object>(UF.obterArrayUF());
 		ufComboBox.setToolTipText("selecione o UF de sua cidade");
 		lblUf.setLabelFor(ufComboBox);
-		ufComboBox.setBounds(100, 77, 50, 20);
+		ufComboBox.setBounds(100, 77, 45, 20);
 		RegionalPanel.add(ufComboBox);
 		
 		cidadeTextField = new JTextField();

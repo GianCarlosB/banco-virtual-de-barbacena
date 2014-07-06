@@ -72,7 +72,7 @@ public class IgConsultarAgencia extends JDialog {
 		contentPane.setLayout(null);
 		
 		JSeparator separatorTitulo = new JSeparator();
-		separatorTitulo.setBounds(0, 69, 517, 4);
+		separatorTitulo.setBounds(0, 69, 517, 2);
 		contentPane.add(separatorTitulo);
 		
 		JLabel lblImg = new JLabel("Label Img");

@@ -8,7 +8,8 @@ import tsi.too.bvb.entidades.tiposenumerados.TipoConta;
 
 public class ContaBancaria {
 	
-	private int codAgencia, numConta;
+	private int numConta;
+	private int codAgencia;
 	private TipoConta tipoConta;
 	private Date dataAbertura;
 	private String cpf, senhaNumerica, senhaAlfabetica;
@@ -25,10 +26,10 @@ public class ContaBancaria {
 		this.senhaAlfabetica = senhaAlfabetica;
 	}
 
-	public ContaBancaria(int codAgencia, int numConta, TipoConta tipoConta) {
+	public ContaBancaria(int numConta, int codAgencia, TipoConta tipoConta) {
 		this();
-		this.codAgencia = codAgencia;
 		this.numConta = numConta;
+		this.codAgencia = codAgencia;
 		this.tipoConta = tipoConta;
 	}
 
@@ -43,12 +44,12 @@ public class ContaBancaria {
 		this.saldo = saldo;
 	}
 
-	public ContaBancaria(int codAgencia, int numConta, TipoConta tipoConta,
+	public ContaBancaria(int numConta, int codAgencia, TipoConta tipoConta,
 			String cpf, Date dataAbertura, String senhaNumerica,
 			String senhaAlfabetica, boolean contaSalario, double saldo) {
 		this();
-		this.codAgencia = codAgencia;
 		this.numConta = numConta;
+		this.codAgencia = codAgencia;
 		this.tipoConta = tipoConta;
 		this.cpf = cpf;
 		this.dataAbertura = dataAbertura;

@@ -329,6 +329,7 @@ public class IgMenuPrincipal extends JFrame {
 		altClienteImgBtn.setBackground(peterRiver);
 		
 		relClienteImgBtn = new JButton("");
+		relClienteImgBtn.addActionListener(new TEActionMenuPrincipal(this));
 		relClienteImgBtn.setBounds(740, 77, 160, 160);
 		relClienteImgBtn.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/File-Format-PDF-128.png")));
 		relClienteImgBtn.setBorder(new LineBorder(Color.WHITE));
@@ -360,6 +361,7 @@ public class IgMenuPrincipal extends JFrame {
 		altClienteBtn.setBackground(peterRiver);
 		
 		relClienteBtn = new JButton("Relatorio");
+		relClienteBtn.addActionListener(new TEActionMenuPrincipal(this));
 		relClienteBtn.setMnemonic(KeyEvent.VK_R);
 		relClienteBtn.setBounds(740, 248, 160, 38);
 		relClienteBtn.setForeground(Color.WHITE);
@@ -531,6 +533,7 @@ public class IgMenuPrincipal extends JFrame {
 		agenciaPanel.add(altAgImgBtn);
 		
 		relAgImgBtn = new JButton("");
+		relAgImgBtn.addActionListener(new TEActionMenuPrincipal(this));
 		relAgImgBtn.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Document-128.png")));
 		relAgImgBtn.setAlignmentX(0.5f);
 		relAgImgBtn.setBorder(new LineBorder(Color.WHITE));
@@ -570,6 +573,7 @@ public class IgMenuPrincipal extends JFrame {
 		agenciaPanel.add(altAgBtn);
 		
 		relAgBtn = new JButton("Relatorio");
+		relAgBtn.addActionListener(new TEActionMenuPrincipal(this));
 		relAgBtn.setMnemonic(KeyEvent.VK_R);
 		relAgBtn.setAlignmentX(0.5f);
 		relAgBtn.setForeground(Color.WHITE);

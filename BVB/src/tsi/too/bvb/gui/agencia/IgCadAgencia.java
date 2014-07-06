@@ -58,7 +58,7 @@ public class IgCadAgencia extends JDialog implements TratadorDeCampos {
 		contentPane.setLayout(null);
 		
 		JSeparator separatorTitulo = new JSeparator();
-		separatorTitulo.setBounds(0, 69, 517, 4);
+		separatorTitulo.setBounds(0, 69, 517, 2);
 		contentPane.add(separatorTitulo);
 		
 		JSeparator separatorBtn = new JSeparator();

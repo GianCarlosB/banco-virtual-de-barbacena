@@ -11,40 +11,17 @@ import tsi.too.bvb.entidades.tiposenumerados.TipoUsuario;
 import tsi.too.bvb.entidades.tiposenumerados.UF;
 
 public class ValidarDados {
-	private static final int SENHA_NUM = 4, SENHA_ALF = 6,
-			          FUNC_MIN = 6, FUNC_LOGIN_MAX = 20, FUNC_SENHA_MAX = 10,
-			          ANO_MIN = 2001, ANO_MAX = 2099;
+	
+	public static final int SENHA_NUM = 4;
+	public static final int SENHA_ALF = 6;
+	public static final int FUNC_MIN = 6;
+	public static final int FUNC_LOGIN_MAX = 20;
+	public static final int FUNC_SENHA_MAX = 10;
+	public static final int ANO_MIN = 2001;
+	public static final int ANO_MAX = 2099;
 	
 	public ValidarDados() {
 		super();
-	}
-	
-	public int getSENHA_NUM() {
-		return SENHA_NUM;
-	}
-
-	public int getSENHA_ALF() {
-		return SENHA_ALF;
-	}
-
-	public int getFUNC_MIN() {
-		return FUNC_MIN;
-	}
-
-	public int getFUNC_LOGIN_MAX() {
-		return FUNC_LOGIN_MAX;
-	}
-
-	public int getFUNC_SENHA_MAX() {
-		return FUNC_SENHA_MAX;
-	}
-
-	public int getANO_MIN() {
-		return ANO_MIN;
-	}
-
-	public int getANO_MAX() {
-		return ANO_MAX;
 	}
 	
 	public static boolean verificarCadeiaDeCaracteres(String string, String expressaoRegular) {
@@ -177,7 +154,24 @@ public class ValidarDados {
 	        ano = cal.get(Calendar.YEAR);
 		}
 		
-		if(ano < 2001) // Possível validação || data.compareTo(new Date()) > 0
+		if(ano < ANO_MIN || ano > ANO_MAX) // Possível validação || data.compareTo(new Date()) > 0
+			return false;
+		
+		return true;
+	}
+	
+	public static boolean validarPeriodo(Date dataIni, Date dataFin) {
+		Calendar calIni = Calendar.getInstance();
+		Calendar calFin = Calendar.getInstance();
+		
+		if(dataIni != null && dataFin != null) {
+			calIni.setTime(dataIni);
+			calFin.setTime(dataFin);
+		}
+		else
+			return false;
+		
+		if(calFin.compareTo(calIni) < 0) // Data final é antes da data inicial.
 			return false;
 		
 		return true;

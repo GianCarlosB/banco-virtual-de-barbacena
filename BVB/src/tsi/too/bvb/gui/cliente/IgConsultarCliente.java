@@ -85,7 +85,7 @@ public class IgConsultarCliente extends JDialog {
 		contentPanel.setLayout(null);
 		
 		JSeparator separatorTitulo = new JSeparator();
-		separatorTitulo.setBounds(0, 69, 778, 2);
+		separatorTitulo.setBounds(0, 69, 517, 2);
 		contentPanel.add(separatorTitulo);
 		
 		JTextPane txtpnSubTitulo = new JTextPane();

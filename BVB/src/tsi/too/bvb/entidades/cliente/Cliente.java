@@ -4,7 +4,8 @@ import tsi.too.bvb.entidades.Mascara;
 
 public class Cliente {
 	
-	private String cpf, nome;
+	private String cpf;
+	private String nome;
 	private Contato contato;
 	private Endereco endereco;
 	

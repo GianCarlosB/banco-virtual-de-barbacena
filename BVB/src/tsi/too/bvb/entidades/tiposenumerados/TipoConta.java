@@ -7,21 +7,21 @@ public enum TipoConta {
 	FIF_PRATICO(3, "BVB FIF Prático"),
 	FIF_EXECUTIVO(4, "BVB FIF Executivo");
 	
-	private int tipo;
+	private int numero;
 	private String descricao;
 	private final static int NUM_TIPOS = 4;
 	
 	private TipoConta(int tipo, String descricao) {
-		this.tipo = tipo;
+		this.numero = tipo;
 		this.descricao = descricao;
 	}
 
-	public int getTipo() {
-		return tipo;
+	public int getNumero() {
+		return numero;
 	}
 
-	public void setTipo(int tipo) {
-		this.tipo = tipo;
+	public void setNumero(int numero) {
+		this.numero = numero;
 	}
 
 	public String getDescricao() {
@@ -69,14 +69,14 @@ public enum TipoConta {
 		return null;
 	}
 	
-	public static TipoConta obterTipoConta(int tipo) {
-		if(tipo == CONTA_CORRENTE.getTipo())
+	public static TipoConta obterTipoConta(int numero) {
+		if(numero == CONTA_CORRENTE.getNumero())
 			return CONTA_CORRENTE;
-		else if(tipo == CONTA_POUPANCA.getTipo())
+		else if(numero == CONTA_POUPANCA.getNumero())
 			return CONTA_POUPANCA;
-		else if(tipo == FIF_PRATICO.getTipo())
+		else if(numero == FIF_PRATICO.getNumero())
 			return FIF_PRATICO;
-		else if(tipo == FIF_EXECUTIVO.getTipo())
+		else if(numero == FIF_EXECUTIVO.getNumero())
 			return FIF_EXECUTIVO;
 		
 		return null;

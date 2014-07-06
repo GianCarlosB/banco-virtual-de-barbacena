@@ -4,7 +4,8 @@ import tsi.too.bvb.entidades.tiposenumerados.TipoUsuario;
 
 public class Funcionario {
 	
-	private String nomeUsuario, senha;
+	private String nomeUsuario;
+	private String senha;
 	private TipoUsuario tipoUsuario;
 
 	public Funcionario() {

@@ -24,7 +24,7 @@ public class FuncionarioDAO {
 			bdDao.obterPreparedStatement(SQL);
 			bdDao.getStmt().setString(1, funcionario.getNomeUsuario());
 			bdDao.getStmt().setString(2, Criptografia.converterSenhaParaMD5(funcionario.getSenha()));
-			bdDao.getStmt().setString(3, Character.toString(funcionario.getTipoUsuario().getTipo()));
+			bdDao.getStmt().setString(3, Character.toString(funcionario.getTipoUsuario().getCaractere()));
 			bdDao.getStmt().executeUpdate();
 			
 			System.out.println("Funcionário inserido");

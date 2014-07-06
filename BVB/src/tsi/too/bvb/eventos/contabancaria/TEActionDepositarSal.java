@@ -72,8 +72,8 @@ public class TEActionDepositarSal implements ActionListener {
 		}
 		
 		else if(e.getSource() == igDepositarSal.getBtnAlterar()) {
-			igDepositarSal.escondeOpcoesDepositar();
 			igDepositarSal.getNumContaTextField().setEnabled(true);
+			igDepositarSal.escondeOpcoesDepositar();
 		}
 	}
 

@@ -46,14 +46,13 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 		
 		JLabel lblCodAgencia = new JLabel("Data de Abertura:");
 		lblCodAgencia.setDisplayedMnemonic(KeyEvent.VK_D);
-		lblCodAgencia.setBounds(10, 25, 115, 14);
+		lblCodAgencia.setBounds(10, 18, 115, 14);
 		add(lblCodAgencia);
 
 		model = new UtilDateModel();
 		datePanel = new JDatePanelImpl(model);
 		datePicker = new JDatePickerImpl(datePanel);
 		datePicker.getJFormattedTextField().setToolTipText("este campo \u00E9 de preenchimento obrigat\u00F3rio, a data n\u00E3o pode ser maior que a data atual e o ano n\u00E3o pode ser menor que 2001 ");
-		datePicker.setToolTipText("");
 		lblCodAgencia.setLabelFor(datePicker.getJFormattedTextField());
 		datePicker.setBounds(130, 11, 112, 28);
 		datePanel.setBounds(100, 15, 112, 24);
@@ -121,7 +120,7 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 		}
 		else {
 			// Conta Corrente
-			if(tipoConta.getTipo() == TipoConta.CONTA_CORRENTE.getTipo()) {
+			if(tipoConta.getNumero() == TipoConta.CONTA_CORRENTE.getNumero()) {
 				if(!chckbxContaSalario.isSelected() && Double.parseDouble(saldoTextField.getText()
 				   .replace(",", ".").replace("R", "").replace("$", "")) < 300) {
 					saldoTextField.setBorder(new LineBorder(Color.RED));
@@ -132,7 +131,7 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 			}
 			
 			// Conta Poupança
-			else if(tipoConta.getTipo() == TipoConta.CONTA_POUPANCA.getTipo()) {
+			else if(tipoConta.getNumero() == TipoConta.CONTA_POUPANCA.getNumero()) {
 				if(Double.parseDouble(saldoTextField.getText().replace(",", ".").replace("R", "").replace("$", "")) < 50) {
 					saldoTextField.setBorder(new LineBorder(Color.RED));
 					valido = false;
@@ -142,7 +141,7 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 			}
 			
 			// Conta FIF Prático
-			else if(tipoConta.getTipo() == TipoConta.FIF_PRATICO.getTipo()) {
+			else if(tipoConta.getNumero() == TipoConta.FIF_PRATICO.getNumero()) {
 				if(Double.parseDouble(saldoTextField.getText().replace(",", ".").replace("R", "").replace("$", "")) < 2000) {
 					saldoTextField.setBorder(new LineBorder(Color.RED));
 					valido = false;
@@ -152,7 +151,7 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 			}
 			
 			// Conta FIF Executivo
-			else if(tipoConta.getTipo() == TipoConta.FIF_EXECUTIVO.getTipo()) {
+			else if(tipoConta.getNumero() == TipoConta.FIF_EXECUTIVO.getNumero()) {
 				if(Double.parseDouble(saldoTextField.getText().replace(",", ".").replace("R", "").replace("$", "")) < 15000) {
 					saldoTextField.setBorder(new LineBorder(Color.RED));
 					valido = false;
@@ -174,7 +173,7 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 	public void visualizacaoOpcContaSal() {
 		boolean mostrar = true;
 		
-		if(tipoConta.getTipo() != TipoConta.CONTA_CORRENTE.getTipo()) {
+		if(tipoConta.getNumero() != TipoConta.CONTA_CORRENTE.getNumero()) {
 			mostrar = false;
 			chckbxContaSalario.setSelected(mostrar);
 		}
@@ -186,13 +185,13 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 	public void atualizaToolTipTextSaldo() {
 		final String SALDO_TOOLTIPTEXT = "este campo \u00E9 de preenchimento obrigat\u00F3rio, deve conter apenas d\u00EDgitos decimais";
 		
-		if(tipoConta.getTipo() == TipoConta.CONTA_CORRENTE.getTipo())
+		if(tipoConta.getNumero() == TipoConta.CONTA_CORRENTE.getNumero())
 			saldoTextField.setToolTipText(SALDO_TOOLTIPTEXT + " e valor de no mínimo R$ 300,00 se esta conta não for utilizada como conta salário");
-		else if(tipoConta.getTipo() == TipoConta.CONTA_POUPANCA.getTipo())
+		else if(tipoConta.getNumero() == TipoConta.CONTA_POUPANCA.getNumero())
 			saldoTextField.setToolTipText(SALDO_TOOLTIPTEXT + " e valor de no mínimo R$ 50,00");
-		else if(tipoConta.getTipo() == TipoConta.FIF_PRATICO.getTipo())
+		else if(tipoConta.getNumero() == TipoConta.FIF_PRATICO.getNumero())
 			saldoTextField.setToolTipText(SALDO_TOOLTIPTEXT + " e valor de no mínimo R$ 2.000,00");
-		else if(tipoConta.getTipo() == TipoConta.FIF_EXECUTIVO.getTipo())
+		else if(tipoConta.getNumero() == TipoConta.FIF_EXECUTIVO.getNumero())
 			saldoTextField.setToolTipText(SALDO_TOOLTIPTEXT + " e valor de no mínimo R$ 15.000,00");
 	}
 

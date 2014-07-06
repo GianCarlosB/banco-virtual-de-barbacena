@@ -15,10 +15,13 @@ import tsi.too.bvb.gui.JanelaPopUpErro;
  */
 public class BancoDeDadosBVB extends BancoDeDadosDAO implements Runnable {
 	
-	private final static String DIRETORIO = "database\\bvbdb", // URL de accesso ao banco de dados.
-								ARQ_SQL_CRIAR_TABELAS = "src\\tsi\\too\\bvb\\recursos\\scripts\\CriarTabelas.sql",
-			                    ARQ_SQL_DELETAR_TABELAS = "src\\tsi\\too\\bvb\\recursos\\scripts\\DeletarTabelas.sql",
-			                    ARQ_SQL_INSERIR_ADM = "src\\tsi\\too\\bvb\\recursos\\scripts\\InserirAdministrador.sql";
+	private final static String DIRETORIO = "database\\bvbdb"; // URL de accesso ao banco de dados.
+	
+	private final static String ARQ_SQL_CRIAR_TABELAS = "src\\tsi\\too\\bvb\\recursos\\scripts\\CriarTabelas.sql";
+	
+	private final static String ARQ_SQL_DELETAR_TABELAS = "src\\tsi\\too\\bvb\\recursos\\scripts\\InserirAdministrador.sql";
+	
+	private final static String ARQ_SQL_INSERIR_ADM = "database\\bvbdb";
 
 	private static final String TIPO = "jdbc:hsqldb:file:";
 
