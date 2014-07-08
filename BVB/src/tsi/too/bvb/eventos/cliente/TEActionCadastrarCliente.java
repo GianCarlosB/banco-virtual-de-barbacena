@@ -109,8 +109,7 @@ public class TEActionCadastrarCliente implements ActionListener {
 			} // fim if(e.getSource() == igCadCliente.getBtnAnterior())
 			
 			else if(e.getSource() == igCadCliente.getBtnFinalizar()) {
-				ClienteDAO clienteDAO = new ClienteDAO();
-				clienteDAO.criar(BancoDeDadosBVB.getInstance(), cliente);
+				new ClienteDAO().criar(BancoDeDadosBVB.getInstance(), cliente);
 				igCadCliente.setProgressBar(100);
 				
 				new JanelaPopUpInfo(igCadCliente, "BVB - Cadastro de Cliente", " Cadastro do Cliente Realizado com Sucesso!",

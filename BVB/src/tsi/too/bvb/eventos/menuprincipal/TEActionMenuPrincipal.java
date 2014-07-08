@@ -25,6 +25,7 @@ import tsi.too.bvb.gui.contabancaria.IgAlterarTipoAplicacao;
 import tsi.too.bvb.gui.contabancaria.IgCriarAplicacao;
 import tsi.too.bvb.gui.contabancaria.IgDepositarSal;
 import tsi.too.bvb.gui.excluircadastro.IgExcluirCadastro;
+import tsi.too.bvb.gui.funcionario.IgAltSenhaFuncionario;
 import tsi.too.bvb.gui.funcionario.IgCadFuncionario;
 import tsi.too.bvb.gui.funcionario.IgConsultarFuncionario;
 import tsi.too.bvb.gui.menuprincipal.IgMenuPrincipal;
@@ -46,7 +47,8 @@ public class TEActionMenuPrincipal implements ActionListener {
 		if((e.getSource() == igMenuPrincipal.getAjudaBtn()) || (e.getSource() == igMenuPrincipal.getAjudaImgBtn()))
 			new IgAjuda(igMenuPrincipal);
 		
-		else if(e.getSource() == igMenuPrincipal.getMntmLogout()){}
+		else if(e.getSource() == igMenuPrincipal.getMntmLogout())
+			igMenuPrincipal.logout();
 		
 		else if(e.getSource() == igMenuPrincipal.getMntmAutor())
 			new JanelaPopUpInfo(igMenuPrincipal, "BVB - Sobre", " Criado por:\n     Diego Oliveira   &   Gian Carlos Barros Honório",
@@ -62,7 +64,7 @@ public class TEActionMenuPrincipal implements ActionListener {
 					+ "\n na visualização do aplicativo!");
 		
 		else if(e.getSource() == igMenuPrincipal.getMntmSair())
-			igMenuPrincipal.terminaPrograma();
+			igMenuPrincipal.terminarPrograma();
 		
 		else if(BancoDeDadosBVB.getInstance().getConn() != null) {
 			if((e.getSource() == igMenuPrincipal.getMntmLimparBD())) {
@@ -157,7 +159,8 @@ public class TEActionMenuPrincipal implements ActionListener {
 			
 			else if((e.getSource() == igMenuPrincipal.getCaixaEletronicoBtn()) || (e.getSource() == igMenuPrincipal.getCaixaEletronicoImgBtn())){}
 			
-			else if((e.getSource() == igMenuPrincipal.getAlterarSenhaBtn()) || (e.getSource() == igMenuPrincipal.getAlterarSenhaImgBtn())){}
+			else if((e.getSource() == igMenuPrincipal.getAlterarSenhaBtn()) || (e.getSource() == igMenuPrincipal.getAlterarSenhaImgBtn()))
+				new IgAltSenhaFuncionario(igMenuPrincipal, igMenuPrincipal.getFuncionario());
 			
 			// Fim dos botões da aba "outros".
 		} // fim if(BancoDeDadosBVB.getInstance().getConn() != null)

@@ -1,7 +1,9 @@
 package tsi.too.bvb.app;
 
+import tsi.too.bvb.entidades.funcionario.Funcionario;
 import tsi.too.bvb.gui.IgApresentacao;
 import tsi.too.bvb.gui.JanelaPopUpErro;
+import tsi.too.bvb.gui.login.IgLogin;
 import tsi.too.bvb.gui.menuprincipal.IgMenuPrincipal;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 
@@ -23,10 +25,22 @@ public class bvbApp {
 			System.exit(0);
 		}
 		
+		// Finaliza a Thread da janela de apresentação.
 		igApresentacao.finalizarThread();
+		
+		// Finaliza a janela de apresentação.
 		igApresentacao.dispose();
 		
-		new IgMenuPrincipal(); // Cria a janela que contém o menu principal
+		IgMenuPrincipal igMenuPrincipal;
+		
+		// Enquanto o usuário clicar em Logout, a tela de login reaparece. 
+		do{
+			// O objeto 'funcionário' recebe os dados do funcionário caso ele consiga logar com sucesso.
+			Funcionario funcionario = new IgLogin().getFuncionario();
+			
+			// Cria a janela que contém o menu principal
+			igMenuPrincipal = new IgMenuPrincipal(funcionario);
+		}while(igMenuPrincipal.isLogout());
 	} // main()
 	
 } // class bvbApp

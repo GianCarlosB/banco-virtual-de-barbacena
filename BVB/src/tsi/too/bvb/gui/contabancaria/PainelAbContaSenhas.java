@@ -119,6 +119,7 @@ public class PainelAbContaSenhas extends JPanel implements TratadorDeCampos {
 		}
 		else {
 			senhaNumPasswordField.setBorder(new LineBorder(Color.RED));
+			rSenhaNumPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));
 			valido = false;
 		}
 		// Fim das validações da senha numérica.
@@ -134,6 +135,7 @@ public class PainelAbContaSenhas extends JPanel implements TratadorDeCampos {
 		}
 		else {
 			senhaAlfPasswordField.setBorder(new LineBorder(Color.RED));
+			rSenhaAlfPasswordField.setBorder(new LineBorder(Color.RED));
 			valido = false;
 		}
 		// Fim das validações da senha alfabética.

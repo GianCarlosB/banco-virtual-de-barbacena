@@ -219,5 +219,12 @@ public class ValidarDados {
 		
 		return true;
 	}
+	
+	public static boolean validarSenhasIguais(String senha1, String senha2) {
+		if(!senha1.equals(senha2))
+			return false;
+		
+		return true;
+	}
 
 } // class ValidarDados

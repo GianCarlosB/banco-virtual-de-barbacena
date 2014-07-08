@@ -37,9 +37,9 @@ public class TEActionCadastrarFuncionario implements ActionListener {
 				igCadFuncionario.salvarCampos(funcionario);
 				igCadFuncionario.getLoginTextField().setBorder(UIManager.getBorder("TextField.border"));
 				igCadFuncionario.getPasswordField().setBorder(UIManager.getBorder("PasswordField.border"));
+				igCadFuncionario.getrPasswordField().setBorder(UIManager.getBorder("PasswordField.border"));
 				
-				FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
-				funcionarioDAO.criar(BancoDeDadosBVB.getInstance(), funcionario);
+				new FuncionarioDAO().criar(BancoDeDadosBVB.getInstance(), funcionario);
 				
 				new JanelaPopUpInfo(igCadFuncionario, "BVB - Cadastro de Funcionário", " Cadastro do Funcionário Realizado com Sucesso!",
 						            funcionario.toString());

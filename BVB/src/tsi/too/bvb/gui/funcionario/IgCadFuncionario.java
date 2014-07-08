@@ -252,6 +252,7 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 		}
 		else {
 			passwordField.setBorder(new LineBorder(Color.RED));
+			rPasswordField.setBorder(UIManager.getBorder("PasswordField.border"));
 			valido = false;
 		}
 		

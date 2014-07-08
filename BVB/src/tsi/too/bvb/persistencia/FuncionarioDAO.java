@@ -40,7 +40,7 @@ public class FuncionarioDAO {
 		
 		try {
 			bdDao.obterPreparedStatement(SQL);
-			bdDao.getStmt().setString(1, "%" + login.toLowerCase() + "%");
+			bdDao.getStmt().setString(1, login.toLowerCase());
 			ResultSet rSet = bdDao.obterResultSet();
 			
 			if(!rSet.next()) return null;
@@ -105,6 +105,22 @@ public class FuncionarioDAO {
 		}
 		
 		return lista;
+	}
+	
+	public void alterarSenha(BancoDeDadosDAO bdDao, Funcionario funcionario) {
+		final String SQL = "UPDATE funcionario SET senha = ? WHERE LCASE (nomeUsuario) LIKE ?";
+
+		try {
+			bdDao.obterPreparedStatement(SQL);
+			bdDao.getStmt().setString(1, funcionario.getSenha());
+			bdDao.getStmt().setString(2, funcionario.getNomeUsuario().toLowerCase());
+			bdDao.getStmt().executeUpdate();
+
+			System.out.println("Senha do funcionário Atualizada");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
+		}
 	}
 
 	public void excluir(BancoDeDadosDAO bdDao, String login) {

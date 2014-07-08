@@ -14,8 +14,8 @@ import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JEditorPane;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -28,17 +28,21 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import tsi.too.bvb.entidades.funcionario.Funcionario;
 import tsi.too.bvb.eventos.menuprincipal.TEActionMenuPrincipal;
 import tsi.too.bvb.eventos.menuprincipal.TEMouseMenuPrincipal;
 import tsi.too.bvb.gui.JanelaPopUpErro;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 
-public class IgMenuPrincipal extends JFrame {
+public class IgMenuPrincipal extends JDialog {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1271399365713672153L;
+	
+	private Funcionario funcionario;
+	private boolean logout = false;
 	
 	private JButton altClienteImgBtn;
 	private JButton relClienteImgBtn;
@@ -107,12 +111,15 @@ public class IgMenuPrincipal extends JFrame {
 	private JMenuItem mntmTema;
 	private JMenuItem mntmLimparBD;
 
-	public IgMenuPrincipal() {
+	public IgMenuPrincipal(Funcionario funcionario) {
+		this.funcionario = funcionario;
+		
+		setModal(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/BVB - \u00EDcone.png")));
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
-				terminaPrograma();
+				terminarPrograma();
 			}
 		});
 
@@ -152,7 +159,7 @@ public class IgMenuPrincipal extends JFrame {
 		lblCopyrightHome.setForeground(Color.WHITE);
 		lblCopyrightHome.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		
-		JLabel lblTituloHome = new JLabel("Seja Bem Vindo Sr(a). 'Nome' ");
+		JLabel lblTituloHome = new JLabel("Seja Bem Vindo Sr(a). " + funcionario.getNomeUsuario());
 		lblTituloHome.setBounds(0, 11, 915, 26);
 		lblTituloHome.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTituloHome.setFont(new Font("Swis721 WGL4 BT", Font.BOLD, 24));
@@ -752,6 +759,7 @@ public class IgMenuPrincipal extends JFrame {
 		outrosPanel.add(caixaEletronicoBtn);
 		
 		alterarSenhaImgBtn = new JButton("");
+		alterarSenhaImgBtn.addActionListener(new TEActionMenuPrincipal(this));
 		alterarSenhaImgBtn.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Key-Access-128.png")));
 		alterarSenhaImgBtn.setBorder(new LineBorder(Color.WHITE));
 		alterarSenhaImgBtn.setBackground(orange);
@@ -760,6 +768,7 @@ public class IgMenuPrincipal extends JFrame {
 		outrosPanel.add(alterarSenhaImgBtn);
 		
 		alterarSenhaBtn = new JButton("Alterar Senha");
+		alterarSenhaBtn.addActionListener(new TEActionMenuPrincipal(this));
 		alterarSenhaBtn.setMnemonic(KeyEvent.VK_L);
 		alterarSenhaBtn.setForeground(Color.WHITE);
 		alterarSenhaBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -809,6 +818,7 @@ public class IgMenuPrincipal extends JFrame {
 		mnArquivo.add(menuArquivoSeparator);
 		
 		mntmLogout = new JMenuItem("Logout");
+		mntmLogout.addActionListener(new TEActionMenuPrincipal(this));
 		mntmLogout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK));
 		mntmLogout.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Logout-24.png")));
 		mntmLogout.setMnemonic(KeyEvent.VK_O);
@@ -842,7 +852,7 @@ public class IgMenuPrincipal extends JFrame {
 		setVisible(true);
 	}
 	
-	public void terminaPrograma() {
+	public void terminarPrograma() {
 		// Fecha o PreparedStatement.
 		try {
 			BancoDeDadosBVB.getInstance().fecharPreparedStatement();
@@ -864,6 +874,11 @@ public class IgMenuPrincipal extends JFrame {
 				System.exit(0);
 			}
 		}
+	}
+	
+	public void logout() {
+		logout = true;
+		IgMenuPrincipal.this.dispose();
 	}
 	
 	/// ===== * Início dos Geters dos botões * ===== ///
@@ -1101,4 +1116,14 @@ public class IgMenuPrincipal extends JFrame {
 	public JTabbedPane getTabbedPane() {
 		return tabbedPane;
 	}
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public boolean isLogout() {
+		return logout;
+	}
+	
+	
 } // class IgMenuPrincipal
