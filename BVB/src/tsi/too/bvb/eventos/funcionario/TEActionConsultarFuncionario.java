@@ -33,11 +33,14 @@ public class TEActionConsultarFuncionario implements ActionListener {
 		else if(e.getSource() == igConsultarFuncionario.getBtnBuscar()) {
 			List<Funcionario> funcionarios = new FuncionarioDAO().pesquisarTipo(BancoDeDadosBVB.getInstance(), TipoUsuario.obterTipoUsuario
 					                                                     (igConsultarFuncionario.getTipoUsuarioComboBox()).getCaractere());
+			
 			if(!funcionarios.isEmpty())
 				igConsultarFuncionario.addLinhasTabela(funcionarios);
-			else
+			else {
+				igConsultarFuncionario.limpaTabela();
 				new JanelaPopUpAviso(igConsultarFuncionario, "BVB - Consulta de Funcionário", " Nenhum funcionário do tipo '" +
 						             igConsultarFuncionario.getTipoUsuarioComboBox() + "' foi encontrado.");
+			}
 		}
 	}
 	

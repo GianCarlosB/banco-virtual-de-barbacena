@@ -67,14 +67,12 @@ public class FuncionarioDAO {
 			bdDao.getStmt().setString(1, "%" + login.toLowerCase() + "%");
 			ResultSet rSet = bdDao.obterResultSet();
 			
-			if(!rSet.next()) return null;
-			
-			do {
+			while(rSet.next()) {
 				Funcionario funcionario = new Funcionario(rSet.getString(1), rSet.getString(2),
 						                                  TipoUsuario.obterTipoUsuario(rSet.getString(3).charAt(0)));
 				
 				lista.add(funcionario);
-			}while(rSet.next());
+			}
 			
 			BancoDeDadosDAO.fecharResultSet(rSet);
 		} catch (SQLException e) {
@@ -94,13 +92,11 @@ public class FuncionarioDAO {
 			bdDao.getStmt().setString(1, "%" + Character.toString(tipo).toUpperCase() + "%");
 			ResultSet rSet = bdDao.obterResultSet();
 			
-			if(!rSet.next()) return null;
-			
-			do {
+			while(rSet.next()) {
 				Funcionario funcionario = new Funcionario(rSet.getString(1), rSet.getString(2), TipoUsuario.obterTipoUsuario(rSet.getString(3).charAt(0)));
 				
 				lista.add(funcionario);
-			}while(rSet.next());
+			}
 			
 			BancoDeDadosDAO.fecharResultSet(rSet);
 		} catch (SQLException e) {

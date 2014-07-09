@@ -107,6 +107,10 @@ public class TEActionRelatorioFuncionario implements ActionListener {
 					if(calIni.get(Calendar.MONTH) == calCorrente.get(Calendar.MONTH) && calIni.get(Calendar.YEAR) == calCorrente.get(Calendar.YEAR))
 						relatorio += String.format("\n%-15s\t%-15s\t%-15s\t%-15s\t%s minutos", dataIni, HoraIni, dataFin, HoraFin, tempoConexao);
 					else {
+						tempoTotalConexao = TimeUnit.MILLISECONDS.toHours(tempoTotalConexao);
+						relatorio += "\n" + separador +  "\nTempo Total de Conexão: " + tempoTotalConexao + " horas" + "\n" + separador + "\n\n";
+						tempoTotalConexao = 0;
+						
 						calCorrente.setTime(con.getDataHoraInicial());
 						
 						dataFormatada = new SimpleDateFormat("MM/yyyy").format(calCorrente.getTime());
