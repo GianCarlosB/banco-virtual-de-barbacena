@@ -127,7 +127,7 @@ public class TEActionRelatorioAgencia implements ActionListener {
 							relatorio += String.format("%-30s\t%-50s\t%s\n", "BVB FIF Executivo", qtdeClientes[3], "R$ " + saldoTotal[3]);
 						
 						relatorio += "\n\n";
-					} // fim for(Iterator<Date> i = set.iterator(); i.hasNext();)
+					} // fim for(Date data : listDatas)
 					
 					igRelatorioAgencia.setRelatorioEditorPane(relatorio);
 				} // fim else

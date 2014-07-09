@@ -43,13 +43,12 @@ CREATE TABLE IF NOT EXISTS movimentacao (
 	numeroConta NUMERIC(9, 0)  NOT NULL,
 	codAgencia NUMERIC(4, 0) NOT NULL,
 	tipoConta NUMERIC(1, 0) NOT NULL,
-	data Date NOT NULL,
-	hora DateTime NOT NULL,
+	dataHora DateTime NOT NULL,
 	valor NUMERIC(15, 2) DEFAULT 0,
 	tipoOperacao NUMERIC(1, 0),
 
 	CONSTRAINT fk_movimentacao_conta_bancaria FOREIGN KEY (codAgencia, numeroConta, tipoConta) REFERENCES conta_bancaria(codAgencia, numeroConta, tipoConta) ON DELETE CASCADE,
-	CONSTRAINT pk_movimentacao PRIMARY KEY (numeroConta, codAgencia, tipoConta, data, hora)
+	CONSTRAINT pk_movimentacao PRIMARY KEY (numeroConta, codAgencia, tipoConta, dataHora)
 );
 
 CREATE TABLE IF NOT EXISTS funcionario (
@@ -62,13 +61,11 @@ CREATE TABLE IF NOT EXISTS funcionario (
 
 CREATE TABLE IF NOT EXISTS conexao (
 	nomeUsuario VARCHAR(20) NOT NULL,
-	dataInicial Date NOT NULL,
-	horaInicial DateTime NOT NULL,
-	dataFinal Date,
-	horaFinal DateTime,
+	dataHoraInicial DateTime NOT NULL,
+	dataHoraFinal DateTime,
 
 	CONSTRAINT fk_conexao_funcionario FOREIGN KEY (nomeUsuario) REFERENCES funcionario(nomeUsuario) ON DELETE CASCADE,
-	CONSTRAINT pk_conexao PRIMARY KEY (nomeUsuario, dataInicial, horaInicial)
+	CONSTRAINT pk_conexao PRIMARY KEY (nomeUsuario, dataHoraInicial, dataHoraFinal)
 );
 
 /* Cria Sequencias */

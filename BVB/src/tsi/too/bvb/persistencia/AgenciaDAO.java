@@ -82,11 +82,13 @@ public class AgenciaDAO {
 			bdDao.getStmt().setString(1, "%" + descricao.toLowerCase() + "%");
 			ResultSet rSet = bdDao.obterResultSet();
 			
-			while(rSet.next()) {
+			if(!rSet.next()) return null;
+			
+			do {
 				Agencia agencia = new Agencia(rSet.getInt(1), rSet.getString(2));
 				
 				lista.add(agencia);
-			}
+			}while(rSet.next());
 			
 			BancoDeDadosDAO.fecharResultSet(rSet);
 		} catch (SQLException e) {

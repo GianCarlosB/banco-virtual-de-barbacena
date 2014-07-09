@@ -158,6 +158,9 @@ public class IgLogin extends JDialog {
 	}
 	
 	private void terminarPrograma() {
+		// Encera o banco de dados.
+		BancoDeDadosBVB.encerrarBD();
+		
 		IgLogin.this.dispose();
 		System.exit(0);
 	}
@@ -174,7 +177,7 @@ public class IgLogin extends JDialog {
 					                             funcionario.getSenha())) {
 				passwordField.setBorder(new LineBorder(Color.RED));
 				setLblCamposErrados(true);
-				lblCamposErrados.setText("* A Senha inserida está incorreta.");
+				lblCamposErrados.setText("* A senha inserida está incorreta.");
 				valido = false;
 			}
 			else passwordField.setBorder(UIManager.getBorder("PasswordField.border"));
@@ -183,7 +186,7 @@ public class IgLogin extends JDialog {
 			loginTextField.setBorder(new LineBorder(Color.RED));
 			passwordField.setBorder(UIManager.getBorder("PasswordField.border"));
 			setLblCamposErrados(true);
-			lblCamposErrados.setText("* O Login inserido está incorreto.");
+			lblCamposErrados.setText("* O login inserido está incorreto.");
 			valido = false;
 		}
 		

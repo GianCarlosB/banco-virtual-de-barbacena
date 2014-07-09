@@ -77,7 +77,9 @@ public class ClienteDAO {
 			bdDao.getStmt().setString(1, "%" + nome.toLowerCase() + "%");
 			ResultSet rSet = bdDao.obterResultSet();
 			
-			while(rSet.next()) {
+			if(!rSet.next()) return null;
+			
+			do {
 				Cliente cliente = new Cliente(rSet.getString(1), rSet.getString(2));
 				Endereco endereco = new Endereco(rSet.getString(3), rSet.getString(4), rSet.getString(5), rSet.getString(6),
 						                         rSet.getString(7), UF.obterUF(rSet.getString(8)), rSet.getString(9));
@@ -87,7 +89,7 @@ public class ClienteDAO {
 				cliente.setContato(contato);
 				
 				lista.add(cliente);
-			}
+			}while(rSet.next());
 			
 			BancoDeDadosDAO.fecharResultSet(rSet);
 		} catch (SQLException e) {

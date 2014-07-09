@@ -1,14 +1,13 @@
 package tsi.too.bvb.entidades.conexao;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Conexao {
 	
 	private String nomeUsuario;
-	private Date horaInicial;
-	private Date horaFinal;
-	private Date dataInicial;
-	private Date dataFinal;
+	private Date dataHoraInicial;
+	private Date dataHoraFinal;
 	
 	public Conexao() {
 		super();
@@ -19,22 +18,17 @@ public class Conexao {
 		this.nomeUsuario = nomeUsuario;
 	}
 
-	public Conexao(Date dataInicial, Date dataFinal, Date horaInicial, Date horaFinal) {
+	public Conexao(Date dataHoraInicial, Date dataHoraFinal) {
 		this();
-		this.horaInicial = horaInicial;
-		this.horaFinal = horaFinal;
-		this.dataInicial = dataInicial;
-		this.dataFinal = dataFinal;
+		this.dataHoraInicial = dataHoraInicial;
+		this.dataHoraFinal = dataHoraFinal;
 	}
 
-	public Conexao(String nomeUsuario, Date horaInicial, Date horaFinal,
-			Date dataInicial, Date dataFinal) {
+	public Conexao(String nomeUsuario, Date dataHoraInicial, Date dataHoraFinal) {
 		this();
 		this.nomeUsuario = nomeUsuario;
-		this.horaInicial = horaInicial;
-		this.horaFinal = horaFinal;
-		this.dataInicial = dataInicial;
-		this.dataFinal = dataFinal;
+		this.dataHoraInicial = dataHoraInicial;
+		this.dataHoraFinal = dataHoraFinal;
 	}
 
 	public String getNomeUsuario() {
@@ -45,46 +39,30 @@ public class Conexao {
 		this.nomeUsuario = nomeUsuario;
 	}
 
-	public Date getDataInicial() {
-		return dataInicial;
+	public Date getDataHoraInicial() {
+		return dataHoraInicial;
 	}
 
-	public void setDataInicial(Date dataInicial) {
-		this.dataInicial = dataInicial;
+	public void setDataHoraInicial(Date dataHoraInicial) {
+		this.dataHoraInicial = dataHoraInicial;
 	}
 
-	public Date getHoraInicial() {
-		return horaInicial;
+	public Date getDataHoraFinal() {
+		return dataHoraFinal;
 	}
 
-	public void setHoraInicial(Date horaInicial) {
-		this.horaInicial = horaInicial;
-	}
-
-	public Date getDataFinal() {
-		return dataFinal;
-	}
-
-	public void setDataFinal(Date dataFinal) {
-		this.dataFinal = dataFinal;
-	}
-
-	public Date getHoraFinal() {
-		return horaFinal;
-	}
-
-	public void setHoraFinal(Date horaFinal) {
-		this.horaFinal = horaFinal;
+	public void setDataHoraFinal(Date dataHoraFinal) {
+		this.dataHoraFinal = dataHoraFinal;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append(" Nome do Usuário: ").append(nomeUsuario)
-			    .append("\n Hora Inicial: ").append(horaInicial)
-				.append("\n Hora Final: ").append(horaFinal)
-				.append("\n Data Inicial: ").append(dataInicial)
-				.append("\n Data Final: ").append(dataFinal);
+				.append("\n Data Inicial: ").append(new SimpleDateFormat("dd/MM/yyyy").format(dataHoraInicial))
+			    .append("\n Hora Inicial: ").append(new SimpleDateFormat("HH:mm:ss").format(dataHoraInicial))
+			    .append("\n Data Final: ").append(new SimpleDateFormat("dd/MM/yyyy").format(dataHoraFinal))
+				.append("\n Hora Final: ").append(new SimpleDateFormat("HH:mm:ss").format(dataHoraFinal));
 		return builder.toString();
 	}
 	

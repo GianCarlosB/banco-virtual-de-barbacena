@@ -126,10 +126,13 @@ public class TEActionExcluirCadastro implements ActionListener {
 			switch(tipo) {
 			case 1:
 				janelaPopUpPergunta = new JanelaPopUpPergunta(igExcluirCadastro, "BVB - Exclusão de Cliente", " Esta operação irá excluir " +
-						                                      "permanentemente o cliente.\n Deseja continuar assim mesmo?");
-				if(janelaPopUpPergunta.isSim())
+						                                      "permanentemente o cliente e todas" +
+						                                      "\n as contas bancárias relacionadas." +
+						                                      "\n\n Deseja continuar assim mesmo?");
+				if(janelaPopUpPergunta.isSim()) {
 					new ClienteDAO().excluir(BancoDeDadosBVB.getInstance(), igExcluirCadastro.getPexCliente().getCpfFormattedTextField()
 							                 .getText().replace(".", "").replace("-", ""));
+				}
 			break;
 			// fim case: 1
 			
@@ -144,7 +147,7 @@ public class TEActionExcluirCadastro implements ActionListener {
 			
 			case 3:
 				janelaPopUpPergunta = new JanelaPopUpPergunta(igExcluirCadastro, "BVB - Exclusão de Agência", " Esta operação irá excluir " +
-                                                              "permanentemente a agência.\n Deseja continuar assim mesmo?");
+                                                              "permanentemente a agência.\n\n Deseja continuar assim mesmo?");
 				if(janelaPopUpPergunta.isSim())
 					new AgenciaDAO().excluir(BancoDeDadosBVB.getInstance(), igExcluirCadastro.getPexAgencia().getCodigoTextField()
 							                 .getText());

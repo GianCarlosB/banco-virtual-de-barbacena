@@ -1,21 +1,18 @@
 package tsi.too.bvb.gui.menuprincipal;
 
+import java.applet.Applet;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JEditorPane;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -30,11 +27,12 @@ import javax.swing.border.LineBorder;
 
 import tsi.too.bvb.entidades.funcionario.Funcionario;
 import tsi.too.bvb.eventos.menuprincipal.TEActionMenuPrincipal;
+import tsi.too.bvb.eventos.menuprincipal.TEJanelaMenuPrincipal;
 import tsi.too.bvb.eventos.menuprincipal.TEMouseMenuPrincipal;
 import tsi.too.bvb.gui.JanelaPopUpErro;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 
-public class IgMenuPrincipal extends JDialog {
+public class IgMenuPrincipal extends JFrame implements Runnable {
 	
 	/**
 	 * 
@@ -43,6 +41,7 @@ public class IgMenuPrincipal extends JDialog {
 	
 	private Funcionario funcionario;
 	private boolean logout = false;
+	private Date dataInicial;
 	
 	private JButton altClienteImgBtn;
 	private JButton relClienteImgBtn;
@@ -113,15 +112,11 @@ public class IgMenuPrincipal extends JDialog {
 
 	public IgMenuPrincipal(Funcionario funcionario) {
 		this.funcionario = funcionario;
+		this.dataInicial = new Date();
 		
-		setModal(true);
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/BVB - \u00EDcone.png")));
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent arg0) {
-				terminarPrograma();
-			}
-		});
+		addWindowListener(new TEJanelaMenuPrincipal(this));
 
 		// Cores Flat
 		Color peterRiver = new Color(52, 152, 219);
@@ -136,7 +131,6 @@ public class IgMenuPrincipal extends JDialog {
 		
 		setTitle(".: BVB - Banco Virtual de Barbacena :.");
 		setSize(926, 620);
-		setResizable(false);
 		getContentPane().setBackground(concrete);
 		
 		tabbedPane = new JTabbedPane();
@@ -160,7 +154,7 @@ public class IgMenuPrincipal extends JDialog {
 		lblCopyrightHome.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		
 		JLabel lblTituloHome = new JLabel("Seja Bem Vindo Sr(a). " + funcionario.getNomeUsuario());
-		lblTituloHome.setBounds(0, 11, 915, 26);
+		lblTituloHome.setBounds(0, 11, 915, 34);
 		lblTituloHome.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTituloHome.setFont(new Font("Swis721 WGL4 BT", Font.BOLD, 24));
 		lblTituloHome.setForeground(Color.WHITE);
@@ -443,9 +437,10 @@ public class IgMenuPrincipal extends JDialog {
 		exFuncImgBtn.setBackground(pomergante);
 		
 		relFuncImgBtn = new JButton("");
+		relFuncImgBtn.addActionListener(new TEActionMenuPrincipal(this));
 		getContentPane().setLayout(null);
 		relFuncImgBtn.setBounds(740, 77, 160, 160);
-		relFuncImgBtn.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/business28.png")));
+		relFuncImgBtn.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/User-Monitor-128.png")));
 		relFuncImgBtn.setBorder(new LineBorder(Color.WHITE));
 		relFuncImgBtn.setBackground(nephritis);
 		
@@ -467,6 +462,7 @@ public class IgMenuPrincipal extends JDialog {
 		altFuncBtn.setBackground(nephritis);
 		
 		relFuncBtn = new JButton("Relatorio");
+		relFuncBtn.addActionListener(new TEActionMenuPrincipal(this));
 		relFuncBtn.setMnemonic(KeyEvent.VK_R);
 		relFuncBtn.setBounds(740, 248, 160, 38);
 		relFuncBtn.setForeground(Color.WHITE);
@@ -853,30 +849,17 @@ public class IgMenuPrincipal extends JDialog {
 	}
 	
 	public void terminarPrograma() {
-		// Fecha o PreparedStatement.
-		try {
-			BancoDeDadosBVB.getInstance().fecharPreparedStatement();
-		} catch (SQLException eStmt) {
-			// TODO Auto-generated catch block
-			new JanelaPopUpErro(null, "BVB - ERRO", eStmt);
-		} finally {
-			// Fecha a conexão com o banco de dados e finaliza a aplicação.
-			try {
-				BancoDeDadosBVB.getInstance().fecharConexao();
-				System.out.println("Conexão com o Banco de dados finalizada: " + new SimpleDateFormat("dd/MM/yyyy  HH:mm").format(new Date()));
-			} catch (SQLException eConn) {
-				// TODO Auto-generated catch block
-				new JanelaPopUpErro(null, "BVB - ERRO", eConn);
-				System.err.println("Conexão com o Banco de dados NÃO finalizada: " + new SimpleDateFormat("dd/MM/yyyy  HH:mm").format(new Date()));
-			} finally {
-				// Libera os recursos.
-				IgMenuPrincipal.this.dispose();
-				System.exit(0);
-			}
-		}
+		// Encera o banco de dados.
+		BancoDeDadosBVB.encerrarBD();
+		
+		// Libera os recursos.
+		IgMenuPrincipal.this.dispose();
+		System.exit(0);
 	}
 	
 	public void logout() {
+		Applet.newAudioClip(JanelaPopUpErro.class.getResource("/tsi/too/bvb/recursos/sons/Windows Logoff Sound.wav")).play();
+		
 		logout = true;
 		IgMenuPrincipal.this.dispose();
 	}
@@ -1124,6 +1107,26 @@ public class IgMenuPrincipal extends JDialog {
 	public boolean isLogout() {
 		return logout;
 	}
-	
+
+	public void setLogout(boolean logout) {
+		this.logout = logout;
+	}
+
+	public Date getDataInicial() {
+		return dataInicial;
+	}
+
+	@Override
+	public synchronized void run() {
+		// TODO Auto-generated method stub
+		
+		// Enquanto a janela estiver visível a thread continua rodando.
+		// * Necessário até que uma solução melhor seja encontrada *
+		while(IgMenuPrincipal.this.isVisible()) {
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {}
+		}
+	}
 	
 } // class IgMenuPrincipal

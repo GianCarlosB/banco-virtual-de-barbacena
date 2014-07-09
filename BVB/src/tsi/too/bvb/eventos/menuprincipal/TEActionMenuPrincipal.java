@@ -2,11 +2,13 @@ package tsi.too.bvb.eventos.menuprincipal;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 import tsi.too.bvb.entidades.agencia.Agencia;
 import tsi.too.bvb.entidades.cliente.Cliente;
 import tsi.too.bvb.entidades.cliente.Contato;
 import tsi.too.bvb.entidades.cliente.Endereco;
+import tsi.too.bvb.entidades.conexao.Conexao;
 import tsi.too.bvb.entidades.contabancaria.ContaBancaria;
 import tsi.too.bvb.entidades.funcionario.Funcionario;
 import tsi.too.bvb.gui.IgAjuda;
@@ -28,8 +30,10 @@ import tsi.too.bvb.gui.excluircadastro.IgExcluirCadastro;
 import tsi.too.bvb.gui.funcionario.IgAltSenhaFuncionario;
 import tsi.too.bvb.gui.funcionario.IgCadFuncionario;
 import tsi.too.bvb.gui.funcionario.IgConsultarFuncionario;
+import tsi.too.bvb.gui.funcionario.IgRelatorioFuncionario;
 import tsi.too.bvb.gui.menuprincipal.IgMenuPrincipal;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
+import tsi.too.bvb.persistencia.ConexaoDAO;
 
 public class TEActionMenuPrincipal implements ActionListener {
 	
@@ -47,9 +51,6 @@ public class TEActionMenuPrincipal implements ActionListener {
 		if((e.getSource() == igMenuPrincipal.getAjudaBtn()) || (e.getSource() == igMenuPrincipal.getAjudaImgBtn()))
 			new IgAjuda(igMenuPrincipal);
 		
-		else if(e.getSource() == igMenuPrincipal.getMntmLogout())
-			igMenuPrincipal.logout();
-		
 		else if(e.getSource() == igMenuPrincipal.getMntmAutor())
 			new JanelaPopUpInfo(igMenuPrincipal, "BVB - Sobre", " Criado por:\n     Diego Oliveira   &   Gian Carlos Barros Honório",
 					"Copyright \u00A9 2001-2014, BVB vers\u00E3o 1.04. Software criado por"
@@ -63,8 +64,17 @@ public class TEActionMenuPrincipal implements ActionListener {
 					+ "\n\n OBS:: A utilização de outros temas pode causar problemas"
 					+ "\n na visualização do aplicativo!");
 		
-		else if(e.getSource() == igMenuPrincipal.getMntmSair())
-			igMenuPrincipal.terminarPrograma();
+		// Se o usuário clicou em 'Logout' ou em 'Sair' as funções que encerram o programa são invocadas.
+		else if((e.getSource() == igMenuPrincipal.getMntmLogout()) || (e.getSource() == igMenuPrincipal.getMntmSair())) {
+			new ConexaoDAO().criar(BancoDeDadosBVB.getInstance(), new Conexao(igMenuPrincipal.getFuncionario().getNomeUsuario(),
+                                   igMenuPrincipal.getDataInicial(), new Date()));
+			
+			if(e.getSource() == igMenuPrincipal.getMntmLogout())
+				igMenuPrincipal.logout();
+			
+			else if(e.getSource() == igMenuPrincipal.getMntmSair())
+				igMenuPrincipal.terminarPrograma();
+		}
 		
 		else if(BancoDeDadosBVB.getInstance().getConn() != null) {
 			if((e.getSource() == igMenuPrincipal.getMntmLimparBD())) {
@@ -119,7 +129,8 @@ public class TEActionMenuPrincipal implements ActionListener {
 				new IgExcluirCadastro(igMenuPrincipal, "BVB - Exclusão de Funcionário", "Exclusão de Funcionário",
 			                          "Insira o Login do funcionário que deseja excluir.", 2);
 			
-			else if((e.getSource() == igMenuPrincipal.getRelFuncBtn()) || (e.getSource() == igMenuPrincipal.getRelFuncImgBtn())){}
+			else if((e.getSource() == igMenuPrincipal.getRelFuncBtn()) || (e.getSource() == igMenuPrincipal.getRelFuncImgBtn()))
+				new IgRelatorioFuncionario(igMenuPrincipal);
 	
 			// Fim dos botões da aba "funcionário".
 			

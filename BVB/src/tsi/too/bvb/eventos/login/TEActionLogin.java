@@ -8,6 +8,7 @@ import javax.swing.UIManager;
 
 import tsi.too.bvb.gui.JanelaPopUpErro;
 import tsi.too.bvb.gui.login.IgLogin;
+import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 
 public class TEActionLogin implements ActionListener {
 	
@@ -23,18 +24,23 @@ public class TEActionLogin implements ActionListener {
 		// TODO Auto-generated method stub
 		
 		if(e.getSource() == igLogin.getBtnFazerLogin() && (igLogin.isContemTxtLogin() && igLogin.isContemTxtSenha())) {
-			try {
-				if(igLogin.validarCampos()) {
-					igLogin.getLoginTextField().setBorder(UIManager.getBorder("TextField.border"));
-					igLogin.getPasswordField().setBorder(UIManager.getBorder("PasswordField.border"));
-					igLogin.setLblCamposErrados(false);
-					
-					igLogin.dispose();
+			if(BancoDeDadosBVB.getInstance().getConn() != null) {
+				try {
+					if(igLogin.validarCampos()) {
+						igLogin.getLoginTextField().setBorder(UIManager.getBorder("TextField.border"));
+						igLogin.getPasswordField().setBorder(UIManager.getBorder("PasswordField.border"));
+						igLogin.setLblCamposErrados(false);
+						
+						igLogin.dispose();
+					}
+				} catch (NoSuchAlgorithmException eNSA) {
+					// TODO Auto-generated catch block
+					new JanelaPopUpErro(null, "BVB - ERRO", eNSA);
 				}
-			} catch (NoSuchAlgorithmException eNSA) {
-				// TODO Auto-generated catch block
-				new JanelaPopUpErro(null, "BVB - ERRO", eNSA);
 			}
+			else
+				new JanelaPopUpErro(igLogin, "BVB - ERRO", " A conexão com o banco de dados não foi estabelecida!\n" +
+			                        " Para realizar login reinicie a aplicação!");
 		}
 	}
 
