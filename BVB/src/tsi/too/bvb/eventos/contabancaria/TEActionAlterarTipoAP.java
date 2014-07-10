@@ -28,9 +28,10 @@ public class TEActionAlterarTipoAP implements ActionListener {
 		
 		if(e.getSource() == igAlterarTipoAplicacao.getBtnBuscar()) {
 			if(!igAlterarTipoAplicacao.getNumContaTextField().getText().isEmpty()) {
-				if(ValidarDados.validarIntPositivo(igAlterarTipoAplicacao.getNumContaTextField().getText())) {
-					igAlterarTipoAplicacao.setContaBancaria(new ContaBancariaDAO().pesquisarNumConta(BancoDeDadosBVB.getInstance(), igAlterarTipoAplicacao
-                                                            .getNumContaTextField().getText()));
+				if(ValidarDados.validarIntPositivo(igAlterarTipoAplicacao.getNumContaTextField().getText()) &&
+				   igAlterarTipoAplicacao.getNumContaTextField().getText().length() <= 9) {
+					igAlterarTipoAplicacao.setContaBancaria(new ContaBancariaDAO().pesquisarNumConta(BancoDeDadosBVB.getInstance(),
+															igAlterarTipoAplicacao.getNumContaTextField().getText()));
 					
 					if(igAlterarTipoAplicacao.getContaBancaria() == null)
 						new JanelaPopUpAviso(igAlterarTipoAplicacao, "BVB - Alteração do Tipo da Aplicação", " Nenhuma conta bancária com o número '" +
@@ -43,7 +44,8 @@ public class TEActionAlterarTipoAP implements ActionListener {
 								igAlterarTipoAplicacao.exibeOpcoesAtualizar();
 							} // fim if(igAlterarTipoAplicacao.getContaBancaria().getSaldo() >= 15000)
 							else
-								new JanelaPopUpAviso(igAlterarTipoAplicacao, "BVB - Alteração do Tipo da Aplicação", " A conta bancária de número '" +
+								new JanelaPopUpAviso(igAlterarTipoAplicacao, "BVB - Alteração do Tipo da Aplicação",
+										 " A conta bancária de número '" +
 				                         igAlterarTipoAplicacao.getNumContaTextField().getText() + "' não possui saldo suficiente" +
 				                         "\n para ser modificada para BVB FIF Executivo." +
 				                         "\n Insera o número de uma conta bancária com saldo" +
@@ -60,7 +62,8 @@ public class TEActionAlterarTipoAP implements ActionListener {
 				else
 					new JanelaPopUpErro(igAlterarTipoAplicacao, "BVB - Alteração do Tipo da Aplicação", " O nº de conta bancária '" +
 							            igAlterarTipoAplicacao.getNumContaTextField().getText() + "' é inválido!" +
-							             "\n O campo de busca deve receber um valor inteiro e positivo.");
+							             "\n O campo de busca deve receber um valor inteiro e positivo" +
+							             "\n com no máximo 9 dígitos.");
 			} // fim if(!igAlterarTipoAplicacao.getNumContaTextField().getText().isEmpty())
 			else
 				new JanelaPopUpErro(igAlterarTipoAplicacao, "BVB - Alteração do Tipo da Aplicação", " Entrada inválida!\n" +

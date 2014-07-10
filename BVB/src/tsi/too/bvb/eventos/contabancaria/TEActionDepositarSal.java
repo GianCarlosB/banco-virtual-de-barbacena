@@ -26,7 +26,8 @@ public class TEActionDepositarSal implements ActionListener {
 		
 		if(e.getSource() == igDepositarSal.getBtnBuscar()) {
 			if(!igDepositarSal.getNumContaTextField().getText().isEmpty()) {
-				if(ValidarDados.validarIntPositivo(igDepositarSal.getNumContaTextField().getText())) {
+				if(ValidarDados.validarIntPositivo(igDepositarSal.getNumContaTextField().getText()) &&
+				   igDepositarSal.getNumContaTextField().getText().length() <=9) {
 					igDepositarSal.setContaBancaria(new ContaBancariaDAO().pesquisarNumConta(BancoDeDadosBVB.getInstance(), igDepositarSal
                                                     .getNumContaTextField().getText()));
 					
@@ -48,7 +49,8 @@ public class TEActionDepositarSal implements ActionListener {
 				else
 					new JanelaPopUpErro(igDepositarSal, "BVB - Depósito de Salário", " O nº de conta bancária '" +
 							            igDepositarSal.getNumContaTextField().getText() + "' é inválido!" +
-							             "\n O campo de busca deve receber um valor inteiro e positivo.");
+							             "\n O campo de busca deve receber um valor inteiro e positivo" +
+							             "\n com no máximo 9 dígitos.");
 			} // fim if(!igDepositarSal.getNumContaTextField().getText().isEmpty())
 			else
 				new JanelaPopUpErro(igDepositarSal, "BVB - Depósito de Salário", " Entrada inválida!\n" +

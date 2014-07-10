@@ -35,7 +35,7 @@ public class PainelConfCad extends JPanel implements TratadorDeCampos {
 		
 		dadosEditorPane = new JEditorPane();
 		dadosEditorPane.setForeground(Color.BLACK);
-		dadosEditorPane.setBackground(SystemColor.control);
+		dadosEditorPane.setBackground(new Color(238, 238, 238));
 		dadosScrollPane.setViewportView(dadosEditorPane);
 		dadosEditorPane.setFont(new Font("Arial", Font.BOLD, 14));
 		dadosEditorPane.setToolTipText("este campo exibe os dados inseridos nas janelas anteriores");

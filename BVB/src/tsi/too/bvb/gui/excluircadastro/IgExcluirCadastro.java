@@ -24,7 +24,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import tsi.too.bvb.eventos.excluircadastro.TEActionExcluirCadastro;
-import java.awt.SystemColor;
 
 public class IgExcluirCadastro extends JDialog {
 
@@ -151,7 +150,7 @@ public class IgExcluirCadastro extends JDialog {
 		dadosEditorPane.setForeground(Color.BLACK);
 		dadosEditorPane.setFont(new Font("Arial", Font.BOLD, 14));
 		dadosEditorPane.setEditable(false);
-		dadosEditorPane.setBackground(SystemColor.control);
+		dadosEditorPane.setBackground(new Color(238, 238, 238));
 		dadosScrollPane.setViewportView(dadosEditorPane);
 		
 		btnBuscar = new JButton("Buscar");

@@ -30,9 +30,10 @@ import tsi.too.bvb.eventos.menuprincipal.TEActionMenuPrincipal;
 import tsi.too.bvb.eventos.menuprincipal.TEJanelaMenuPrincipal;
 import tsi.too.bvb.eventos.menuprincipal.TEMouseMenuPrincipal;
 import tsi.too.bvb.gui.JanelaPopUpErro;
+import tsi.too.bvb.gui.login.IgLogin;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 
-public class IgMenuPrincipal extends JFrame implements Runnable {
+public class IgMenuPrincipal extends JFrame {
 	
 	/**
 	 * 
@@ -40,7 +41,6 @@ public class IgMenuPrincipal extends JFrame implements Runnable {
 	private static final long serialVersionUID = 1271399365713672153L;
 	
 	private Funcionario funcionario;
-	private boolean logout = false;
 	private Date dataInicial;
 	
 	private JButton altClienteImgBtn;
@@ -175,7 +175,7 @@ public class IgMenuPrincipal extends JFrame implements Runnable {
 		JEditorPane dtrpnTxtIntroducao = new JEditorPane();
 		dtrpnTxtIntroducao.setEditable(false);
 		dtrpnTxtIntroducao.setText("Este m\u00F3dulo \u00E9 composto por um conjunto de servi\u00E7os\r\nrespons\u00E1veis por controlar a entrada e sa\u00EDda de dados do sistema.\r\nAbaixo est\u00E1 listado algumas das funcionalidades do software:");
-		dtrpnTxtIntroducao.setFont(new Font("Calibri", Font.PLAIN, 16));
+		dtrpnTxtIntroducao.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		dtrpnTxtIntroducao.setForeground(Color.WHITE);
 		dtrpnTxtIntroducao.setBackground(midnigthBlue);
 		dtrpnTxtIntroducao.setBounds(10, 11, 478, 66);
@@ -229,7 +229,7 @@ public class IgMenuPrincipal extends JFrame implements Runnable {
 		txtTopico1.setBorder(null);
 		txtTopico1.setBackground(midnigthBlue);
 		txtTopico1.setForeground(Color.WHITE);
-		txtTopico1.setFont(new Font("Calibri", Font.BOLD, 16));
+		txtTopico1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		txtTopico1.setText(" Controle de Clientes");
 		txtTopico1.setBounds(62, 89, 218, 32);
 		introducaoPanel.add(txtTopico1);
@@ -241,7 +241,7 @@ public class IgMenuPrincipal extends JFrame implements Runnable {
 		txtTopico2.setBorder(null);
 		txtTopico2.setBackground(midnigthBlue);
 		txtTopico2.setForeground(Color.WHITE);
-		txtTopico2.setFont(new Font("Calibri", Font.BOLD, 16));
+		txtTopico2.setFont(new Font("Tahoma", Font.BOLD, 13));
 		txtTopico2.setText(" Controle de Funcion\u00E1rios");
 		txtTopico2.setColumns(10);
 		txtTopico2.setBounds(62, 129, 218, 32);
@@ -253,7 +253,7 @@ public class IgMenuPrincipal extends JFrame implements Runnable {
 		txtTopico3.setBorder(null);
 		txtTopico3.setBackground(midnigthBlue);
 		txtTopico3.setForeground(Color.WHITE);
-		txtTopico3.setFont(new Font("Calibri", Font.BOLD, 16));
+		txtTopico3.setFont(new Font("Tahoma", Font.BOLD, 13));
 		txtTopico3.setText(" Controle de Ag\u00EAncias");
 		txtTopico3.setColumns(10);
 		txtTopico3.setBounds(62, 169, 218, 32);
@@ -263,7 +263,7 @@ public class IgMenuPrincipal extends JFrame implements Runnable {
 		txtTopico4 = new JTextField();
 		txtTopico4.setText(" Controle de Contas");
 		txtTopico4.setForeground(Color.WHITE);
-		txtTopico4.setFont(new Font("Calibri", Font.BOLD, 16));
+		txtTopico4.setFont(new Font("Tahoma", Font.BOLD, 13));
 		txtTopico4.setEditable(false);
 		txtTopico4.setColumns(10);
 		txtTopico4.setBorder(null);
@@ -277,7 +277,7 @@ public class IgMenuPrincipal extends JFrame implements Runnable {
 		txtTopico5.setBorder(null);
 		txtTopico5.setBackground(midnigthBlue);
 		txtTopico5.setForeground(Color.WHITE);
-		txtTopico5.setFont(new Font("Calibri", Font.BOLD, 16));
+		txtTopico5.setFont(new Font("Tahoma", Font.BOLD, 13));
 		txtTopico5.setText(" Alterar Senha");
 		txtTopico5.setColumns(10);
 		txtTopico5.setBounds(62, 249, 218, 32);
@@ -289,7 +289,7 @@ public class IgMenuPrincipal extends JFrame implements Runnable {
 		txtTopico6.setBorder(null);
 		txtTopico6.setBackground(midnigthBlue);
 		txtTopico6.setForeground(Color.WHITE);
-		txtTopico6.setFont(new Font("Calibri", Font.BOLD, 16));
+		txtTopico6.setFont(new Font("Tahoma", Font.BOLD, 13));
 		txtTopico6.setText(" Iniciar o Caixa eletr\u00F4nico");
 		txtTopico6.setColumns(10);
 		txtTopico6.setBounds(62, 289, 218, 32);
@@ -307,7 +307,7 @@ public class IgMenuPrincipal extends JFrame implements Runnable {
 		lblImgAjuda.setLabelFor(dtrpnTxtDuvida);
 		dtrpnTxtDuvida.setText("Para tirar d\u00FAvidas sobre o funcionamento do aplicativo, v\u00E1 na aba \"Outros\" e\nclique no bot\u00E3o de ajuda.");
 		dtrpnTxtDuvida.setForeground(Color.WHITE);
-		dtrpnTxtDuvida.setFont(new Font("Calibri", Font.PLAIN, 13));
+		dtrpnTxtDuvida.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		dtrpnTxtDuvida.setBackground(new Color(44, 62, 80));
 		dtrpnTxtDuvida.setBounds(10, 333, 478, 43);
 		introducaoPanel.add(dtrpnTxtDuvida);
@@ -730,7 +730,7 @@ public class IgMenuPrincipal extends JFrame implements Runnable {
 		ajudaBtn = new JButton("Ajuda");
 		ajudaBtn.addActionListener(new TEActionMenuPrincipal(this));
 		ajudaBtn.setMnemonic(KeyEvent.VK_A);
-		ajudaBtn.setForeground(Color.WHITE);
+		ajudaBtn.setForeground(Color.BLACK);
 		ajudaBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		ajudaBtn.setBorder(new LineBorder(Color.WHITE));
 		ajudaBtn.setBackground(sunFlower);
@@ -860,7 +860,9 @@ public class IgMenuPrincipal extends JFrame implements Runnable {
 	public void logout() {
 		Applet.newAudioClip(JanelaPopUpErro.class.getResource("/tsi/too/bvb/recursos/sons/Windows Logoff Sound.wav")).play();
 		
-		logout = true;
+		// Cria a janela que contém o login.
+		new IgLogin();
+		
 		IgMenuPrincipal.this.dispose();
 	}
 	
@@ -1104,29 +1106,8 @@ public class IgMenuPrincipal extends JFrame implements Runnable {
 		return funcionario;
 	}
 
-	public boolean isLogout() {
-		return logout;
-	}
-
-	public void setLogout(boolean logout) {
-		this.logout = logout;
-	}
-
 	public Date getDataInicial() {
 		return dataInicial;
-	}
-
-	@Override
-	public synchronized void run() {
-		// TODO Auto-generated method stub
-		
-		// Enquanto a janela estiver visível a thread continua rodando.
-		// * Necessário até que uma solução melhor seja encontrada *
-		while(IgMenuPrincipal.this.isVisible()) {
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {}
-		}
 	}
 	
 } // class IgMenuPrincipal

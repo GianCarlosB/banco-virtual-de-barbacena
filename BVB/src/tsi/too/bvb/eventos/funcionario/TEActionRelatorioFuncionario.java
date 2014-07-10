@@ -45,9 +45,9 @@ public class TEActionRelatorioFuncionario implements ActionListener {
 				else
 					new JanelaPopUpErro(igRelatorioFuncionario, "BVB - Relatório de Funcionário", " O login de funcionário '" +
 									    igRelatorioFuncionario.getLoginTextField().getText() + "' é inválido!" +
-							            "\n O campo de busca deve receber no mínimo 6 e no máximo" +
-							            "\n 20 caracteres letras, dígitos e os símbolos underscore (_)" +
-							            "\n ou ponto (.).");
+							            "\n O campo de busca deve receber no mínimo 6 e no" +
+							            "\n máximo 20 caracteres letras, dígitos e os símbolos" +
+							            "\n underscore (_) ou ponto (.).");
 			}
 			else
 				new JanelaPopUpErro(igRelatorioFuncionario, "BVB - Relatório de Funcionário", " Entrada inválida!\n" +

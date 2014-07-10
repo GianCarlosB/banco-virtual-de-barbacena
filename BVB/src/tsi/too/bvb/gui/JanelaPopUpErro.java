@@ -62,7 +62,7 @@ public class JanelaPopUpErro extends JDialog {
 		
 		JTextPane erroTextPane = new JTextPane();
 		erroTextPane.setForeground(Color.BLACK);
-		erroTextPane.setFont(new Font("Calibri", Font.PLAIN, 13));
+		erroTextPane.setFont(new Font("Dialog", Font.PLAIN, 12));
 		erroTextPane.setEditable(false);
 		erroTextPane.setBackground(new Color(231, 76, 60));
 		erroTextPane.setText(sw.toString());
@@ -79,7 +79,7 @@ public class JanelaPopUpErro extends JDialog {
 		
 		JEditorPane msgEditorPane = new JEditorPane();
 		msgEditorPane.setForeground(Color.BLACK);
-		msgEditorPane.setFont(new Font("Calibri", Font.BOLD, 14));
+		msgEditorPane.setFont(new Font("Dialog", Font.BOLD, 12));
 		msgEditorPane.setText(msgErro);
 		msgEditorPane.setEditable(false);
 		msgEditorPane.setBackground(new Color(231, 76, 60));
@@ -138,7 +138,7 @@ public class JanelaPopUpErro extends JDialog {
 		
 		JTextPane erroTextPane = new JTextPane();
 		erroTextPane.setForeground(Color.BLACK);
-		erroTextPane.setFont(new Font("Calibri", Font.PLAIN, 13));
+		erroTextPane.setFont(new Font("Dialog", Font.PLAIN, 12));
 		erroTextPane.setEditable(false);
 		erroTextPane.setBackground(new Color(231, 76, 60));
 		erroTextPane.setText(sw.toString());
@@ -160,7 +160,7 @@ public class JanelaPopUpErro extends JDialog {
 		contentPanel.add(erroScrollPane);
 		
 		JTextPane txtpnA = new JTextPane();
-		txtpnA.setFont(new Font("Calibri", Font.BOLD, 14));
+		txtpnA.setFont(new Font("Dialog", Font.BOLD, 12));
 		txtpnA.setForeground(Color.BLACK);
 		txtpnA.setText(e.getMessage());
 		txtpnA.setEditable(false);
@@ -220,7 +220,7 @@ public class JanelaPopUpErro extends JDialog {
 		JEditorPane msgEditorPane = new JEditorPane();
 		msgEditorPane.setEditable(false);
 		msgEditorPane.setForeground(Color.BLACK);
-		msgEditorPane.setFont(new Font("Calibri", Font.BOLD, 14));
+		msgEditorPane.setFont(new Font("Dialog", Font.BOLD, 12));
 		msgEditorPane.setText(msgErro);
 		msgEditorPane.setBackground(new Color(231, 76, 60));
 		msgEditorPane.setBorder(new TitledBorder(new LineBorder(Color.BLACK, 1, true), "ERRO", TitledBorder.CENTER, TitledBorder.TOP, null, Color.BLACK));

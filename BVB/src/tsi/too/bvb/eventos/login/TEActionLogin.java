@@ -4,10 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.security.NoSuchAlgorithmException;
 
-import javax.swing.UIManager;
-
 import tsi.too.bvb.gui.JanelaPopUpErro;
 import tsi.too.bvb.gui.login.IgLogin;
+import tsi.too.bvb.gui.menuprincipal.IgMenuPrincipal;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 
 public class TEActionLogin implements ActionListener {
@@ -23,24 +22,32 @@ public class TEActionLogin implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
-		if(e.getSource() == igLogin.getBtnFazerLogin() && (igLogin.isContemTxtLogin() && igLogin.isContemTxtSenha())) {
-			if(BancoDeDadosBVB.getInstance().getConn() != null) {
-				try {
-					if(igLogin.validarCampos()) {
-						igLogin.getLoginTextField().setBorder(UIManager.getBorder("TextField.border"));
-						igLogin.getPasswordField().setBorder(UIManager.getBorder("PasswordField.border"));
-						igLogin.setLblCamposErrados(false);
-						
-						igLogin.dispose();
+		if(e.getSource() == igLogin.getBtnFazerLogin()) {
+			if(igLogin.isContemTxtLogin() && igLogin.isContemTxtSenha()) {
+				if(BancoDeDadosBVB.getInstance().getConn() != null) {
+					try {
+						if(igLogin.validarCampos()) {
+							igLogin.inserirBordasPadrao();
+							igLogin.setLblCamposErrados(false);
+							
+							// Cria a janela que contém o menu principal.
+							new IgMenuPrincipal(igLogin.getFuncionario());
+							
+							igLogin.dispose();
+						}
+					} catch (NoSuchAlgorithmException eNSA) {
+						// TODO Auto-generated catch block
+						new JanelaPopUpErro(null, "BVB - ERRO", eNSA);
 					}
-				} catch (NoSuchAlgorithmException eNSA) {
-					// TODO Auto-generated catch block
-					new JanelaPopUpErro(null, "BVB - ERRO", eNSA);
 				}
+				else
+					new JanelaPopUpErro(igLogin, "BVB - ERRO", " A conexão com o banco de dados não foi estabelecida!\n" +
+				                        " Para realizar login reinicie a aplicação!");
 			}
-			else
-				new JanelaPopUpErro(igLogin, "BVB - ERRO", " A conexão com o banco de dados não foi estabelecida!\n" +
-			                        " Para realizar login reinicie a aplicação!");
+			else {
+				igLogin.inserirBordasPadrao();
+				igLogin.setLblCamposErrados(false);
+			}
 		}
 	}
 

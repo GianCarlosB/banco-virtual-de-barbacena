@@ -58,7 +58,7 @@ public class JanelaPopUpInfo extends JDialog {
 		
 		JTextPane infoTextPane = new JTextPane();
 		infoTextPane.setForeground(new Color(236, 240, 241));
-		infoTextPane.setFont(new Font("Calibri", Font.PLAIN, 13));
+		infoTextPane.setFont(new Font("Dialog", Font.PLAIN, 12));
 		infoTextPane.setEditable(false);
 		infoTextPane.setBackground(new Color(52, 152, 219));
 		infoTextPane.setText(info);
@@ -75,7 +75,7 @@ public class JanelaPopUpInfo extends JDialog {
 		
 		JEditorPane msgEditorPane = new JEditorPane();
 		msgEditorPane.setForeground(new Color(236, 240, 241));
-		msgEditorPane.setFont(new Font("Calibri", Font.BOLD, 14));
+		msgEditorPane.setFont(new Font("Dialog", Font.BOLD, 12));
 		msgEditorPane.setText(msgInfo);
 		msgEditorPane.setEditable(false);
 		msgEditorPane.setBackground(new Color(52, 152, 219));
@@ -135,7 +135,7 @@ public class JanelaPopUpInfo extends JDialog {
 		
 		JEditorPane msgEditorPane = new JEditorPane();
 		msgEditorPane.setForeground(new Color(236, 240, 241));
-		msgEditorPane.setFont(new Font("Calibri", Font.BOLD, 14));
+		msgEditorPane.setFont(new Font("Dialog", Font.BOLD, 12));
 		msgEditorPane.setText(msgInfo);
 		msgEditorPane.setEditable(false);
 		msgEditorPane.setBackground(new Color(52, 152, 219));

@@ -59,7 +59,7 @@ public class JanelaPopUpAviso extends JDialog {
 		JEditorPane msgEditorPane = new JEditorPane();
 		msgEditorPane.setEditable(false);
 		msgEditorPane.setForeground(Color.BLACK);
-		msgEditorPane.setFont(new Font("Calibri", Font.BOLD, 14));
+		msgEditorPane.setFont(new Font("Dialog", Font.BOLD, 12));
 		msgEditorPane.setText(msgAviso);
 		msgEditorPane.setBackground(new Color(241, 196, 15));
 		msgEditorPane.setBorder(new TitledBorder(new LineBorder(Color.BLACK, 1, true), "AVISO", TitledBorder.CENTER, TitledBorder.TOP, null, Color.BLACK));

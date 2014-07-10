@@ -79,8 +79,8 @@ public class TEActionMenuPrincipal implements ActionListener {
 		else if(BancoDeDadosBVB.getInstance().getConn() != null) {
 			if((e.getSource() == igMenuPrincipal.getMntmLimparBD())) {
 				JanelaPopUpPergunta janelaPopUpPergunta = new JanelaPopUpPergunta(igMenuPrincipal, "BVB - Limpar Banco de Dados",
-						" Esta operação irá excluir permanentemente TODOS"
-						+ "\n os registros do banco de dados!"
+						" Esta operação irá excluir permanentemente TODOS os"
+						+ "\n registros do banco de dados!"
 						+ "\n\n Deseja continuar assim mesmo?");
 				
 				if(janelaPopUpPergunta.isSim()) {

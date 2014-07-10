@@ -36,7 +36,8 @@ public class TEActionRelatorioAgencia implements ActionListener {
 		
 		if(e.getSource() == igRelatorioAgencia.getBtnBuscar()) {
 			if(!igRelatorioAgencia.getCodigoTextField().getText().isEmpty()) {
-				if(ValidarDados.validarIntPositivo(igRelatorioAgencia.getCodigoTextField().getText())) {
+				if(ValidarDados.validarIntPositivo(igRelatorioAgencia.getCodigoTextField().getText()) &&
+				   igRelatorioAgencia.getCodigoTextField().getText().length() <= 4) {
 					if(new ContaBancariaDAO().pesquisarContasAgencia(BancoDeDadosBVB.getInstance(),
 					   igRelatorioAgencia.getCodigoTextField().getText()) == null)
 						new JanelaPopUpAviso(igRelatorioAgencia, "BVB - Relatório de Agência", " Nenhuma conta bancária foi encontrada na agência" +
@@ -49,7 +50,8 @@ public class TEActionRelatorioAgencia implements ActionListener {
 				else
 					new JanelaPopUpErro(igRelatorioAgencia, "BVB - Relatório de Agência", " O código de agência '" +
 							            igRelatorioAgencia.getCodigoTextField().getText() + "' é inválido!" +
-							            "\n O campo de busca deve receber um valor inteiro e positivo.");
+							            "\n O campo de busca deve receber um valor inteiro e positivo" +
+							            "\n com no máximo 4 dígitos.");
 			}
 			else
 				new JanelaPopUpErro(igRelatorioAgencia, "BVB - Relatório de Agência", " Entrada inválida!\n" +

@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -131,7 +130,7 @@ public class IgRelatorioFuncionario extends JDialog {
 		relatorioEditorPane = new JEditorPane();
 		relatorioEditorPane.setFont(new Font("Arial", Font.BOLD, 14));
 		relatorioEditorPane.setEditable(false);
-		relatorioEditorPane.setBackground(SystemColor.menu);
+		relatorioEditorPane.setBackground(new Color(238, 238, 238));
 		relatorioScrollPane.setViewportView(relatorioEditorPane);
 		
 		JLabel lblLogin = new JLabel("Login:");

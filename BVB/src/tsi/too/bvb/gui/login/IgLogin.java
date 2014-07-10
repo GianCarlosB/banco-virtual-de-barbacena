@@ -14,11 +14,11 @@ import java.security.NoSuchAlgorithmException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -30,7 +30,7 @@ import tsi.too.bvb.persistencia.FuncionarioDAO;
 import tsi.too.bvb.validacoes.Criptografia;
 import tsi.too.bvb.validacoes.ValidarDados;
 
-public class IgLogin extends JDialog {
+public class IgLogin extends JFrame {
 
 	/**
 	 * 
@@ -54,7 +54,6 @@ public class IgLogin extends JDialog {
 	public IgLogin() {
 		funcionario = new Funcionario();
 		
-		setModal(true);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
@@ -171,7 +170,7 @@ public class IgLogin extends JDialog {
 		funcionario = new FuncionarioDAO().pesquisarLoginUnico(BancoDeDadosBVB.getInstance(), loginTextField.getText());
 		
 		if(funcionario != null) {
-			loginTextField.setBorder(UIManager.getBorder("TextField.border"));
+			loginTextField.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 			
 			if(!ValidarDados.validarSenhasIguais(Criptografia.converterSenhaParaMD5(new String(passwordField.getPassword())),
 					                             funcionario.getSenha())) {
@@ -180,17 +179,22 @@ public class IgLogin extends JDialog {
 				lblCamposErrados.setText("* A senha inserida está incorreta.");
 				valido = false;
 			}
-			else passwordField.setBorder(UIManager.getBorder("PasswordField.border"));
+			else passwordField.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		}
 		else {
 			loginTextField.setBorder(new LineBorder(Color.RED));
-			passwordField.setBorder(UIManager.getBorder("PasswordField.border"));
+			passwordField.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 			setLblCamposErrados(true);
 			lblCamposErrados.setText("* O login inserido está incorreto.");
 			valido = false;
 		}
 		
 		return valido;
+	}
+	
+	public void inserirBordasPadrao() {
+		loginTextField.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		passwordField.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 	}
 	
 	private void ativarPlaceHolderLogin() {

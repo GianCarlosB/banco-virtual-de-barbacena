@@ -32,7 +32,7 @@ public class TEActionConsultarAgencia implements ActionListener {
 			String codigo = igConsultarAgencia.getCodigoTextField().getText();
 			
 			if(!igConsultarAgencia.getCodigoTextField().getText().isEmpty()) {
-				if(ValidarDados.validarIntPositivo(codigo)) {
+				if(ValidarDados.validarIntPositivo(codigo) && codigo.length() <= 4) {
 					Agencia agencia = new AgenciaDAO().pesquisarCodigo(BancoDeDadosBVB.getInstance(), codigo);
 					
 					if(agencia != null) {
@@ -48,7 +48,8 @@ public class TEActionConsultarAgencia implements ActionListener {
 				}
 				else
 					new JanelaPopUpErro(igConsultarAgencia, "BVB - Consulta de Agência", " O código de agência '" +
-							            codigo + "' é inválido!\n O campo de busca deve receber um valor inteiro e positivo.");
+							            codigo + "' é inválido!\n O campo de busca deve receber um valor inteiro e positivo"
+							            		+ "\n com no máximo 4 dígitos.");
 			}
 			else
 				new JanelaPopUpErro(igConsultarAgencia, "BVB - Consulta de Agência", " Entrada inválida!\n" +

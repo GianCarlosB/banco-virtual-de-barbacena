@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -189,7 +188,7 @@ public class IgRelatorioAgencia extends JDialog {
 		relatorioEditorPane = new JEditorPane();
 		relatorioEditorPane.setEditable(false);
 		relatorioEditorPane.setFont(new Font("Arial", Font.BOLD, 14));
-		relatorioEditorPane.setBackground(SystemColor.control);
+		relatorioEditorPane.setBackground(new Color(238, 238, 238));
 		relatorioScrollPane.setViewportView(relatorioEditorPane);
 		
 		JPanel dataInicialPanel = new JPanel();

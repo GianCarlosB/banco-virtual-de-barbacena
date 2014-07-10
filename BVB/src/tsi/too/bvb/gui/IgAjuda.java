@@ -3,10 +3,11 @@ package tsi.too.bvb.gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.Window;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -24,8 +25,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class IgAjuda extends JDialog {
 	
@@ -71,27 +70,27 @@ public class IgAjuda extends JDialog {
 		contentPane.add(separatorTitulo);
 		
 		JLabel lblImg = new JLabel("Label Img");
-		lblImg.setBorder(new LineBorder(Color.WHITE, 1, true));
+		lblImg.setBorder(new LineBorder(Color.BLACK, 1, true));
 		lblImg.setIcon(new ImageIcon(IgAjuda.class.getResource("/tsi/too/bvb/recursos/imagens/Help-48.png")));
 		lblImg.setBounds(459, 11, 48, 48);
 		contentPane.add(lblImg);
 		
 		JTextPane txtpnSubTitulo = new JTextPane();
 		txtpnSubTitulo.setEditable(false);
-		txtpnSubTitulo.setForeground(Color.WHITE);
+		txtpnSubTitulo.setForeground(Color.BLACK);
 		txtpnSubTitulo.setBackground(sunFlower);
 		txtpnSubTitulo.setText("Selecione suas d\u00FAvidas no painel de perguntas.");
 		txtpnSubTitulo.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtpnSubTitulo.setBounds(20, 36, 320, 22);
+		txtpnSubTitulo.setBounds(20, 36, 280, 22);
 		contentPane.add(txtpnSubTitulo);
 		
 		JTextPane txtpnConsultaDeAgncia = new JTextPane();
 		txtpnConsultaDeAgncia.setEditable(false);
-		txtpnConsultaDeAgncia.setForeground(Color.WHITE);
+		txtpnConsultaDeAgncia.setForeground(Color.BLACK);
 		txtpnConsultaDeAgncia.setBackground(sunFlower);
 		txtpnConsultaDeAgncia.setText("Ajuda");
 		txtpnConsultaDeAgncia.setFont(new Font("Tahoma", Font.BOLD, 13));
-		txtpnConsultaDeAgncia.setBounds(10, 11, 150, 22);
+		txtpnConsultaDeAgncia.setBounds(10, 11, 60, 22);
 		contentPane.add(txtpnConsultaDeAgncia);
 		
 		JEditorPane dtrpnCampoTitulo = new JEditorPane();
@@ -114,7 +113,7 @@ public class IgAjuda extends JDialog {
 		respostaEditorPane = new JEditorPane();
 		respostaEditorPane.setText(" Como posso ajudar?");
 		respostaEditorPane.setFont(new Font("Dialog", Font.BOLD, 12));
-		respostaEditorPane.setBackground(SystemColor.control);
+		respostaEditorPane.setBackground(new Color(238, 238, 238));
 		respostaEditorPane.setEditable(false);
 		respostaScrollPane.setViewportView(respostaEditorPane);
 		

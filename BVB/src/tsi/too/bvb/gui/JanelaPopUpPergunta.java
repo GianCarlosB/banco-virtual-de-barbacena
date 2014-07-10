@@ -62,7 +62,7 @@ public class JanelaPopUpPergunta extends JDialog {
 		JEditorPane msgEditorPane = new JEditorPane();
 		msgEditorPane.setEditable(false);
 		msgEditorPane.setForeground(new Color(236, 240, 241));
-		msgEditorPane.setFont(new Font("Calibri", Font.BOLD, 14));
+		msgEditorPane.setFont(new Font("Dialog", Font.BOLD, 12));
 		msgEditorPane.setText(msgPergunta);
 		msgEditorPane.setBackground(new Color(39, 174, 96));
 		msgEditorPane.setBorder(new TitledBorder(new LineBorder(new Color(236, 240, 241), 1, true), "PERGUNTA", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(236, 240, 241)));

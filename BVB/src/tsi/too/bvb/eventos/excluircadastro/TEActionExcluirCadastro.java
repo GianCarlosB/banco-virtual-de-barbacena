@@ -82,9 +82,9 @@ public class TEActionExcluirCadastro implements ActionListener {
 					else
 						new JanelaPopUpErro(igExcluirCadastro, "BVB - Exclusão de Funcionário", " O login de funcionário '" +
 								            login + "' é inválido!" +
-								            "\n O campo de busca deve receber no mínimo 6 e no máximo" +
-								            "\n 20 caracteres letras, dígitos e os símbolos underscore (_)" +
-								            "\n ou ponto (.).");
+								            "\n O campo de busca deve receber no mínimo 6 e no" +
+								            "\n máximo 20 caracteres letras, dígitos e os símbolos" +
+								            "\n underscore (_) ou ponto (.).");
 				}
 				else
 					new JanelaPopUpErro(igExcluirCadastro, "BVB - Consulta de Funcionário", " Entrada inválida!\n"
@@ -96,7 +96,7 @@ public class TEActionExcluirCadastro implements ActionListener {
 				String codigo = igExcluirCadastro.getPexAgencia().getCodigoTextField().getText();
 				
 				if(!igExcluirCadastro.getPexAgencia().getCodigoTextField().getText().isEmpty()) {
-					if(ValidarDados.validarIntPositivo(codigo)) {
+					if(ValidarDados.validarIntPositivo(codigo) && codigo.length() <= 4) {
 						Agencia agencia = new AgenciaDAO().pesquisarCodigo(BancoDeDadosBVB.getInstance(), codigo);
 						
 						if(agencia == null)
@@ -109,8 +109,8 @@ public class TEActionExcluirCadastro implements ActionListener {
 					}
 					else
 						new JanelaPopUpErro(igExcluirCadastro, "BVB - Exclusão de Agência", " O código de agência '" +
-								            codigo + "' é inválido!" +
-								            "\n O campo de busca deve receber um valor inteiro e positivo.");
+								            codigo + "' é inválido!\n O campo de busca deve receber um valor inteiro e positivo" +
+							            	"\n com no máximo 4 dígitos.");
 				}
 				else
 					new JanelaPopUpErro(igExcluirCadastro, "BVB - Exclusão de Agência", " Entrada inválida!\n" +
