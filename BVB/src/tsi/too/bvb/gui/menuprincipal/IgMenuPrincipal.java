@@ -109,6 +109,9 @@ public class IgMenuPrincipal extends JFrame {
 	private JLabel lblCopyrightOutros;
 	private JMenuItem mntmTema;
 	private JMenuItem mntmLimparBD;
+	private JMenuItem mntmGerente;
+	private JMenuItem mntmCaixa;
+	private JMenuItem mntmAdministrador;
 
 	public IgMenuPrincipal(Funcionario funcionario) {
 		this.funcionario = funcionario;
@@ -844,6 +847,26 @@ public class IgMenuPrincipal extends JFrame {
 		mntmAutor.setMnemonic(KeyEvent.VK_A);
 		mnSobre.add(mntmAutor);
 		
+		JMenu mnFuncionrios = new JMenu("Funcion\u00E1rios");
+		mnFuncionrios.setMnemonic(KeyEvent.VK_F);
+		mnFuncionrios.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/User-Group-24.png")));
+		mnSobre.add(mnFuncionrios);
+		
+		mntmAdministrador = new JMenuItem("Administrador");
+		mntmAdministrador.addActionListener(new TEActionMenuPrincipal(this));
+		mntmAdministrador.setMnemonic(KeyEvent.VK_A);
+		mnFuncionrios.add(mntmAdministrador);
+		
+		mntmCaixa = new JMenuItem("Caixa");
+		mntmCaixa.addActionListener(new TEActionMenuPrincipal(this));
+		mntmCaixa.setMnemonic(KeyEvent.VK_C);
+		mnFuncionrios.add(mntmCaixa);
+		
+		mntmGerente = new JMenuItem("Gerente");
+		mntmGerente.addActionListener(new TEActionMenuPrincipal(this));
+		mntmGerente.setMnemonic(KeyEvent.VK_G);
+		mnFuncionrios.add(mntmGerente);
+		
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
@@ -1085,6 +1108,8 @@ public class IgMenuPrincipal extends JFrame {
 		return lblBanner;
 	}
 	/// ===== * Fim dos Geters dos itens da aba Home * ===== ///
+	
+	/// ===== * Início dos Geters dos itens de menu * ===== ///
 
 	public JMenuItem getMntmLogout() {
 		return mntmLogout;
@@ -1098,6 +1123,20 @@ public class IgMenuPrincipal extends JFrame {
 		return mntmLimparBD;
 	}
 
+	public JMenuItem getMntmGerente() {
+		return mntmGerente;
+	}
+
+	public JMenuItem getMntmCaixa() {
+		return mntmCaixa;
+	}
+
+	public JMenuItem getMntmAdministrador() {
+		return mntmAdministrador;
+	}
+	
+	/// ===== * Fim dos Geters dos itens de menu * ===== ///
+
 	public JTabbedPane getTabbedPane() {
 		return tabbedPane;
 	}
@@ -1109,5 +1148,4 @@ public class IgMenuPrincipal extends JFrame {
 	public Date getDataInicial() {
 		return dataInicial;
 	}
-	
 } // class IgMenuPrincipal

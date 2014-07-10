@@ -11,6 +11,7 @@ import tsi.too.bvb.entidades.cliente.Endereco;
 import tsi.too.bvb.entidades.conexao.Conexao;
 import tsi.too.bvb.entidades.contabancaria.ContaBancaria;
 import tsi.too.bvb.entidades.funcionario.Funcionario;
+import tsi.too.bvb.entidades.tiposenumerados.TipoUsuario;
 import tsi.too.bvb.gui.IgAjuda;
 import tsi.too.bvb.gui.JanelaPopUpAviso;
 import tsi.too.bvb.gui.JanelaPopUpErro;
@@ -58,6 +59,18 @@ public class TEActionMenuPrincipal implements ActionListener {
 					+ "\nde Tecnologia de Orienta\u00E7\u00E3o a Objetos do Curso Superior de"
 					+ "\nTecnologia em Sistemas para internet do Instituto Federal do Sudeste"
 					+ "\nde Minas Gerais C\u00E2mpus Barbacena. Prof. M\u00E1rlon.");
+		
+		else if(e.getSource() == igMenuPrincipal.getMntmAdministrador())
+			new JanelaPopUpInfo(igMenuPrincipal, "BVB - Funcionários - Administrador", " Tipo: " + TipoUsuario.ADMINISTRADOR.getPerfil(),
+					            TipoUsuario.ADMINISTRADOR.getDescricao());
+		
+		else if(e.getSource() == igMenuPrincipal.getMntmCaixa())
+			new JanelaPopUpInfo(igMenuPrincipal, "BVB - Funcionários - Caixa", " Tipo: " + TipoUsuario.CAIXA.getPerfil(),
+					            TipoUsuario.CAIXA.getDescricao());
+		
+		else if(e.getSource() == igMenuPrincipal.getMntmGerente())
+			new JanelaPopUpInfo(igMenuPrincipal, "BVB - Funcionários - Gerente", " Tipo: " + TipoUsuario.GERENTE.getPerfil(),
+					            TipoUsuario.GERENTE.getDescricao());
 		
 		else if(e.getSource() == igMenuPrincipal.getMntmTema())
 			new JanelaPopUpInfo(igMenuPrincipal, "BVB - Tema", " Tema utilizado: javax.swing.plaf.metal."

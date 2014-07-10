@@ -44,10 +44,11 @@ public class IgAjuda extends JDialog {
 	private JRadioButton rdbtnPerg1;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JEditorPane respostaEditorPane;
-	private JRadioButton rdbtnPerg12;
+	private JRadioButton rdbtnPerg13;
 	private JRadioButton rdbtnPerg10;
-	private JRadioButton rdbtnPerg11;
+	private JRadioButton rdbtnPerg12;
 	private JRadioButton rdbtnPerg9;
+	private JRadioButton rdbtnPerg11;
 
 	/**
 	 * Create the frame.
@@ -129,7 +130,7 @@ public class IgAjuda extends JDialog {
 		
 		JPanel Perguntaspanel = new JPanel();
 		perguntaScrollPane.setViewportView(Perguntaspanel);
-		Perguntaspanel.setLayout(new MigLayout("", "[]", "[][][][][][][][][][][][]"));
+		Perguntaspanel.setLayout(new MigLayout("", "[]", "[][][][][][][][][][][][][]"));
 		
 		rdbtnPerg1 = new JRadioButton("Como fa\u00E7o para iniciar um processo de cadastro?");
 		rdbtnPerg1.addItemListener(new ItemListener() {
@@ -210,9 +211,9 @@ public class IgAjuda extends JDialog {
 			}
 		});
 		
-		rdbtnPerg11 = new JRadioButton("Como fa\u00E7o para realizar Logout?");
-		buttonGroup.add(rdbtnPerg11);
-		rdbtnPerg11.addItemListener(new ItemListener() {
+		rdbtnPerg12 = new JRadioButton("Como fa\u00E7o para realizar Logout?");
+		buttonGroup.add(rdbtnPerg12);
+		rdbtnPerg12.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				atualizarResposta();
 			}
@@ -226,18 +227,27 @@ public class IgAjuda extends JDialog {
 		});
 		buttonGroup.add(rdbtnPerg9);
 		Perguntaspanel.add(rdbtnPerg9, "cell 0 8");
-		Perguntaspanel.add(rdbtnPerg11, "cell 0 10");
-		buttonGroup.add(rdbtnPerg10);
-		Perguntaspanel.add(rdbtnPerg10, "cell 0 9");
 		
-		rdbtnPerg12 = new JRadioButton("Como fa\u00E7o para sair do programa?");
-		rdbtnPerg12.addItemListener(new ItemListener() {
+		rdbtnPerg11 = new JRadioButton("Como fa\u00E7o para visualizar as informa\u00E7\u00F5es sobre os funcion\u00E1rios?");
+		rdbtnPerg11.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				atualizarResposta();
 			}
 		});
-		buttonGroup.add(rdbtnPerg12);
+		buttonGroup.add(rdbtnPerg11);
+		Perguntaspanel.add(rdbtnPerg11, "cell 0 10");
 		Perguntaspanel.add(rdbtnPerg12, "cell 0 11");
+		buttonGroup.add(rdbtnPerg10);
+		Perguntaspanel.add(rdbtnPerg10, "cell 0 9");
+		
+		rdbtnPerg13 = new JRadioButton("Como fa\u00E7o para sair do programa?");
+		rdbtnPerg13.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				atualizarResposta();
+			}
+		});
+		buttonGroup.add(rdbtnPerg13);
+		Perguntaspanel.add(rdbtnPerg13, "cell 0 12");
 		
 		JLabel lblImgDogSearch = new JLabel("");
 		lblImgDogSearch.addMouseListener(new MouseAdapter() {
@@ -292,25 +302,30 @@ public class IgAjuda extends JDialog {
 			respostaEditorPane.setText(" Selecione a aba 'outros' e clique no botão 'Caixa"
 					+ "\n Eletrônico' ou em sua respectiva imagem.");
 		else if(rdbtnPerg8.isSelected())
-			respostaEditorPane.setText(" Selecione o menu 'Arquivo' e clique no item de menu"
-					+ "\n 'Limpar Banco de Dados', ou  use as teclas de atalho"
-					+ "\n 'Ctrl+Shift+L', então leia atentamente o aviso e"
-					+ "\n clique em 'sim'. Vale resaltar que esta operação"
-					+ "\n irá excluir permanentemente TODOS os registros do"
-					+ "\n banco de dados, e só pode ser realizada por um"
-					+ "\n ADMINISTRADOR.");
+			respostaEditorPane.setText(" Selecione o item de menu 'Arquivo' e clique no item"
+					+ "\n de menu 'Limpar Banco de Dados', ou  use as teclas"
+					+ "\n de atalho 'Ctrl+Shift+L', então leia atentamente o"
+					+ "\n aviso e clique em 'sim'. Vale resaltar que esta"
+					+ "\n operação irá excluir permanentemente TODOS os"
+					+ "\n registros do banco de dados, e só pode ser realizada"
+					+ "\n por um ADMINISTRADOR.");
 		else if(rdbtnPerg9.isSelected())
-			respostaEditorPane.setText(" Selecione o menu 'Aparência' e clique no item de menu"
-					+ "\n 'Tema'. Ou use as teclas de atalho 'Ctrl+Shift+T'.");
+			respostaEditorPane.setText(" Selecione o item de menu 'Aparência' e clique no item de"
+					+ "\n menu 'Tema'. Ou use as teclas de atalho 'Ctrl+Shift+T'.");
 		else if(rdbtnPerg10.isSelected())
-			respostaEditorPane.setText(" Selecione o menu 'Sobre' e clique no item de menu"
-					+ "\n 'Autor'. Ou use as teclas de atalho 'Ctrl+Shift+A'.");
+			respostaEditorPane.setText(" Selecione o item de menu 'Sobre' e clique no item de"
+					+ "\n menu 'Autor'. Ou use as teclas de atalho 'Ctrl+Shift+A'.");
 		else if(rdbtnPerg11.isSelected())
-			respostaEditorPane.setText(" Selecione o menu 'Arquivo' e clique no item de menu"
-					+ "\n 'Logout'. Ou use as teclas de atalho 'Ctrl+L'.");
+			respostaEditorPane.setText(" Selecione o item de menu 'Sobre', clique no menu"
+					+ "\n 'Funcionários' e então clique no item de item"
+					+ "\n correspondente ao tipo de funcionário que deseja"
+					+ "\n consultar informações: Administrador, Caixa ou"
+					+ "\n Gerente.");
 		else if(rdbtnPerg12.isSelected())
-			respostaEditorPane.setText(" Selecione o menu 'Arquivo' e clique no item de menu"
-					+ "\n 'Sair'. Ou use as teclas de atalho 'Ctrl+S'.");
+			respostaEditorPane.setText(" Selecione o item de menu 'Arquivo' e clique no item de"
+					+ "\n menu 'Logout'. Ou use as teclas de atalho 'Ctrl+L'.");
+		else if(rdbtnPerg13.isSelected())
+			respostaEditorPane.setText(" Selecione o item de menu 'Arquivo' e clique no item de"
+					+ "\n menu 'Sair'. Ou use as teclas de atalho 'Ctrl+S'.");
 	}
-	
 } // class IgAjuda

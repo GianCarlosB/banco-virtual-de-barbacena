@@ -2,22 +2,29 @@ package tsi.too.bvb.entidades.tiposenumerados;
 
 public enum TipoUsuario {
 	
-	ADMINISTRADOR('A', "Administrador", "É o responsável pela segurança do sistema.\n"
-			+ "As suas funções se resumem em administrar o módulo Controle de Usuários.\n"
-			+ "É o único usuário autorizado a cadastrar, alterar, consultar e excluir os dados\n"
-			+ "de um funcionário e a visualizar e imprimir o arquivo de log de cada usuário.\n"),
-	CAIXA('C', "Caixa", "Este funcionário possui as seguintes funções:\n"
-			+ "1. cadastrar, consultar, alterar e imprimir os dados do cliente;\n"
-			+ "2. consultar os dados das agências;\n"
-			+ "3. abrir conta;\n"
-			+ "4. depositar salário."),
-	GERENTE('G', "Gerente", "É o responsável pela administração e coordenação dos serviços da agência bancária.\n"
-			+ "Possui acesso irrestrito a todos os serviços do módulo Contas Bancárias. É o único funcionário que tem poderes para:\n"
-			+ "1. excluir um cliente encerrando as suas contas bancárias;\n"
-			+ "2. cadastrar, consultar, alterar, excluir e imprimir os dados das agências;\n"
-			+ "3. criar aplicações financeiras;\n"
-			+ "4. alterar o tipo de conta bancária de um cliente;\n"
-			+ "5. ativar e desativar o módulo Caixa Eletrônico.");
+	ADMINISTRADOR('A', "Administrador",
+			  " É o responsável pela segurança do sistema. As suas funções se\n"
+			+ " resumem em administrar o módulo Controle de Usuários. É o único\n"
+			+ " usuário autorizado a cadastrar, alterar, consultar e excluir os\n"
+			+ " dados de um funcionário e a visualizar e imprimir o arquivo de log\n"
+			+ " de cada usuário."),
+	CAIXA('C', "Caixa",
+			  " Este funcionário possui as seguintes funções:\n"
+			+ " 1. cadastrar, consultar, alterar e imprimir os dados do cliente;\n"
+			+ " 2. consultar os dados das agências;\n"
+			+ " 3. abrir conta;\n"
+			+ " 4. depositar salário."),
+	GERENTE('G', "Gerente",
+			  " É o responsável pela administração e coordenação dos serviços da\n"
+			+ " agência bancária. Possui acesso irrestrito a todos os serviços do\n"
+			+ " módulo Contas Bancárias. É o único funcionário que tem poderes\n"
+			+ " para:\n"
+			+ " 1. excluir um cliente encerrando as suas contas bancárias;\n"
+			+ " 2. cadastrar, consultar, alterar, excluir e imprimir os dados das\n"
+			+ "    agências;"
+			+ " 3. criar aplicações financeiras;\n"
+			+ " 4. alterar o tipo de conta bancária de um cliente;\n"
+			+ " 5. ativar e desativar o módulo Caixa Eletrônico.");
 	
 	private char caractere;
 	private String perfil, descricao;
