@@ -34,6 +34,7 @@ public class TEJanelaMenuPrincipal extends WindowAdapter {
 		// TODO Auto-generated method stub
 		
 		Applet.newAudioClip(JanelaPopUpErro.class.getResource("/tsi/too/bvb/recursos/sons/Windows Logon Sound.wav")).play();
+		igMenuPrincipal.ativarRestricaoUsuario();
 	}
 	
 } // class TEJanelaMenuPrincipal

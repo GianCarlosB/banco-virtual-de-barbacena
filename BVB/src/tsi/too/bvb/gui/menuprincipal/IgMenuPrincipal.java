@@ -156,7 +156,7 @@ public class IgMenuPrincipal extends JFrame {
 		lblCopyrightHome.setForeground(Color.WHITE);
 		lblCopyrightHome.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		
-		JLabel lblTituloHome = new JLabel("Seja Bem Vindo Sr(a). " + funcionario.getNomeUsuario());
+		JLabel lblTituloHome = new JLabel("Seja Bem Vindo " + funcionario.getTipoUsuario().getPerfil() + " " + funcionario.getNomeUsuario());
 		lblTituloHome.setBounds(0, 11, 915, 34);
 		lblTituloHome.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTituloHome.setFont(new Font("Swis721 WGL4 BT", Font.BOLD, 24));
@@ -264,7 +264,7 @@ public class IgMenuPrincipal extends JFrame {
 		lblImgSeta4.setLabelFor(txtTopico4);
 		
 		txtTopico4 = new JTextField();
-		txtTopico4.setText(" Controle de Contas");
+		txtTopico4.setText(" Controle de Contas e Aplica\u00E7\u00F5es");
 		txtTopico4.setForeground(Color.WHITE);
 		txtTopico4.setFont(new Font("Tahoma", Font.BOLD, 13));
 		txtTopico4.setEditable(false);
@@ -847,22 +847,31 @@ public class IgMenuPrincipal extends JFrame {
 		mntmAutor.setMnemonic(KeyEvent.VK_A);
 		mnSobre.add(mntmAutor);
 		
+		JSeparator menuSobreSeparator = new JSeparator();
+		mnSobre.add(menuSobreSeparator);
+		
 		JMenu mnFuncionrios = new JMenu("Funcion\u00E1rios");
 		mnFuncionrios.setMnemonic(KeyEvent.VK_F);
 		mnFuncionrios.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/User-Group-24.png")));
 		mnSobre.add(mnFuncionrios);
 		
 		mntmAdministrador = new JMenuItem("Administrador");
+		mntmAdministrador.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Principal-01-24.png")));
+		mntmAdministrador.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
 		mntmAdministrador.addActionListener(new TEActionMenuPrincipal(this));
 		mntmAdministrador.setMnemonic(KeyEvent.VK_A);
 		mnFuncionrios.add(mntmAdministrador);
 		
 		mntmCaixa = new JMenuItem("Caixa");
+		mntmCaixa.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Customer-24.png")));
+		mntmCaixa.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
 		mntmCaixa.addActionListener(new TEActionMenuPrincipal(this));
 		mntmCaixa.setMnemonic(KeyEvent.VK_C);
 		mnFuncionrios.add(mntmCaixa);
 		
 		mntmGerente = new JMenuItem("Gerente");
+		mntmGerente.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Employee-24.png")));
+		mntmGerente.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
 		mntmGerente.addActionListener(new TEActionMenuPrincipal(this));
 		mntmGerente.setMnemonic(KeyEvent.VK_G);
 		mnFuncionrios.add(mntmGerente);
@@ -887,6 +896,107 @@ public class IgMenuPrincipal extends JFrame {
 		new IgLogin();
 		
 		IgMenuPrincipal.this.dispose();
+	}
+	
+	public void ativarRestricaoUsuario() {
+		// Desabilita os botões de acordo com o tipo de usuário.
+		switch(funcionario.getTipoUsuario().getCaractere()) {
+		case 'A': // Se o usuário for do tipo 'Administrador'.
+			desabilitarBotoesCliente('A');
+			desabilitarBotoesAgencia('A');
+			desabilitarBotoesContaBancaria('A');
+			desabilitarBotaoCaixaEletronico();
+			break;
+		case 'C': // Se o usuário for do tipo 'Caixa'.
+			desabilitarBotoesCliente('C');
+			desabilitarBotoesFuncionario('C');
+			desabilitarBotoesAgencia('C');
+			desabilitarBotoesContaBancaria('C');
+			desabilitarBotaoCaixaEletronico();
+			desabilitarItemDeMenuLimparBD();
+			break;
+		case 'G': // Se o usuário for do tipo 'Gerente'.
+			desabilitarBotoesCliente('G');
+			desabilitarBotoesFuncionario('G');
+			desabilitarItemDeMenuLimparBD();
+			break;
+		}
+	}
+	
+	private void desabilitarBotoesCliente(char tipo) {
+		if(tipo == 'G' || tipo == 'A') {
+			cadClienteBtn.setEnabled(false);
+			cadClienteImgBtn.setEnabled(false);
+			consClienteBtn.setEnabled(false);
+			consClienteImgBtn.setEnabled(false);
+			altClienteBtn.setEnabled(false);
+			altClienteImgBtn.setEnabled(false);
+			relClienteBtn.setEnabled(false);
+			relClienteImgBtn.setEnabled(false);
+		}
+		 
+		if(tipo == 'C' || tipo == 'A'){
+			exClienteBtn.setEnabled(false);
+			exClienteImgBtn.setEnabled(false);
+		}
+	}
+	
+	private void desabilitarBotoesFuncionario(char tipo) {
+		if(tipo != 'A') {
+			cadFuncBtn.setEnabled(false);
+			cadFuncImgBtn.setEnabled(false);
+			consFuncBtn.setEnabled(false);
+			consFuncImgBtn.setEnabled(false);
+			altFuncBtn.setEnabled(false);
+			altFuncImgBtn.setEnabled(false);
+			exFuncBtn.setEnabled(false);
+			exFuncImgBtn.setEnabled(false);
+			relFuncBtn.setEnabled(false);
+			relFuncImgBtn.setEnabled(false);
+		}
+	}
+	
+	private void desabilitarBotoesAgencia(char tipo) {
+		if(tipo == 'A') {
+			consAgBtn.setEnabled(false);
+			consAgImgBtn.setEnabled(false);
+		}
+		
+		if(tipo == 'A' || tipo == 'C') {
+			cadAgBtn.setEnabled(false);
+			cadAgImgBtn.setEnabled(false);
+			altAgBtn.setEnabled(false);
+			altAgImgBtn.setEnabled(false);
+			exAgBtn.setEnabled(false);
+			exAgImgBtn.setEnabled(false);
+			relAgBtn.setEnabled(false);
+			relAgImgBtn.setEnabled(false);
+		}
+	}
+	
+	private void desabilitarBotoesContaBancaria(char tipo) {
+		if(tipo == 'A') {
+			abrirContaBtn.setEnabled(false);
+			abrirContaImgBtn.setEnabled(false);
+			depositarSalContaBtn.setEnabled(false);
+			depositarSalContaImgBtn.setEnabled(false);
+		}
+		
+		if(tipo == 'A' || tipo == 'C') {
+			criarAplicContaBtn.setEnabled(false);
+			criarAplicContaImgBtn.setEnabled(false);
+			alterarAplicContaBtn.setEnabled(false);
+			alterarAplicContaImgBtn.setEnabled(false);
+		}
+	}
+	
+	private void desabilitarBotaoCaixaEletronico() {
+		caixaEletronicoBtn.setEnabled(false);
+		caixaEletronicoImgBtn.setEnabled(false);
+	}
+	
+	private void desabilitarItemDeMenuLimparBD() {
+		mntmLimparBD.setEnabled(false);
 	}
 	
 	/// ===== * Início dos Geters dos botões * ===== ///

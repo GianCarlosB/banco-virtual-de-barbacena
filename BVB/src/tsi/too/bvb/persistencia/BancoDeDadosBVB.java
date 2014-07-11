@@ -77,6 +77,7 @@ public class BancoDeDadosBVB extends BancoDeDadosDAO implements Runnable {
 				                   new SimpleDateFormat("dd/MM/yyyy  HH:mm:ss").format(new Date()));
 			} catch (SQLException | NullPointerException e) {
 				// TODO Auto-generated catch block
+				new JanelaPopUpErro(null, "BVB - ERRO", e);
 				System.err.println("Conexão com o Banco de dados NÃO finalizada: " +
 				                   new SimpleDateFormat("dd/MM/yyyy  HH:mm:ss").format(new Date()));
 			}
