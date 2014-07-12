@@ -97,6 +97,22 @@ public class AgenciaDAO {
 		return lista;
 	}
 	
+	public void alterarDescricao(BancoDeDadosDAO bdDao, Agencia agencia, String descricao) {
+		final String SQL = "UPDATE agencia SET descricao = ? WHERE codAgencia = ?";
+		
+		try{
+			bdDao.obterPreparedStatement(SQL);
+			bdDao.getStmt().setString(1, descricao);
+			bdDao.getStmt().setInt(2, agencia.getCodAgencia());
+			bdDao.getStmt().executeUpdate();
+			
+			System.out.println("Descrição da agência atualizada");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
+		}
+	}
+	
 	public void excluir(BancoDeDadosDAO bdDao, String codigo) {
 		final String SQL = "DELETE FROM agencia WHERE codAgencia = ?";
 

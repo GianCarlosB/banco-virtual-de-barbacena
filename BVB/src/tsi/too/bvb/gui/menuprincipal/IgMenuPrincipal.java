@@ -327,6 +327,7 @@ public class IgMenuPrincipal extends JFrame {
 		cadClienteImgBtn.setBackground(peterRiver);
 		
 		altClienteImgBtn = new JButton("");
+		altClienteImgBtn.addActionListener(new TEActionMenuPrincipal(this));
 		altClienteImgBtn.setBounds(380, 77, 160, 160);
 		altClienteImgBtn.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/User-Modify-128.png")));
 		altClienteImgBtn.setBorder(new LineBorder(Color.WHITE));
@@ -356,6 +357,7 @@ public class IgMenuPrincipal extends JFrame {
 		cadClienteBtn.setBackground(peterRiver);
 		
 		altClienteBtn = new JButton("Alterar");
+		altClienteBtn.addActionListener(new TEActionMenuPrincipal(this));
 		altClienteBtn.setMnemonic(KeyEvent.VK_A);
 		altClienteBtn.setBounds(380, 248, 160, 38);
 		altClienteBtn.setActionCommand("Alterar");
@@ -427,6 +429,7 @@ public class IgMenuPrincipal extends JFrame {
 		cadFuncImgBtn.setBackground(nephritis);
 		
 		altFuncImgBtn = new JButton("");
+		altFuncImgBtn.addActionListener(new TEActionMenuPrincipal(this));
 		altFuncImgBtn.setBounds(380, 77, 160, 160);
 		altFuncImgBtn.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/User-Refresh-128.png")));
 		altFuncImgBtn.setBorder(new LineBorder(Color.WHITE));
@@ -457,6 +460,7 @@ public class IgMenuPrincipal extends JFrame {
 		cadFuncBtn.setBackground(nephritis);
 		
 		altFuncBtn = new JButton("Alterar");
+		altFuncBtn.addActionListener(new TEActionMenuPrincipal(this));
 		altFuncBtn.setMnemonic(KeyEvent.VK_A);
 		altFuncBtn.setBounds(380, 248, 160, 38);
 		altFuncBtn.setForeground(Color.WHITE);
@@ -531,6 +535,7 @@ public class IgMenuPrincipal extends JFrame {
 		agenciaPanel.add(cadAgImgBtn);
 		
 		altAgImgBtn = new JButton("");
+		altAgImgBtn.addActionListener(new TEActionMenuPrincipal(this));
 		altAgImgBtn.setIcon(new ImageIcon(IgMenuPrincipal.class.getResource("/tsi/too/bvb/recursos/imagens/Document-Exchange-01-128.png")));
 		altAgImgBtn.setAlignmentX(0.5f);
 		altAgImgBtn.setBorder(new LineBorder(Color.WHITE));
@@ -568,6 +573,7 @@ public class IgMenuPrincipal extends JFrame {
 		agenciaPanel.add(cadAgBtn);
 		
 		altAgBtn = new JButton("Alterar");
+		altAgBtn.addActionListener(new TEActionMenuPrincipal(this));
 		altAgBtn.setMnemonic(KeyEvent.VK_A);
 		altAgBtn.setAlignmentX(0.5f);
 		altAgBtn.setForeground(Color.WHITE);

@@ -98,6 +98,22 @@ public class ClienteDAO {
 		return lista;
 	}
 	
+	public void alterar(BancoDeDadosDAO bdDao, Cliente cliente, String coluna, String dado) {
+		final String SQL= String.format("UPDATE cliente SET %s = ? WHERE CPF = ?", coluna);
+		
+		try{
+			bdDao.obterPreparedStatement(SQL);
+			bdDao.getStmt().setString(1, dado);
+			bdDao.getStmt().setString(2, cliente.getCpf());
+			bdDao.getStmt().executeUpdate();
+			
+			System.out.println("Cliente atualizado");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
+		}
+	}
+	
 	public void excluir(BancoDeDadosDAO bdDao, String cpf) {
 		final String SQL = "DELETE FROM cliente WHERE cpf = ?";
 		

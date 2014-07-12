@@ -1,4 +1,4 @@
-package tsi.too.bvb.gui.excluircadastro;
+package tsi.too.bvb.gui;
 
 import java.awt.event.KeyEvent;
 
@@ -6,18 +6,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class PainelExAgencia extends JPanel {
+public class PainelBuscarAgencia extends JPanel {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4798665446521942880L;
+	private static final long serialVersionUID = -4006535614283973222L;
+	
 	private JTextField codigoTextField;
 
 	/**
 	 * Create the panel.
 	 */
-	public PainelExAgencia() {
+	public PainelBuscarAgencia() {
 		setLayout(null);
 		
 		JLabel lblCodigo = new JLabel("C\u00F3digo:");
@@ -42,4 +43,4 @@ public class PainelExAgencia extends JPanel {
 		return codigoTextField;
 	}
 
-} // class PainelExAgencia
+} // class PainelBuscarAgencia

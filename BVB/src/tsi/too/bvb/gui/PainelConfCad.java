@@ -59,4 +59,5 @@ public class PainelConfCad extends JPanel implements TratadorDeCampos {
 
 	@Override
 	public void inserirBordasPadrao() {}
+	
 } // PainelConfCadCliente

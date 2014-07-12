@@ -35,11 +35,11 @@ public class TEActionExcluirCadastro implements ActionListener {
 		if(e.getSource() == igExcluirCadastro.getBtnBuscar()) {
 			switch(tipo) {
 			case 1:
-				String cpfFormatado = igExcluirCadastro.getPexCliente().getCpfFormattedTextField().getText();
-				String cpf = igExcluirCadastro.getPexCliente().getCpfFormattedTextField().getText()
+				String cpfFormatado = igExcluirCadastro.getPBuscarCliente().getCpfFormattedTextField().getText();
+				String cpf = igExcluirCadastro.getPBuscarCliente().getCpfFormattedTextField().getText()
 						     .replace(".", "").replace("-", "").replace(" ", "");
 				
-				if(!igExcluirCadastro.getPexCliente().getCpfFormattedTextField().getText()
+				if(!igExcluirCadastro.getPBuscarCliente().getCpfFormattedTextField().getText()
 				   .replace(".", "").replace("-", "").replace(" ", "").isEmpty()) {
 					if(ValidarDados.validarCPF(cpf)) {
 						Cliente cliente = new ClienteDAO().pesquisarCpf(BancoDeDadosBVB.getInstance(), cpf);
@@ -48,7 +48,7 @@ public class TEActionExcluirCadastro implements ActionListener {
 							new JanelaPopUpAviso(igExcluirCadastro, "BVB - Exclusão de Cliente", " Nenhum cliente com o CPF '" +
 									             cpfFormatado + "' foi encontrado.");
 						else {
-							igExcluirCadastro.getPexCliente().getCpfFormattedTextField().setEnabled(false);
+							igExcluirCadastro.getPBuscarCliente().getCpfFormattedTextField().setEnabled(false);
 							igExcluirCadastro.exibeOpcoesExcluir(cliente.exibeDadosFormatados());
 						}
 					}
@@ -65,9 +65,9 @@ public class TEActionExcluirCadastro implements ActionListener {
 			// fim case: 1
 				
 			case 2:
-				String login = igExcluirCadastro.getPexExFuncionario().getLoginTextField().getText();
+				String login = igExcluirCadastro.getPBuscarFuncionario().getLoginTextField().getText();
 				
-				if(!igExcluirCadastro.getPexExFuncionario().getLoginTextField().getText().isEmpty()) {
+				if(!igExcluirCadastro.getPBuscarFuncionario().getLoginTextField().getText().isEmpty()) {
 					if(ValidarDados.validarLoginFunc(login)) {
 						Funcionario funcionario = new FuncionarioDAO().pesquisarLoginUnico(BancoDeDadosBVB.getInstance(), login);
 		
@@ -75,8 +75,8 @@ public class TEActionExcluirCadastro implements ActionListener {
 							new JanelaPopUpAviso(igExcluirCadastro, "BVB - Exclusão de Funcionário", " Nenhum funcionário com o login '" +
 										         login + "' foi encontrado.");
 						else {
-							igExcluirCadastro.getPexExFuncionario().getLoginTextField().setEnabled(false);
-							igExcluirCadastro.exibeOpcoesExcluir(funcionario.toString());
+							igExcluirCadastro.getPBuscarFuncionario().getLoginTextField().setEnabled(false);
+							igExcluirCadastro.exibeOpcoesExcluir(funcionario.toStringSemSenha());
 						}
 					}
 					else
@@ -93,9 +93,9 @@ public class TEActionExcluirCadastro implements ActionListener {
 			// fim case: 2
 				
 			case 3:
-				String codigo = igExcluirCadastro.getPexAgencia().getCodigoTextField().getText();
+				String codigo = igExcluirCadastro.getPBuscarAgencia().getCodigoTextField().getText();
 				
-				if(!igExcluirCadastro.getPexAgencia().getCodigoTextField().getText().isEmpty()) {
+				if(!igExcluirCadastro.getPBuscarAgencia().getCodigoTextField().getText().isEmpty()) {
 					if(ValidarDados.validarIntPositivo(codigo) && codigo.length() <= 4) {
 						Agencia agencia = new AgenciaDAO().pesquisarCodigo(BancoDeDadosBVB.getInstance(), codigo);
 						
@@ -103,7 +103,7 @@ public class TEActionExcluirCadastro implements ActionListener {
 							new JanelaPopUpAviso(igExcluirCadastro, "BVB - Exclusão de Agência", " Nenhuma agência com o código '" +
 									             codigo + "' foi encontrada.");
 						else {
-							igExcluirCadastro.getPexAgencia().getCodigoTextField().setEnabled(false);
+							igExcluirCadastro.getPBuscarAgencia().getCodigoTextField().setEnabled(false);
 							igExcluirCadastro.exibeOpcoesExcluir(agencia.toString());
 						}
 					}
@@ -130,7 +130,7 @@ public class TEActionExcluirCadastro implements ActionListener {
 						                                      "\n as contas bancárias relacionadas." +
 						                                      "\n\n Deseja continuar assim mesmo?");
 				if(janelaPopUpPergunta.isSim()) {
-					new ClienteDAO().excluir(BancoDeDadosBVB.getInstance(), igExcluirCadastro.getPexCliente().getCpfFormattedTextField()
+					new ClienteDAO().excluir(BancoDeDadosBVB.getInstance(), igExcluirCadastro.getPBuscarCliente().getCpfFormattedTextField()
 							                 .getText().replace(".", "").replace("-", ""));
 				}
 			break;
@@ -138,18 +138,22 @@ public class TEActionExcluirCadastro implements ActionListener {
 			
 			case 2:
 				janelaPopUpPergunta = new JanelaPopUpPergunta(igExcluirCadastro, "BVB - Exclusão de Funcionário", " Esta operação irá excluir " +
-                                                              "permanentemente o funcionário.\n\n Deseja continuar assim mesmo?");
+                                                              "permanentemente o funcionário e todos" +
+						                                      "\n os registros de conexão relacionados." +
+                                                              "\n\n Deseja continuar assim mesmo?");
 				if(janelaPopUpPergunta.isSim())
-					new FuncionarioDAO().excluir(BancoDeDadosBVB.getInstance(), igExcluirCadastro.getPexExFuncionario().getLoginTextField()
+					new FuncionarioDAO().excluir(BancoDeDadosBVB.getInstance(), igExcluirCadastro.getPBuscarFuncionario().getLoginTextField()
 							                     .getText());
 			break;
 			// fim case: 2
 			
 			case 3:
 				janelaPopUpPergunta = new JanelaPopUpPergunta(igExcluirCadastro, "BVB - Exclusão de Agência", " Esta operação irá excluir " +
-                                                              "permanentemente a agência.\n\n Deseja continuar assim mesmo?");
+                                                              "permanentemente a agência e todas" +
+						                                      "\n as contas bancárias relacionadas." +
+                                                              "\n\n Deseja continuar assim mesmo?");
 				if(janelaPopUpPergunta.isSim())
-					new AgenciaDAO().excluir(BancoDeDadosBVB.getInstance(), igExcluirCadastro.getPexAgencia().getCodigoTextField()
+					new AgenciaDAO().excluir(BancoDeDadosBVB.getInstance(), igExcluirCadastro.getPBuscarAgencia().getCodigoTextField()
 							                 .getText());
 			break;
             // fim case: 3				                 
@@ -161,14 +165,14 @@ public class TEActionExcluirCadastro implements ActionListener {
 				
 				switch(tipo) {
 				case 1: 
-					igExcluirCadastro.getPexCliente().getCpfFormattedTextField().setEnabled(true);
-					igExcluirCadastro.getPexCliente().setCpfFormattedTextField(""); break;
+					igExcluirCadastro.getPBuscarCliente().getCpfFormattedTextField().setEnabled(true);
+					igExcluirCadastro.getPBuscarCliente().setCpfFormattedTextField(""); break;
 				case 2: 
-					igExcluirCadastro.getPexExFuncionario().getLoginTextField().setEnabled(true);
-					igExcluirCadastro.getPexExFuncionario().setLoginTextField(""); break;
+					igExcluirCadastro.getPBuscarFuncionario().getLoginTextField().setEnabled(true);
+					igExcluirCadastro.getPBuscarFuncionario().setLoginTextField(""); break;
 				case 3: 
-					igExcluirCadastro.getPexAgencia().getCodigoTextField().setEnabled(true);
-					igExcluirCadastro.getPexAgencia().setCodigoTextField(""); break;
+					igExcluirCadastro.getPBuscarAgencia().getCodigoTextField().setEnabled(true);
+					igExcluirCadastro.getPBuscarAgencia().setCodigoTextField(""); break;
 				}
 			}
 		} // fim if(e.getSource() == igExcluirCadastro.getBtnExcluir())
@@ -177,9 +181,9 @@ public class TEActionExcluirCadastro implements ActionListener {
 			igExcluirCadastro.escondeOpcoesExcluir();
 			
 			switch(tipo) {
-			case 1: igExcluirCadastro.getPexCliente().getCpfFormattedTextField().setEnabled(true); break;
-			case 2: igExcluirCadastro.getPexExFuncionario().getLoginTextField().setEnabled(true); break;
-			case 3: igExcluirCadastro.getPexAgencia().getCodigoTextField().setEnabled(true); break;
+			case 1: igExcluirCadastro.getPBuscarCliente().getCpfFormattedTextField().setEnabled(true); break;
+			case 2: igExcluirCadastro.getPBuscarFuncionario().getLoginTextField().setEnabled(true); break;
+			case 3: igExcluirCadastro.getPBuscarAgencia().getCodigoTextField().setEnabled(true); break;
 			}
 		} // fim if(e.getSource() == igExcluirCadastro.getBtnAlterar())
 	}

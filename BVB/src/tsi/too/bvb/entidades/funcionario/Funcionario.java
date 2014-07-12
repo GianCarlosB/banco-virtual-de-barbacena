@@ -43,6 +43,13 @@ public class Funcionario {
 		this.tipoUsuario = tipoUsuario;
 	}
 
+	public String toStringSemSenha() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(" Nome do Usuário: ").append(nomeUsuario)
+			   .append("\n Tipo do Usuário: ").append(tipoUsuario.getPerfil());
+		return builder.toString();
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

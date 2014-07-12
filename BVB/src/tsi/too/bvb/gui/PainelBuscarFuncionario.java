@@ -1,22 +1,23 @@
-package tsi.too.bvb.gui.excluircadastro;
+package tsi.too.bvb.gui;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.event.KeyEvent;
 import javax.swing.JTextField;
 
-public class PainelExFuncionario extends JPanel {
+public class PainelBuscarFuncionario extends JPanel {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8077783487604979385L;
+	private static final long serialVersionUID = -3360654599044445275L;
+	
 	private JTextField loginTextField;
 
 	/**
 	 * Create the panel.
 	 */
-	public PainelExFuncionario() {
+	public PainelBuscarFuncionario() {
 		setLayout(null);
 		
 		JLabel lblLogin = new JLabel("Login:");
@@ -41,4 +42,4 @@ public class PainelExFuncionario extends JPanel {
 		return loginTextField;
 	}
 	
-} // class PainelExFuncionario
+} // class PainelBuscarFuncionario

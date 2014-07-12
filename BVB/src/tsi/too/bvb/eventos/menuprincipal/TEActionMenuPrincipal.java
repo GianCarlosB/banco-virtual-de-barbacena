@@ -20,6 +20,7 @@ import tsi.too.bvb.gui.JanelaPopUpPergunta;
 import tsi.too.bvb.gui.agencia.IgCadAgencia;
 import tsi.too.bvb.gui.agencia.IgConsultarAgencia;
 import tsi.too.bvb.gui.agencia.IgRelatorioAgencia;
+import tsi.too.bvb.gui.buscarcadastro.IgBuscarCadastro;
 import tsi.too.bvb.gui.cliente.IgCadCliente;
 import tsi.too.bvb.gui.cliente.IgConsultarCliente;
 import tsi.too.bvb.gui.cliente.IgRelatorioCliente;
@@ -118,7 +119,9 @@ public class TEActionMenuPrincipal implements ActionListener {
 			else if((e.getSource() == igMenuPrincipal.getConsClienteBtn()) || (e.getSource() == igMenuPrincipal.getConsClienteImgBtn()))
 				new IgConsultarCliente(igMenuPrincipal);
 				
-			else if((e.getSource() == igMenuPrincipal.getAltClienteBtn()) || (e.getSource() == igMenuPrincipal.getAltClienteImgBtn())){}
+			else if((e.getSource() == igMenuPrincipal.getAltClienteBtn()) || (e.getSource() == igMenuPrincipal.getAltClienteImgBtn()))
+				new IgBuscarCadastro(igMenuPrincipal, "BVB - Alteração de Cliente", "Alteração de Cliente",
+						     "Insira o CPF do cliente que deseja alterar.", 1);
 			
 			else if((e.getSource() == igMenuPrincipal.getExClienteBtn()) || (e.getSource() == igMenuPrincipal.getExClienteImgBtn()))
 				new IgExcluirCadastro(igMenuPrincipal, "BVB - Exclusão de Cliente", "Exclusão de Cliente",
@@ -136,7 +139,9 @@ public class TEActionMenuPrincipal implements ActionListener {
 			else if((e.getSource() == igMenuPrincipal.getConsFuncBtn()) || (e.getSource() == igMenuPrincipal.getConsFuncImgBtn()))
 				new IgConsultarFuncionario(igMenuPrincipal);
 			
-			else if((e.getSource() == igMenuPrincipal.getAltFuncBtn()) || (e.getSource() == igMenuPrincipal.getAltFuncImgBtn())){}
+			else if((e.getSource() == igMenuPrincipal.getAltFuncBtn()) || (e.getSource() == igMenuPrincipal.getAltFuncImgBtn()))
+				new IgBuscarCadastro(igMenuPrincipal, "BVB - Alteração de Funcionário", "Alteração de Funcionário",
+					     	 "Insira o Login do funcionário que deseja alterar.", 2);
 			
 			else if((e.getSource() == igMenuPrincipal.getExFuncBtn()) || (e.getSource() == igMenuPrincipal.getExFuncImgBtn()))
 				new IgExcluirCadastro(igMenuPrincipal, "BVB - Exclusão de Funcionário", "Exclusão de Funcionário",
@@ -154,7 +159,9 @@ public class TEActionMenuPrincipal implements ActionListener {
 			else if((e.getSource() == igMenuPrincipal.getConsAgBtn()) || (e.getSource() == igMenuPrincipal.getConsAgImgBtn()))
 				new IgConsultarAgencia(igMenuPrincipal);
 			
-			else if((e.getSource() == igMenuPrincipal.getAltAgBtn()) || (e.getSource() == igMenuPrincipal.getAltAgImgBtn())){}
+			else if((e.getSource() == igMenuPrincipal.getAltAgBtn()) || (e.getSource() == igMenuPrincipal.getAltAgImgBtn()))
+				new IgBuscarCadastro(igMenuPrincipal, "BVB - Alteração de Agência", "Alteração de Agência",
+				     	     "Insira o código da agência que deseja alterar.", 3);
 			
 			else if((e.getSource() == igMenuPrincipal.getExAgBtn()) || (e.getSource() == igMenuPrincipal.getExAgImgBtn()))
 				new IgExcluirCadastro(igMenuPrincipal, "BVB - Exclusão de Agência", "Exclusão de Agência",

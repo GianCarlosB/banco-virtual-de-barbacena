@@ -41,13 +41,12 @@ public class IgConsultarFuncionario extends JDialog {
 	private static final long serialVersionUID = 2318656837430102737L;
 	
 	/** <code>int</code> com o número de colunas da tabela com os dados dos funcionários pesquisados */
-	private final int NUMERO_COLUNAS_TABELA = 3;
+	private final int NUMERO_COLUNAS_TABELA = 2;
 	private int num_linhas;
 	
 	private final String COLUNA_LOGIN = "Login";
-	private final String COLUNA_SENHA = "Senha";
 	private final String COLUNA_TIPO_USUARIO = "Tipo de Usuário";
-	private final String[] COLUNAS_FUNCIONARIO = {COLUNA_LOGIN, COLUNA_SENHA, COLUNA_TIPO_USUARIO};
+	private final String[] COLUNAS_FUNCIONARIO = {COLUNA_LOGIN, COLUNA_TIPO_USUARIO};
 	private String[][] linhasTabela = new String[0][NUMERO_COLUNAS_TABELA];
 	
 	private JPanel contentPane;
@@ -203,8 +202,7 @@ public class IgConsultarFuncionario extends JDialog {
 		Object[] linha = new Object[NUMERO_COLUNAS_TABELA];
 
 		linha[0] = funcionario.getNomeUsuario();
-		linha[1] = funcionario.getSenha();
-		linha[2] = funcionario.getTipoUsuario();
+		linha[1] = funcionario.getTipoUsuario();
 		model.addRow(linha);
 	}
 	
@@ -216,8 +214,7 @@ public class IgConsultarFuncionario extends JDialog {
 			
 			for(int i = 0; i < funcionarios.size(); i++, num_linhas++) {
 				linha[0] = funcionarios.get(i).getNomeUsuario();
-				linha[1] = funcionarios.get(i).getSenha();
-				linha[2] = funcionarios.get(i).getTipoUsuario().getPerfil();
+				linha[1] = funcionarios.get(i).getTipoUsuario().getPerfil();
 				model.addRow(linha);
 			}
 		}

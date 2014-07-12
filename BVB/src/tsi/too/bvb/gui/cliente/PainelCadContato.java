@@ -20,6 +20,7 @@ public class PainelCadContato extends JPanel implements TratadorDeCampos {
 	 * 
 	 */
 	private static final long serialVersionUID = 2413065008402544562L;
+	
 	private JFormattedTextField telFixoFormTextField;
 	private JFormattedTextField telMovelFormTextField;
 	
@@ -35,10 +36,10 @@ public class PainelCadContato extends JPanel implements TratadorDeCampos {
 		lblTelefoneFixo.setBounds(10, 25, 80, 14);
 		add(lblTelefoneFixo);
 		
-		JLabel lblTelefoneMvel = new JLabel("Tel M\u00F3vel:");
-		lblTelefoneMvel.setDisplayedMnemonic(KeyEvent.VK_M);
-		lblTelefoneMvel.setBounds(10, 55, 90, 14);
-		add(lblTelefoneMvel);
+		JLabel lblTelefoneMovel = new JLabel("Tel M\u00F3vel:");
+		lblTelefoneMovel.setDisplayedMnemonic(KeyEvent.VK_M);
+		lblTelefoneMovel.setBounds(10, 55, 90, 14);
+		add(lblTelefoneMovel);
 		
 		telFixoFormTextField = new JFormattedTextField(new Mascara("(##)####-####"));
 		lblTelefoneFixo.setLabelFor(telFixoFormTextField);
@@ -47,7 +48,7 @@ public class PainelCadContato extends JPanel implements TratadorDeCampos {
 		add(telFixoFormTextField);
 		
 		telMovelFormTextField = new JFormattedTextField(new Mascara("(##)####-####"));
-		lblTelefoneMvel.setLabelFor(telMovelFormTextField);
+		lblTelefoneMovel.setLabelFor(telMovelFormTextField);
 		telMovelFormTextField.setToolTipText("este campo \u00E9 de preenchimento opcional");
 		telMovelFormTextField.setBounds(100, 52, 308, 20);
 		add(telMovelFormTextField);

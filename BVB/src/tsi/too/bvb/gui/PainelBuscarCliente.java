@@ -1,4 +1,4 @@
-package tsi.too.bvb.gui.excluircadastro;
+package tsi.too.bvb.gui;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
@@ -7,18 +7,19 @@ import javax.swing.JPanel;
 import tsi.too.bvb.entidades.Mascara;
 import java.awt.event.KeyEvent;
 
-public class PainelExCliente extends JPanel {
+public class PainelBuscarCliente extends JPanel {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2915370770617175465L;
+	private static final long serialVersionUID = 4584584587198563696L;
+	
 	private JFormattedTextField cpfFormattedTextField;
 
 	/**
 	 * Create the panel.
 	 */
-	public PainelExCliente() {
+	public PainelBuscarCliente() {
 		setLayout(null);
 		
 		JLabel lblCpf = new JLabel("CPF:");
@@ -42,4 +43,4 @@ public class PainelExCliente extends JPanel {
 		return cpfFormattedTextField;
 	}
 	
-} // class PainelExCliente
+} // class PainelBuscarCliente

@@ -193,6 +193,10 @@ public class IgCadCliente extends JDialog {
 		return null;
 	}
 
+	public CardLayout getCardLayout() {
+		return cardLayout;
+	}
+
 	public PainelCadCliente getpCadCliente() {
 		return pCadCliente;
 	}
@@ -207,10 +211,6 @@ public class IgCadCliente extends JDialog {
 
 	public PainelConfCad getpConfCad() {
 		return pConfCad;
-	}
-
-	public CardLayout getCardLayout() {
-		return cardLayout;
 	}
 
 	public JPanel getCardPanel() {
@@ -231,10 +231,6 @@ public class IgCadCliente extends JDialog {
 
 	public JButton getBtnLimpar() {
 		return btnLimpar;
-	}
-
-	public JButton getBtnCancelar() {
-		return btnCancelar;
 	}
 	
 	public void setTxtpnSubTitulo(String subTitulo) {

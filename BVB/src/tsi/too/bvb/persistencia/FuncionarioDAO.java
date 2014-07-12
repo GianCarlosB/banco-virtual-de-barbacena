@@ -116,7 +116,23 @@ public class FuncionarioDAO {
 			bdDao.getStmt().setString(2, funcionario.getNomeUsuario().toLowerCase());
 			bdDao.getStmt().executeUpdate();
 
-			System.out.println("Senha do funcionário Atualizada");
+			System.out.println("Senha do funcionário atualizada");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			new JanelaPopUpErro(null, "BVB - ERRO", e);
+		}
+	}
+	
+	public void alterarTipo(BancoDeDadosDAO bdDao, Funcionario funcionario, char tipo) {
+		final String SQL = "UPDATE funcionario SET tipoUsuario = ? WHERE LCASE (nomeUsuario) = ?";
+		
+		try {
+			bdDao.obterPreparedStatement(SQL);
+			bdDao.getStmt().setString(1, Character.toString(tipo));
+			bdDao.getStmt().setString(2, funcionario.getNomeUsuario().toLowerCase());
+			bdDao.getStmt().executeUpdate();
+			
+			System.out.println("Tipo do funcionário atualizado");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			new JanelaPopUpErro(null, "BVB - ERRO", e);

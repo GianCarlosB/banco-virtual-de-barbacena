@@ -204,7 +204,7 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 		
 		JLabel lblRepetirSenha = new JLabel("Repita a Senha:");
 		lblRepetirSenha.setDisplayedMnemonic(KeyEvent.VK_R);
-		lblRepetirSenha.setBounds(10, 205, 130, 14);
+		lblRepetirSenha.setBounds(10, 205, 90, 14);
 		contentPane.add(lblRepetirSenha);
 		
 		rPasswordField = new JPasswordField();
@@ -360,4 +360,5 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 	public void setLblCamposErrados(boolean visivel) {
 		this.lblCamposErrados.setVisible(visivel);
 	}
+	
 } // class IgCadFuncionario
