@@ -11,17 +11,33 @@ import tsi.too.bvb.gui.funcionario.IgAltSenhaFuncionario;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 import tsi.too.bvb.persistencia.FuncionarioDAO;
 
+/** Classe para tratar os eventos de ação da janela <code>IgAltSenhaFuncionario</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see ActionListener
+ */
 public class TEActionAltSenhaFuncionario implements ActionListener {
 	
 	private IgAltSenhaFuncionario igAltSenhaFuncionario;
 	private Funcionario funcionario;
 
+	/** Cria uma instância do Tratador de eventos de ação da janela <code>IgAltSenhaFuncionario</code>
+	 * @param igAltSenhaFuncionario <code>IgAltSenhaFuncionario</code> que será manipulada
+	 * @param funcionario <code>Funcionario</code> com os dados do funcionário que terá a senha alterada
+	 * 
+	 * @see Funcionario
+	 */
 	public TEActionAltSenhaFuncionario(IgAltSenhaFuncionario igAltSenhaFuncionario, Funcionario funcionario) {
 		super();
 		this.igAltSenhaFuncionario = igAltSenhaFuncionario;
 		this.funcionario = funcionario;
 	}
 	
+	/** Trata os eventos de ação dos elementos da janela <code>IgAltSenhaFuncionario</code>
+	 * @see ActionListener
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

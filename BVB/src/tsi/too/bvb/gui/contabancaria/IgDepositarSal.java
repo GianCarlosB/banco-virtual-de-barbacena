@@ -25,10 +25,17 @@ import tsi.too.bvb.entidades.JNumberFormatField;
 import tsi.too.bvb.entidades.contabancaria.ContaBancaria;
 import tsi.too.bvb.eventos.contabancaria.TEActionDepositarSal;
 
+/** Classe que define a GUI de depósito de salário do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ */
 public class IgDepositarSal extends JDialog {
 
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = -6436257862267205473L;
 		
@@ -43,8 +50,10 @@ public class IgDepositarSal extends JDialog {
 	
 	private ContaBancaria contaBancaria = new ContaBancaria();
 
-	/**
-	 * Create the frame.
+	/** Cria uma instância da janela de depósito de salário do sistema BVB
+	 * @param janelaPai <code>Window</code> com a janela pai da caixa de diálogo <code>IgDepositarSal</code>
+	 * 
+	 * @see Window
 	 */
 	public IgDepositarSal(Window janelaPai) {
 		setModal(true);
@@ -160,6 +169,8 @@ public class IgDepositarSal extends JDialog {
 		setVisible(true);
 	}
 	
+	/** Exibe as opções de depositar salário da janela <code>IgDepositarSal</code>
+	 */
 	public void exibeOpcoesDepositar() {
 		btnDepositar.setEnabled(true);
 		btnBuscar.setVisible(false);
@@ -167,6 +178,8 @@ public class IgDepositarSal extends JDialog {
 		depositoTextField.setEnabled(true);
 	}
 	
+	/** Esconde as opções de depositar salário da janela <code>IgDepositarSal</code>
+	 */
 	public void escondeOpcoesDepositar() {
 		btnDepositar.setEnabled(false);
 		btnBuscar.setVisible(true);
@@ -176,42 +189,51 @@ public class IgDepositarSal extends JDialog {
 		numContaTextField.setText("");
 	}
 
+	/** Retorna uma <code>ContaBancaria</code> com os dados da conta bancária que pode ter sido alterado
+	 * @return <code>ContaBancaria</code> com os dados da conta bancária que pode ter sido alterado
+	 */
 	public ContaBancaria getContaBancaria() {
 		return contaBancaria;
 	}
 
+	/** Muda o objeto conta bancária
+	 * @param contaBancaria <code>ContaBancaria</code> com o novo objeto conta bancária
+	 */
 	public void setContaBancaria(ContaBancaria contaBancaria) {
 		this.contaBancaria = contaBancaria;
 	}
-	
-	public JButton getBtnCancelar() {
-		return btnCancelar;
-	}
 
+	/** Retorna um <code>JButton</code> com o botão depositar
+	 * @return <code>JButton</code> com o botão depositar
+	 */
 	public JButton getBtnDepositar() {
 		return btnDepositar;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão buscar
+	 * @return <code>JButton</code> com o botão buscar
+	 */
 	public JButton getBtnBuscar() {
 		return btnBuscar;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão alterar
+	 * @return <code>JButton</code> com o botão alterar
+	 */
 	public JButton getBtnAlterar() {
 		return btnAlterar;
 	}
 
-	public void setNumContaTextField(String numConta) {
-		this.numContaTextField.setText(numConta);
-	}
-
+	/** Retorna um <code>JTextField</code> com o campo de texto número da conta
+	 * @return <code>JTextField</code> com o campo de texto número da conta
+	 */
 	public JTextField getNumContaTextField() {
 		return numContaTextField;
 	}
 
-	public void setDepositoTextField(String deposito) {
-		this.depositoTextField.setText(deposito);
-	}
-
+	/** Retorna um <code>JNumberFormatField</code> com o campo de texto depósito
+	 * @return <code>JNumberFormatField</code> com o campo de texto depósito
+	 */
 	public JNumberFormatField getDepositoTextField() {
 		return depositoTextField;
 	}

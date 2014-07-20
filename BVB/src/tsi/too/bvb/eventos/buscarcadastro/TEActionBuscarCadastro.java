@@ -15,17 +15,31 @@ import tsi.too.bvb.persistencia.ClienteDAO;
 import tsi.too.bvb.persistencia.FuncionarioDAO;
 import tsi.too.bvb.validacoes.ValidarDados;
 
+/** Classe para tratar os eventos de ação da janela <code>IgBuscarCadastro</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see ActionListener
+ */
 public class TEActionBuscarCadastro implements ActionListener {
 
 	private IgBuscarCadastro igBuscarCadastro;
 	private int tipo;
 
+	/** Cria uma instância do Tratador de eventos de ação da janela <code>IgAltAgencia</code>
+	 * @param igBuscarCadastro <code>IgBuscarCadastro</code> que será manipulada
+	 * @param tipo <code>int</code> referênte ao tipo da busca: 1 - Cliente, 2 - Funcionário, 3 - Agência
+	 */
 	public TEActionBuscarCadastro(IgBuscarCadastro igBuscarCadastro, int tipo) {
 		super();
 		this.igBuscarCadastro = igBuscarCadastro;
 		this.tipo = tipo;
 	}
 
+	/** Trata os eventos de ação dos elementos da janela <code>IgBuscarCadastro</code>
+	 * @see ActionListener
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

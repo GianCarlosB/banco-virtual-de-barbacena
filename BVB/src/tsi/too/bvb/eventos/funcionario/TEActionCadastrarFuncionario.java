@@ -11,17 +11,33 @@ import tsi.too.bvb.gui.funcionario.IgCadFuncionario;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 import tsi.too.bvb.persistencia.FuncionarioDAO;
 
+/** Classe para tratar os eventos de ação da janela <code>IgCadFuncionario</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see ActionListener
+ */
 public class TEActionCadastrarFuncionario implements ActionListener {
 	
 	private IgCadFuncionario igCadFuncionario;
 	private Funcionario funcionario;
 
+	/** Cria uma instância do Tratador de eventos de ação da janela <code>IgCadFuncionario</code>
+	 * @param igCadFuncionario <code>IgCadFuncionario</code> que será manipulada
+	 * @param funcionario <code>Funcionario</code> referênte ao objeto que será manipulado
+	 * 
+	 * @see Funcionario
+	 */
 	public TEActionCadastrarFuncionario(IgCadFuncionario igCadFuncionario, Funcionario funcionario) {
 		super();
 		this.igCadFuncionario = igCadFuncionario;
 		this.funcionario = funcionario;
 	}
 	
+	/** Trata os eventos de ação dos elementos da janela <code>IgCadFuncionario</code>
+	 * @see ActionListener
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

@@ -25,9 +25,21 @@ import tsi.too.bvb.persistencia.ClienteDAO;
 import tsi.too.bvb.persistencia.ContaBancariaDAO;
 import tsi.too.bvb.validacoes.ValidarDados;
 
+/** Classe que define o painel dados chave utilizado pelas janelas <code>IgAbrirContaBancaria</code> e 
+ * <code>IgCriarAplicacao</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JPanel
+ * @see IgAbrirContaBancaria
+ * @see IgCriarAplicacao
+ * @see TratadorDeCampos
+ */
 public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos {
+	
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = -4165406095601940313L;
 	
@@ -42,9 +54,13 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 	private JButton btnValidarCodAgencia;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
-	/**
-	 * Create the panel.
-	 */
+	/** Cria uma instância do painel dados chave utilizado pelas janelas <code>IgAbrirContaBancaria</code> e 
+	 * <code>IgCriarAplicacao</code>
+	 * @param tipoConta1 <code>String</code> com o nome do primeiro botão de rádio do tipo da conta
+	 * @param tipoConta2 <code>String</code> com o nome do segundo botão de rádio do tipo da conta
+	 * 
+	 * @see TipoConta
+	 */	
 	public PainelAbContaDadosChave(String tipoConta1, String tipoConta2) {
 		setLayout(null);
 		
@@ -131,6 +147,8 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 		codAgenciaTextField.setColumns(10);
 	}
 
+	/** Limpa os campos do painel
+	 */
 	@Override
 	public void limparCampos() {
 		inserirBordasPadrao();
@@ -141,6 +159,9 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 		rdbtnTipoConta1.setSelected(true);
 	}
 
+	/** Salva os dados inseridos na janela em um objeto do tipo <code>ContaBancaria</code>
+	 * @param contaBancaria <code>Object</code> referênte ao objeto que será salvo
+	 */
 	@Override
 	public void salvarCampos(Object contaBancaria) {
 		((ContaBancaria) contaBancaria).setCodAgencia(Integer.parseInt(codAgenciaTextField.getText()));
@@ -148,6 +169,10 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 		((ContaBancaria) contaBancaria).setTipoConta(TipoConta.obterTipoConta(obterRadioBtnSelecionado()));
 	}
 
+	/** Verifica se os campos do painel foram preenchidos corretamente
+	 *  @return <code>boolean</code> com <code>true</code> caso todos os campos tenham sido preenchidos corretamente, 
+	 *  e <code>false</code> caso contrário
+	 */
 	@Override
 	public boolean validarCampos() {
 		boolean valido = true;
@@ -159,6 +184,8 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 		return valido;
 	}
 	
+	/** Insere a borda padrão nos campos do painel
+	 */
 	@Override
 	public void inserirBordasPadrao() {
 		cpfPanel.setBorder(new TitledBorder(null, "N\u00E3o Validado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
@@ -167,6 +194,11 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 		codAgenciaTextField.setBorder(UIManager.getBorder("TextField.border"));
 	}
 
+	/** Verifica se o campo código da agência do painel for preenchido corretamente. Se o campo estiver errado
+	 *  receberá uma borda vermelha
+	 *  @return <code>boolean</code> com <code>true</code> caso o campo código da agência tenha sido preenchido corretamente, 
+	 *  e <code>false</code> caso contrário
+	 */
 	public boolean validarCampoCodAgencia() {
 		String codAgencia = codAgenciaTextField.getText();
 		
@@ -190,6 +222,11 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 		return false;
 	}
 	
+	/** Verifica se o campo cpf do painel for preenchido corretamente. Se o campo estiver errado
+	 *  receberá uma borda vermelha
+	 *  @return <code>boolean</code> com <code>true</code> caso o campo cpf tenha sido preenchido corretamente, 
+	 *  e <code>false</code> caso contrário
+	 */
 	public boolean validarCampoCpf() {
 		String cpf = cpfFormattedTextField.getText().replace(".", "").replace("-", "");
 
@@ -222,6 +259,9 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 		return false;
 	}
 	
+	/** Retorna o texto do botão de rádio que está selecionado
+	 *  @return <code>String</code> com o texto do botão de rádio que está selecionado
+	 */
 	public String obterRadioBtnSelecionado() {
 		String radioBtnTxt;
 		
@@ -233,22 +273,39 @@ public class PainelAbContaDadosChave extends JPanel implements TratadorDeCampos 
 		return radioBtnTxt;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão validar cpf
+	 * @return <code>JButton</code> com o botão validar cpf
+	 */
 	public JButton getBtnValidarCpf() {
 		return btnValidarCpf;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão validar código da agência
+	 * @return <code>JButton</code> com o botão validar código da agência
+	 */
 	public JButton getBtnValidarCodAgencia() {
 		return btnValidarCodAgencia;
 	}
 
+	/** Muda o campo de texto número da conta
+	 * @param numero <code>String</code> com o novo número da conta do campo
+	 */
 	public void setNumContaTextField(String numero) {
 		this.numContaTextField.setText(numero);
 	}
 
+	/** Retorna um <code>boolean</code> indicando se o botão de rádio 1 está selecionado
+	 *  @return <code>boolean</code> com <code>true</code> caso  o botão de rádio 1 esteja selecionado, 
+	 *  e <code>false</code> caso contrário
+	 */
 	public boolean rdbtnTipoConta1isSelected() {
 		return rdbtnTipoConta1.isSelected();
 	}
 
+	/** Retorna um <code>boolean</code> indicando se o botão de rádio 2 está selecionado
+	 *  @return <code>boolean</code> com <code>true</code> caso  o botão de rádio 2 esteja selecionado, 
+	 *  e <code>false</code> caso contrário
+	 */
 	public boolean rdbtnTipoConta2isSelected() {
 		return rdbtnTipoConta2.isSelected();
 	}

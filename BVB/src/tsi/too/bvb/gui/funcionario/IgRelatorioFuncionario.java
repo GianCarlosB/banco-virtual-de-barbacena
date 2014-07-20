@@ -26,10 +26,17 @@ import javax.swing.border.TitledBorder;
 
 import tsi.too.bvb.eventos.funcionario.TEActionRelatorioFuncionario;
 
+/** Classe que define a GUI de relatório de funcionário do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ */
 public class IgRelatorioFuncionario extends JDialog {
 	
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = 6407104861209370753L;
 	
@@ -41,9 +48,11 @@ public class IgRelatorioFuncionario extends JDialog {
 	private JButton btnBuscar;
 	private JButton btnAlterar;
 
-	/**
-	 * Create the dialog.
-	 */
+	/** Cria uma instância da janela de relatório de funcionário do sistema BVB
+	 * @param janelaPai <code>Window</code> com a janela pai da caixa de diálogo <code>IgRelatorioFuncionario</code>
+	 * 
+	 * @see Window
+	 */	
 	public IgRelatorioFuncionario(Window janelaPai) {
 		setModal(true);
 		Color nephritis = new Color(39, 174, 96);
@@ -162,12 +171,16 @@ public class IgRelatorioFuncionario extends JDialog {
 		setVisible(true);
 	}
 	
+	/** Exibe as opções de gerar relatório dados da janela <code>IgRelatorioFuncionario</code>
+	 */
 	public void exibeOpcoesGerarRelatorio() {
 		btnGerarRelatorio.setEnabled(true);
 		btnBuscar.setVisible(false);
 		btnAlterar.setVisible(true);
 	}
 	
+	/** Esconde as opções de gerar relatório dados da janela <code>IgRelatorioFuncionario</code>
+	 */
 	public void escondeOpcoesGerarRelatorio() {
 		btnGerarRelatorio.setEnabled(false);
 		btnBuscar.setVisible(true);
@@ -176,23 +189,39 @@ public class IgRelatorioFuncionario extends JDialog {
 		relatorioEditorPane.setText("");
 	}
 
+	/** Retorna um <code>JButton</code> com o botão gerar relatório
+	 * @return <code>JButton</code> com o botão gerar relatório
+	 */
 	public JButton getBtnGerarRelatorio() {
 		return btnGerarRelatorio;
 	}
 
+	/** Retorna um <code>JTextField</code> com o campo de texto login
+	 * @return <code>JTextField</code> com o campo de texto login
+	 */
 	public JTextField getLoginTextField() {
 		return loginTextField;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão buscar
+	 * @return <code>JButton</code> com o botão buscar
+	 */
 	public JButton getBtnBuscar() {
 		return btnBuscar;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão alterar
+	 * @return <code>JButton</code> com o botão alterar
+	 */
 	public JButton getBtnAlterar() {
 		return btnAlterar;
 	}
 
+	/** Muda o campo de texto relatório
+	 * @param relatorio <code>String</code> com o novo relatório do campo
+	 */
 	public void setRelatorioEditorPane(String relatorio) {
 		this.relatorioEditorPane.setText(relatorio);;
 	}
+	
 } // class IgRelatorioFuncionario

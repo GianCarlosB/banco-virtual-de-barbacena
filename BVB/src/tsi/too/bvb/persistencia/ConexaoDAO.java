@@ -12,13 +12,30 @@ import java.util.List;
 import tsi.too.bvb.entidades.conexao.Conexao;
 import tsi.too.bvb.gui.JanelaPopUpErro;
 
+/** Classe para manipular os dados das conexões dos funcionários no banco de dados
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ *
+ */
 public class ConexaoDAO {
 	
+	/** Cria uma <code>ConexaoDAO</code> para realizar o CRUD da conexão
+	 */
 	public ConexaoDAO() {
 		super();
 	}
 
-	public void criar(BancoDeDadosDAO bdDao, Conexao conexao) {
+	/** Insere uma conexão no banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param conexao <code>Conexao</code> que será inserida no banco de dados
+	 * @return <code>boolean</code> com <code>true</code> caso tenha inserido com sucesso, e <code>false</code> caso contrário
+	 * 
+	 * @see BancoDeDadosDAO
+	 * @see Conexao
+	 */
+	public boolean criar(BancoDeDadosDAO bdDao, Conexao conexao) {
 		final String SQL = "INSERT INTO conexao VALUES (?, ?, ?)";
 
 		try {
@@ -36,9 +53,22 @@ public class ConexaoDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			new JanelaPopUpErro(null, "BVB - ERRO", e);
+			return true;
 		}
+		
+		return false;
 	}
 
+	/** Pesquisa as conexões pelo login do funcionário no banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param login <code>String</code> referênte ao login do funcionário que será procurado
+	 * @return Uma lista de <code>Conexao</code> com os dados da(s) conexão(oes) encontrada(s) ou <code>null</code> caso não encontre nem uma
+	 * 
+	 * @see BancoDeDadosDAO
+	 * @see Conexao
+	 * @see List
+	 */
 	public List<Conexao> pesquisarConexao(BancoDeDadosDAO bdDao, String login) {
 		List<Conexao> lista = new ArrayList<>();
 		final String SQL = "SELECT * FROM conexao WHERE LCASE (nomeUsuario) LIKE ?";

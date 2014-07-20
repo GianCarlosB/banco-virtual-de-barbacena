@@ -14,7 +14,15 @@ import tsi.too.bvb.gui.cliente.PainelAltEndereco;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 import tsi.too.bvb.persistencia.ClienteDAO;
 
-public class TEActionAlterarCliente implements ActionListener{
+/** Classe para tratar os eventos de ação da janela <code>IgAltCliente</code> e de seus paineis <code>PainelAltCliente</code>, 
+ * <code>PainelAltContato</code>, <code>PainelAltEndereco</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see ActionListener
+ */
+public class TEActionAlterarCliente implements ActionListener {
 	
 	private IgAltCliente igAltCliente;
 	private PainelAltCliente painelAltCliente;
@@ -22,6 +30,13 @@ public class TEActionAlterarCliente implements ActionListener{
 	private PainelAltEndereco painelAltEndereco;
 	private Cliente cliente;
 	
+	/** Cria uma instância do Tratador de eventos de ação do painel <code>painelAltCliente</code>
+	 * @param igAltCliente <code>IgAltCliente</code> que será manipulada
+	 * @param painelAltCliente <code>PainelAltCliente</code> que será manipulado
+	 * @param cliente <code>Cliente</code> referênte ao objeto que será manipulado
+	 * 
+	 * @see Cliente
+	 */
 	public TEActionAlterarCliente(IgAltCliente igAltCliente, PainelAltCliente painelAltCliente, Cliente cliente) {
 		super();
 		this.painelAltEndereco = null;
@@ -31,6 +46,13 @@ public class TEActionAlterarCliente implements ActionListener{
 		this.cliente = cliente;
 	}
 	
+	/** Cria uma instância do Tratador de eventos de ação do painel <code>painelAltEndereco</code>
+	 * @param igAltCliente <code>IgAltCliente</code> que será manipulada
+	 * @param painelAltEndereco <code>PainelAltEndereco</code> que será manipulado
+	 * @param cliente <code>Cliente</code> referênte ao objeto que será manipulado
+	 * 
+	 * @see Cliente
+	 */
 	public TEActionAlterarCliente(IgAltCliente igAltCliente, PainelAltEndereco painelAltEndereco, Cliente cliente) {
 		super();
 		this.painelAltCliente = null;
@@ -40,6 +62,13 @@ public class TEActionAlterarCliente implements ActionListener{
 		this.cliente = cliente;
 	}
 	
+	/** Cria uma instância do Tratador de eventos de ação do painel <code>painelAltContato</code>
+	 * @param igAltCliente <code>IgAltCliente</code> que será manipulada
+	 * @param painelAltContato <code>PainelAltContato</code> que será manipulado
+	 * @param cliente <code>Cliente</code> referênte ao objeto que será manipulado
+	 * 
+	 * @see Cliente
+	 */
 	public TEActionAlterarCliente(IgAltCliente igAltCliente, PainelAltContato painelAltContato, Cliente cliente) {
 		super();
 		this.painelAltCliente = null;
@@ -49,6 +78,12 @@ public class TEActionAlterarCliente implements ActionListener{
 		this.cliente = cliente;
 	}
 	
+	/** Cria uma instância do Tratador de eventos de ação da janela <code>IgCadCliente</code>
+	 * @param igAltCliente <code>IgAltCliente</code> que será manipulada
+	 * @param cliente <code>Cliente</code> referênte ao objeto que será manipulado
+	 * 
+	 * @see Cliente
+	 */
 	public TEActionAlterarCliente(IgAltCliente igAltCliente, Cliente cliente) {
 		super();
 		this.painelAltCliente = null;
@@ -58,6 +93,10 @@ public class TEActionAlterarCliente implements ActionListener{
 		this.cliente = cliente;
 	}
 	
+	/** Trata os eventos de ação dos elementos da janela <code>IgAltCliente</code> e de seus paineis <code>PainelAltCliente</code>, 
+	 * <code>PainelAltContato</code>, <code>PainelAltEndereco</code>
+	 * @see ActionListener
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -65,7 +104,7 @@ public class TEActionAlterarCliente implements ActionListener{
 		/// ===== * Início dos Evento do Painel de Cliente * ===== ///
 		
 		if(painelAltCliente != null && e.getSource() == painelAltCliente.getBtnEditarNome()) {
-			if(painelAltCliente.validarNome()) {
+			if(painelAltCliente.validarCampos()) {
 				if(!painelAltCliente.getNomeTextField().getText().equals(cliente.getNome())) {
 					igAltCliente.setLblCamposErrados(false);
 					
@@ -210,7 +249,7 @@ public class TEActionAlterarCliente implements ActionListener{
 		
 		else if(painelAltContato != null) {
 			if(e.getSource() == painelAltContato.getBtnEditarTelFixo()) {
-				if(painelAltContato.validarTelFixo()) {
+				if(painelAltContato.validarCampos()) {
 					if(!painelAltContato.getTelFixoFormTextField().getText().replace("(", "").replace(")", "").replace("-", "")
 					   .equals(cliente.getContato().getTelefoneFixo())) {
 						igAltCliente.setLblCamposErrados(false);

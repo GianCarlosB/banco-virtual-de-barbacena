@@ -19,9 +19,19 @@ import tsi.too.bvb.entidades.tiposenumerados.UF;
 import tsi.too.bvb.gui.TratadorDeCampos;
 import tsi.too.bvb.validacoes.ValidarDados;
 
+/** Classe que define o painel endereço utilizado pela janela <code>IgCadCliente</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JPanel
+ * @see IgCadCliente
+ * @see TratadorDeCampos
+ */
 public class PainelCadEndereco extends JPanel implements TratadorDeCampos {
+	
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = 4933250266690793219L;
 	
@@ -33,9 +43,8 @@ public class PainelCadEndereco extends JPanel implements TratadorDeCampos {
 	private JFormattedTextField cepFormTextField;
 	private JComboBox<Object> ufComboBox;
 
-	/**
-	 * Create the panel.
-	 */
+	/** Cria uma instância do painel endereço utilizado pela janela <code>IgCadCliente</code>
+	 */	
 	public PainelCadEndereco() {
 		setLayout(null);
 		
@@ -134,6 +143,8 @@ public class PainelCadEndereco extends JPanel implements TratadorDeCampos {
 		RegionalPanel.add(cepFormTextField);
 	}
 
+	/** Limpa os campos do painel
+	 */
 	@Override
 	public void limparCampos() {
 		inserirBordasPadrao();
@@ -148,6 +159,9 @@ public class PainelCadEndereco extends JPanel implements TratadorDeCampos {
 		ufComboBox.setSelectedIndex(0);
 	}
 
+	/** Salva os dados inseridos na janela em um objeto do tipo <code>Cliente</code>
+	 * @param cliente <code>Object</code> referênte ao objeto que será salvo
+	 */
 	@Override
 	public void salvarCampos(Object cliente) {
 		((Cliente) cliente).getEndereco().setBairro(bairroTextField.getText());
@@ -170,6 +184,11 @@ public class PainelCadEndereco extends JPanel implements TratadorDeCampos {
 		((Cliente) cliente).getEndereco().setUf(UF.obterUF((String)ufComboBox.getSelectedItem()));
 	}
 
+	/** Verifica se os campos do painel foram preenchidos corretamente. Os campos errados 
+	 * recebem uma borda vermelha
+	 *  @return <code>boolean</code> com <code>true</code> caso todos os campos tenham sido preenchidos corretamente, 
+	 *  e <code>false</code> caso contrário
+	 */
 	@Override
 	public boolean validarCampos() {
 		boolean valido = true;
@@ -207,6 +226,8 @@ public class PainelCadEndereco extends JPanel implements TratadorDeCampos {
 		return valido;
 	}
 
+	/** Insere a borda padrão nos campos do painel
+	 */
 	@Override
 	public void inserirBordasPadrao() {
 		logradouroTextField.setBorder(UIManager.getBorder("TextField.border"));

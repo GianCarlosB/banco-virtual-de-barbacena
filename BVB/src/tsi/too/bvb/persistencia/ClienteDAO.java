@@ -11,13 +11,30 @@ import tsi.too.bvb.entidades.cliente.Endereco;
 import tsi.too.bvb.entidades.tiposenumerados.UF;
 import tsi.too.bvb.gui.JanelaPopUpErro;
 
+/** Classe para manipular os dados dos clientes no banco de dados
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ *
+ */
 public class ClienteDAO {
 	
+	/** Cria um <code>ClienteDAO</code> para realizar o CRUD do cliente
+	 */
 	public ClienteDAO() {
 		super();
 	}
-
-	public void criar(BancoDeDadosDAO bdDao, Cliente cliente) {
+	
+	/** Insere um cliente no banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param cliente <code>Cliente</code> que será inserido no banco de dados
+	 * @return <code>boolean</code> com <code>true</code> caso tenha inserido com sucesso, e <code>false</code> caso contrário
+	 * 
+	 * @see BancoDeDadosDAO
+	 * @see Cliente
+	 */
+	public boolean criar(BancoDeDadosDAO bdDao, Cliente cliente) {
 		final String SQL = "INSERT INTO cliente VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
@@ -39,9 +56,21 @@ public class ClienteDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			new JanelaPopUpErro(null, "BVB - ERRO", e);
+			return false;
 		}
+		
+		return true;
 	}
 	
+	/** Pesquisa um cliente pelo cpf no banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param cpf <code>String</code> referênte ao cpf que será procurado
+	 * @return <code>Cliente</code> com os dados do cliente encontrado ou <code>null</code> caso não encontre
+	 * 
+	 * @see BancoDeDadosDAO
+	 * @see Cliente
+	 */
 	public Cliente pesquisarCpf(BancoDeDadosDAO bdDao, String cpf) {
 		Cliente cliente = new Cliente();
 		final String SQL = "SELECT * FROM cliente WHERE cpf = ?";
@@ -68,6 +97,16 @@ public class ClienteDAO {
 		return cliente;
 	}
 
+	/** Pesquisa os cliente pelo nome no banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param nome <code>String</code> referênte ao nome que será procurada
+	 * @return Uma lista de <code>Cliente</code> com os dados do(s) cliente(s) encontrado(s) ou <code>null</code> caso não encontre nem um
+	 * 
+	 * @see BancoDeDadosDAO
+	 * @see Cliente
+	 * @see List
+	 */
 	public List<Cliente> pesquisarNome(BancoDeDadosDAO bdDao, String nome) {
 		List<Cliente> lista = new ArrayList<>();
 		final String SQL = "SELECT * FROM cliente WHERE LCASE (nome) LIKE ?";
@@ -98,7 +137,18 @@ public class ClienteDAO {
 		return lista;
 	}
 	
-	public void alterar(BancoDeDadosDAO bdDao, Cliente cliente, String coluna, String dado) {
+	/** Altera os dados de um cliente no banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param cliente <code>Cliente</code> cujo cpf é referênte ao cpf do cliente que será alterado
+	 * @param coluna <code>String</code> referênte a coluna do banco de dados que será alterado
+	 * @param dado <code>String</code> referênte ao dado que será alterado
+	 * @return <code>boolean</code> com <code>true</code> caso tenha alterado com sucesso, e <code>false</code> caso contrário
+	 * 
+	 * @see BancoDeDadosDAO
+	 * @see Cliente
+	 */
+	public boolean alterar(BancoDeDadosDAO bdDao, Cliente cliente, String coluna, String dado) {
 		final String SQL= String.format("UPDATE cliente SET %s = ? WHERE CPF = ?", coluna);
 		
 		try{
@@ -111,10 +161,21 @@ public class ClienteDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			new JanelaPopUpErro(null, "BVB - ERRO", e);
+			return false;
 		}
+		
+		return true;
 	}
 	
-	public void excluir(BancoDeDadosDAO bdDao, String cpf) {
+	/** Exclui um cliente do banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param cpf <code>String</code> referênte ao cpf do cliente que será excluído
+	 * @return <code>boolean</code> com <code>true</code> caso tenha excluído com sucesso, e <code>false</code> caso contrário
+	 * 
+	 * @see BancoDeDadosDAO
+	 */
+	public boolean excluir(BancoDeDadosDAO bdDao, String cpf) {
 		final String SQL = "DELETE FROM cliente WHERE cpf = ?";
 		
 		try {
@@ -126,7 +187,10 @@ public class ClienteDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			new JanelaPopUpErro(null, "BVB - ERRO", e);
+			return false;
 		}
+		
+		return true;
 	}
 	
 } // class ClienteDAO

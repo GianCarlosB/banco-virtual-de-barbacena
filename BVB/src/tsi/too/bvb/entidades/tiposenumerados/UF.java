@@ -1,33 +1,65 @@
 package tsi.too.bvb.entidades.tiposenumerados;
 
+/** Enumeração com os estados do Brasil
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ */ 
 public enum UF {
 	
+	/** Estado do Acre */
 	AC("AC", "Acre"),
+	/** Estado de Alagoas */
 	AL("AL", "Alagoas"),
+	/** Estado do Amapá */
 	AP("AP", "Amapá"),
+	/** Estado do Amazonas*/
 	AM("AM", "Amazonas"),
+	/** Estado da Bahia*/
 	BA("BA", "Bahia"),
+	/** Estado do Ceará*/
 	CE("CE", "Ceará"),
+	/** Distrito Federal */
 	DF("DF", "Distrito Federal"),
+	/** Estado do Espírito Santo*/
 	ES("ES", "Espírito Santo"),
+	/** Estado de Goiás*/
 	GO("GO", "Goiás"),
+	/** Estado do Maranhão*/
 	MA("MA", "Maranhão"),
+	/** Estado do Mato Grosso*/
 	MT("MT", "Mato Grosso"),
+	/** Estado do Mato Grosso do Sul*/
 	MS("MS", "Mato Grosso do Sul"),
+	/** Estado de Minas Gerais*/
 	MG("MG", "Minas Gerais"),
+	/** Estado do Pará*/
 	PA("PA", "Pará"),
+	/** Estado da Paraíba*/
 	PB("PB", "Paraíba"),
+	/** Estado do Paraná*/
 	PR("PR", "Paraná"),
+	/** Estado de Pernambuco */
 	PE("PE", "Pernambuco"),
+	/** Estado do Piauí*/
 	PI("PI", "Piauí"),
+	/** Estado do Rio de Janeiro */
 	RJ("RJ", "Rio de Janeiro"),
+	/** Estado do Rio Grande do Norte */
 	RN("RN", "Rio Grande do Norte"),
+	/** Estado do Rio Grande do Sul */
 	RS("RS", "Rio Grande do Sul"),
+	/** Estado de Rondônia */
 	RO("RO", "Rondônia"),
+	/** Estado de Roraima */
 	RR("RR", "Roraima"),
+	/** Estado de Santa Catarina*/
 	SC("SC", "Santa Catarina"),
+	/** Estado de São Paulo*/
 	SP("SP", "São Paulo"),
+	/** Estado de Sergipe*/
 	SE("SE", "Sergipe"),
+	/** Estado do Tocantins*/
 	TO("TO", "Tocantins");
 	
 	private String uf, estado;
@@ -38,26 +70,30 @@ public enum UF {
 		this.estado = estado;
 	}
 
+	/** Retorna uma <code>String</code> o uf do estado
+	 * @return <code>String</code> o uf do estado
+	 */
 	public String getUf() {
 		return uf;
 	}
 
-	public void setUf(String uf) {
-		this.uf = uf;
-	}
-
+	/** Retorna uma <code>String</code> o nome do estado
+	 * @return <code>String</code> o nome do estado
+	 */
 	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
+	/** Retorna um <code>int</code> o número de estados do Brasil
+	 * @return <code>int</code> o número de estados do Brasil
+	 */
 	public static int getNUM_ESTADOS() {
 		return NUM_ESTADOS;
 	}
 	
+	/** Retorna um <code>String[]</code> com todos os estados do Brasil
+	 * @return <code>String[]</code> com todos os estados do Brasil
+	 */
 	public static String[] obterArrayUF() {
 		String arrayUF[] = new String[NUM_ESTADOS];
 		int i = 0;
@@ -93,6 +129,10 @@ public enum UF {
 		return arrayUF;
 	}
 	
+	/** Obtém o estado da enumeração corresponte ao parâmetro passado
+	 * @param uf <code>String</code> referêrente ao estado desejado
+	 * @return <code>UF</code> com o estado desajado ou <code>null</code> caso não seja encontrado
+	 */
 	public static UF obterUF(String uf) {
 		if(uf.equalsIgnoreCase(AC.getUf()))
 			return AC;

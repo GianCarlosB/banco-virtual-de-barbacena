@@ -21,10 +21,17 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
+/** Classe que define a GUI de uma janela popup de pergunta
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ */
 public class JanelaPopUpPergunta extends JDialog {
 
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = -312438604748532205L;
 	
@@ -33,8 +40,12 @@ public class JanelaPopUpPergunta extends JDialog {
 	private JButton simButton;
 	private JButton naoButton;
 	
-	/**
-	 * Create the dialog.
+	/** Cria uma instância da janela popup de pergunta
+	 * @param janelaPai <code>Window</code> com a janela pai da caixa de diálogo <code>JanelaPopUpPergunta</code>
+	 * @param titulo <code>String</code> com o título da janela
+	 * @param msgPergunta <code>String</code> com a mensagem que será mostrada na janela
+	 * 
+	 * @see Window
 	 */
 	public JanelaPopUpPergunta(Window janelaPai, String titulo, String msgPergunta) {
 		setType(Type.POPUP);
@@ -104,11 +115,16 @@ public class JanelaPopUpPergunta extends JDialog {
 		setVisible(true);
 	}
 	
+	/** Retorna um <code>boolean</code> informando se a opção "sim" foi escolhida
+	 * @return <code>boolean</code> com <code>true</code> se a opção "sim" foi escolhida, e <code>false</code> caso contrário
+	 */
 	public boolean isSim() {
 		return sim;
 	}
 	
-	public void executarSomPergunta() {
+	/** Executa o som de pergunta
+	 */	
+	private void executarSomPergunta() {
 		Applet.newAudioClip(JanelaPopUpErro.class.getResource("/tsi/too/bvb/recursos/sons/notify.wav")).play();
 	}
 

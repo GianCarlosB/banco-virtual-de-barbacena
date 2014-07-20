@@ -9,8 +9,6 @@ import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -34,10 +32,17 @@ import tsi.too.bvb.gui.PainelBuscarAgencia;
 import tsi.too.bvb.gui.PainelBuscarCliente;
 import tsi.too.bvb.gui.PainelBuscarFuncionario;
 
+/** Classe que define a GUI de busca de cadastro do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ */
 public class IgBuscarCadastro extends JDialog {
 
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = 3529551018719501018L;
 	
@@ -65,23 +70,22 @@ public class IgBuscarCadastro extends JDialog {
 	private JEditorPane dtrpnCampoTitulo;
 	private JLabel lblImg;
 
-	/**
-	 * Create the dialog.
-	 */
+	/** Cria uma instância da janela de alteração de cadastro do sistema BVB
+	 * @param janelaPai <code>Window</code> com a janela pai da caixa de diálogo <code>IgBuscarCadastro</code>
+	 * @param titulo <code>String</code> com o título da janela
+	 * @param txtTitulo <code>String</code> com o título do corpo da janela
+	 * @param txtSubTitulo <code>String</code> com o subtítulo do corpo da janela
+	 * @param tipo <code>final</code> <code>int</code> com o tipo da busca: 1 - Cliente, 2 - Funcionário, 3 - Agência
+	 * 
+	 * @see Window
+	 */	
 	public IgBuscarCadastro(Window janelaPai, String titulo, String txtTitulo, String txtSubTitulo, final int tipo) {
 		setModal(true);
 		
 		// Cores Flat
-		final Color peterRiver = new Color(52, 152, 219);
-		final Color nephritis = new Color(39, 174, 96);
-		final Color pumpkin = new Color(211, 84, 0);
-		
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowOpened(WindowEvent arg0) {
-				carregarElementosTipo(tipo, peterRiver, nephritis, pumpkin);
-			}
-		});
+		Color peterRiver = new Color(52, 152, 219);
+		Color nephritis = new Color(39, 174, 96);
+		Color pumpkin = new Color(211, 84, 0);
 		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
@@ -199,10 +203,14 @@ public class IgBuscarCadastro extends JDialog {
 		Point localPoint = new Point(this.point);
 		localPoint.x -= 275;
 		
+		carregarElementosTipo(tipo, peterRiver, nephritis, pumpkin);
 		setLocation(localPoint);
 		setVisible(true);
 	}
 	
+	/** Exibe o painel da janela <code>IgBuscarCadastro</code> de acordo com o tipo da busca
+	 * @param tipo <code>int</code> com o tipo da busca: 1 - Cliente, 2 - Funcionário, 3 - Agência
+	 */
 	private void exibeCardPainel(int tipo) {
 		switch(tipo) {
 		case 1: cardLayout.show(cardPanel, "clientePanel"); break;
@@ -211,6 +219,9 @@ public class IgBuscarCadastro extends JDialog {
 		}
 	}
 	
+	/** Exibe as opções de alterar dados da janela <code>IgBuscarCadastro</code>
+	 * @param dados <code>String</code> com o texto do campo de texto dados
+	 */
 	public void exibeOpcoesAlterarDados(String dados) {
 		btnAlterarDados.setEnabled(true);
 		btnBuscar.setVisible(false);
@@ -218,6 +229,8 @@ public class IgBuscarCadastro extends JDialog {
 		dadosEditorPane.setText(dados);
 	}
 	
+	/** Esconde as opções de alterar dados da janela <code>IgBuscarCadastro</code>
+	 */
 	public void escondeOpcoesAlterarDados() {
 		btnAlterarDados.setEnabled(false);
 		btnBuscar.setVisible(true);
@@ -225,6 +238,14 @@ public class IgBuscarCadastro extends JDialog {
 		dadosEditorPane.setText("");
 	}
 	
+	/** Carrega os elementos da janela <code>IgBuscarCadastro</code> de acordo com o tipo da busca
+	 * tipo <code>int</code> com o tipo da busca: 1 - Cliente, 2 - Funcionário, 3 - Agência
+	 * tipo <code>Color</code> com a cor do cabeçalho da janela se o tipo <code>int</code> passado como parâmetro for cliente
+	 * tipo <code>Color</code> com a cor do cabeçalho da janela se o tipo <code>int</code> passado como parâmetro for funcionário
+	 * tipo <code>Color</code> com a cor do cabeçalho da janela se o tipo <code>int</code> passado como parâmetro for agência
+	 * 
+	 * @see Color
+	 */
 	private void carregarElementosTipo(int tipo, Color peterRiver, Color nephritis, Color pumpkin) {
 		switch(tipo) {
 		case 1:
@@ -248,58 +269,100 @@ public class IgBuscarCadastro extends JDialog {
 		}
 	}
 	
+	/** Retorna um <code>Cliente</code> com os dados do cliente pesquisado
+	 * @return <code>Cliente</code> com os dados do cliente pesquisado
+	 */
 	public Cliente getCliente() {
 		return cliente;
 	}
 
+	/** Muda o objeto cliente
+	 * @param cliente <code>Cliente</code> com o novo objeto cliente
+	 */
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 
+	/** Retorna um <code>Funcionario</code> com os dados do funcionário pesquisado
+	 * @return <code>Funcionario</code> com os dados do funcionário pesquisado
+	 */
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
 
+	/** Muda o objeto funcionário
+	 * @param funcionario <code>Funcionario</code> com o novo objeto funcionário
+	 */
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
 
+	/** Retorna uma <code>Agencia</code> com os dados da agência pesquisada
+	 * @return <code>Agencia</code> com os dados da agência pesquisada
+	 */
 	public Agencia getAgencia() {
 		return agencia;
 	}
 
+	/** Muda o objeto agência
+	 * @param agencia <code>Agencia</code> com o novo objeto agência
+	 */
 	public void setAgencia(Agencia agencia) {
 		this.agencia = agencia;
 	}
 
+	/** Retorna um <code>PainelBuscarCliente</code> referênte ao painel do cliente
+	 * @return <code>PainelBuscarCliente</code> referênte ao painel do cliente
+	 */
 	public PainelBuscarCliente getPBuscarCliente() {
 		return pBuscarCliente;
 	}
 
+	/** Retorna um <code>PainelBuscarFuncionario</code> referênte ao painel do funcionário
+	 * @return <code>PainelBuscarFuncionario</code> referênte ao painel do funcionário
+	 */
 	public PainelBuscarFuncionario getPBuscarFuncionario() {
 		return pBuscarFuncionario;
 	}
 
+	/** Retorna um <code>PainelBuscarAgencia</code> referênte ao painel da agência
+	 * @return <code>PainelBuscarAgencia</code> referênte ao painel da agência
+	 */
+	public PainelBuscarAgencia getPBuscarAgencia() {
+		return pBuscarAgencia;
+	}
+	
+	/** Retorna um <code>Point</code> com as coordenadas da janela pai
+	 * @return <code>Point</code> com as coordenadas da janela pai
+	 */
 	public Point getPoint() {
 		return point;
 	}
 
-	public PainelBuscarAgencia getPBuscarAgencia() {
-		return pBuscarAgencia;
-	}
-
+	/** Retorna um <code>JButton</code> com o botão buscar
+	 * @return <code>JButton</code> com o botão buscar
+	 */
 	public JButton getBtnBuscar() {
 		return btnBuscar;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão alterar
+	 * @return <code>JButton</code> com o botão alterar
+	 */
 	public JButton getBtnAlterar() {
 		return btnAlterar;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão alterar dados
+	 * @return <code>JButton</code> com o botão alterar dados
+	 */
 	public JButton getBtnAlterarDados() {
 		return btnAlterarDados;
 	}
 
+	/** Retorna um <code>int</code> com o número de "cartas" do painel
+	 * @return <code>int</code> com o número de "cartas" do painel
+	 */
 	public int getNUM_CARDS() {
 		return NUM_CARDS;
 	}

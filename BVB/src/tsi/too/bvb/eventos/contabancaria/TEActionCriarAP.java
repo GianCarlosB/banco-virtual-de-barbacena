@@ -15,25 +15,43 @@ import tsi.too.bvb.gui.contabancaria.PainelAbContaSenhas;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 import tsi.too.bvb.persistencia.ContaBancariaDAO;
 
+/** Classe para tratar os eventos de ação da janela <code>IgCriarAplicacao</code> e de seu painel <code>PainelAbContaDadosChave</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see ActionListener
+ */
 public class TEActionCriarAP implements ActionListener {
 	
 	private IgCriarAplicacao igCriarAplicacao;
 	private PainelAbContaDadosChave painelAbContaDadosChave;
 	private ContaBancaria contaBancaria;
 	
+	/** Cria uma instância do Tratador de eventos de ação do painel <code>painelCadCliente</code>
+	 * @param painelAbContaDadosChave <code>PainelAbContaDadosChave</code> que será manipulado
+	 */
 	public TEActionCriarAP(PainelAbContaDadosChave painelAbContaDadosChave) {
 		super();
 		this.painelAbContaDadosChave = painelAbContaDadosChave;
 	}
 
-	public TEActionCriarAP(IgCriarAplicacao igCriarAplicacao,
-			ContaBancaria contaBancaria) {
+	/** Cria uma instância do Tratador de eventos de ação da janela <code>IgCriarAplicacao</code>
+	 * @param igCriarAplicacao <code>IgCriarAplicacao</code> que será manipulada
+	 * @param contaBancaria <code>ContaBancaria</code> referênte ao objeto que será manipulado
+	 * 
+	 * @see ContaBancaria
+	 */
+	public TEActionCriarAP(IgCriarAplicacao igCriarAplicacao, ContaBancaria contaBancaria) {
 		super();
 		this.painelAbContaDadosChave = null;
 		this.igCriarAplicacao = igCriarAplicacao;
 		this.contaBancaria = contaBancaria;
 	}
 	
+	/** Trata os eventos de ação dos elementos da janela <code>IgCriarAplicacao</code> e de seu painel <code>PainelAbContaDadosChave</code>
+	 * @see ActionListener
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

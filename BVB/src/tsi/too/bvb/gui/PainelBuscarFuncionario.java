@@ -1,22 +1,29 @@
 package tsi.too.bvb.gui;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
 import java.awt.event.KeyEvent;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/** Classe que define o painel buscar funcionário utilizado por diversos componentes GUI do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JPanel
+ */
 public class PainelBuscarFuncionario extends JPanel {
 
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = -3360654599044445275L;
 	
 	private JTextField loginTextField;
 
-	/**
-	 * Create the panel.
-	 */
+	/** Cria uma instância do painel buscar funcionário utilizado por diversos componentes GUI do sistema BVB
+	 */	
 	public PainelBuscarFuncionario() {
 		setLayout(null);
 		
@@ -34,10 +41,16 @@ public class PainelBuscarFuncionario extends JPanel {
 
 	}
 
+	/** Muda o campo de texto login
+	 * @param loginTextField <code>String</code> com o novo login do campo
+	 */
 	public void setLoginTextField(String loginTextField) {
 		this.loginTextField.setText(loginTextField);
 	}
 
+	/** Retorna um <code>JTextField</code> com o campo de texto login
+	 * @return <code>JTextField</code> com o campo de texto login
+	 */
 	public JTextField getLoginTextField() {
 		return loginTextField;
 	}

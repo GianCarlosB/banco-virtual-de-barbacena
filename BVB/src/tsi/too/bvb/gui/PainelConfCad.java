@@ -9,15 +9,34 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 
+import tsi.too.bvb.gui.cliente.IgCadCliente;
+import tsi.too.bvb.gui.contabancaria.IgAbrirContaBancaria;
+import tsi.too.bvb.gui.contabancaria.IgCriarAplicacao;
+
+/** Classe que define o painel confirmação utilizado pelas janelas <code>IgCadCliente</code>, 
+ * <code>IgAbrirContaBancaria</code> e <code>IgCriarAplicacao</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JPanel
+ * @see IgCadCliente
+ * @see IgAbrirContaBancaria
+ * @see IgCriarAplicacao
+ * @see TratadorDeCampos
+ */
 public class PainelConfCad extends JPanel implements TratadorDeCampos {
+	
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = -402474443606626152L;
+	
 	private JEditorPane dadosEditorPane;
 
-	/**
-	 * Create the panel.
+	/** Cria uma instância do painel confirmação utilizado pelas janelas <code>IgCadCliente</code>, 
+	 * <code>IgAbrirContaBancaria</code> e <code>IgCriarAplicacao</code>
+	 * @param tituloDaBorda <code>String</code> referênte ao título da borda do campo de texto dados
 	 */
 	public PainelConfCad(String tituloDaBorda) {
 		setLayout(null);
@@ -42,22 +61,37 @@ public class PainelConfCad extends JPanel implements TratadorDeCampos {
 		dadosEditorPane.setEditable(false);
 	}
 
-	public void setDadosEditorPane(String dadosDoCliente) {
-		this.dadosEditorPane.setText(dadosDoCliente);
-	}
-
+	/* (non-Javadoc)
+	 * @see TratadorDeCampos
+	 */
 	@Override
 	public void limparCampos() {}
 
+	/* (non-Javadoc)
+	 * @see TratadorDeCampos
+	 */
 	@Override
 	public void salvarCampos(Object cliente) {}
 
+	/* (non-Javadoc)
+	 * @see TratadorDeCampos
+	 */
 	@Override
 	public boolean validarCampos() {
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see TratadorDeCampos
+	 */
 	@Override
 	public void inserirBordasPadrao() {}
+	
+	/** Muda o campo de texto dados
+	 * @param dadosDoCliente <code>String</code> com os novos dados do campo
+	 */
+	public void setDadosEditorPane(String dadosDoCliente) {
+		this.dadosEditorPane.setText(dadosDoCliente);
+	}
 	
 } // PainelConfCadCliente

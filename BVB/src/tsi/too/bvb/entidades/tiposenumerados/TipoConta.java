@@ -1,10 +1,19 @@
 package tsi.too.bvb.entidades.tiposenumerados;
 
+/** Enumeração com os tipos de conta bancárias permitidos no sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ */ 
 public enum TipoConta {
 	
+	/** Conta Corrente */
 	CONTA_CORRENTE(1, "Conta Corrente"),
+	/** Conta Poupança */
 	CONTA_POUPANCA(2, "Conta Poupança"),
+	/** BVB FIF Prático */
 	FIF_PRATICO(3, "BVB FIF Prático"),
+	/** BVB FIF Executivo */
 	FIF_EXECUTIVO(4, "BVB FIF Executivo");
 	
 	private int numero;
@@ -16,26 +25,30 @@ public enum TipoConta {
 		this.descricao = descricao;
 	}
 
+	/** Retorna um <code>int</code> com o número do tipo de conta bancária
+	 * @return <code>int</code> com o número do tipo de conta bancária
+	 */
 	public int getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
-
+	/** Retorna uma <code>String</code> com a descrição do tipo de conta bancária
+	 * @return <code>String</code> com a descrição do tipo de conta bancária
+	 */
 	public String getDescricao() {
 		return descricao;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
+	/** Retorna um <code>int</code> o número de tipos
+	 * @return <code>int</code> o número de tipos
+	 */
 	public static int getNumTipos() {
 		return NUM_TIPOS;
 	}
 
+	/** Retorna um <code>String[]</code> com os tipos comuns da enumeração (conta corrente e poupança)
+	 * @return <code>String[]</code> com os tipos comuns da enumeração (conta corrente e poupança)
+	 */
 	public static String[] obterArrayTiposComuns() {
 		String arrayTipos[] = new String[NUM_TIPOS];
 		int i = 0;
@@ -46,6 +59,9 @@ public enum TipoConta {
 		return arrayTipos;
 	}
 	
+	/** Retorna um <code>String[]</code> com os tipos fif da enumeração (fif prático e executivo)
+	 * @return <code>String[]</code> com os tipos fif da enumeração (fif prático e executivo)
+	 */
 	public static String[] obterArrayTiposFIF() {
 		String arrayTipos[] = new String[NUM_TIPOS];
 		int i = 0;
@@ -56,19 +72,27 @@ public enum TipoConta {
 		return arrayTipos;
 	}
 	
-	public static TipoConta obterTipoConta(String tipo) {
-		if(tipo.equalsIgnoreCase(CONTA_CORRENTE.getDescricao()))
+	/** Obtém o tipo da enumeração corresponte ao parâmetro passado
+	 * @param descricao <code>String</code> referêrente ao tipo desejado
+	 * @return <code>TipoConta</code> com o tipo desajado ou <code>null</code> caso não seja encontrado
+	 */
+	public static TipoConta obterTipoConta(String descricao) {
+		if(descricao.equalsIgnoreCase(CONTA_CORRENTE.getDescricao()))
 			return CONTA_CORRENTE;
-		else if(tipo.equalsIgnoreCase(CONTA_POUPANCA.getDescricao()))
+		else if(descricao.equalsIgnoreCase(CONTA_POUPANCA.getDescricao()))
 			return CONTA_POUPANCA;
-		else if(tipo.equalsIgnoreCase(FIF_PRATICO.getDescricao()))
+		else if(descricao.equalsIgnoreCase(FIF_PRATICO.getDescricao()))
 			return FIF_PRATICO;
-		else if(tipo.equalsIgnoreCase(FIF_EXECUTIVO.getDescricao()))
+		else if(descricao.equalsIgnoreCase(FIF_EXECUTIVO.getDescricao()))
 			return FIF_EXECUTIVO;
 		
 		return null;
 	}
 	
+	/** Obtém o tipo da enumeração corresponte ao parâmetro passado
+	 * @param numero <code>int</code> referêrente ao tipo desejado
+	 * @return <code>TipoConta</code> com o tipo desajado ou <code>null</code> caso não seja encontrado
+	 */
 	public static TipoConta obterTipoConta(int numero) {
 		if(numero == CONTA_CORRENTE.getNumero())
 			return CONTA_CORRENTE;

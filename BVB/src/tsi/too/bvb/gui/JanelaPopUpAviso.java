@@ -21,18 +21,29 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
+/** Classe que define a GUI de uma janela popup de aviso
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ */
 public class JanelaPopUpAviso extends JDialog {
 
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = 8506084221384792594L;
 	
 	private final JPanel contentPanel = new JPanel();
 	
-	/**
-	 * Create the dialog.
-	 */
+	/** Cria uma instância da janela popup de aviso
+	 * @param janelaPai <code>Window</code> com a janela pai da caixa de diálogo <code>JanelaPopUpAviso</code>
+	 * @param titulo <code>String</code> com o título da janela
+	 * @param msgAviso <code>String</code> com a mensagem que será mostrada na janela
+	 * 
+	 * @see Window
+	 */	
 	public JanelaPopUpAviso(Window janelaPai, String titulo, String msgAviso) {
 		setType(Type.POPUP);
 		setModal(true);
@@ -90,7 +101,9 @@ public class JanelaPopUpAviso extends JDialog {
 		setVisible(true);
 	}
 	
-	public void executarSomAviso() {
+	/** Executa o som de aviso
+	 */	
+	private void executarSomAviso() {
 		Applet.newAudioClip(JanelaPopUpErro.class.getResource("/tsi/too/bvb/recursos/sons/Windows Exclamation.wav")).play();
 	}
 	

@@ -15,9 +15,19 @@ import tsi.too.bvb.entidades.cliente.Cliente;
 import tsi.too.bvb.gui.TratadorDeCampos;
 import tsi.too.bvb.validacoes.ValidarDados;
 
+/** Classe que define o painel contato utilizado pela janela <code>IgCadCliente</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JPanel
+ * @see IgCadCliente
+ * @see TratadorDeCampos
+ */
 public class PainelCadContato extends JPanel implements TratadorDeCampos {
+	
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = 2413065008402544562L;
 	
@@ -25,9 +35,8 @@ public class PainelCadContato extends JPanel implements TratadorDeCampos {
 	private JFormattedTextField telMovelFormTextField;
 	
 
-	/**
-	 * Create the panel.
-	 */
+	/** Cria uma instância do painel contato utilizado pela janela <code>IgCadCliente</code>
+	 */	
 	public PainelCadContato() {
 		setLayout(null);
 		
@@ -66,6 +75,8 @@ public class PainelCadContato extends JPanel implements TratadorDeCampos {
 		add(lblTelMovelImg);
 	}
 
+	/** Limpa os campos do painel
+	 */
 	@Override
 	public void limparCampos() {
 		inserirBordasPadrao();
@@ -74,12 +85,20 @@ public class PainelCadContato extends JPanel implements TratadorDeCampos {
 		telMovelFormTextField.setText("");
 	}
 
+	/** Salva os dados inseridos na janela em um objeto do tipo <code>Cliente</code>
+	 * @param cliente <code>Object</code> referênte ao objeto que será salvo
+	 */
 	@Override
 	public void salvarCampos(Object cliente) {
 		((Cliente) cliente).getContato().setTelefoneFixo(telFixoFormTextField.getText().replace("(", "").replace(")", "").replace("-", ""));
 		((Cliente) cliente).getContato().setTelefoneMovel(telMovelFormTextField.getText().replace("(", "").replace(")", "").replace("-", ""));
 	}
 
+	/** Verifica se os campos do painel foram preenchidos corretamente. Os campos errados 
+	 * recebem uma borda vermelha
+	 *  @return <code>boolean</code> com <code>true</code> caso todos os campos tenham sido preenchidos corretamente, 
+	 *  e <code>false</code> caso contrário
+	 */
 	@Override
 	public boolean validarCampos() {
 		boolean valido = true;
@@ -93,6 +112,8 @@ public class PainelCadContato extends JPanel implements TratadorDeCampos {
 		return valido;
 	}
 
+	/** Insere a borda padrão nos campos do painel
+	 */
 	@Override
 	public void inserirBordasPadrao() {
 		telFixoFormTextField.setBorder(UIManager.getBorder("FormattedTextField.border"));

@@ -12,10 +12,17 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.border.LineBorder;
 
+/** Classe que define a GUI de apresentação do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JFrame
+ */
 public class IgApresentacao extends JFrame {
 
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = 3529660466821184952L;
 	
@@ -28,8 +35,7 @@ public class IgApresentacao extends JFrame {
 	private Carregamento carregamento = new Carregamento();
 	private Thread threadCarregamento = new Thread(carregamento);
 
-	/**
-	 * Create the frame.
+	/** Cria uma instância da janela de apresentação do sistema BVB
 	 */
 	public IgApresentacao() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(IgApresentacao.class.getResource("/tsi/too/bvb/recursos/imagens/BVB - \u00EDcone.png")));
@@ -81,6 +87,9 @@ public class IgApresentacao extends JFrame {
 		setVisible(true);
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
 	private class Carregamento implements Runnable {
 		private volatile boolean isRunning = true;
 
@@ -111,12 +120,19 @@ public class IgApresentacao extends JFrame {
 			}
 		}
 
+		/** Muda o estado de execução da thread
+		 *  @param isRunning <code>boolean</code> com <code>true</code> para a thread continuar com seu loop de execução, 
+		 *  e <code>false</code> para ser finalizada
+		 */
 		public void setRunning(boolean isRunning) {
 			this.isRunning = isRunning;
 		}
 	}
 	
+	/** Finaliza a thread de carregamento
+	 */
 	public void finalizarThread() {
 		carregamento.setRunning(false);
 	}
+	
 } // class IgApresentacao

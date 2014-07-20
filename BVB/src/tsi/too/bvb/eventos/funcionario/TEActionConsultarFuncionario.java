@@ -11,17 +11,28 @@ import tsi.too.bvb.gui.funcionario.IgConsultarFuncionario;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 import tsi.too.bvb.persistencia.FuncionarioDAO;
 
+/** Classe para tratar os eventos de ação da janela <code>IgConsultarFuncionario</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see ActionListener
+ */
 public class TEActionConsultarFuncionario implements ActionListener {
 	
 	private IgConsultarFuncionario igConsultarFuncionario;
 
+	/** Cria uma instância do Tratador de eventos de ação da janela <code>IgConsultarFuncionario</code>
+	 * @param igConsultarFuncionario <code>IgConsultarFuncionario</code> que será manipulada
+	 */
 	public TEActionConsultarFuncionario(IgConsultarFuncionario igConsultarFuncionario) {
 		super();
 		this.igConsultarFuncionario = igConsultarFuncionario;
 	}
 	
-
-
+	/** Trata os eventos de ação dos elementos da janela <code>IgConsultarFuncionario</code>
+	 * @see ActionListener
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -32,7 +43,7 @@ public class TEActionConsultarFuncionario implements ActionListener {
 		}
 		else if(e.getSource() == igConsultarFuncionario.getBtnBuscar()) {
 			List<Funcionario> funcionarios = new FuncionarioDAO().pesquisarTipo(BancoDeDadosBVB.getInstance(), TipoUsuario.obterTipoUsuario
-					                                                     (igConsultarFuncionario.getTipoUsuarioComboBox()).getCaractere());
+																			   (igConsultarFuncionario.getTipoUsuarioComboBox()));
 			
 			if(!funcionarios.isEmpty())
 				igConsultarFuncionario.addLinhasTabela(funcionarios);

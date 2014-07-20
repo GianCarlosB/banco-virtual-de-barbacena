@@ -18,10 +18,19 @@ import tsi.too.bvb.eventos.cliente.TEActionAlterarCliente;
 import tsi.too.bvb.gui.TratadorDeCampos;
 import tsi.too.bvb.validacoes.ValidarDados;
 
+/** Classe que define o painel contato utilizado pela janela <code>IgAltCliente</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JPanel
+ * @see IgAltCliente
+ * @see TratadorDeCampos
+ */
 public class PainelAltContato extends JPanel implements TratadorDeCampos {
 	
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = 2413065008402544562L;
 	
@@ -31,9 +40,13 @@ public class PainelAltContato extends JPanel implements TratadorDeCampos {
 	private JButton btnEditarTelFixo;
 	
 
-	/**
-	 * Create the panel.
-	 */
+	/** Cria uma instância do painel contato utilizado pela janela <code>IgAltCliente</code>
+	 * @param janelaPai <code>Window</code> com a janela pai do painel <code>PainelAltContato</code>
+	 * @param cliente <code>Cliente</code> com os dados do cliente que será alterado
+	 * 
+	 * @see Window
+	 * @see Cliente
+	 */	
 	public PainelAltContato(Window janelaPai, Cliente cliente) {
 		setLayout(null);
 		
@@ -88,7 +101,25 @@ public class PainelAltContato extends JPanel implements TratadorDeCampos {
 		add(btnEditarTelMovel);
 	}
 	
-	public boolean validarTelFixo() {
+	/* (non-Javadoc)
+	 * @see TratadorDeCampos
+	 */
+	@Override
+	public void limparCampos() {}
+
+	/* (non-Javadoc)
+	 * @see TratadorDeCampos
+	 */
+	@Override
+	public void salvarCampos(Object cliente) {}
+
+	/** Verifica se os campos do painel foram preenchidos corretamente. Os campos errados 
+	 * recebem uma borda vermelha
+	 *  @return <code>boolean</code> com <code>true</code> caso todos os campos tenham sido preenchidos corretamente, 
+	 *  e <code>false</code> caso contrário
+	 */
+	@Override
+	public boolean validarCampos() {
 		if(!ValidarDados.validarIntPositivo(telFixoFormTextField.getText().replace("(", "").replace(")", "").replace("-", ""))) {
 			telFixoFormTextField.setBorder(new LineBorder(Color.RED));
 			
@@ -98,37 +129,40 @@ public class PainelAltContato extends JPanel implements TratadorDeCampos {
 		
 		return true;
 	}
-	
-	@Override
-	public void limparCampos() {}
 
-	@Override
-	public void salvarCampos(Object cliente) {}
-
-	@Override
-	public boolean validarCampos() {
-		return false;
-	}
-
+	/** Insere a borda padrão nos campos do painel
+	 */
 	@Override
 	public void inserirBordasPadrao() {
 		telFixoFormTextField.setBorder(UIManager.getBorder("FormattedTextField.border"));
 	}
 
+	/** Retorna um <code>JFormattedTextField</code> com o campo de texto telefone fixo
+	 * @return <code>JFormattedTextField</code> com o campo de texto telefone fixo
+	 */
 	public JFormattedTextField getTelFixoFormTextField() {
 		return telFixoFormTextField;
 	}
 
+	/** Retorna um <code>JFormattedTextField</code> com o campo de texto telefone móvel
+	 * @return <code>JFormattedTextField</code> com o campo de texto telefone móvel
+	 */
 	public JFormattedTextField getTelMovelFormTextField() {
 		return telMovelFormTextField;
 	}
 
-	public JButton getBtnEditarTelMovel() {
-		return btnEditarTelMovel;
-	}
-
+	/** Retorna um <code>JButton</code> com o botão editar telefone fixo
+	 * @return <code>JButton</code> com o botão editar telefone fixo
+	 */
 	public JButton getBtnEditarTelFixo() {
 		return btnEditarTelFixo;
+	}
+	
+	/** Retorna um <code>JButton</code> com o botão editar telefone móvel
+	 * @return <code>JButton</code> com o botão editar telefone móvel
+	 */
+	public JButton getBtnEditarTelMovel() {
+		return btnEditarTelMovel;
 	}
 	
 } // class PainelAltContato

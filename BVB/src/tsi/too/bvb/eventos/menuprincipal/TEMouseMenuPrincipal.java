@@ -7,15 +7,28 @@ import javax.swing.ImageIcon;
 
 import tsi.too.bvb.gui.menuprincipal.IgMenuPrincipal;
 
+/** Classe para tratar os eventos do mouse da janela <code>IgMenuPrincipal</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see MouseAdapter
+ */
 public class TEMouseMenuPrincipal extends MouseAdapter {
 	
 	private IgMenuPrincipal igMenuPrincipal;
 
+	/** Cria uma instância do Tratador de eventos do mouse da janela <code>IgMenuPrincipal</code>
+	 * @param igMenuPrincipal <code>IgMenuPrincipal</code> que será manipulada
+	 */
 	public TEMouseMenuPrincipal(IgMenuPrincipal igMenuPrincipal) {
 		super();
 		this.igMenuPrincipal = igMenuPrincipal;
 	}
 
+	/** Trata os eventos de clique do mouse dos elementos da janela <code>IgMenuPrincipal</code>
+	 * @see MouseAdapter
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -39,6 +52,9 @@ public class TEMouseMenuPrincipal extends MouseAdapter {
 		}
 	}
 
+	/** Trata os eventos de entrada do mouse dos elementos da janela <code>IgMenuPrincipal</code>
+	 * @see MouseAdapter
+	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -70,6 +86,9 @@ public class TEMouseMenuPrincipal extends MouseAdapter {
 					                                 "Help-24 (amarelo).png")));
 	}
 
+	/** Trata os eventos de saída do mouse dos elementos da janela <code>IgMenuPrincipal</code>
+	 * @see MouseAdapter
+	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub

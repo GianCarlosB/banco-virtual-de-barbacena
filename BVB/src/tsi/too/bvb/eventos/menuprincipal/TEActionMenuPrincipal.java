@@ -37,15 +37,28 @@ import tsi.too.bvb.gui.menuprincipal.IgMenuPrincipal;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 import tsi.too.bvb.persistencia.ConexaoDAO;
 
+/** Classe para tratar os eventos de ação da janela <code>IgMenuPrincipal</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see ActionListener
+ */
 public class TEActionMenuPrincipal implements ActionListener {
 	
 	private IgMenuPrincipal igMenuPrincipal;
 
+	/** Cria uma instância do Tratador de eventos de ação da janela <code>IgMenuPrincipal</code>
+	 * @param igMenuPrincipal <code>IgMenuPrincipal</code> que será manipulada
+	 */
 	public TEActionMenuPrincipal(IgMenuPrincipal igMenuPrincipal) {
 		super();
 		this.igMenuPrincipal = igMenuPrincipal;
 	}
 	
+	/** Trata os eventos de ação dos elementos da janela <code>IgMenuPrincipal</code>
+	 * @see ActionListener
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -124,7 +137,7 @@ public class TEActionMenuPrincipal implements ActionListener {
 						     "Insira o CPF do cliente que deseja alterar.", 1);
 			
 			else if((e.getSource() == igMenuPrincipal.getExClienteBtn()) || (e.getSource() == igMenuPrincipal.getExClienteImgBtn()))
-				new IgExcluirCadastro(igMenuPrincipal, "BVB - Exclusão de Cliente", "Exclusão de Cliente",
+				new IgExcluirCadastro(igMenuPrincipal, igMenuPrincipal.getFuncionario(), "BVB - Exclusão de Cliente", "Exclusão de Cliente",
 						              "Insira o CPF do cliente que deseja excluir.", 1);
 			
 			else if((e.getSource() == igMenuPrincipal.getRelClienteBtn()) || (e.getSource() == igMenuPrincipal.getRelClienteImgBtn()))
@@ -144,7 +157,7 @@ public class TEActionMenuPrincipal implements ActionListener {
 					     	 "Insira o Login do funcionário que deseja alterar.", 2);
 			
 			else if((e.getSource() == igMenuPrincipal.getExFuncBtn()) || (e.getSource() == igMenuPrincipal.getExFuncImgBtn()))
-				new IgExcluirCadastro(igMenuPrincipal, "BVB - Exclusão de Funcionário", "Exclusão de Funcionário",
+				new IgExcluirCadastro(igMenuPrincipal, igMenuPrincipal.getFuncionario(), "BVB - Exclusão de Funcionário", "Exclusão de Funcionário",
 			                          "Insira o Login do funcionário que deseja excluir.", 2);
 			
 			else if((e.getSource() == igMenuPrincipal.getRelFuncBtn()) || (e.getSource() == igMenuPrincipal.getRelFuncImgBtn()))
@@ -164,7 +177,7 @@ public class TEActionMenuPrincipal implements ActionListener {
 				     	     "Insira o código da agência que deseja alterar.", 3);
 			
 			else if((e.getSource() == igMenuPrincipal.getExAgBtn()) || (e.getSource() == igMenuPrincipal.getExAgImgBtn()))
-				new IgExcluirCadastro(igMenuPrincipal, "BVB - Exclusão de Agência", "Exclusão de Agência",
+				new IgExcluirCadastro(igMenuPrincipal, igMenuPrincipal.getFuncionario(), "BVB - Exclusão de Agência", "Exclusão de Agência",
                                       "Insira o código da agência que deseja excluir.", 3);
 			
 			else if((e.getSource() == igMenuPrincipal.getRelAgBtn()) || (e.getSource() == igMenuPrincipal.getRelAgImgBtn()))

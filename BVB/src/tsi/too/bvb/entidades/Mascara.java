@@ -4,7 +4,14 @@ import java.text.ParseException;
 
 import javax.swing.text.MaskFormatter;
 
-public class Mascara extends MaskFormatter{
+/** A classe <code>Mascara</code> manipula mascaras para os campos de texto
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ *
+ * @see MaskFormatter
+ */
+public class Mascara extends MaskFormatter {
 	
 	private static final long serialVersionUID = 8289201161597596230L;
 
@@ -84,6 +91,11 @@ public class Mascara extends MaskFormatter{
 		}
 	}
 	
+	/** Insere uma máscara em um texto com o formato especificado, por exemplo ###-###
+	 * @param texto <code>String</code> com o texto que será formatado
+	 * @param formatoMascara <code>String</code> com o formato da mascara
+	 * @return <code>String</code> com o texto <code>String</code> passado como parâmetro formatado
+	 */
     public static String formatarString(String texto, String formatoMascara) {  
         MaskFormatter mascara = null;
         String textoFormatado = null;
@@ -96,6 +108,7 @@ public class Mascara extends MaskFormatter{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return textoFormatado;
     }  
 	

@@ -11,13 +11,30 @@ import tsi.too.bvb.entidades.tiposenumerados.TipoUsuario;
 import tsi.too.bvb.gui.JanelaPopUpErro;
 import tsi.too.bvb.validacoes.Criptografia;
 
+/** Classe para manipular os dados dos funcionários no banco de dados
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ *
+ */
 public class FuncionarioDAO {
 	
+	/** Cria um <code>FuncionarioDAO</code> para realizar o CRUD do funcionário
+	 */
 	public FuncionarioDAO() {
 		super();
 	}
 
-	public void criar(BancoDeDadosDAO bdDao, Funcionario funcionario) {
+	/** Insere um funcionário no banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param funcionario <code>Funcionario</code> que será inserido no banco de dados
+	 * @return <code>boolean</code> com <code>true</code> caso tenha inserido com sucesso, e <code>false</code> caso contrário
+	 * 
+	 * @see BancoDeDadosDAO
+	 * @see Funcionario
+	 */
+	public boolean criar(BancoDeDadosDAO bdDao, Funcionario funcionario) {
 		final String SQL = "INSERT INTO funcionario VALUES (?, ?, ?)";
 		
 		try {
@@ -31,9 +48,21 @@ public class FuncionarioDAO {
 		} catch (SQLException | NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			new JanelaPopUpErro(null, "BVB - ERRO", e);
+			return false;
 		}
+		
+		return true;
 	}
 	
+	/** Pesquisa um funcionário pelo login no banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param login <code>String</code> referênte ao login do funcionário que será procurado
+	 * @return <code>Funcionario</code> com os dados do funcionário encontrado ou <code>null</code> caso não encontre
+	 * 
+	 * @see BancoDeDadosDAO
+	 * @see Funcionario
+	 */
 	public Funcionario pesquisarLoginUnico(BancoDeDadosDAO bdDao, String login) {
 		Funcionario funcionario = new Funcionario();
 		final String SQL = "SELECT * FROM funcionario WHERE LCASE (nomeUsuario) LIKE ?";
@@ -58,6 +87,16 @@ public class FuncionarioDAO {
 		return funcionario;
 	}
 	
+	/** Pesquisa os funcionários pelo login no banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param login <code>String</code> referênte ao login do funcionário que será procurado
+	 * @return Uma lista de <code>Funcionario</code> com os dados do(s) funcionário(s) encontrado(s) ou <code>null</code> caso não encontre nem um
+	 * 
+	 * @see BancoDeDadosDAO
+	 * @see Funcionario
+	 * @see List
+	 */
 	public List<Funcionario> pesquisarLogin(BancoDeDadosDAO bdDao, String login) {
 		List<Funcionario> lista = new ArrayList<>();
 		final String SQL = "SELECT * FROM funcionario WHERE LCASE (nomeUsuario) LIKE ?";
@@ -83,13 +122,24 @@ public class FuncionarioDAO {
 		return lista;
 	}
 	
-	public List<Funcionario> pesquisarTipo(BancoDeDadosDAO bdDao, char tipo) {
+	/** Pesquisa os funcionários pelo tipo no banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param tipoUsuario <code>TipoUsuario</code> referênte ao tipo do funcionário que será procurado
+	 * @return Uma lista de <code>Funcionario</code> com os dados do(s) funcionário(s) encontrado(s) ou <code>null</code> caso não encontre nem um
+	 * 
+	 * @see BancoDeDadosDAO
+	 * @see Funcionario
+	 * @see TipoUsuario
+	 * @see List
+	 */
+	public List<Funcionario> pesquisarTipo(BancoDeDadosDAO bdDao, TipoUsuario tipoUsuario) {
 		List<Funcionario> lista = new ArrayList<>();
 		final String SQL = "SELECT * FROM funcionario WHERE UCASE (tipoUsuario) LIKE ?";
 		
 		try {
 			bdDao.obterPreparedStatement(SQL);
-			bdDao.getStmt().setString(1, "%" + Character.toString(tipo).toUpperCase() + "%");
+			bdDao.getStmt().setString(1, "%" + tipoUsuario.getCaractere() + "%");
 			ResultSet rSet = bdDao.obterResultSet();
 			
 			while(rSet.next()) {
@@ -107,7 +157,17 @@ public class FuncionarioDAO {
 		return lista;
 	}
 	
-	public void alterarSenha(BancoDeDadosDAO bdDao, Funcionario funcionario) {
+	/** Altera a senha de um funcionário no banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param funcionario <code>Funcionario</code> cujo login é referênte ao login do funcionário que será alterado, e o senha 
+	 * referênte a nova senha do usuário
+	 * @return <code>boolean</code> com <code>true</code> caso tenha alterado com sucesso, e <code>false</code> caso contrário
+	 * 
+	 * @see BancoDeDadosDAO
+	 * @see Funcionario
+	 */
+	public boolean alterarSenha(BancoDeDadosDAO bdDao, Funcionario funcionario) {
 		final String SQL = "UPDATE funcionario SET senha = ? WHERE LCASE (nomeUsuario) LIKE ?";
 
 		try {
@@ -120,15 +180,29 @@ public class FuncionarioDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			new JanelaPopUpErro(null, "BVB - ERRO", e);
+			return false;
 		}
+		
+		return true;
 	}
 	
-	public void alterarTipo(BancoDeDadosDAO bdDao, Funcionario funcionario, char tipo) {
+	/** Altera o tipo de um funcionário no banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param funcionario <code>Funcionario</code> cujo login é referênte ao login do funcionário que será alterado
+	 * @param tipoUsuario <code>TipoUsuario</code> referênte ao novo tipo do funcionário
+	 * @return <code>boolean</code> com <code>true</code> caso tenha alterado com sucesso, e <code>false</code> caso contrário
+	 * 
+	 * @see BancoDeDadosDAO
+	 * @see Funcionario
+	 * @see TipoUsuario
+	 */
+	public boolean alterarTipo(BancoDeDadosDAO bdDao, Funcionario funcionario, TipoUsuario tipoUsuario) {
 		final String SQL = "UPDATE funcionario SET tipoUsuario = ? WHERE LCASE (nomeUsuario) = ?";
 		
 		try {
 			bdDao.obterPreparedStatement(SQL);
-			bdDao.getStmt().setString(1, Character.toString(tipo));
+			bdDao.getStmt().setString(1, Character.toString(tipoUsuario.getCaractere()));
 			bdDao.getStmt().setString(2, funcionario.getNomeUsuario().toLowerCase());
 			bdDao.getStmt().executeUpdate();
 			
@@ -136,10 +210,21 @@ public class FuncionarioDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			new JanelaPopUpErro(null, "BVB - ERRO", e);
+			return false;
 		}
+		
+		return true;
 	}
 
-	public void excluir(BancoDeDadosDAO bdDao, String login) {
+	/** Exclui um cleinte do banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param login <code>String</code> referênte ao login do funcinário que será excluído
+	 * @return <code>boolean</code> com <code>true</code> caso tenha excluído com sucesso, e <code>false</code> caso contrário
+	 * 
+	 * @see BancoDeDadosDAO
+	 */
+	public boolean excluir(BancoDeDadosDAO bdDao, String login) {
 		final String SQL = "DELETE FROM funcionario WHERE LCASE (nomeUsuario) LIKE ?";
 		
 		try {
@@ -151,7 +236,10 @@ public class FuncionarioDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			new JanelaPopUpErro(null, "BVB - ERRO", e);
+			return false;
 		}
+		
+		return true;
 	}
 	
 } // class FuncionarioDAO

@@ -17,15 +17,28 @@ import tsi.too.bvb.persistencia.ConexaoDAO;
 import tsi.too.bvb.persistencia.FuncionarioDAO;
 import tsi.too.bvb.validacoes.ValidarDados;
 
+/** Classe para tratar os eventos de ação da janela <code>IgRelatorioFuncionario</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see ActionListener
+ */
 public class TEActionRelatorioFuncionario implements ActionListener {
 	
 	private IgRelatorioFuncionario igRelatorioFuncionario;
 
+	/** Cria uma instância do Tratador de eventos de ação da janela <code>IgRelatorioFuncionario</code>
+	 * @param igRelatorioFuncionario <code>IgRelatorioFuncionario</code> que será manipulada
+	 */
 	public TEActionRelatorioFuncionario(IgRelatorioFuncionario igRelatorioFuncionario) {
 		super();
 		this.igRelatorioFuncionario = igRelatorioFuncionario;
 	}
 
+	/** Trata os eventos de ação dos elementos da janela <code>IgRelatorioFuncionario</code>
+	 * @see ActionListener
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -115,9 +128,9 @@ public class TEActionRelatorioFuncionario implements ActionListener {
 						
 						dataFormatada = new SimpleDateFormat("MM/yyyy").format(calCorrente.getTime());
 						
-						cabecalho = "\n" + separador +"\n" + "Arquivo de Conexão do Usuário: " + login + " - " + "Mês:" +
-								    dataFormatada + separador + titulosColunas + "\n" + separador + "\n";
-						relatorio += cabecalho + String.format("\n%-15s\t%-15s\t%-15s\t%-15s\t%s",
+						cabecalho = "\n" + separador + "\n" + "Arquivo de Conexão do Usuário: " + login + " - " + "Mês:" +
+							        dataFormatada +"\n" + separador +"\n" + titulosColunas + "\n" + separador;
+						relatorio += cabecalho + String.format("\n%-15s\t%-15s\t%-15s\t%-15s\t%s minutos",
 								     dataIni, HoraIni, dataFin, HoraFin, tempoConexao);
 					} // fim else
 				} // fim for(Conexao con : listConexoes)

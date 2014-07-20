@@ -1,34 +1,42 @@
 package tsi.too.bvb.gui.tecladovirtual;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
-import java.awt.Color;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.Toolkit;
 
+/** Classe que define a GUI de um teclado virtual
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ */
 public class TecladoVirtual extends JDialog {
 	
-	public static void main(String[] args) {
-		new TecladoVirtual(null);
-	}
-	
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = -5187414103748148168L;
 	
 	private JTextField telcadoTextField;
 	
+	/** Cria uma instância do teclado virtual
+	 * @param janelaPai <code>Window</code> com a janela pai do teclado virtual
+	 * 
+	 * @see Window
+	 */	
 	public TecladoVirtual(Window janelaPai) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TecladoVirtual.class.getResource("/tsi/too/bvb/recursos/imagens/Keyboard-256.png")));
 		getContentPane().setBackground(Color.LIGHT_GRAY);
@@ -474,4 +482,5 @@ public class TecladoVirtual extends JDialog {
 		setLocationRelativeTo(janelaPai);
 		setVisible(true);
 	}
+	
 } // class TecladoVirtual

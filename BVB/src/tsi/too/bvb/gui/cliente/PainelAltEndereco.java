@@ -22,10 +22,19 @@ import tsi.too.bvb.eventos.cliente.TEActionAlterarCliente;
 import tsi.too.bvb.gui.TratadorDeCampos;
 import tsi.too.bvb.validacoes.ValidarDados;
 
+/** Classe que define o painel endereço utilizado pela janela <code>IgAltCliente</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JPanel
+ * @see IgAltCliente
+ * @see TratadorDeCampos
+ */
 public class PainelAltEndereco extends JPanel implements TratadorDeCampos {
 	
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = 4933250266690793219L;
 	
@@ -44,9 +53,13 @@ public class PainelAltEndereco extends JPanel implements TratadorDeCampos {
 	private JButton btnEditarUf;
 	private JComboBox<Object> ufComboBox;
 
-	/**
-	 * Create the panel.
-	 */
+	/** Cria uma instância do painel endereço utilizado pela janela <code>IgAltCliente</code>
+	 * @param janelaPai <code>Window</code> com a janela pai do painel <code>PainelAltEndereco</code>
+	 * @param cliente <code>Cliente</code> com os dados do cliente que será alterado
+	 * 
+	 * @see Window
+	 * @see Cliente
+	 */	
 	public PainelAltEndereco(Window janelaPai, Cliente cliente) {
 		setLayout(null);
 		
@@ -199,6 +212,11 @@ public class PainelAltEndereco extends JPanel implements TratadorDeCampos {
 			}
 	}
 	
+	/** Verifica se o campo logradouro do painel for preenchido corretamente. Se o campo estiver errado
+	 *  receberá uma borda vermelha
+	 *  @return <code>boolean</code> com <code>true</code> caso o campo logradouro tenha sido preenchido corretamente, 
+	 *  e <code>false</code> caso contrário
+	 */
 	public boolean validarLogradouro() {
 		if(!ValidarDados.validarVazio(logradouroTextField.getText())) {
 			logradouroTextField.setBorder(new LineBorder(Color.RED));
@@ -209,6 +227,11 @@ public class PainelAltEndereco extends JPanel implements TratadorDeCampos {
 		return true;
 	}
 	
+	/** Verifica se o campo número do painel for preenchido corretamente. Se o campo estiver errado
+	 *  receberá uma borda vermelha
+	 *  @return <code>boolean</code> com <code>true</code> caso o campo número tenha sido preenchido corretamente, 
+	 *  e <code>false</code> caso contrário
+	 */
 	public boolean validarNumero() {
 		if(!ValidarDados.validarIntPositivo(numeroTextField.getText())) {
 			numeroTextField.setBorder(new LineBorder(Color.RED));
@@ -219,6 +242,11 @@ public class PainelAltEndereco extends JPanel implements TratadorDeCampos {
 		return true;
 	}
 	
+	/** Verifica se o campo bairro do painel for preenchido corretamente. Se o campo estiver errado
+	 *  receberá uma borda vermelha
+	 *  @return <code>boolean</code> com <code>true</code> caso o campo bairro tenha sido preenchido corretamente, 
+	 *  e <code>false</code> caso contrário
+	 */
 	public boolean validarBairro() {
 		if(!ValidarDados.validarVazio(bairroTextField.getText())) {
 			bairroTextField.setBorder(new LineBorder(Color.RED));
@@ -229,6 +257,11 @@ public class PainelAltEndereco extends JPanel implements TratadorDeCampos {
 		return true;
 	}
 	
+	/** Verifica se o campo cep do painel for preenchido corretamente. Se o campo estiver errado
+	 *  receberá uma borda vermelha
+	 *  @return <code>boolean</code> com <code>true</code> caso o campo cep tenha sido preenchido corretamente, 
+	 *  e <code>false</code> caso contrário
+	 */
 	public boolean validarCep() {
 		if(!ValidarDados.validarIntPositivo(cepFormTextField.getText().replace("-", ""))) {
 			cepFormTextField.setBorder(new LineBorder(Color.RED));
@@ -239,6 +272,11 @@ public class PainelAltEndereco extends JPanel implements TratadorDeCampos {
 		return true;
 	}
 	
+	/** Verifica se o campo cidade do painel for preenchido corretamente. Se o campo estiver errado
+	 *  receberá uma borda vermelha
+	 *  @return <code>boolean</code> com <code>true</code> caso o campo cidade tenha sido preenchido corretamente, 
+	 *  e <code>false</code> caso contrário
+	 */
 	public boolean validarCidade() {
 		if(!ValidarDados.validarVazio(cidadeTextField.getText())) {
 			cidadeTextField.setBorder(new LineBorder(Color.RED));
@@ -249,17 +287,28 @@ public class PainelAltEndereco extends JPanel implements TratadorDeCampos {
 		return true;
 	}
 	
+	/* (non-Javadoc)
+	 * @see TratadorDeCampos
+	 */
 	@Override
 	public void limparCampos() {}
 
+	/* (non-Javadoc)
+	 * @see TratadorDeCampos
+	 */
 	@Override
 	public void salvarCampos(Object cliente) {}
 
+	/* (non-Javadoc)
+	 * @see TratadorDeCampos
+	 */
 	@Override
 	public boolean validarCampos() {
 		return false;
 	}
 
+	/** Insere a borda padrão nos campos do painel
+	 */
 	@Override
 	public void inserirBordasPadrao() {
 		logradouroTextField.setBorder(UIManager.getBorder("TextField.border"));
@@ -269,58 +318,100 @@ public class PainelAltEndereco extends JPanel implements TratadorDeCampos {
 		cepFormTextField.setBorder(UIManager.getBorder("FormattedTextField.border"));
 	}
 
+	/** Retorna um <code>JTextField</code> com o campo de texto logradouro
+	 * @return <code>JTextField</code> com o campo de texto logradouro
+	 */
 	public JTextField getLogradouroTextField() {
 		return logradouroTextField;
 	}
 
+	/** Retorna um <code>JTextField</code> com o campo de texto complemento
+	 * @return <code>JTextField</code> com o campo de texto complemento
+	 */
 	public JTextField getComplementoTextField() {
 		return complementoTextField;
 	}
 
+	/** Retorna um <code>JTextField</code> com o campo de texto número
+	 * @return <code>JTextField</code> com o campo de texto número
+	 */
 	public JTextField getNumeroTextField() {
 		return numeroTextField;
 	}
 
+	/** Retorna um <code>JTextField</code> com o campo de texto bairro
+	 * @return <code>JTextField</code> com o campo de texto bairro
+	 */
 	public JTextField getBairroTextField() {
 		return bairroTextField;
 	}
 
+	/** Retorna um <code>JTextField</code> com o campo de texto cidade
+	 * @return <code>JTextField</code> com o campo de texto cidade
+	 */
 	public JTextField getCidadeTextField() {
 		return cidadeTextField;
 	}
 
+	/** Retorna um <code>JFormattedTextField</code> com o campo de texto cpf
+	 * @return <code>JFormattedTextField</code> com o campo de texto cpf
+	 */
 	public JFormattedTextField getCepFormTextField() {
 		return cepFormTextField;
 	}
 
+	/** Retorna um <code>JComboBox</code> com a caixa de combinação uf
+	 * @return <code>JComboBox</code> com a caixa de combinação uf
+	 */
 	public JComboBox<Object> getUfComboBox() {
 		return ufComboBox;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão editar logradouro
+	 * @return <code>JButton</code> com o botão editar logradouro
+	 */
 	public JButton getBtnEditarLogradouro() {
 		return btnEditarLogradouro;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão editar complemento
+	 * @return <code>JButton</code> com o botão editar complemento
+	 */
 	public JButton getBtnEditarComplemento() {
 		return btnEditarComplemento;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão editar número
+	 * @return <code>JButton</code> com o botão editar número
+	 */
 	public JButton getBtnEditarNumero() {
 		return btnEditarNumero;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão editar bairro
+	 * @return <code>JButton</code> com o botão editar bairro
+	 */
 	public JButton getBtnEditarBairro() {
 		return btnEditarBairro;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão editar cep
+	 * @return <code>JButton</code> com o botão editar cep
+	 */
 	public JButton getBtnEditarCep() {
 		return btnEditarCep;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão editar cidade
+	 * @return <code>JButton</code> com o botão editar cidade
+	 */
 	public JButton getBtnEditarCidade() {
 		return btnEditarCidade;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão editar uf
+	 * @return <code>JButton</code> com o botão editar uf
+	 */
 	public JButton getBtnEditarUf() {
 		return btnEditarUf;
 	}

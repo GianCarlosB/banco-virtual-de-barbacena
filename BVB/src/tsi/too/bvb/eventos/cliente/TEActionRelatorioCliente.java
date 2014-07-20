@@ -19,27 +19,40 @@ import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 import tsi.too.bvb.persistencia.ClienteDAO;
 import tsi.too.bvb.persistencia.ContaBancariaDAO;
 
+/** Classe para tratar os eventos de ação da janela <code>IgRelatorioCliente</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see ActionListener
+ */
 public class TEActionRelatorioCliente implements ActionListener {
 	
-	private IgRelatorioCliente IgRelatorioCliente;
+	private IgRelatorioCliente igRelatorioCliente;
 
-	public TEActionRelatorioCliente(IgRelatorioCliente IgRelatorioCliente) {
+	/** Cria uma instância do Tratador de eventos de ação da janela <code>IgRelatorioCliente</code>
+	 * @param igRelatorioCliente <code>IgRelatorioCliente</code> que será manipulada
+	 */
+	public TEActionRelatorioCliente(IgRelatorioCliente igRelatorioCliente) {
 		super();
-		this.IgRelatorioCliente = IgRelatorioCliente;
+		this.igRelatorioCliente = igRelatorioCliente;
 	}
 
+	/** Trata os eventos de ação dos elementos da janela <code>IgRelatorioCliente</code>
+	 * @see ActionListener
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
-		if(e.getSource() == IgRelatorioCliente.getBtnGerarRelatorio()) {
+		if(e.getSource() == igRelatorioCliente.getBtnGerarRelatorio()) {
 			// Variáveis que contém os elementos do relatório.
 			String titulosColunas = String.format("%-40s\t%-40s\t%s", "Nome", "Agência – Número", "Data de Abertura"),
 				   separador = "\n---------------------------------------------------------------"
 							 + "---------------------------------------------------------------\n",
 				   relatorio = "",
-				   mes = (String) IgRelatorioCliente.getMesComboBox().getSelectedItem(),
-				   ano = (String) IgRelatorioCliente.getAnoComboBox().getSelectedItem(),
+				   mes = (String) igRelatorioCliente.getMesComboBox().getSelectedItem(),
+				   ano = (String) igRelatorioCliente.getAnoComboBox().getSelectedItem(),
 				   dataFormatada;
 			
 			// Transforma os itens selecionados na caixa de combinação em uma variável do tipo Data.
@@ -57,7 +70,7 @@ public class TEActionRelatorioCliente implements ActionListener {
 			List<ContaBancaria> contasBancarias = new ContaBancariaDAO().pesquisarContas(BancoDeDadosBVB.getInstance(), cal.getTime());
 			
 			if(contasBancarias == null)
-				new JanelaPopUpAviso(IgRelatorioCliente, "BVB - Relatório de Cliente", " Nenhuma conta bancária foi aberta em " + 
+				new JanelaPopUpAviso(igRelatorioCliente, "BVB - Relatório de Cliente", " Nenhuma conta bancária foi aberta em " + 
 							         mes + " de " + ano + ".");
 			else {
 				List<ContaBancaria>[] cbList = separarListaCB(contasBancarias);
@@ -82,13 +95,23 @@ public class TEActionRelatorioCliente implements ActionListener {
 						relatorio += "\n\n";
 				} // fim for(int i = 0; i < TipoConta.getNumTipos(); i++)
 				
-				IgRelatorioCliente.setRelatorioEditorPane(relatorio);
+				igRelatorioCliente.setRelatorioEditorPane(relatorio);
 			} // fim else
 		} // fim if(e.getSource() == IgRelatorioCliente.getBtnGerarRelatorio())
 	}
 	
+	/** Separa uma lista <code>List</code> de contas bancárias por tipo
+	 * @param contasBancarias <code>List</code> do tipo <code>ContaBancaria</code> com as contas bancárias
+	 * @return uma <code>List[]</code> do tipo <code>ContaBancaria</code> de 4 posições com um <code>ArrayList</code>
+	 * em cada posição contendo cada tipo de conta bancária
+	 * 
+	 * @see List
+	 * @see ArrayList
+	 * @see ContaBancaria
+	 * @see TipoConta
+	 */
+	@SuppressWarnings("unchecked")
 	private List<ContaBancaria>[] separarListaCB(List<ContaBancaria> contasBancarias) {
-		@SuppressWarnings("unchecked")
 		List<ContaBancaria> cbList[] = new ArrayList[TipoConta.getNumTipos()];
 		
 		cbList[0] = new ArrayList<ContaBancaria>();

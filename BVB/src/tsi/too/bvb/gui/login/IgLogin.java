@@ -30,10 +30,17 @@ import tsi.too.bvb.persistencia.FuncionarioDAO;
 import tsi.too.bvb.validacoes.Criptografia;
 import tsi.too.bvb.validacoes.ValidarDados;
 
+/** Classe que define a GUI para o login de funcionário do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JFrame
+ */
 public class IgLogin extends JFrame {
 
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = -4269216190339219821L;
 	
@@ -48,9 +55,8 @@ public class IgLogin extends JFrame {
 	private JButton btnFazerLogin;
 	private JLabel lblCamposErrados;
 
-	/**
-	 * Create the frame.
-	 */
+	/** Cria uma instância da janela de login de funcionário do sistema BVB
+	 */	
 	public IgLogin() {
 		funcionario = new Funcionario();
 		
@@ -156,6 +162,8 @@ public class IgLogin extends JFrame {
 		setVisible(true);
 	}
 	
+	/** Finaliza a conexão com o banco de dados e dispõe a janela <code>IgLogin</code>
+	 */
 	private void terminarPrograma() {
 		// Encera o banco de dados.
 		BancoDeDadosBVB.encerrarBD();
@@ -164,6 +172,13 @@ public class IgLogin extends JFrame {
 		System.exit(0);
 	}
 	
+	/** Verifica se os campos da janela foram preenchidos corretamente. Os campos errados 
+	 * recebem uma borda vermelha
+	 *  @return <code>boolean</code> com <code>true</code> caso todos os campos tenham sido preenchidos corretamente, 
+	 *  e <code>false</code> caso contrário
+	 *  @throws NoSuchAlgorithmException possível erro disparado quando um algoritmo criptográfico particular é requerido,
+	 *  mas não está disponível no ambiente
+	 */
 	public boolean validarCampos() throws NoSuchAlgorithmException {
 		boolean valido = true;
 		
@@ -192,11 +207,15 @@ public class IgLogin extends JFrame {
 		return valido;
 	}
 	
+	/** Insere a borda padrão nos campos da janela
+	 */
 	public void inserirBordasPadrao() {
 		loginTextField.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		passwordField.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 	}
 	
+	/** Ativa o place holder no campo de login da janela
+	 */
 	private void ativarPlaceHolderLogin() {
 		if(!ValidarDados.validarVazio(loginTextField.getText())) {
 			loginTextField.setForeground(Color.LIGHT_GRAY);
@@ -205,6 +224,8 @@ public class IgLogin extends JFrame {
 		}
 	}
 	
+	/** Desativa o place holder no campo de login da janela
+	 */
 	private void desativarPlaceHolderLogin() {
 		if(!contemTxtLogin) {
 			loginTextField.setForeground(new Color(51, 51, 51));
@@ -213,6 +234,8 @@ public class IgLogin extends JFrame {
 		}
 	}
 	
+	/** Ativa o place holder no campo de senha da janela
+	 */
 	private void ativarPlaceHolderSenha() {
 		if(!ValidarDados.validarVazio(new String(passwordField.getPassword()))) {
 			passwordField.setForeground(Color.LIGHT_GRAY);
@@ -222,6 +245,8 @@ public class IgLogin extends JFrame {
 		}
 	}
 	
+	/** Desativa o place holder no campo de senha da janela
+	 */
 	private void desativarPlaceHolderSenha() {
 		if(!contemTxtSenha) {
 			passwordField.setForeground(new Color(51, 51, 51));
@@ -231,30 +256,55 @@ public class IgLogin extends JFrame {
 		}
 	}
 
+	/** Retorna um <code>boolean</code> informando se o usuário inseriu algum caractere no 
+	 * campo de texto login
+	 * @return <code>boolean</code> com <code>true</code> se o usuário tiver inserido algum caractere no 
+	 * campo de texto login, e <code>false</code> caso contrário
+	 */
 	public boolean isContemTxtLogin() {
 		return contemTxtLogin;
 	}
 
+	/** Retorna um <code>boolean</code> informando se o usuário inseriu algum caractere no 
+	 * campo de texto senha
+	 * @return <code>boolean</code> com <code>true</code> se o usuário tiver inserido algum caractere no 
+	 * campo de texto senha, e <code>false</code> caso contrário
+	 */
 	public boolean isContemTxtSenha() {
 		return contemTxtSenha;
 	}
 
+	/** Retorna um <code>JTextField</code> com o campo de texto login
+	 * @return <code>JTextField</code> com o campo de texto login
+	 */
 	public JTextField getLoginTextField() {
 		return loginTextField;
 	}
 
+	/** Retorna um <code>JPasswordField</code> com o campo de texto senha
+	 * @return <code>JPasswordField</code> com o campo de texto senha
+	 */
 	public JPasswordField getPasswordField() {
 		return passwordField;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão fazer login
+	 * @return <code>JButton</code> com o botão fazer login
+	 */
 	public JButton getBtnFazerLogin() {
 		return btnFazerLogin;
 	}
 
+	/** Retorna um <code>Funcionario</code> com os dados do funcionário logado
+	 * @return <code>Funcionario</code> com os dados do funcionário logado
+	 */
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
 	
+	/** Muda a visibilidade do rótulo que indica que algum campo não foi corretamente preenchido
+	 * @param visivel <code>boolean</code> com <code>true</code> se for visível e <code>false</code> caso contrário
+	 */
 	public void setLblCamposErrados(boolean visivel) {
 		this.lblCamposErrados.setVisible(visivel);
 	}

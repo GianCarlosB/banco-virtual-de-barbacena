@@ -23,11 +23,17 @@ import javax.swing.border.LineBorder;
 import tsi.too.bvb.entidades.contabancaria.ContaBancaria;
 import tsi.too.bvb.eventos.contabancaria.TEActionAlterarTipoAP;
 
+/** Classe que define a GUI de alteração de aplicação do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ */
 public class IgAlterarTipoAplicacao extends JDialog {
 
-		
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = 7929634524170684414L;
 	
@@ -42,9 +48,11 @@ public class IgAlterarTipoAplicacao extends JDialog {
 	private ContaBancaria contaBancaria = new ContaBancaria();
 	private JTextField saldoTextField;
 
-	/**
-	 * Create the frame.
-	 */
+	/** Cria uma instância da janela de alteração de aplicação do sistema BVB
+	 * @param janelaPai <code>Window</code> com a janela pai da caixa de diálogo <code>IgAlterarTipoAplicacao</code>
+	 * 
+	 * @see Window
+	 */	
 	public IgAlterarTipoAplicacao(Window janelaPai) {
 		setModal(true);
 		Color turquoise = new Color(26, 188, 156);
@@ -158,12 +166,16 @@ public class IgAlterarTipoAplicacao extends JDialog {
 		setVisible(true);
 	}
 	
+	/** Exibe as opções de atualizar tipo da aplicação da janela <code>IgAlterarTipoAplicacao</code>
+	 */
 	public void exibeOpcoesAtualizar() {
 		btnAtualizar.setEnabled(true);
 		btnBuscar.setVisible(false);
 		btnAlterar.setVisible(true);
 	}
 	
+	/** Esconde as opções de atualizar tipo da aplicação da janela <code>IgAlterarTipoAplicacao</code>
+	 */
 	public void escondeOpcoesAtualizar() {
 		btnAtualizar.setEnabled(false);
 		btnBuscar.setVisible(true);
@@ -172,42 +184,58 @@ public class IgAlterarTipoAplicacao extends JDialog {
 		numContaTextField.setText("");
 	}
 
+	/** Retorna uma <code>ContaBancaria</code> com os dados da conta bancária que pode ter sido alterado
+	 * @return <code>ContaBancaria</code> com os dados da conta bancária que pode ter sido alterado
+	 */
 	public ContaBancaria getContaBancaria() {
 		return contaBancaria;
 	}
 
+	/** Muda o objeto conta bancária
+	 * @param contaBancaria <code>ContaBancaria</code> com o novo objeto conta bancária
+	 */
 	public void setContaBancaria(ContaBancaria contaBancaria) {
 		this.contaBancaria = contaBancaria;
 	}
 
-	public JButton getBtnCancelar() {
-		return btnCancelar;
-	}
-
-	public JButton getBtnDepositar() {
+	/** Retorna um <code>JButton</code> com o botão atualizar
+	 * @return <code>JButton</code> com o botão atualizar
+	 */
+	public JButton getBtnAtualizar() {
 		return btnAtualizar;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão buscar
+	 * @return <code>JButton</code> com o botão buscar
+	 */
 	public JButton getBtnBuscar() {
 		return btnBuscar;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão alterar
+	 * @return <code>JButton</code> com o botão alterar
+	 */
 	public JButton getBtnAlterar() {
 		return btnAlterar;
 	}
 
-	public void setNumContaTextField(String numConta) {
-		this.numContaTextField.setText(numConta);
-	}
-
+	/** Retorna um <code>JTextField</code> com o campo de texto número da conta
+	 * @return <code>JTextField</code> com o campo de texto número da conta
+	 */
 	public JTextField getNumContaTextField() {
 		return numContaTextField;
 	}
 
+	/** Retorna um <code>JTextField</code> com o campo de texto saldo
+	 * @return <code>JTextField</code> com o campo de texto saldo
+	 */
 	public JTextField getSaldoTextField() {
 		return saldoTextField;
 	}
 
+	/** Muda o campo de texto do saldo
+	 * @param saldo <code>String</code> com o novo saldo do campo
+	 */
 	public void setSaldoTextField(String saldo) {
 		this.saldoTextField.setText("R$" + saldo);
 	}

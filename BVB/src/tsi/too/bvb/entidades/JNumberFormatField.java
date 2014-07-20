@@ -14,29 +14,46 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 
-/** 
-* Campo para a inserção de números com base em um formato. 
-* 
-*/  
+// Créditos ao autor da classe: Dyorgio da Silva Nascimento 
+/** Campo para a inserção de números com base em um formato
+ * 
+ * @author Dyorgio da Silva Nascimento 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ */  
 public class JNumberFormatField extends JTextField {  
-    private static final long serialVersionUID = -7506506392528621022L;  
+	
+	/**
+	 * @serial
+	 */
+    private static final long serialVersionUID = -7506506392528621022L;
+    
     private static final NumberFormat MONETARY_FORMAT = new DecimalFormat("R$ #,##0.00");  
     private NumberFormat numberFormat;  
     private int limit = -1;  
-  
-    public JNumberFormatField(int casasDecimais) {  
-        this(new DecimalFormat((casasDecimais == 0 ? "#,##0" : "#,##0.") + makeZeros(casasDecimais)));  
-    }  
-  
+    
+	/** Cria uma instância do campo com o formato monetário padrão
+	 */
     public JNumberFormatField() {  
         this(MONETARY_FORMAT);  
     }  
-  
-    public JNumberFormatField(NumberFormat format) {// define o formato do  
-        // número  
-        numberFormat = format;// alinhamento horizontal para o texto  
-        setHorizontalAlignment(LEFT);// documento responsável pela formatação  
-        // do campo  
+    
+	/** Cria uma instância do campo com o número de casas decimais desejado
+	 * @param casasDecimais <code>int</code> com o número de casas decimais desejado
+	 */
+    public JNumberFormatField(int casasDecimais) {  
+        this(new DecimalFormat((casasDecimais == 0 ? "#,##0" : "#,##0.") + makeZeros(casasDecimais)));  
+    }
+    
+	/** Cria uma instância do campo com um formato personalizado
+	 * @param format <code>NumberFormat</code> com um formato personalizado
+	 * 
+	 * @see NumberFormat
+	 */
+    public JNumberFormatField(NumberFormat format) {
+    	// Define o formato do  número  
+        numberFormat = format; // Alinhamento horizontal para o texto  
+        setHorizontalAlignment(LEFT); // Documento responsável pela formatação do campo  
         setDocument(new PlainDocument() {  
             private static final long serialVersionUID = 1L;  
   
@@ -59,8 +76,7 @@ public class JNumberFormatField extends JTextField {
                     insertString(0, "", null);  
                 }  
             }  
-        });// mantem o cursor no final  
-        // do campo  
+        }); // Mantém o cursor no final do campo  
         addCaretListener(new CaretListener() {  
             boolean update = false;  
   
@@ -72,8 +88,7 @@ public class JNumberFormatField extends JTextField {
                     update = false;  
                 }  
             }  
-        });// limpa o campo se  
-        // apertar DELETE  
+        }); // Limpa o campo se apertar DELETE  
         addKeyListener(new KeyAdapter() {  
             @Override  
             public void keyPressed(KeyEvent e) {  
@@ -81,50 +96,47 @@ public class JNumberFormatField extends JTextField {
                     setText("");  
                 }  
             }  
-        });// formato  
-        // inicial  
+        }); // Formato inicial  
         setText("0");  
         setCaretPosition(getText().length());  
     }  
   
-    /*** 
-     * Define um valor BigDecimal ao campo** 
+    /** Define um valor <code>BigDecimal</code> ao campo
+     * @param value <code>BigDecimal</code> com um valor
      * 
-     * @param value 
+     * @see BigDecimal
      */  
     public void setValue(BigDecimal value) {  
         super.setText(numberFormat.format(value));  
     }  
   
-    /*** 
-     * Recupera um valor BigDecimal do campo** 
-     * 
-     * @return 
+    /** Recupera um valor <code>BigDecimal</code> do campo
+     * @return <code>BigDecimal</code> com o valor
      */  
     public final BigDecimal getValue() {  
         return new BigDecimal(getText().replaceAll("[^0-9]", "")).divide(new BigDecimal(Math.pow(10, numberFormat.getMaximumFractionDigits())));  
     }  
   
-    /*** 
-     * Recupera o formatador atual do campo** 
-     * 
-     * @return 
+    /** Recupera o formatador atual do campo
+     * @return <code>NumberFormat</code> com o formatador
      */  
     public NumberFormat getNumberFormat() {  
         return numberFormat;  
     }  
   
-    /*** 
-     * Define o formatador do campo** @param numberFormat 
+    /** Define o formatador do campo
+     * @param numberFormat <code>NumberFormat</code> com o formatador
+     * 
+     * @see NumberFormat
      */  
     public void setNumberFormat(NumberFormat numberFormat) {  
         this.numberFormat = numberFormat;  
     }  
   
-    /*** 
-     * Preenche um StringBuilder com zeros** @param zeros* 
-     * 
-     * @return 
+    /** Preenche um <code>StringBuilder</code> com zeros
+     * @param zeros <code>int</code> com o número de zeros
+     * @return <code>String</code> preenchida com o número de zeros passado como parâmetro
+     * @throws RuntimeException Número de casas decimais inválido
      */  
     private static final String makeZeros(int zeros) {  
         if (zeros >= 0) {  
@@ -138,17 +150,16 @@ public class JNumberFormatField extends JTextField {
         }  
     }  
   
-    /*** 
-     * Recupera o limite do campo.** @return 
+    /** Recupera o limite do campo
+     * @return <code>String</code> com o limite do campo
      */  
     public int getLimit() {  
         return limit;  
     }  
   
-    /*** 
-     * Define o limite do campo, limit < 0 para deixar livre (default) Ignora os 
-     * pontos e virgulas do formato, conta* somente com os números** @param 
-     * limit 
+    /** Define o limite do campo. Use limite menor que 0 para deixar livre (default). Ignora os 
+     * pontos e vírgulas do formato, conta somente com os números
+     * @param limit <code>int</code> com o limite do campo
      */  
     public void setLimit(int limit) {  
         this.limit = limit;  

@@ -8,6 +8,7 @@ import java.util.Date;
 import tsi.too.bvb.gui.JanelaPopUpErro;
 
 /** Classe para manipular o banco de dados do sistema
+ * 
  * @author Gian Carlos Barros Honório
  * @author Diego Oliveira
  * 
@@ -24,10 +25,11 @@ public class BancoDeDadosBVB extends BancoDeDadosDAO implements Runnable {
 	private final static String ARQ_SQL_INSERIR_ADM = "src\\tsi\\too\\bvb\\recursos\\scripts\\InserirAdministrador.sql";
 
 	private static final String TIPO = "jdbc:hsqldb:file:";
-
+	
+	/** Caminho do banco de dados */
 	private final static String URL = TIPO + DIRETORIO;
 	
-	/** <code>BancoDeDadosBVB</code> com a instâncoa do banco de dados */
+	/** <code>BancoDeDadosBVB</code> com a instância do banco de dados */
 	protected static BancoDeDadosBVB BANCO_DE_DADOS_BVB = new BancoDeDadosBVB();
 	
 	/** Cria uma instância do banco de dados do sistema
@@ -37,13 +39,16 @@ public class BancoDeDadosBVB extends BancoDeDadosDAO implements Runnable {
 		super(URL);
 	}
 	
-	/** Retorna a instancia do banco de dados do sistema
-	 * @return <code>BancoDeDadosBVB</code> com a instancia da classe
+	/** Retorna a instâcia do banco de dados do sistema
+	 * @return <code>BancoDeDadosBVB</code> com a instância da classe
 	 */
 	public static BancoDeDadosBVB getInstance() {
 		return BANCO_DE_DADOS_BVB;
 	}
 	
+	/** Reinicia o banco de dados, apaga todas as tabelas e as recria
+	 * @return <code>boolean</code> com <code>true</code> caso tenha reiniciado com sucesso, e <code>false</code> caso tenha ocorrido algum problema
+	 */
 	public static boolean resetarDadosBD() {
 		try {
 			BANCO_DE_DADOS_BVB.abrirArquivoSQL(ARQ_SQL_DELETAR_TABELAS);
@@ -62,7 +67,10 @@ public class BancoDeDadosBVB extends BancoDeDadosDAO implements Runnable {
 		return true;
 	}
 	
-	public static void encerrarBD() {
+	/** Encerra a conexão com o banco de dados e fecha seus recursos
+	 * @return <code>boolean</code> com <code>true</code> caso tenha encerrado com sucesso, e <code>false</code> caso tenha ocorrido algum problema
+	 */
+	public static boolean encerrarBD() {
 		// Fecha o PreparedStatement.
 		try {
 			if(BancoDeDadosBVB.getInstance().getStmt() != null) BancoDeDadosBVB.getInstance().fecharPreparedStatement();
@@ -79,10 +87,16 @@ public class BancoDeDadosBVB extends BancoDeDadosDAO implements Runnable {
 				// TODO Auto-generated catch block
 				System.err.println("Conexão com o Banco de dados NÃO finalizada: " +
 				                   new SimpleDateFormat("dd/MM/yyyy  HH:mm:ss").format(new Date()));
+				return false;
 			}
 		}
+		
+		return true;
 	}
-
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub

@@ -13,15 +13,28 @@ import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 import tsi.too.bvb.persistencia.ContaBancariaDAO;
 import tsi.too.bvb.validacoes.ValidarDados;
 
+/** Classe para tratar os eventos de ação da janela <code>IgAlterarTipoAplicacao</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see ActionListener
+ */
 public class TEActionAlterarTipoAP implements ActionListener {
 	
 	private IgAlterarTipoAplicacao igAlterarTipoAplicacao;
 
+	/** Cria uma instância do Tratador de eventos de ação da janela <code>IgAlterarTipoAplicacao</code>
+	 * @param igAlterarTipoAplicacao <code>IgAlterarTipoAplicacao</code> que será manipulada
+	 */
 	public TEActionAlterarTipoAP(IgAlterarTipoAplicacao igAlterarTipoAplicacao) {
 		super();
 		this.igAlterarTipoAplicacao = igAlterarTipoAplicacao;
 	}
-
+	
+	/** Trata os eventos de ação dos elementos da janela <code>IgAlterarTipoAplicacao</code>
+	 * @see ActionListener
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -70,7 +83,7 @@ public class TEActionAlterarTipoAP implements ActionListener {
                                     " O campo de busca não pode ser vazio.");
 		} // fim if(e.getSource() == igAlterarTipoAplicacao.getBtnBuscar())
 		
-		else if(e.getSource() == igAlterarTipoAplicacao.getBtnDepositar()) {
+		else if(e.getSource() == igAlterarTipoAplicacao.getBtnAtualizar()) {
 			JanelaPopUpPergunta janelaPopUpPergunta = new JanelaPopUpPergunta(igAlterarTipoAplicacao, "BVB - Alteração do Tipo da Aplicação",
 					" Esta operação irá alterar permanentemente o tipo da conta"
 					+ "\n de BVB FIF Prático para BVB FIF Executivo."

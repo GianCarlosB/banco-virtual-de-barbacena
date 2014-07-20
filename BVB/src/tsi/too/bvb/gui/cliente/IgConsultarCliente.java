@@ -33,14 +33,21 @@ import tsi.too.bvb.entidades.cliente.Cliente;
 import tsi.too.bvb.eventos.cliente.TEActionConsultarCliente;
 import tsi.too.bvb.eventos.cliente.TETecladoConsultarCliente;
 
+/** Classe que define a GUI de consulta de cliente do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ */
 public class IgConsultarCliente extends JDialog {
 	
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = 8844899981206036228L;
 
-	/** <code>int</code> com o número de colunas da tabela com os dados dos clientes pesquisados */
+	// Número de colunas da tabela com os dados dos clientes pesquisados
 	public final int NUMERO_COLUNAS_TABELA = 11;
 	private int num_linhas;
 	
@@ -67,9 +74,11 @@ public class IgConsultarCliente extends JDialog {
 	private JButton btnCancelar;
 	private JButton btnBuscar;
 
-	/**
-	 * Create the dialog.
-	 */
+	/** Cria uma instância da janela de consulta de cliente do sistema BVB
+	 * @param janelaPai <code>Window</code> com a janela pai da caixa de diálogo <code>IgConsultarCliente</code>
+	 * 
+	 * @see Window
+	 */	
 	public IgConsultarCliente(Window janelaPai) {
 		setModal(true);
 		final Color peterRiver = new Color(52, 152, 219);
@@ -162,7 +171,7 @@ public class IgConsultarCliente extends JDialog {
 	    };
 		tableConsulta.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {  
 		    /**
-			 * 
+			 * @serial
 			 */
 			private static final long serialVersionUID = -2860037545840868142L;
 
@@ -221,6 +230,9 @@ public class IgConsultarCliente extends JDialog {
 		setVisible(true);
 	}
 	
+	/** Adiciona linhas à tabela. É inserido o dado do cliente que for passado por parâmetro
+	 * @param cliente <code>Cliente</code> com o dado do cliente que será inserido na tabela
+	 */
 	public void addLinhasTabela(Cliente cliente) {
 		DefaultTableModel model = ((DefaultTableModel)(tableConsulta.getModel()));
 		model.setNumRows(num_linhas++);
@@ -241,6 +253,11 @@ public class IgConsultarCliente extends JDialog {
 		model.addRow(linha);
 	}
 	
+	/** Adiciona linhas à tabela. São inseridos os dados dos cliente que foram passados por parâmetro na lista <code>List</code>
+	 * @param clientes <code>List</code> com os dados dos cliente que serão inseridos na tabela
+	 * 
+	 * @see List
+	 */
 	public void addLinhasTabela(List<Cliente> clientes) {
 		DefaultTableModel model = limpaTabela();
 		
@@ -266,6 +283,9 @@ public class IgConsultarCliente extends JDialog {
 		}
 	}
 	
+	/** Limpa a tabela de pesquisa apagando os dados contidos nela
+	 * @return <code>DefaultTableModel</code> com o modelo da tabela
+	 */
 	public DefaultTableModel limpaTabela() {
 		DefaultTableModel model = ((DefaultTableModel)(tableConsulta.getModel()));
 		num_linhas = 0;
@@ -274,6 +294,17 @@ public class IgConsultarCliente extends JDialog {
 		return model;
 	}
 	
+	/** Limpa os campos da janela <code>IgConsultarCliente</code>
+	 */
+	public void limpaCampos() {
+		nomeTextField.setText("");
+		cpfFormattedTextField.setText("");
+	}
+	
+	/** Pesquisa se determinado cliente foi inserida na tabela
+	 * @param cliente <code>Cliente</code> com os dados do cliente que será pesquisado
+	 * @return <code>boolean</code> com <code>true</code> caso o cliente tenha sido encontrado, e <code>false</code> caso contrário
+	 */
 	public boolean pesquisaTabela(Cliente cliente) {
 		for(int i = 0; i < num_linhas; i++) {
 			String cpf = tableConsulta.getModel().getValueAt(i, 0).toString().replace(".", "").replace("-", "");
@@ -283,24 +314,31 @@ public class IgConsultarCliente extends JDialog {
 		
 		return false;
 	}
-	
-	public void limpaCampos() {
-		nomeTextField.setText("");
-		cpfFormattedTextField.setText("");
-	}
 
+	/** Retorna um <code>JTextField</code> com o campo de texto nome
+	 * @return <code>JTextField</code> com o campo de texto nome
+	 */
 	public JTextField getNomeTextField() {
 		return nomeTextField;
 	}
 
+	/** Retorna um <code>JFormattedTextField</code> com o campo de texto cpf
+	 * @return <code>JFormattedTextField</code> com o campo de texto cpf
+	 */
 	public JFormattedTextField getCpfFormattedTextField() {
 		return cpfFormattedTextField;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão buscar
+	 * @return <code>JButton</code> com o botão buscar
+	 */
 	public JButton getBtnLimpar() {
 		return btnLimpar;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão limpar
+	 * @return <code>JButton</code> com o botão limpar
+	 */
 	public JButton getBtnBuscar() {
 		return btnBuscar;
 	}

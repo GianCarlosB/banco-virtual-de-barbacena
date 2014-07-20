@@ -26,10 +26,18 @@ import tsi.too.bvb.eventos.agencia.TEActionCadastrarAgencia;
 import tsi.too.bvb.gui.TratadorDeCampos;
 import tsi.too.bvb.validacoes.ValidarDados;
 
+/** Classe que define a GUI de cadastro de agência do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ * @see TratadorDeCampos
+ */
 public class IgCadAgencia extends JDialog implements TratadorDeCampos {
 
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = -3879979808799859918L;
 	
@@ -41,9 +49,13 @@ public class IgCadAgencia extends JDialog implements TratadorDeCampos {
 	private JLabel lblCamposErrados;
 	private JTextField descricaoTextField;
 
-	/**
-	 * Create the frame.
-	 */
+	/** Cria uma instância da janela de cadastro de agência do sistema BVB
+	 * @param janelaPai <code>Window</code> com a janela pai da caixa de diálogo <code>IgCadAgencia</code>
+	 * @param agencia <code>Agencia</code> referênte ao objeto onde os dados serão salvos
+	 * 
+	 * @see Window
+	 * @see Agencia
+	 */	
 	public IgCadAgencia(Window janelaPai, Agencia agencia) {
 		setModal(true);
 		Color pumpkin = new Color(211, 84, 0);
@@ -155,6 +167,8 @@ public class IgCadAgencia extends JDialog implements TratadorDeCampos {
 		setVisible(true);
 	}
 	
+	/** Limpa os campos da janela
+	 */
 	@Override
 	public void limparCampos() {
 		inserirBordasPadrao();
@@ -162,11 +176,19 @@ public class IgCadAgencia extends JDialog implements TratadorDeCampos {
 		descricaoTextField.setText("");
 	}
 
+	/** Salva os dados inseridos na janela em um objeto do tipo <code>Agencia</code>
+	 * @param agencia <code>Object</code> referênte ao objeto que será salvo
+	 */
 	@Override
 	public void salvarCampos(Object agencia) {
 		((Agencia) agencia).setDescricao(descricaoTextField.getText());
 	}
 
+	/** Verifica se os campos da janela foram preenchidos corretamente. Os campos errados 
+	 * recebem uma borda vermelha
+	 *  @return <code>boolean</code> com <code>true</code> caso todos os campos tenham sido preenchidos corretamente, 
+	 *  e <code>false</code> caso contrário
+	 */
 	@Override
 	public boolean validarCampos() {
 		if(!ValidarDados.validarVazio(descricaoTextField.getText())) {
@@ -180,35 +202,44 @@ public class IgCadAgencia extends JDialog implements TratadorDeCampos {
 		return true;
 	}
 
+	/** Insere a borda padrão nos campos da janela
+	 */
 	@Override
 	public void inserirBordasPadrao() {
 		descricaoTextField.setBorder(UIManager.getBorder("TextField.border"));
 	}
-
+	
+	/** Retorna um <code>JButton</code> com o botão finalizar
+	 * @return <code>JButton</code> com o botão finalizar
+	 */
 	public JButton getBtnFinalizar() {
 		return btnFinalizar;
 	}
 
-	public JButton getBtnCancelar() {
-		return btnCancelar;
-	}
-
+	/** Retorna um <code>JButton</code> com o botão limpar
+	 * @return <code>JButton</code> com o botão limpar
+	 */
 	public JButton getBtnLimpar() {
 		return btnLimpar;
 	}
 
+	/** Muda o campo de texto código
+	 * @param codAgencia <code>String</code> com o novo código do campo
+	 */
 	public void setCodigoTextField(String codAgencia) {
 		this.codigoTextField.setText(codAgencia);
 	}
 
-	public void setDescricaoTextField(String descricao) {
-		this.descricaoTextField.setText(descricao);
-	}
-
+	/** Retorna um <code>JTextField</code> com o campo de texto descrição
+	 * @return <code>JTextField</code> com o campo de texto descrição
+	 */
 	public JTextField getDescricaoTextField() {
 		return descricaoTextField;
 	}
 
+	/** Muda a visibilidade do rótulo que indica que algum campo não foi corretamente preenchido
+	 * @param visivel <code>boolean</code> com <code>true</code> se for visível e <code>false</code> caso contrário
+	 */
 	public void setLblCamposErrados(boolean visivel) {
 		this.lblCamposErrados.setVisible(visivel);
 	}

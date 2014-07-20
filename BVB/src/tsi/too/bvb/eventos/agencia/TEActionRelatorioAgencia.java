@@ -21,15 +21,28 @@ import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 import tsi.too.bvb.persistencia.ContaBancariaDAO;
 import tsi.too.bvb.validacoes.ValidarDados;
 
+/** Classe para tratar os eventos de ação da janela <code>IgRelatorioAgencia</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see ActionListener
+ */
 public class TEActionRelatorioAgencia implements ActionListener {
 	
 	private IgRelatorioAgencia igRelatorioAgencia;
 
+	/** Cria uma instância do Tratador de eventos de ação da janela <code>IgRelatorioAgencia</code>
+	 * @param igRelatorioAgencia <code>IgRelatorioAgencia</code> que será manipulada
+	 */
 	public TEActionRelatorioAgencia(IgRelatorioAgencia igRelatorioAgencia) {
 		super();
 		this.igRelatorioAgencia = igRelatorioAgencia;
 	}
 
+	/** Trata os eventos de ação dos elementos da janela <code>IgRelatorioAgencia</code>
+	 * @see ActionListener
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -142,6 +155,14 @@ public class TEActionRelatorioAgencia implements ActionListener {
 		}
 	}
 	
+	/** Obtém o número de clientes de cada tipo de conta bancária
+	 * @param contasBancarias <code>List</code> do tipo <code>ContaBancaria</code> com as contas bancárias
+	 * @return um <code>int[]</code> de 4 posições com o número de clientes de cada tipo de conta bancária contido na lista <code>List</code>
+	 * 
+	 * @see List
+	 * @see ContaBancaria
+	 * @see TipoConta
+	 */
 	private int[] obterQtdeClientesAgencia(List<ContaBancaria> contasBancarias) {
 		int qtdeClientes[] = new int[TipoConta.getNumTipos()];
 		
@@ -157,6 +178,14 @@ public class TEActionRelatorioAgencia implements ActionListener {
 		return qtdeClientes;
 	}
 	
+	/** Obtém o valor total de cada tipo de conta bancária
+	 * @param contasBancarias <code>List</code> do tipo <code>ContaBancaria</code> com as contas bancárias
+	 * @return um <code>double[]</code> de 4 posições com o valor total de cada tipo de conta bancária contido na lista <code>List</code>
+	 * 
+	 * @see List
+	 * @see ContaBancaria
+	 * @see TipoConta
+	 */
 	private double[] obterSaldoTotalAgencia(List<ContaBancaria> contasBancarias) {
 		double saldoTotal[] = new double[TipoConta.getNumTipos()];
 		

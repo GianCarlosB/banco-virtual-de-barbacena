@@ -14,17 +14,33 @@ import tsi.too.bvb.gui.cliente.PainelCadEndereco;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 import tsi.too.bvb.persistencia.ClienteDAO;
 
+/** Classe para tratar os eventos de ação da janela <code>IgCadCliente</code> e de seu painel <code>PainelCadCliente</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see ActionListener
+ */
 public class TEActionCadastrarCliente implements ActionListener {
 	
 	private IgCadCliente igCadCliente;
 	private PainelCadCliente painelCadCliente;
 	private Cliente cliente;
-
+	
+	/** Cria uma instância do Tratador de eventos de ação do painel <code>painelCadCliente</code>
+	 * @param painelCadCliente <code>PainelCadCliente</code> que será manipulado
+	 */
 	public TEActionCadastrarCliente(PainelCadCliente painelCadCliente) {
 		super();
 		this.painelCadCliente = painelCadCliente;
 	}
 
+	/** Cria uma instância do Tratador de eventos de ação da janela <code>IgCadCliente</code>
+	 * @param igCadCliente <code>IgCadCliente</code> que será manipulada
+	 * @param cliente <code>Cliente</code> referênte ao objeto que será manipulado
+	 * 
+	 * @see Cliente
+	 */
 	public TEActionCadastrarCliente(IgCadCliente igCadCliente, Cliente cliente) {
 		super();
 		this.painelCadCliente = null;
@@ -32,6 +48,9 @@ public class TEActionCadastrarCliente implements ActionListener {
 		this.cliente = cliente;
 	}
 
+	/** Trata os eventos de ação dos elementos da janela <code>IgCadCliente</code> e de seu painel <code>PainelCadCliente</code>
+	 * @see ActionListener
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

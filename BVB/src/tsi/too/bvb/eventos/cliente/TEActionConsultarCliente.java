@@ -11,15 +11,28 @@ import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 import tsi.too.bvb.persistencia.ClienteDAO;
 import tsi.too.bvb.validacoes.ValidarDados;
 
+/** Classe para tratar os eventos de ação da janela <code>IgConsultarCliente</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see ActionListener
+ */
 public class TEActionConsultarCliente implements ActionListener {
 	
 	private IgConsultarCliente igConsultarCliente;
 
+	/** Cria uma instância do Tratador de eventos de ação da janela <code>IgConsultarCliente</code>
+	 * @param igConsultarCliente <code>IgConsultarCliente</code> que será manipulada
+	 */
 	public TEActionConsultarCliente(IgConsultarCliente igConsultarCliente) {
 		super();
 		this.igConsultarCliente = igConsultarCliente;
 	}
 
+	/** Trata os eventos de ação dos elementos da janela <code>IgConsultarCliente</code>
+	 * @see ActionListener
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

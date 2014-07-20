@@ -26,6 +26,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import tsi.too.bvb.entidades.funcionario.Funcionario;
+import tsi.too.bvb.entidades.tiposenumerados.TipoUsuario;
 import tsi.too.bvb.eventos.menuprincipal.TEActionMenuPrincipal;
 import tsi.too.bvb.eventos.menuprincipal.TEJanelaMenuPrincipal;
 import tsi.too.bvb.eventos.menuprincipal.TEMouseMenuPrincipal;
@@ -33,10 +34,17 @@ import tsi.too.bvb.gui.JanelaPopUpErro;
 import tsi.too.bvb.gui.login.IgLogin;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 
+/** Classe que define a GUI para o usuário com os módulos do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JFrame
+ */
 public class IgMenuPrincipal extends JFrame {
 	
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = 1271399365713672153L;
 	
@@ -99,7 +107,6 @@ public class IgMenuPrincipal extends JFrame {
 	private JLabel lblImgAjuda;
 	private JTabbedPane tabbedPane;
 	private JLabel lblImgSeta4;
-	private JTextField txtTopico4;
 	private JLabel lblBanner;
 	private JLabel lblCopyrightHome;
 	private JLabel lblCopyrightClientes;
@@ -113,6 +120,12 @@ public class IgMenuPrincipal extends JFrame {
 	private JMenuItem mntmCaixa;
 	private JMenuItem mntmAdministrador;
 
+	/** Cria uma instância da janela do menu principal do sistema BVB
+	 * @param funcionario <code>Funcionario</code> com os dados do funcionário logado
+	 * 
+	 * @see Funcionario
+	 * @see IgLogin
+	 */	
 	public IgMenuPrincipal(Funcionario funcionario) {
 		this.funcionario = funcionario;
 		this.dataInicial = new Date();
@@ -261,9 +274,8 @@ public class IgMenuPrincipal extends JFrame {
 		txtTopico3.setColumns(10);
 		txtTopico3.setBounds(62, 169, 218, 32);
 		introducaoPanel.add(txtTopico3);
-		lblImgSeta4.setLabelFor(txtTopico4);
 		
-		txtTopico4 = new JTextField();
+		JTextField txtTopico4 = new JTextField();
 		txtTopico4.setText(" Controle de Contas e Aplica\u00E7\u00F5es");
 		txtTopico4.setForeground(Color.WHITE);
 		txtTopico4.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -273,6 +285,7 @@ public class IgMenuPrincipal extends JFrame {
 		txtTopico4.setBackground(new Color(44, 62, 80));
 		txtTopico4.setBounds(62, 209, 218, 32);
 		introducaoPanel.add(txtTopico4);
+		lblImgSeta4.setLabelFor(txtTopico4);
 		
 		JTextField txtTopico5 = new JTextField();
 		txtTopico5.setEditable(false);
@@ -886,6 +899,8 @@ public class IgMenuPrincipal extends JFrame {
 		setVisible(true);
 	}
 	
+	/** Finaliza a conexão com o banco de dados e dispõe a janela <code>IgMenuPrincipal</code>
+	 */
 	public void terminarPrograma() {
 		// Encera o banco de dados.
 		BancoDeDadosBVB.encerrarBD();
@@ -895,6 +910,8 @@ public class IgMenuPrincipal extends JFrame {
 		System.exit(0);
 	}
 	
+	/** Cria uma instância da janela <code>IgLogin</code> e dispõe a janela <code>IgMenuPrincipal</code>
+	 */
 	public void logout() {
 		Applet.newAudioClip(JanelaPopUpErro.class.getResource("/tsi/too/bvb/recursos/sons/Windows Logoff Sound.wav")).play();
 		
@@ -904,6 +921,11 @@ public class IgMenuPrincipal extends JFrame {
 		IgMenuPrincipal.this.dispose();
 	}
 	
+	/** Desabilita os botões de acordo com o tipo do funcionário <code>Funcionario</code> logado
+	 * 
+	 * @see Funcionario
+	 * @see IgLogin
+	 */
 	public void ativarRestricaoUsuario() {
 		// Desabilita os botões de acordo com o tipo de usuário.
 		switch(funcionario.getTipoUsuario().getCaractere()) {
@@ -929,6 +951,11 @@ public class IgMenuPrincipal extends JFrame {
 		}
 	}
 	
+	/** Desabilita os botões da aba clientes
+	 * @param tipo <code>char</code> com o tipo do funcionário
+	 * 
+	 * @see TipoUsuario
+	 */
 	private void desabilitarBotoesCliente(char tipo) {
 		if(tipo == 'G' || tipo == 'A') {
 			cadClienteBtn.setEnabled(false);
@@ -947,6 +974,11 @@ public class IgMenuPrincipal extends JFrame {
 		}
 	}
 	
+	/** Desabilita os botões da aba funcionários
+	 * @param tipo <code>char</code> com o tipo do funcionário
+	 * 
+	 * @see TipoUsuario
+	 */
 	private void desabilitarBotoesFuncionario(char tipo) {
 		if(tipo != 'A') {
 			cadFuncBtn.setEnabled(false);
@@ -962,6 +994,11 @@ public class IgMenuPrincipal extends JFrame {
 		}
 	}
 	
+	/** Desabilita os botões da aba agências
+	 * @param tipo <code>char</code> com o tipo do funcionário
+	 * 
+	 * @see TipoUsuario
+	 */
 	private void desabilitarBotoesAgencia(char tipo) {
 		if(tipo == 'A') {
 			consAgBtn.setEnabled(false);
@@ -980,6 +1017,11 @@ public class IgMenuPrincipal extends JFrame {
 		}
 	}
 	
+	/** Desabilita os botões da aba contas bancárias
+	 * @param tipo <code>char</code> com o tipo do funcionário
+	 * 
+	 * @see TipoUsuario
+	 */
 	private void desabilitarBotoesContaBancaria(char tipo) {
 		if(tipo == 'A') {
 			abrirContaBtn.setEnabled(false);
@@ -996,272 +1038,472 @@ public class IgMenuPrincipal extends JFrame {
 		}
 	}
 	
+	/** Desabilita os botões do caixa eletrônico
+	 * 
+	 */
 	private void desabilitarBotaoCaixaEletronico() {
 		caixaEletronicoBtn.setEnabled(false);
 		caixaEletronicoImgBtn.setEnabled(false);
 	}
 	
+	/** Desabilita o item de menu de limpar o banco de dados
+	 * 
+	 */
 	private void desabilitarItemDeMenuLimparBD() {
 		mntmLimparBD.setEnabled(false);
 	}
 	
 	/// ===== * Início dos Geters dos botões * ===== ///
+	
+	/** Retorna um <code>JButton</code> com o botão de imagem de cadastrar cliente
+	 * @return <code>JButton</code> com o botão de imagem de cadastrar cliente
+	 */
+	public JButton getCadClienteImgBtn() {
+		return cadClienteImgBtn;
+	}
+	
+	/** Retorna um <code>JButton</code> com o botão de imagem de consultar cliente
+	 * @return <code>JButton</code> com o botão de imagem de consultar cliente
+	 */
+	public JButton getConsClienteImgBtn() {
+		return consClienteImgBtn;
+	}
+	
+	/** Retorna um <code>JButton</code> com o botão de imagem de alterar cliente
+	 * @return <code>JButton</code> com o botão de imagem de alterar cliente
+	 */
 	public JButton getAltClienteImgBtn() {
 		return altClienteImgBtn;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão de imagem de relatar cliente
+	 * @return <code>JButton</code> com o botão de imagem de relatar cliente
+	 */
 	public JButton getRelClienteImgBtn() {
 		return relClienteImgBtn;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão de imagem de excluir cliente
+	 * @return <code>JButton</code> com o botão de imagem de excluir cliente
+	 */
 	public JButton getExClienteImgBtn() {
 		return exClienteImgBtn;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão de imagem de cadastrar cliente
+	 * @return <code>JButton</code> com o botão de imagem de cadastrar cliente
+	 */
 	public JButton getCadClienteBtn() {
 		return cadClienteBtn;
 	}
-
-	public JButton getAltClienteBtn() {
-		return altClienteBtn;
-	}
-
-	public JButton getRelClienteBtn() {
-		return relClienteBtn;
-	}
-
-	public JButton getExClienteBtn() {
-		return exClienteBtn;
-	}
-
-	public JButton getCadFuncImgBtn() {
-		return cadFuncImgBtn;
-	}
-
-	public JButton getAltFuncImgBtn() {
-		return altFuncImgBtn;
-	}
-
-	public JButton getRelFuncImgBtn() {
-		return relFuncImgBtn;
-	}
-
-	public JButton getExFuncImgBtn() {
-		return exFuncImgBtn;
-	}
-
-	public JButton getCadFuncBtn() {
-		return cadFuncBtn;
-	}
-
-	public JButton getAltFuncBtn() {
-		return altFuncBtn;
-	}
-
-	public JButton getRelFuncBtn() {
-		return relFuncBtn;
-	}
-
-	public JButton getExFuncBtn() {
-		return exFuncBtn;
-	}
-
-	public JButton getCadAgImgBtn() {
-		return cadAgImgBtn;
-	}
-
-	public JButton getAltAgImgBtn() {
-		return altAgImgBtn;
-	}
-
-	public JButton getRelAgImgBtn() {
-		return relAgImgBtn;
-	}
-
-	public JButton getExAgImgBtn() {
-		return exAgImgBtn;
-	}
-
-	public JButton getCadAgBtn() {
-		return cadAgBtn;
-	}
-
-	public JButton getAltAgBtn() {
-		return altAgBtn;
-	}
-
-	public JButton getRelAgBtn() {
-		return relAgBtn;
-	}
-
-	public JButton getExAgBtn() {
-		return exAgBtn;
-	}
-
-	public JButton getCadClienteImgBtn() {
-		return cadClienteImgBtn;
-	}
-
-	public JButton getAjudaImgBtn() {
-		return ajudaImgBtn;
-	}
-
-	public JButton getAjudaBtn() {
-		return ajudaBtn;
-	}
-
-	public JButton getConsFuncImgBtn() {
-		return consFuncImgBtn;
-	}
-
-	public JButton getConsFuncBtn() {
-		return consFuncBtn;
-	}
-
-	public JButton getConsAgImgBtn() {
-		return consAgImgBtn;
-	}
-
-	public JButton getConsAgBtn() {
-		return consAgBtn;
-	}
-
-	public JMenuItem getMntmSair() {
-		return mntmSair;
-	}
-
-	public JMenuItem getMntmAutor() {
-		return mntmAutor;
-	}
-
-	public JButton getConsClienteImgBtn() {
-		return consClienteImgBtn;
-	}
-
+	
+	/** Retorna um <code>JButton</code> com o botão de consultar cliente
+	 * @return <code>JButton</code> com o botão de consultar cliente
+	 */
 	public JButton getConsClienteBtn() {
 		return consClienteBtn;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão de alterar cliente
+	 * @return <code>JButton</code> com o botão de alterar cliente
+	 */
+	public JButton getAltClienteBtn() {
+		return altClienteBtn;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão de relatar cliente
+	 * @return <code>JButton</code> com o botão de relatar cliente
+	 */
+	public JButton getRelClienteBtn() {
+		return relClienteBtn;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão de excluir cliente
+	 * @return <code>JButton</code> com o botão de excluir cliente
+	 */
+	public JButton getExClienteBtn() {
+		return exClienteBtn;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão de imagem de cadastrar funcionário
+	 * @return <code>JButton</code> com o botão de imagem de cadastrar funcionário
+	 */
+	public JButton getCadFuncImgBtn() {
+		return cadFuncImgBtn;
+	}
+	
+	/** Retorna um <code>JButton</code> com o botão de imagem de consultar funcionário
+	 * @return <code>JButton</code> com o botão de imagem de consultar funcionário
+	 */
+	public JButton getConsFuncImgBtn() {
+		return consFuncImgBtn;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão de imagem de alterar funcionário
+	 * @return <code>JButton</code> com o botão de imagem de alterar funcionário
+	 */
+	public JButton getAltFuncImgBtn() {
+		return altFuncImgBtn;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão de imagem de relatar funcionário
+	 * @return <code>JButton</code> com o botão de imagem de relatar funcionário
+	 */
+	public JButton getRelFuncImgBtn() {
+		return relFuncImgBtn;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão de imagem de excluir funcionário
+	 * @return <code>JButton</code> com o botão de imagem de excluir funcionário
+	 */
+	public JButton getExFuncImgBtn() {
+		return exFuncImgBtn;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão de cadastrar funcionário
+	 * @return <code>JButton</code>com o botão de cadastrar funcionário
+	 */
+	public JButton getCadFuncBtn() {
+		return cadFuncBtn;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão de consultar funcionário
+	 * @return <code>JButton</code> com o botão de consultar funcionário
+	 */
+	public JButton getConsFuncBtn() {
+		return consFuncBtn;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão de alterar funcionário
+	 * @return <code>JButton</code> com o botão de alterar funcionário
+	 */
+	public JButton getAltFuncBtn() {
+		return altFuncBtn;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão de relatar funcionário
+	 * @return <code>JButton</code> com o botão de relatar funcionário
+	 */
+	public JButton getRelFuncBtn() {
+		return relFuncBtn;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão de excluir funcionário
+	 * @return <code>JButton</code> ccom o botão de excluir funcionário
+	 */
+	public JButton getExFuncBtn() {
+		return exFuncBtn;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão de imagem de cadastrar agência
+	 * @return <code>JButton</code>  com o botão de imagem de cadastrar agência
+	 */
+	public JButton getCadAgImgBtn() {
+		return cadAgImgBtn;
+	}
+	
+	/** Retorna um <code>JButton</code> com o botão de imagem de consultar agência
+	 * @return <code>JButton</code> com o botão de imagem de consultar agência
+	 */
+	public JButton getConsAgImgBtn() {
+		return consAgImgBtn;
+	}
+
+	/** Retorna um <code>JButton</code>  com o botão de imagem de alterar agência
+	 * @return <code>JButton</code>  com o botão de imagem de alterar agência
+	 */
+	public JButton getAltAgImgBtn() {
+		return altAgImgBtn;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão de imagem de relatar agência
+	 * @return <code>JButton</code> com o botão de imagem de relatar agência
+	 */
+	public JButton getRelAgImgBtn() {
+		return relAgImgBtn;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão de imagem de excluir agência
+	 * @return <code>JButton</code> com o botão de imagem de excluir agência
+	 */
+	public JButton getExAgImgBtn() {
+		return exAgImgBtn;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão de cadastrar agência
+	 * @return <code>JButton</code> com o botão de cadastrar agência
+	 */
+	public JButton getCadAgBtn() {
+		return cadAgBtn;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão de consultar agência
+	 * @return <code>JButton</code> com o botão de consultar agência
+	 */
+	public JButton getConsAgBtn() {
+		return consAgBtn;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão de alterar agência
+	 * @return <code>JButton</code> com o botão de alterar agência
+	 */
+	public JButton getAltAgBtn() {
+		return altAgBtn;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão de relatar agência
+	 * @return <code>JButton</code> com o botão de relatar agência
+	 */
+	public JButton getRelAgBtn() {
+		return relAgBtn;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão de excluir agência
+	 * @return <code>JButton</code> com o botão de excluir agência
+	 */
+	public JButton getExAgBtn() {
+		return exAgBtn;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão de imagem de solicitar ajuda
+	 * @return <code>JButton</code> com o botão de imagem de solicitar ajuda
+	 */
+	public JButton getAjudaImgBtn() {
+		return ajudaImgBtn;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão de solicitar ajuda
+	 * @return <code>JButton</code> com o botão de solicitar ajuda
+	 */
+	public JButton getAjudaBtn() {
+		return ajudaBtn;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão de imagem de depositar salário
+	 * @return <code>JButton</code> com o botão de imagem de depositar salário
+	 */
 	public JButton getDepositarSalContaImgBtn() {
 		return depositarSalContaImgBtn;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão de depositar salário
+	 * @return <code>JButton</code> com o botão de depositar salário
+	 */
 	public JButton getDepositarSalContaBtn() {
 		return depositarSalContaBtn;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão de imagem de criar aplicação
+	 * @return <code>JButton</code> com o botão de imagem de criar aplicação
+	 */
 	public JButton getCriarAplicContaImgBtn() {
 		return criarAplicContaImgBtn;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão de criar aplicação
+	 * @return <code>JButton</code> com o botão de criar aplicação
+	 */
 	public JButton getCriarAplicContaBtn() {
 		return criarAplicContaBtn;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão de imagem de alterar aplicação
+	 * @return <code>JButton</code> com o botão de imagem  de alterar aplicação
+	 */
 	public JButton getAlterarAplicContaImgBtn() {
 		return alterarAplicContaImgBtn;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão de alterar aplicação
+	 * @return <code>JButton</code> com o botão de alterar aplicação
+	 */
 	public JButton getAlterarAplicContaBtn() {
 		return alterarAplicContaBtn;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão de imagem de abrir conta bancária
+	 * @return <code>JButton</code> com o botão de imagem de abrir conta bancária
+	 */
 	public JButton getAbrirContaImgBtn() {
 		return abrirContaImgBtn;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão de abrir conta bancária
+	 * @return <code>JButton</code> com o botão de abrir conta bancária
+	 */
 	public JButton getAbrirContaBtn() {
 		return abrirContaBtn;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão de imagem de iniciar caixa eletrônico
+	 * @return <code>JButton</code> com o botão de imagem de iniciar caixa eletrônico
+	 */
 	public JButton getCaixaEletronicoImgBtn() {
 		return caixaEletronicoImgBtn;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão de iniciar caixa eletrônico
+	 * @return <code>JButton</code> com o botão de iniciar caixa eletrônico
+	 */
 	public JButton getCaixaEletronicoBtn() {
 		return caixaEletronicoBtn;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão de imagem de alterar senha
+	 * @return <code>JButton</code> com o botão de imagem de alterar senha
+	 */
 	public JButton getAlterarSenhaImgBtn() {
 		return alterarSenhaImgBtn;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão de alterar senha
+	 * @return <code>JButton</code> com o botão de alterar senha
+	 */
 	public JButton getAlterarSenhaBtn() {
 		return alterarSenhaBtn;
 	}
+	
 	/// ===== * Fim dos Geters dos botões * ===== ///
 	
 	/// ===== * Início dos Geters dos itens da aba Home * ===== ///
+	
+	/** Retorna um <code>JLabel</code> com a seta 1 da aba home
+	 * @return <code>JLabel</code> com a seta 1 da aba home
+	 */
 	public JLabel getLblImgSeta1() {
 		return lblImgSeta1;
 	}
 
+	/** Retorna um <code>JLabel</code> com a seta 2 da aba home
+	 * @return <code>JLabel</code> com a seta 2 da aba home
+	 */
 	public JLabel getLblImgSeta2() {
 		return lblImgSeta2;
 	}
 
+	/** Retorna um <code>JLabel</code> com a seta 3 da aba home
+	 * @return <code>JLabel</code> com a seta 3 da aba home
+	 */
 	public JLabel getLblImgSeta3() {
 		return lblImgSeta3;
 	}
 
+	/** Retorna um <code>JLabel</code> com a seta 4 da aba home
+	 * @return <code>JLabel</code> com a seta 4 da aba home
+	 */
 	public JLabel getLblImgSeta4() {
 		return lblImgSeta4;
 	}
 
+	/** Retorna um <code>JLabel</code> com a seta 5 da aba home
+	 * @return <code>JLabel</code> com a seta 5 da aba home
+	 */
 	public JLabel getLblImgSeta5() {
 		return lblImgSeta5;
 	}
 	
+	/** Retorna um <code>JLabel</code> com a seta 6 da aba home
+	 * @return <code>JLabel</code> com a seta 6 da aba home
+	 */
 	public JLabel getLblImgSeta6() {
 		return lblImgSeta6;
 	}
 
+	/** Retorna um <code>JLabel</code> com a imagem de ajuda da aba home
+	 * @return <code>JLabel</code> com a imagem de ajuda da aba home
+	 */
 	public JLabel getLblImgAjuda() {
 		return lblImgAjuda;
 	}
 
+	/** Retorna um <code>JLabel</code> com o banner
+	 * @return <code>JLabel</code> com o banner
+	 */
 	public JLabel getLblBanner() {
 		return lblBanner;
 	}
+	
 	/// ===== * Fim dos Geters dos itens da aba Home * ===== ///
 	
 	/// ===== * Início dos Geters dos itens de menu * ===== ///
+	
+	/** Retorna um <code>JMenuItem</code> com o item de menu sair
+	 * @return <code>JMenuItem</code> com o item de menu sair
+	 */
+	public JMenuItem getMntmSair() {
+		return mntmSair;
+	}
 
+	/** Retorna um <code>JMenuItem</code> com o item de menu logout
+	 * @return <code>JMenuItem</code> com o item de menu logout
+	 */
 	public JMenuItem getMntmLogout() {
 		return mntmLogout;
 	}
 
+	/** Retorna um <code>JMenuItem</code> com o item de menu tema
+	 * @return <code>JMenuItem</code> com o item de menu tema
+	 */
 	public JMenuItem getMntmTema() {
 		return mntmTema;
 	}
 	
+	/** Retorna um <code>JMenuItem</code> com o item de menu autor
+	 * @return <code>JMenuItem</code> com o item de menu autor
+	 */
+	public JMenuItem getMntmAutor() {
+		return mntmAutor;
+	}
+	
+	/** Retorna um <code>JMenuItem</code> com o item de menu limpar banco de dados
+	 * @return <code>JMenuItem</code> com o item de menu limpar banco de dados
+	 */
 	public JMenuItem getMntmLimparBD() {
 		return mntmLimparBD;
 	}
 
+	/** Retorna um <code>JMenuItem</code> com o item de menu gerente
+	 * @return <code>JMenuItem</code> com o item de menu gerente
+	 */
 	public JMenuItem getMntmGerente() {
 		return mntmGerente;
 	}
 
+	/** Retorna um <code>JMenuItem</code> com o item de menu caixa
+	 * @return <code>JMenuItem</code> com o item de menu caixa
+	 */
 	public JMenuItem getMntmCaixa() {
 		return mntmCaixa;
 	}
 
+	/** Retorna um <code>JMenuItem</code> com o item de menu administrador
+	 * @return <code>JMenuItem</code> com o item de menu administrador
+	 */
 	public JMenuItem getMntmAdministrador() {
 		return mntmAdministrador;
 	}
 	
 	/// ===== * Fim dos Geters dos itens de menu * ===== ///
 
+	/** Retorna um <code>JTabbedPane</code> com o painel de abas
+	 * @return <code>JTabbedPane</code> com o painel de abas
+	 */
 	public JTabbedPane getTabbedPane() {
 		return tabbedPane;
 	}
 
+	/** Retorna um <code>Funcionario</code> com os dados do funcionário logado
+	 * @return <code>Funcionario</code> com os dados do funcionário logado
+	 */
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
 
+	/** Retorna um <code>Date</code> com a data e a hora que o programa começou sua execução
+	 * @return <code>Date</code> com a data e a hora que o programa começou sua execução
+	 */
 	public Date getDataInicial() {
 		return dataInicial;
 	}
+	
 } // class IgMenuPrincipal

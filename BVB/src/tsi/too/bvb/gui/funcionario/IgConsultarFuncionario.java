@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.List;
 
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -33,14 +32,21 @@ import tsi.too.bvb.entidades.tiposenumerados.TipoUsuario;
 import tsi.too.bvb.eventos.funcionario.TEActionConsultarFuncionario;
 import tsi.too.bvb.eventos.funcionario.TETecladoConsultarFuncionario;
 
+/** Classe que define a GUI de consulta de funcionário do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ */
 public class IgConsultarFuncionario extends JDialog {
 
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = 2318656837430102737L;
 	
-	/** <code>int</code> com o número de colunas da tabela com os dados dos funcionários pesquisados */
+	// Número de colunas da tabela com os dados dos clientes pesquisados
 	private final int NUMERO_COLUNAS_TABELA = 2;
 	private int num_linhas;
 	
@@ -50,7 +56,6 @@ public class IgConsultarFuncionario extends JDialog {
 	private String[][] linhasTabela = new String[0][NUMERO_COLUNAS_TABELA];
 	
 	private JPanel contentPane;
-	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTextField LoginTextField;
 	private JComboBox<Object> tipoUsuarioComboBox;
 	private JButton btnLimpar;
@@ -58,9 +63,11 @@ public class IgConsultarFuncionario extends JDialog {
 	private JTable tableConsulta;
 	private JButton btnBuscar;
 
-	/**
-	 * Create the frame.
-	 */
+	/** Cria uma instância da janela de consulta de funcionário do sistema BVB
+	 * @param janelaPai <code>Window</code> com a janela pai da caixa de diálogo <code>IgConsultarFuncionario</code>
+	 * 
+	 * @see Window
+	 */	
 	public IgConsultarFuncionario(Window janelaPai) {
 		setModal(true);
 		final Color nephritis = new Color(39, 174, 96);
@@ -163,7 +170,7 @@ public class IgConsultarFuncionario extends JDialog {
 		};
 		tableConsulta.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {  
 		    /**
-			 * 
+			 * @serial
 			 */
 			private static final long serialVersionUID = -2860037545840868142L;
 
@@ -195,6 +202,9 @@ public class IgConsultarFuncionario extends JDialog {
 		setVisible(true);
 	}
 	
+	/** Adiciona linhas à tabela. É inserido o dado do funcionário que for passado por parâmetro
+	 * @param funcionario <code>Funcionario</code> com o dado do funcionário que será inserido na tabela
+	 */
 	public void addLinhasTabela(Funcionario funcionario) {
 		DefaultTableModel model = ((DefaultTableModel)(tableConsulta.getModel()));
 		model.setNumRows(num_linhas++);
@@ -206,6 +216,11 @@ public class IgConsultarFuncionario extends JDialog {
 		model.addRow(linha);
 	}
 	
+	/** Adiciona linhas à tabela. São inseridos os dados dos funcionários que foram passados por parâmetro na lista <code>List</code>
+	 * @param funcionarios <code>List</code> com os dados dos funcionários que serão inseridos na tabela
+	 * 
+	 * @see List
+	 */
 	public void addLinhasTabela(List<Funcionario> funcionarios) {
 		DefaultTableModel model = limpaTabela();
 		
@@ -220,7 +235,9 @@ public class IgConsultarFuncionario extends JDialog {
 		}
 	}
 	
-	
+	/** Limpa a tabela de pesquisa apagando os dados contidos nela
+	 * @return <code>DefaultTableModel</code> com o modelo da tabela
+	 */
 	public DefaultTableModel limpaTabela() {
 		DefaultTableModel model = ((DefaultTableModel)(tableConsulta.getModel()));
 
@@ -230,11 +247,17 @@ public class IgConsultarFuncionario extends JDialog {
 		return model;
 	}
 	
+	/** Limpa os campos da janela <code>IgConsultarFuncionario</code>
+	 */
 	public void limpaCampos() {
 		LoginTextField.setText("");
 		tipoUsuarioComboBox.setSelectedIndex(0);
 	}
 	
+	/** Pesquisa se determinado funcionário foi inserida na tabela
+	 * @param funcionario <code>Funcionario</code> com os dados do funcionário que será pesquisado
+	 * @return <code>boolean</code> com <code>true</code> caso o funcionário tenha sido encontrado, e <code>false</code> caso contrário
+	 */
 	public boolean pesquisaTabela(Funcionario funcionario) {
 		for(int i = 0; i < num_linhas; i++) {
 			String login = tableConsulta.getModel().getValueAt(i, 0).toString();
@@ -245,24 +268,32 @@ public class IgConsultarFuncionario extends JDialog {
 		return false;
 	}
 
+	/** Retorna um <code>JTextField</code> com o campo de texto login
+	 * @return <code>JTextField</code> com o campo de texto login
+	 */
 	public JTextField getLoginTextField() {
 		return LoginTextField;
 	}
 
+	/** Retorna uma <code>String</code> com o texto o item selecionado na caixa de combinação
+	 * @return <code>String</code> com o texto o item selecionado na caixa de combinação
+	 */
 	public String getTipoUsuarioComboBox() {
 		return TipoUsuario.obterTipoUsuario((String)tipoUsuarioComboBox.getSelectedItem()).toString();
 	}
 
+	/** Retorna um <code>JButton</code> com o botão limpar
+	 * @return <code>JButton</code> com o botão limpar
+	 */
 	public JButton getBtnLimpar() {
 		return btnLimpar;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão buscar
+	 * @return <code>JButton</code> com o botão buscar
+	 */
 	public JButton getBtnBuscar() {
 		return btnBuscar;
-	}
-
-	public ButtonGroup getButtonGroup() {
-		return buttonGroup;
 	}
 	
 } // class IgConsultarFuncionario

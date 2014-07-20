@@ -9,15 +9,28 @@ import tsi.too.bvb.gui.login.IgLogin;
 import tsi.too.bvb.gui.menuprincipal.IgMenuPrincipal;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 
+/** Classe para tratar os eventos de ação da janela <code>IgLogin</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see ActionListener
+ */
 public class TEActionLogin implements ActionListener {
 	
 	private IgLogin igLogin;
 
+	/** Cria uma instância do Tratador de eventos de ação da janela <code>IgAltAgencia</code>
+	 * @param igLogin <code>IgLogin</code> que será manipulada
+	 */
 	public TEActionLogin(IgLogin igLogin) {
 		super();
 		this.igLogin = igLogin;
 	}
 	
+	/** Trata os eventos de ação dos elementos da janela <code>IgLogin</code>
+	 * @see ActionListener
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

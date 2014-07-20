@@ -26,10 +26,17 @@ import tsi.too.bvb.entidades.funcionario.Funcionario;
 import tsi.too.bvb.entidades.tiposenumerados.TipoUsuario;
 import tsi.too.bvb.eventos.funcionario.TEActionAlterarFuncionario;
 
+/** Classe que define a GUI de alteração de funcionário do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ */
 public class IgAltFuncionario extends JDialog {
 
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = -5763247405489792683L;
 	
@@ -44,9 +51,13 @@ public class IgAltFuncionario extends JDialog {
 	private JButton btnEditarTipo;
 	private JTextField loginTextField;
 	
-	/**
-	 * Create the frame.
-	 */
+	/** Cria uma instância da janela de alteração de funcionário do sistema BVB
+	 * @param funcionario <code>Funcionario</code> com os dados do funcionário que será alterado
+	 * @param point <code>Point</code> com as coordenadas de onde a caixa de diálogo <code>IgAltFuncionario</code> se localizará
+	 * 
+	 * @see Funcionario
+	 * @see Point
+	 */	
 	public IgAltFuncionario(Funcionario funcionario, Point point) {
 		this.funcionario = funcionario;
 		setModal(true);
@@ -168,6 +179,9 @@ public class IgAltFuncionario extends JDialog {
 		setVisible(true);
 	}
 
+	/** Retorna o texto do botão de rádio que está selecionado
+	 *  @return <code>String</code> com o texto do botão de rádio que está selecionado
+	 */
 	public String obterRadioBtnSelecionado() {
 		String radioBtnTxt;
 		
@@ -181,26 +195,23 @@ public class IgAltFuncionario extends JDialog {
 		return radioBtnTxt;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão finalizar
+	 * @return <code>JButton</code> com o botão finalizar
+	 */
 	public JButton getBtnFinalizar() {
 		return btnFinalizar;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão editar tipo
+	 * @return <code>JButton</code> com o botão editar tipo
+	 */
 	public JButton getBtnEditarTipo() {
 		return btnEditarTipo;
 	}
 
-	public JRadioButton getRdbtnAdministrador() {
-		return rdbtnAdministrador;
-	}
-
-	public JRadioButton getRdbtnCaixa() {
-		return rdbtnCaixa;
-	}
-
-	public JRadioButton getRdbtnGerente() {
-		return rdbtnGerente;
-	}
-
+	/** Retorna um <code>Funcionario</code> com os dados do cliente que pode ter sido alterado
+	 * @return <code>Funcionario</code> com os dados do funcionário que pode ter sido alterado
+	 */
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}

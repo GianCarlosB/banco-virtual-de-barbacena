@@ -27,9 +27,17 @@ import tsi.too.bvb.eventos.cliente.TEActionCadastrarCliente;
 import tsi.too.bvb.gui.PainelConfCad;
 import tsi.too.bvb.gui.TratadorDeCampos;
 
+/** Classe que define a GUI de cadastro de cliente do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ */
 public class IgCadCliente extends JDialog {
+	
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = -4813322970092459329L;
 	
@@ -52,9 +60,13 @@ public class IgCadCliente extends JDialog {
 	private JProgressBar progressBar;
 	private JLabel lblCamposErrados;
 
-	/**
-	 * Create the frame.
-	 */
+	/** Cria uma instância da janela de cadastro de cliente do sistema BVB
+	 * @param janelaPai <code>Window</code> com a janela pai da caixa de diálogo <code>IgCadCliente</code>
+	 * @param cliente <code>Cliente</code> referênte ao objeto onde os dados serão salvos
+	 * 
+	 * @see Window
+	 * @see Cliente
+	 */	
 	public IgCadCliente(Window janelaPai, Cliente cliente) {
 		setModal(true);
 		Color peterRiver = new Color(52, 152, 219);
@@ -177,6 +189,11 @@ public class IgCadCliente extends JDialog {
 		setVisible(true);
 	}
 	
+	/** Verifica qual painel do painel de "cartas" está visível
+	 *  @return <code>TratadorDeCampos</code> com o painel visível ou <code>null</code> caso nem um esteja visível
+	 *  
+	 *  @see TratadorDeCampos
+	 */
 	public TratadorDeCampos obterPainelVisivel() {
 		int i = 0;
 		Component paineis[] = cardPanel.getComponents();
@@ -193,59 +210,102 @@ public class IgCadCliente extends JDialog {
 		return null;
 	}
 
+	/** Retorna um <code>CardLayout</code> com layout utilizado no painel de "cartas"
+	 * @return <code>CardLayout</code> com layout utilizado no painel de "cartas"
+	 */
 	public CardLayout getCardLayout() {
 		return cardLayout;
 	}
 
+	/** Retorna um <code>PainelCadCliente</code> referênte ao painel do cliente
+	 * @return <code>PainelCadCliente</code> referênte ao painel do cliente
+	 */
 	public PainelCadCliente getpCadCliente() {
 		return pCadCliente;
 	}
 
+	/** Retorna um <code>PainelCadEndereco</code> referênte ao painel do endereço
+	 * @return <code>PainelCadEndereco</code> referênte ao painel do endereço
+	 */
 	public PainelCadEndereco getpCadEndereco() {
 		return pCadEndereco;
 	}
 
+	/** Retorna um <code>PainelCadContato</code> referênte ao painel do contato
+	 * @return <code>PainelCadContato</code> referênte ao painel do contato
+	 */
 	public PainelCadContato getpCadContato() {
 		return pCadContato;
 	}
 
+	/** Retorna um <code>PainelConfCad</code> referênte ao painel de confirmação
+	 * @return <code>PainelConfCad</code> referênte ao painel de confirmação
+	 */
 	public PainelConfCad getpConfCad() {
 		return pConfCad;
 	}
 
+	/** Retorna um <code>JPanel</code> com o painel de "cartas"
+	 * @return <code>JPanel</code> com o painel de "cartas"
+	 */
 	public JPanel getCardPanel() {
 		return cardPanel;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão anterior
+	 * @return <code>JButton</code> com o botão anterior
+	 */
 	public JButton getBtnAnterior() {
 		return btnAnterior;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão próximo
+	 * @return <code>JButton</code> com o botão próximo
+	 */
 	public JButton getBtnProximo() {
 		return btnProximo;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão finalizar
+	 * @return <code>JButton</code> com o botão finalizar
+	 */
 	public JButton getBtnFinalizar() {
 		return btnFinalizar;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão limpar
+	 * @return <code>JButton</code> com o botão limpar
+	 */
 	public JButton getBtnLimpar() {
 		return btnLimpar;
 	}
 	
+	/** Muda o campo de texto do subtítulo
+	 * @param subTitulo <code>String</code> com o novo subtítulo do campo
+	 */
 	public void setTxtpnSubTitulo(String subTitulo) {
 		this.txtpnSubTitulo.setText(subTitulo);
 	}
 
+	/** Muda o valor da barra de progresso
+	 * @param valor <code>int</code> com o novo valor da barra de progresso
+	 */
 	public void setProgressBar(int valor) {
 		this.progressBar.setValue(valor);
 	}
 
+	/** Retorna um <code>int</code> com o número de "cartas" do painel
+	 * @return <code>int</code> com o número de "cartas" do painel
+	 */
 	public int getNUM_CARDS() {
 		return NUM_CARDS;
 	}
 
+	/** Muda a visibilidade do rótulo que indica que algum campo não foi corretamente preenchido
+	 * @param visivel <code>boolean</code> com <code>true</code> se for visível e <code>false</code> caso contrário
+	 */
 	public void setLblCamposErrados(boolean visivel) {
 		this.lblCamposErrados.setVisible(visivel);
 	}
+	
 } // class IgPrincipalCadCliente

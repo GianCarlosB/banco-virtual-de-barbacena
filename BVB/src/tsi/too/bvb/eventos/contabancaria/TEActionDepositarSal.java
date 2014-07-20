@@ -2,24 +2,41 @@ package tsi.too.bvb.eventos.contabancaria;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
+import tsi.too.bvb.entidades.movimentacao.Movimentacao;
+import tsi.too.bvb.entidades.tiposenumerados.TipoOperacao;
 import tsi.too.bvb.gui.JanelaPopUpAviso;
 import tsi.too.bvb.gui.JanelaPopUpErro;
 import tsi.too.bvb.gui.JanelaPopUpInfo;
 import tsi.too.bvb.gui.contabancaria.IgDepositarSal;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 import tsi.too.bvb.persistencia.ContaBancariaDAO;
+import tsi.too.bvb.persistencia.MovimentacaoDAO;
 import tsi.too.bvb.validacoes.ValidarDados;
 
+/** Classe para tratar os eventos de ação da janela <code>IgDepositarSal</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see ActionListener
+ */
 public class TEActionDepositarSal implements ActionListener {
 	
 	private IgDepositarSal igDepositarSal;
 
+	/** Cria uma instância do Tratador de eventos de ação da janela <code>IgDepositarSal</code>
+	 * @param igDepositarSal <code>IgDepositarSal</code> que será manipulada
+	 */
 	public TEActionDepositarSal(IgDepositarSal igDepositarSal) {
 		super();
 		this.igDepositarSal = igDepositarSal;
 	}
 
+	/** Trata os eventos de ação dos elementos da janela <code>IgDepositarSal</code>
+	 * @see ActionListener
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -64,6 +81,10 @@ public class TEActionDepositarSal implements ActionListener {
 			if(deposito != 0) {
 				igDepositarSal.getContaBancaria().setSaldo(saldo + deposito);
 				new ContaBancariaDAO().alterarSaldo(BancoDeDadosBVB.getInstance(), igDepositarSal.getContaBancaria());
+				new MovimentacaoDAO().criar(BancoDeDadosBVB.getInstance(), new Movimentacao(igDepositarSal.getContaBancaria().getNumConta(),
+																							igDepositarSal.getContaBancaria().getCodAgencia(),
+																							igDepositarSal.getContaBancaria().getTipoConta(),
+																							TipoOperacao.DEPOSITO, new Date(), deposito));
 				new JanelaPopUpInfo(igDepositarSal, "BVB - Depósito de Salário", " Depósito realizado com sucesso!");
 				
 				igDepositarSal.escondeOpcoesDepositar();

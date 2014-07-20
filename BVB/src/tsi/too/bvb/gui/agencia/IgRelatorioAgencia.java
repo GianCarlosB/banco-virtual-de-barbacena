@@ -36,10 +36,17 @@ import tsi.too.bvb.entidades.tiposenumerados.Mes;
 import tsi.too.bvb.eventos.agencia.TEActionRelatorioAgencia;
 import tsi.too.bvb.validacoes.ValidarDados;
 
+/** Classe que define a GUI de relatório de agência do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ */
 public class IgRelatorioAgencia extends JDialog {
 	
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = 8082188793725103086L;
 	
@@ -65,9 +72,11 @@ public class IgRelatorioAgencia extends JDialog {
 	private DefaultComboBoxModel<String> modeloFinAnoCorrente = new DefaultComboBoxModel<String>(Mes.obterArrayMeses(mesAtual + 1));
 	private DefaultComboBoxModel<String> modeloFinAnosPassados = new DefaultComboBoxModel<String>(Mes.obterArrayMeses());
 
-	/**
-	 * Create the frame.
-	 */
+	/** Cria uma instância da janela de relatório de agência do sistema BVB
+	 * @param janelaPai <code>Window</code> com a janela pai da caixa de diálogo <code>IgRelatorioAgencia</code>
+	 * 
+	 * @see Window
+	 */	
 	public IgRelatorioAgencia(Window janelaPai) {
 		setModal(true);
 		Color pumpkin = new Color(211, 84, 0);
@@ -256,12 +265,16 @@ public class IgRelatorioAgencia extends JDialog {
 		setVisible(true);
 	}
 	
+	/** Exibe as opções de gerar relatório da janela <code>IgAltAgencia</code>
+	 */
 	public void exibeOpcoesGerarRelatorio() {
 		btnGerarRelatorio.setEnabled(true);
 		btnBuscar.setVisible(false);
 		btnAlterar.setVisible(true);
 	}
 	
+	/** Esconde as opções de gerar relatório da janela <code>IgAltAgencia</code>
+	 */
 	public void escondeOpcoesGerarRelatorio() {
 		btnGerarRelatorio.setEnabled(false);
 		btnBuscar.setVisible(true);
@@ -270,6 +283,9 @@ public class IgRelatorioAgencia extends JDialog {
 		relatorioEditorPane.setText("");
 	}
 	
+	/** Cria um <code>String[]</code> com os anos permitidos dentro dos parâmetros aceitos no sistema BVB
+	 *  @return <code>String[]</code> com os anos permitidos dentro dos parâmetros aceitos no sistema BVB
+	 */
 	private String[] arrayAnos() {
 		ArrayList<String> anosList = new ArrayList<String>();
 		String  arrayAnos[];
@@ -283,6 +299,8 @@ public class IgRelatorioAgencia extends JDialog {
 		return arrayAnos;
 	}
 	
+	/** Verifica se o ano inicial selecionado na caixa de combinação é igual ao ano atual
+	 */
 	private void verifcarAnoIniCorrente() {
 		if(Integer.parseInt((String) anoIniComboBox.getSelectedItem()) == anoAtual)
 			mesIniComboBox.setModel(modeloIniAnoCorrente);
@@ -290,6 +308,8 @@ public class IgRelatorioAgencia extends JDialog {
 			mesIniComboBox.setModel(modeloIniAnosPassados);
 	}
 	
+	/** Verifica se o ano final selecionado na caixa de combinação é igual ao ano atual
+	 */
 	private void verifcarAnoFinCorrente() {
 		if(Integer.parseInt((String) anoFinComboBox.getSelectedItem()) == anoAtual)
 			mesFinComboBox.setModel(modeloFinAnoCorrente);
@@ -297,38 +317,65 @@ public class IgRelatorioAgencia extends JDialog {
 			mesFinComboBox.setModel(modeloFinAnosPassados);
 	}
 
+	/** Retorna um <code>JTextField</code> com o campo de texto código
+	 * @return <code>JTextField</code> com o campo de texto código
+	 */
 	public JTextField getCodigoTextField() {
 		return codigoTextField;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão buscar
+	 * @return <code>JButton</code> com o botão buscar
+	 */
 	public JButton getBtnBuscar() {
 		return btnBuscar;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão gerar relatório
+	 * @return <code>JButton</code> com o botão gerar relatório
+	 */
 	public JButton getBtnGerarRelatorio() {
 		return btnGerarRelatorio;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão alterar
+	 * @return <code>JButton</code> com o botão alterar
+	 */
 	public JButton getBtnAlterar() {
 		return btnAlterar;
 	}
 
+	/** Retorna um <code>JComboBox</code> com a caixa de combinação do mês inicial
+	 * @return <code>JComboBox</code> com a caixa de combinação do mês inicial
+	 */
 	public JComboBox<String> getMesIniComboBox() {
 		return mesIniComboBox;
 	}
 
+	/** Retorna um <code>JComboBox</code> com a caixa de combinação do ano inicial
+	 * @return <code>JComboBox</code> com a caixa de combinação do ano inicial
+	 */
 	public JComboBox<String> getAnoIniComboBox() {
 		return anoIniComboBox;
 	}
 
+	/** Retorna um <code>JComboBox</code> com a caixa de combinação do mês final
+	 * @return <code>JComboBox</code> com a caixa de combinação do mês final
+	 */
 	public JComboBox<String> getMesFinComboBox() {
 		return mesFinComboBox;
 	}
 
+	/** Retorna um <code>JComboBox</code> com a caixa de combinação do ano final
+	 * @return <code>JComboBox</code> com a caixa de combinação do ano final
+	 */
 	public JComboBox<String> getAnoFinComboBox() {
 		return anoFinComboBox;
 	}
 
+	/** Muda o campo de texto relatório
+	 * @param relatorio <code>String</code> com o novo relatório do campo
+	 */
 	public void setRelatorioEditorPane(String relatorio) {
 		this.relatorioEditorPane.setText(relatorio);
 	}

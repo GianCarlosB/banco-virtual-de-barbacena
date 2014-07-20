@@ -23,10 +23,17 @@ import tsi.too.bvb.entidades.agencia.Agencia;
 import tsi.too.bvb.eventos.agencia.TEActionAlterarAgencia;
 import tsi.too.bvb.validacoes.ValidarDados;
 
+/** Classe que define a GUI de alteração de agência do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ */
 public class IgAltAgencia extends JDialog {
 
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = 6695376766095791027L;
 	
@@ -39,9 +46,13 @@ public class IgAltAgencia extends JDialog {
 	private JLabel lblCamposErrados;
 	private JTextField codigoTextField;
 
-	/**
-	 * Create the frame.
-	 */
+	/** Cria uma instância da janela de alteração de agência do sistema BVB
+	 * @param agencia <code>Agencia</code> com os dados da agência que será alterada
+	 * @param point <code>Point</code> com as coordenadas de onde a caixa de diálogo <code>IgAltAgencia</code> se localizará
+	 * 
+	 * @see Agencia
+	 * @see Point
+	 */	
 	public IgAltAgencia(Agencia agencia, Point point) {
 		this.agencia = agencia;
 		setModal(true);
@@ -150,7 +161,12 @@ public class IgAltAgencia extends JDialog {
 		setLocation(localPoint);
 		setVisible(true);
 	}
-
+	
+	/** Verifica se o campo descrição da janela <code>IgAltAgencia</code> foi preenchido corretamente. Se o campo 
+	 * estiver errado, receberá uma borda vermelha
+	 *  @return <code>boolean</code> com <code>true</code> caso o campo descrição tenha sido preenchido corretamente, 
+	 *  e <code>false</code> caso contrário
+	 */
 	public boolean validarDescricao() {
 		if(!ValidarDados.validarVazio(descricaoTextField.getText())) {
 			descricaoTextField.setBorder(new LineBorder(Color.RED));
@@ -161,28 +177,46 @@ public class IgAltAgencia extends JDialog {
 		
 		return true;
 	}
-
+	
+	/** Insere a borda padrão do campo descrição da janela <code>IgAltAgencia</code>
+	 */
 	public void inserirBordaPadrao() {
 		descricaoTextField.setBorder(UIManager.getBorder("TextField.border"));
 	}
-
+	
+	/** Retorna um <code>JButton</code> com o botão finalizar
+	 * @return <code>JButton</code> com o botão finalizar
+	 */
 	public JButton getBtnFinalizar() {
 		return btnFinalizar;
 	}
 	
+	/** Retorna um <code>JTextField</code> com o campo de texto descrição
+	 * @return <code>JTextField</code> com o campo de texto descrição
+	 */
 	public JTextField getDescricaoTextField() {
 		return descricaoTextField;
 	}
 	
+	/** Retorna um <code>JButton</code> com o botão editar descrição
+	 * @return <code>JButton</code> com o botão editar descrição
+	 */
 	public JButton getBtnEditarDescricao() {
 		return btnEditarDescricao;
 	}
 	
+	/** Retorna uma <code>Agencia</code> com os dados da agência que pode ter sido alterada
+	 * @return <code>Agencia</code> com os dados da agência que pode ter sido alterada
+	 */
 	public Agencia getAgencia() {
 		return agencia;
 	}
 	
+	/** Muda a visibilidade do rótulo que indica que algum campo não foi corretamente preenchido
+	 * @param visivel <code>boolean</code> com <code>true</code> se for visível e <code>false</code> caso contrário
+	 */
 	public void setLblCamposErrados(boolean visivel) {
 		this.lblCamposErrados.setVisible(visivel);
 	}
+	
 } // class IgCadAgencia

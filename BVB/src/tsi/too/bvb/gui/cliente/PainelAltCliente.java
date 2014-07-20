@@ -18,10 +18,19 @@ import tsi.too.bvb.eventos.cliente.TEActionAlterarCliente;
 import tsi.too.bvb.gui.TratadorDeCampos;
 import tsi.too.bvb.validacoes.ValidarDados;
 
+/** Classe que define o painel cliente utilizado pela janela <code>IgAltCliente</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JPanel
+ * @see IgAltCliente
+ * @see TratadorDeCampos
+ */
 public class PainelAltCliente extends JPanel implements TratadorDeCampos {
 
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = -8140411404894329609L;
 	
@@ -29,9 +38,13 @@ public class PainelAltCliente extends JPanel implements TratadorDeCampos {
 	private JFormattedTextField cpfFormattedTextField;
 	private JButton btnEditarNome;
 
-	/**
-	 * Create the panel.
-	 */
+	/** Cria uma instância do painel cliente utilizado pela janela <code>IgAltCliente</code>
+	 * @param janelaPai <code>Window</code> com a janela pai do painel <code>PainelAltCliente</code>
+	 * @param cliente <code>Cliente</code> com os dados do cliente que será alterado
+	 * 
+	 * @see Window
+	 * @see Cliente
+	 */	
 	public PainelAltCliente(Window janelaPai, Cliente cliente) {
 		setLayout(null);
 		JLabel lblNome = new JLabel("Nome:");
@@ -67,7 +80,25 @@ public class PainelAltCliente extends JPanel implements TratadorDeCampos {
 		add(btnEditarNome);
 	}
 
-	public boolean validarNome() {
+	/* (non-Javadoc)
+	 * @see TratadorDeCampos
+	 */
+	@Override
+	public void limparCampos() {}
+
+	/* (non-Javadoc)
+	 * @see TratadorDeCampos
+	 */
+	@Override
+	public void salvarCampos(Object cliente) {}
+
+	/** Verifica se os campos do painel foram preenchidos corretamente. Os campos errados 
+	 * recebem uma borda vermelha
+	 *  @return <code>boolean</code> com <code>true</code> caso todos os campos tenham sido preenchidos corretamente, 
+	 *  e <code>false</code> caso contrário
+	 */
+	@Override
+	public boolean validarCampos() {
 		if(!ValidarDados.validarVazio(nomeTextField.getText())) {
 			nomeTextField.setBorder(new LineBorder(Color.RED));
 			
@@ -78,30 +109,30 @@ public class PainelAltCliente extends JPanel implements TratadorDeCampos {
 		return true;
 	}
 
-	@Override
-	public void limparCampos() {}
-
-	@Override
-	public void salvarCampos(Object cliente) {}
-
-	@Override
-	public boolean validarCampos() {
-		return false;
-	}
-
+	/** Insere a borda padrão nos campos do painel
+	 */
 	@Override
 	public void inserirBordasPadrao() {
 		nomeTextField.setBorder(UIManager.getBorder("TextField.border"));
 	}
 	
+	/** Retorna um <code>JTextField</code> com o campo de texto nome
+	 * @return <code>JTextField</code> com o campo de texto nome
+	 */
 	public JTextField getNomeTextField() {
 		return nomeTextField;
 	}
 
+	/** Retorna um <code>JFormattedTextField</code> com o campo de texto cpf
+	 * @return <code>JFormattedTextField</code> com o campo de texto cpf
+	 */
 	public JFormattedTextField getCpfFormattedTextField() {
 		return cpfFormattedTextField;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão editar nome
+	 * @return <code>JButton</code> com o botão editar nome
+	 */
 	public JButton getBtnEditarNome() {
 		return btnEditarNome;
 	}

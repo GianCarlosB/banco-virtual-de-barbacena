@@ -33,10 +33,17 @@ import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 import tsi.too.bvb.persistencia.FuncionarioDAO;
 import tsi.too.bvb.validacoes.ValidarDados;
 
+/** Classe que define a GUI de cadastro de funcionário do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ */
 public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = 2966236349805360639L;
 	
@@ -55,9 +62,13 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 	private JLabel lblCamposErrados;
 	private JPasswordField rPasswordField;
 	
-	/**
-	 * Create the frame.
-	 */
+	/** Cria uma instância da janela de cadastro de funcionário do sistema BVB
+	 * @param janelaPai <code>Window</code> com a janela pai da caixa de diálogo <code>IgCadFuncionario</code>
+	 * @param funcionario <code>Funcionario</code> referênte ao objeto onde os dados serão salvos
+	 * 
+	 * @see Window
+	 * @see Funcionario
+	 */	
 	public IgCadFuncionario(Window janelaPai, Funcionario funcionario) {
 		setModal(true);
 		Color nephritis = new Color(39, 174, 96);
@@ -217,6 +228,8 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 		setVisible(true);
 	}
 	
+	/** Limpa os campos da janela
+	 */
 	@Override
 	public void limparCampos() {
 		inserirBordasPadrao();
@@ -228,6 +241,9 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 		rdbtnAdministrador.setSelected(true);
 	}
 	
+	/** Salva os dados inseridos na janela em um objeto do tipo <code>Funcionario</code>
+	 * @param funcionario <code>Object</code> referênte ao objeto que será salvo
+	 */
 	@Override
 	public void salvarCampos(Object funcionario) {
 		((Funcionario) funcionario).setNomeUsuario(loginTextField.getText());
@@ -235,6 +251,11 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 		((Funcionario) funcionario).setTipoUsuario(TipoUsuario.obterTipoUsuario(obterRadioBtnSelecionado()));
 	}
 
+	/** Verifica se os campos da janela foram preenchidos corretamente. Os campos errados 
+	 * recebem uma borda vermelha
+	 *  @return <code>boolean</code> com <code>true</code> caso todos os campos tenham sido preenchidos corretamente, 
+	 *  e <code>false</code> caso contrário
+	 */
 	@Override
 	public boolean validarCampos() {
 		boolean valido = true;
@@ -259,6 +280,8 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 		return valido;
 	}
 	
+	/** Insere a borda padrão nos campos da janela
+	 */
 	@Override
 	public void inserirBordasPadrao() {
 		verificacaoPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "N\u00E3o Verificado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
@@ -267,6 +290,9 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 		rPasswordField.setBorder(UIManager.getBorder("PasswordField.border"));
 	}
 
+	/** Retorna o texto do botão de rádio que está selecionado
+	 *  @return <code>String</code> com o texto do botão de rádio que está selecionado
+	 */
 	private String obterRadioBtnSelecionado() {
 		String radioBtnTxt;
 		
@@ -280,6 +306,11 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 		return radioBtnTxt;
 	}
 	
+	/** Verifica se o campo login da janela for preenchido corretamente. Se o campo 
+	 *  estiver errado, receberá uma borda vermelha
+	 *  @return <code>boolean</code> com <code>true</code> caso o campo  tenha sido preenchido corretamente, 
+	 *  e <code>false</code> caso contrário
+	 */
 	public boolean validarLogin() {
 		if(ValidarDados.validarLoginFunc(loginTextField.getText())) {
 			if(new FuncionarioDAO().pesquisarLoginUnico(BancoDeDadosBVB.getInstance(), loginTextField.getText()) == null) {
@@ -301,62 +332,72 @@ public class IgCadFuncionario extends JDialog implements TratadorDeCampos {
 		return false;
 	}
 
+	/** Retorna um <code>JTextField</code> com o campo de texto login
+	 * @return <code>JTextField</code> com o campo de texto login
+	 */
 	public JTextField getLoginTextField() {
 		return loginTextField;
 	}
 
-	public void setLoginTextField(String login) {
-		this.loginTextField.setText(login);
-	}
-
+	/** Retorna um <code>JPasswordField</code> com o campo de texto senha
+	 * @return <code>JPasswordField</code> com o campo de texto senha
+	 */
 	public JPasswordField getPasswordField() {
 		return passwordField;
 	}
 
+	/** Retorna um <code>JPasswordField</code> com o campo de texto senha repetida
+	 * @return <code>JPasswordField</code> com o campo de texto senha repetida
+	 */
 	public JPasswordField getrPasswordField() {
 		return rPasswordField;
 	}
 
-	public void setPasswordField(String password) {
-		this.passwordField.setText(password);
-	}
-
-	public ButtonGroup getButtonGroup() {
-		return buttonGroup;
-	}
-
+	/** Retorna um <code>JButton</code> com o botão finalizar
+	 * @return <code>JButton</code> com o botão finalizar
+	 */
 	public JButton getBtnFinalizar() {
 		return btnFinalizar;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão limpar
+	 * @return <code>JButton</code> com o botão limpar
+	 */
 	public JButton getBtnLimpar() {
 		return btnLimpar;
 	}
 
-	public JButton getBtnCancelar() {
-		return btnCancelar;
-	}
-
+	/** Retorna um <code>JButton</code> com o botão verificar
+	 * @return <code>JButton</code> com o botão verificar
+	 */
 	public JButton getBtnVerificar() {
 		return btnVerificar;
 	}
 
+	/** Retorna um <code>JRadioButton</code> com o botão de rádio administrador
+	 * @return <code>JRadioButton</code> com o botão de rádio administrador
+	 */
 	public JRadioButton getRdbtnAdministrador() {
 		return rdbtnAdministrador;
 	}
 
+	/** Retorna um <code>JRadioButton</code> com o botão de rádio caixa
+	 * @return <code>JRadioButton</code> com o botão de rádio caixa
+	 */
 	public JRadioButton getRdbtnCaixa() {
 		return rdbtnCaixa;
 	}
 
+	/** Retorna um <code>JRadioButton</code> com o botão de rádio gerente
+	 * @return <code>JRadioButton</code> com o botão de rádio gerente
+	 */
 	public JRadioButton getRdbtnGerente() {
 		return rdbtnGerente;
 	}
-
-	public JPanel getVerificacaoPanel() {
-		return verificacaoPanel;
-	}
 	
+	/** Muda a visibilidade do rótulo que indica que algum campo não foi corretamente preenchido
+	 * @param visivel <code>boolean</code> com <code>true</code> se for visível e <code>false</code> caso contrário
+	 */
 	public void setLblCamposErrados(boolean visivel) {
 		this.lblCamposErrados.setVisible(visivel);
 	}

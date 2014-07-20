@@ -17,17 +17,31 @@ import tsi.too.bvb.persistencia.ClienteDAO;
 import tsi.too.bvb.persistencia.FuncionarioDAO;
 import tsi.too.bvb.validacoes.ValidarDados;
 
+/** Classe para tratar os eventos de ação da janela <code>IgExcluirCadastro</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see ActionListener
+ */
 public class TEActionExcluirCadastro implements ActionListener {
 
 	private IgExcluirCadastro igExcluirCadastro;
 	private int tipo;
 
+	/** Cria uma instância do Tratador de eventos de ação da janela <code>IgExcluirCadastro</code>
+	 * @param igExcluirCadastro <code>IgExcluirCadastro</code> que será manipulada
+	 * @param tipo <code>int</code> referênte ao tipo da exclusão: 1 - Cliente, 2 - Funcionário, 3 - Agência
+	 */
 	public TEActionExcluirCadastro(IgExcluirCadastro igExcluirCadastro, int tipo) {
 		super();
 		this.igExcluirCadastro = igExcluirCadastro;
 		this.tipo = tipo;
 	}
 
+	/** Trata os eventos de ação dos elementos da janela <code>IgExcluirCadastro</code>
+	 * @see ActionListener
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -87,7 +101,7 @@ public class TEActionExcluirCadastro implements ActionListener {
 								            "\n underscore (_) ou ponto (.).");
 				}
 				else
-					new JanelaPopUpErro(igExcluirCadastro, "BVB - Consulta de Funcionário", " Entrada inválida!\n"
+					new JanelaPopUpErro(igExcluirCadastro, "BVB - Exclusão de Funcionário", " Entrada inválida!\n"
 							            + " O campo de busca não pode ser vazio.");
 				break;
 			// fim case: 2
@@ -137,13 +151,18 @@ public class TEActionExcluirCadastro implements ActionListener {
 			// fim case: 1
 			
 			case 2:
-				janelaPopUpPergunta = new JanelaPopUpPergunta(igExcluirCadastro, "BVB - Exclusão de Funcionário", " Esta operação irá excluir " +
-                                                              "permanentemente o funcionário e todos" +
-						                                      "\n os registros de conexão relacionados." +
-                                                              "\n\n Deseja continuar assim mesmo?");
-				if(janelaPopUpPergunta.isSim())
-					new FuncionarioDAO().excluir(BancoDeDadosBVB.getInstance(), igExcluirCadastro.getPBuscarFuncionario().getLoginTextField()
-							                     .getText());
+				if(!igExcluirCadastro.getFuncionario().getNomeUsuario().equals(igExcluirCadastro.getPBuscarFuncionario()
+						                                                       .getLoginTextField().getText())) {
+					janelaPopUpPergunta = new JanelaPopUpPergunta(igExcluirCadastro, "BVB - Exclusão de Funcionário", " Esta operação irá excluir " +
+									                              "permanentemente o funcionário e todos" +
+									                              "\n os registros de conexão relacionados." +
+									                              "\n\n Deseja continuar assim mesmo?");
+					if(janelaPopUpPergunta.isSim())
+						new FuncionarioDAO().excluir(BancoDeDadosBVB.getInstance(), igExcluirCadastro.getPBuscarFuncionario().getLoginTextField()
+								                     .getText());
+				}
+				else
+					new JanelaPopUpErro(igExcluirCadastro, "BVB - Exclusão de Funcionário", " Não é possível excluir o próprio cadastro!");
 			break;
 			// fim case: 2
 			
@@ -159,7 +178,7 @@ public class TEActionExcluirCadastro implements ActionListener {
             // fim case: 3				                 
 			} //fim switch(tipo)
 			
-			if(janelaPopUpPergunta.isSim()) {
+			if(janelaPopUpPergunta != null && janelaPopUpPergunta.isSim()) {
 				new JanelaPopUpInfo(igExcluirCadastro, "BVB - Exclusão", " Exclusão realizada com sucesso!");
 				igExcluirCadastro.escondeOpcoesExcluir();
 				

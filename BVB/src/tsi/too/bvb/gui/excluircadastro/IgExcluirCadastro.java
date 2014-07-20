@@ -23,17 +23,27 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
+import tsi.too.bvb.entidades.funcionario.Funcionario;
 import tsi.too.bvb.eventos.excluircadastro.TEActionExcluirCadastro;
 import tsi.too.bvb.gui.PainelBuscarAgencia;
 import tsi.too.bvb.gui.PainelBuscarCliente;
 import tsi.too.bvb.gui.PainelBuscarFuncionario;
 
+/** Classe que define a GUI de exclusão de cadastro do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ */
 public class IgExcluirCadastro extends JDialog {
 
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = -7001548312817723522L;
+	
+	private Funcionario funcionario;
 	
 	private CardLayout cardLayout= new CardLayout();
 	
@@ -49,10 +59,19 @@ public class IgExcluirCadastro extends JDialog {
 	private JEditorPane dadosEditorPane;
 	private JButton btnAlterar;
 
-	/**
-	 * Create the dialog.
-	 */
-	public IgExcluirCadastro(Window janelaPai, String titulo, String txtTitulo, String txtSubTitulo, int tipo) {
+	/** Cria uma instância da janela de exclusão de cadastro do sistema BVB
+	 * @param janelaPai <code>Window</code> com a janela pai da caixa de diálogo <code>IgExcluirCadastro</code>
+	 * @param funcionario <code>Funcionario</code> com os dados do funcionário logado
+	 * @param titulo <code>String</code> com o título da janela
+	 * @param txtTitulo <code>String</code> com o título do corpo da janela
+	 * @param txtSubTitulo <code>String</code> com o subtítulo do corpo da janela
+	 * @param tipo <code>final</code> <code>int</code> com o tipo de exclusão: 1 - Cliente, 2 - Funcionário, 3 - Agência
+	 * 
+	 * @see Window
+	 */	
+	public IgExcluirCadastro(Window janelaPai, Funcionario funcionario, String titulo, String txtTitulo, String txtSubTitulo, int tipo) {
+		this.funcionario = funcionario;
+		
 		setModal(true);
 		Color pomergante = new Color(192, 57, 43);
 		
@@ -171,6 +190,9 @@ public class IgExcluirCadastro extends JDialog {
 		setVisible(true);
 	}
 	
+	/** Exibe o painel da janela <code>IgExcluirCadastro</code> de acordo com o tipo de exclusão
+	 * @param tipo <code>int</code> com o tipo de exclusão: 1 - Cliente, 2 - Funcionário, 3 - Agência
+	 */
 	private void exibeCardPainel(int tipo) {
 		switch(tipo) {
 		case 1: cardLayout.show(cardPanel, "clientePanel"); break;
@@ -179,6 +201,9 @@ public class IgExcluirCadastro extends JDialog {
 		}
 	}
 	
+	/** Exibe as opções de alterar dados da janela <code>IgExcluirCadastro</code>
+	 * @param dados <code>String</code> com o texto do campo de texto dados
+	 */
 	public void exibeOpcoesExcluir(String dados) {
 		btnExcluir.setEnabled(true);
 		btnBuscar.setVisible(false);
@@ -186,6 +211,8 @@ public class IgExcluirCadastro extends JDialog {
 		dadosEditorPane.setText(dados);
 	}
 	
+	/** Esconde as opções de alterar dados da janela <code>IgExcluirCadastro</code>
+	 */
 	public void escondeOpcoesExcluir() {
 		btnExcluir.setEnabled(false);
 		btnBuscar.setVisible(true);
@@ -193,30 +220,58 @@ public class IgExcluirCadastro extends JDialog {
 		dadosEditorPane.setText("");
 	}
 
+	/** Retorna um <code>PainelBuscarCliente</code> referênte ao painel do cliente
+	 * @return <code>PainelBuscarCliente</code> referênte ao painel do cliente
+	 */
 	public PainelBuscarCliente getPBuscarCliente() {
 		return pBuscarCliente;
 	}
 
+	/** Retorna um <code>PainelBuscarFuncionario</code> referênte ao painel do funcionário
+	 * @return <code>PainelBuscarFuncionario</code> referênte ao painel do funcionário
+	 */
 	public PainelBuscarFuncionario getPBuscarFuncionario() {
 		return pBuscarFuncionario;
 	}
 
+	/** Retorna um <code>PainelBuscarAgencia</code> referênte ao painel da agência
+	 * @return <code>PainelBuscarAgencia</code> referênte ao painel da agência
+	 */
 	public PainelBuscarAgencia getPBuscarAgencia() {
 		return pBuscarAgencia;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão buscar
+	 * @return <code>JButton</code> com o botão buscar
+	 */
 	public JButton getBtnBuscar() {
 		return btnBuscar;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão alterar
+	 * @return <code>JButton</code> com o botão alterar
+	 */
 	public JButton getBtnAlterar() {
 		return btnAlterar;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão excluir
+	 * @return <code>JButton</code> com o botão excluir
+	 */
 	public JButton getBtnExcluir() {
 		return btnExcluir;
 	}
 
+	/** Retorna um <code>Funcionario</code> com os dados do funcionário logado
+	 * @return <code>Funcionario</code> com os dados do funcionário logado
+	 */
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	/** Retorna um <code>int</code> com o número de "cartas" do painel
+	 * @return <code>int</code> com o número de "cartas" do painel
+	 */
 	public int getNUM_CARDS() {
 		return NUM_CARDS;
 	}

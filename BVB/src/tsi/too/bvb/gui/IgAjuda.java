@@ -26,10 +26,17 @@ import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
 
+/** Classe que define a GUI de ajuda do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ */
 public class IgAjuda extends JDialog {
 	
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = -708231668410033376L;
 	
@@ -50,9 +57,11 @@ public class IgAjuda extends JDialog {
 	private JRadioButton rdbtnPerg9;
 	private JRadioButton rdbtnPerg11;
 
-	/**
-	 * Create the frame.
-	 */
+	/** Cria uma instância da janela de ajuda do sistema BVB
+	 * @param janelaPai <code>Window</code> com a janela pai da caixa de diálogo <code>IgAjuda</code>
+	 * 
+	 * @see Window
+	 */	
 	public IgAjuda(Window janelaPai) {
 		setModal(true);
 		final Color sunFlower = new Color(241, 196, 15);
@@ -269,6 +278,8 @@ public class IgAjuda extends JDialog {
 		setVisible(true);
 	}
 	
+	/** Atualiza o campo de texto de resposta de acordo com o botão de rádio selecionado
+	 */
 	private void atualizarResposta() {
 		if(rdbtnPerg1.isSelected())
 			respostaEditorPane.setText(" Selecione a aba correspondente ao tipo de CADASTRO"
@@ -328,4 +339,5 @@ public class IgAjuda extends JDialog {
 			respostaEditorPane.setText(" Selecione o item de menu 'Arquivo' e clique no item de"
 					+ "\n menu 'Sair'. Ou use as teclas de atalho 'Ctrl+S'.");
 	}
+	
 } // class IgAjuda

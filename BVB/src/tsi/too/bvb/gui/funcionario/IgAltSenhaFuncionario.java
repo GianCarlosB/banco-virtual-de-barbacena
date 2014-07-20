@@ -30,10 +30,18 @@ import tsi.too.bvb.gui.TratadorDeCampos;
 import tsi.too.bvb.validacoes.Criptografia;
 import tsi.too.bvb.validacoes.ValidarDados;
 
+/** Classe que define a GUI de alteração de senha de funcionário do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ * @see TratadorDeCampos
+ */
 public class IgAltSenhaFuncionario extends JDialog implements TratadorDeCampos {
 	
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = -2280225669362216887L;
 	
@@ -48,9 +56,13 @@ public class IgAltSenhaFuncionario extends JDialog implements TratadorDeCampos {
 	private JPasswordField rPasswordField;
 	private JPasswordField aPasswordField;
 	
-	/**
-	 * Create the frame.
-	 */
+	/** Cria uma instância da janela de alteração de senha de funcionário do sistema BVB
+	 * @param janelaPai <code>Window</code> com a janela pai da caixa de diálogo <code>IgAltSenhaFuncionario</code>
+	 * @param funcionario <code>Funcionario</code> referênte ao objeto onde os dados serão salvos
+	 * 
+	 * @see Window
+	 * @see Funcionario
+	 */	
 	public IgAltSenhaFuncionario(Window janelaPai, Funcionario funcionario) {
 		this.senhaAntiga = funcionario.getSenha();
 		setModal(true);
@@ -176,6 +188,8 @@ public class IgAltSenhaFuncionario extends JDialog implements TratadorDeCampos {
 		setVisible(true);
 	}
 	
+	/** Limpa os campos da janela
+	 */
 	@Override
 	public void limparCampos() {
 		inserirBordasPadrao();
@@ -185,6 +199,9 @@ public class IgAltSenhaFuncionario extends JDialog implements TratadorDeCampos {
 		rPasswordField.setText("");		
 	}
 	
+	/** Salva os dados inseridos na janela em um objeto do tipo <code>Funcionario</code>
+	 * @param funcionario <code>Object</code> referênte ao objeto que será salvo
+	 */
 	@Override
 	public void salvarCampos(Object funcionario) {
 		try {
@@ -195,6 +212,11 @@ public class IgAltSenhaFuncionario extends JDialog implements TratadorDeCampos {
 		}
 	}
 
+	/** Verifica se os campos da janela foram preenchidos corretamente. Os campos errados 
+	 * recebem uma borda vermelha
+	 *  @return <code>boolean</code> com <code>true</code> caso todos os campos tenham sido preenchidos corretamente, 
+	 *  e <code>false</code> caso contrário
+	 */
 	@Override
 	public boolean validarCampos() {
 		boolean valido = true;
@@ -229,38 +251,55 @@ public class IgAltSenhaFuncionario extends JDialog implements TratadorDeCampos {
 		return valido;
 	}
 	
+	/** Insere a borda padrão nos campos da janela
+	 */
 	@Override
 	public void inserirBordasPadrao() {
 		aPasswordField.setBorder(UIManager.getBorder("PasswordField.border"));
 		nPasswordField.setBorder(UIManager.getBorder("PasswordField.border"));
 		rPasswordField.setBorder(UIManager.getBorder("PasswordField.border"));
 	}
-	
-	public JPasswordField getnPasswordField() {
-		return nPasswordField;
-	}
 
+	/** Retorna um <code>JButton</code> com o botão alterar
+	 * @return <code>JButton</code> com o botão alterar
+	 */
 	public JButton getBtnAlterar() {
 		return btnAlterar;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão limpar
+	 * @return <code>JButton</code> com o botão limpar
+	 */
 	public JButton getBtnLimpar() {
 		return btnLimpar;
 	}
 
-	public JButton getBtnCancelar() {
-		return btnCancelar;
+	/** Retorna um <code>JPasswordField</code> com o campo de texto senha nova
+	 * @return <code>JPasswordField</code> com o campo de texto senha nova
+	 */
+	public JPasswordField getnPasswordField() {
+		return nPasswordField;
 	}
 
-	public JPasswordField getrPasswordField() {
-		return rPasswordField;
-	}
-
+	/** Retorna um <code>JPasswordField</code> com o campo de texto senha antiga
+	 * @return <code>JPasswordField</code> com o campo de texto senha antiga
+	 */
 	public JPasswordField getaPasswordField() {
 		return aPasswordField;
 	}
 
+	/** Retorna um <code>JPasswordField</code> com o campo de texto senha repetida
+	 * @return <code>JPasswordField</code> com o campo de texto senha repetida
+	 */
+	public JPasswordField getrPasswordField() {
+		return rPasswordField;
+	}
+
+	/** Muda a visibilidade do rótulo que indica que algum campo não foi corretamente preenchido
+	 * @param visivel <code>boolean</code> com <code>true</code> se for visível e <code>false</code> caso contrário
+	 */
 	public void setLblCamposErrados(boolean visivel) {
 		this.lblCamposErrados.setVisible(visivel);
 	}
+	
 } // class IgAltSenhaFuncionario

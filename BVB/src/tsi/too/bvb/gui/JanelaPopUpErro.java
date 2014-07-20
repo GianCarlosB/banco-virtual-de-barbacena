@@ -25,19 +25,31 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
+/** Classe que define a GUI de uma janela popup de erro
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ */
 public class JanelaPopUpErro extends JDialog {
 
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = -5819037031569739045L;
 	
 	private final JPanel contentPanel = new JPanel();
 
-	/**
-	 * Create the dialog.
-	 * @wbp.parser.constructor
-	 */
+	/** Cria uma instância da janela popup de erro causado por um exceção
+	 * @param janelaPai <code>Window</code> com a janela pai da caixa de diálogo <code>JanelaPopUpErro</code>
+	 * @param titulo <code>String</code> com o título da janela
+	 * @param msgErro <code>String</code> com a mensagem que será mostrada na janela
+	 * @param e <code>Exception</code> com a exceção
+	 * 
+	 * @see Window
+	 * @see Exception
+	 */	
 	public JanelaPopUpErro(Window janelaPai, String titulo, String msgErro, Exception e) {
 		setType(Type.POPUP);
 		setModal(true);
@@ -111,9 +123,15 @@ public class JanelaPopUpErro extends JDialog {
 		setVisible(true);
 	}
 	
-	/**
-	 * Create the dialog.
-	 */
+	/** Cria uma instância da janela popup de erro causado por um exceção. A menssagem mostrada na janela será
+	 * a menssagem da exceção
+	 * @param janelaPai <code>Window</code> com a janela pai da caixa de diálogo <code>JanelaPopUpErro</code>
+	 * @param titulo <code>String</code> com o título da janela
+	 * @param e <code>Exception</code> com a exceção
+	 * 
+	 * @see Window
+	 * @see Exception
+	 */	
 	public JanelaPopUpErro(Window janelaPai, String titulo, Exception e) {
 		setType(Type.POPUP);
 		setModal(true);
@@ -191,9 +209,13 @@ public class JanelaPopUpErro extends JDialog {
 		setVisible(true);
 	}
 	
-	/**
-	 * Create the dialog.
-	 */
+	/** Cria uma instância da janela popup de erro
+	 * @param janelaPai <code>Window</code> com a janela pai da caixa de diálogo <code>JanelaPopUpErro</code>
+	 * @param titulo <code>String</code> com o título da janela
+	 * @param msgErro <code>String</code> com a mensagem que será mostrada na janela
+	 * 
+	 * @see Window
+	 */	
 	public JanelaPopUpErro(Window janelaPai, String titulo, String msgErro) {
 		setType(Type.POPUP);
 		setModal(true);
@@ -251,11 +273,15 @@ public class JanelaPopUpErro extends JDialog {
 		setVisible(true);
 	}
 	
-	public void executarSomErro() {
+	/** Executa o som de erro
+	 */	
+	private void executarSomErro() {
 		Applet.newAudioClip(JanelaPopUpErro.class.getResource("/tsi/too/bvb/recursos/sons/Windows Error.wav")).play();
 	}
 	
-	public void executarSomErroCritico() {
+	/** Executa o som de erro crítico
+	 */	
+	private void executarSomErroCritico() {
 		Applet.newAudioClip(JanelaPopUpErro.class.getResource("/tsi/too/bvb/recursos/sons/Windows Critical Stop.wav")).play();
 	}
 	

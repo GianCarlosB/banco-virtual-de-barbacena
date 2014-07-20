@@ -27,10 +27,17 @@ import tsi.too.bvb.eventos.contabancaria.TEActionAbrirCB;
 import tsi.too.bvb.gui.PainelConfCad;
 import tsi.too.bvb.gui.TratadorDeCampos;
 
+/** Classe que define a GUI de abertura de conta bancária do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ */
 public class IgAbrirContaBancaria extends JDialog {
 
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = 6372789872654518383L;
 
@@ -56,9 +63,13 @@ public class IgAbrirContaBancaria extends JDialog {
 	private JLabel lblCamposErrados;
 	private JSeparator separator;
 
-	/**
-	 * Create the frame.
-	 */
+	/** Cria uma instância da janela de abertura de conta bancária do sistema BVB
+	 * @param janelaPai <code>Window</code> com a janela pai da caixa de diálogo <code>IgAbrirContaBancaria</code>
+	 * @param contaBancaria <code>ContaBancaria</code> referênte ao objeto onde os dados serão salvos
+	 * 
+	 * @see Window
+	 * @see ContaBancaria
+	 */	
 	public IgAbrirContaBancaria(Window janelaPai, ContaBancaria contaBancaria) {
 		setModal(true);
 		Color turquoise = new Color(26, 188, 156);
@@ -181,6 +192,11 @@ public class IgAbrirContaBancaria extends JDialog {
 		setVisible(true);
 	}
 	
+	/** Verifica qual painel do painel de "cartas" está visível
+	 *  @return <code>TratadorDeCampos</code> com o painel visível ou <code>null</code> caso nem um esteja visível
+	 *  
+	 *  @see TratadorDeCampos
+	 */
 	public TratadorDeCampos obterPainelVisivel() {
 		int i = 0;
 		Component paineis[] = cardPanel.getComponents();
@@ -197,62 +213,100 @@ public class IgAbrirContaBancaria extends JDialog {
 		return null;
 	}
 
-	public int getNUM_CARDS() {
-		return NUM_CARDS;
-	}
-
-	public JButton getBtnAnterior() {
-		return btnAnterior;
-	}
-
-	public JButton getBtnProximo() {
-		return btnProximo;
-	}
-
-	public JButton getBtnLimpar() {
-		return btnLimpar;
-	}
-
-	public JButton getBtnCancelar() {
-		return btnCancelar;
-	}
-
-	public JButton getBtnFinalizar() {
-		return btnFinalizar;
-	}
-
+	/** Retorna um <code>CardLayout</code> com layout utilizado no painel de "cartas"
+	 * @return <code>CardLayout</code> com layout utilizado no painel de "cartas"
+	 */
 	public CardLayout getCardLayout() {
 		return cardLayout;
 	}
 	
+	/** Retorna um <code>JButton</code> com o botão anterior
+	 * @return <code>JButton</code> com o botão anterior
+	 */
+	public JButton getBtnAnterior() {
+		return btnAnterior;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão próximo
+	 * @return <code>JButton</code> com o botão próximo
+	 */
+	public JButton getBtnProximo() {
+		return btnProximo;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão limpar
+	 * @return <code>JButton</code> com o botão limpar
+	 */
+	public JButton getBtnLimpar() {
+		return btnLimpar;
+	}
+
+	/** Retorna um <code>JButton</code> com o botão finalizar
+	 * @return <code>JButton</code> com o botão finalizar
+	 */
+	public JButton getBtnFinalizar() {
+		return btnFinalizar;
+	}
+	
+	/** Retorna um <code>JPanel</code> com o painel de "cartas"
+	 * @return <code>JPanel</code> com o painel de "cartas"
+	 */
 	public JPanel getCardPanel() {
 		return cardPanel;
 	}
 
+	/** Retorna um <code>PainelAbContaDadosChave</code> referênte ao painel dos dados chave
+	 * @return <code>PainelAbContaDadosChave</code> referênte ao painel dos dados chave
+	 */
 	public PainelAbContaDadosChave getpAbContaDadosChave() {
 		return pAbContaDadosChave;
 	}
 
+	/** Retorna um <code>PainelAbContaDadosChave</code> referênte ao painel dos dados secundários
+	 * @return <code>PainelAbContaDadosChave</code> referênte ao painel dos dados secundários
+	 */
 	public PainelAbContaDadosSec getpAbContaDadosSec() {
 		return pAbContaDadosSec;
 	}
 
+	/** Retorna um <code>PainelAbContaDadosChave</code> referênte ao painel das senhas
+	 * @return <code>PainelAbContaDadosChave</code> referênte ao painel das senhas
+	 */
 	public PainelAbContaSenhas getpAbContaSenhas() {
 		return pAbContaSenhas;
 	}
 
+	/** Retorna um <code>PainelConfCad</code> referênte ao painel de confirmação
+	 * @return <code>PainelConfCad</code> referênte ao painel de confirmação
+	 */
 	public PainelConfCad getpConfCad() {
 		return pConfCad;
 	}
 
+	/** Muda o campo de texto do subtítulo
+	 * @param subTitulo <code>String</code> com o novo subtítulo do campo
+	 */
 	public void setTxtpnSubTitulo(String subTitulo) {
 		this.txtpnSubTitulo.setText(subTitulo);
 	}
 
+	/** Muda o valor da barra de progresso
+	 * @param valor <code>int</code> com o novo valor da barra de progresso
+	 */
 	public void setProgressBar(int valor) {
 		this.progressBar.setValue(valor);
 	}
 	
+	/** Retorna um <code>int</code> com o número de "cartas" do painel
+	 * @return <code>int</code> com o número de "cartas" do painel
+	 */
+	public int getNUM_CARDS() {
+		return NUM_CARDS;
+	}
+	
+	/** Muda a visibilidade do rótulo que indica que algum campo não foi corretamente preenchido
+	 * @param visivel <code>boolean</code> com <code>true</code> se for visível e <code>false</code> caso contrário
+	 */
 	public void setLblCamposErrados(boolean visivel) {
 		this.lblCamposErrados.setVisible(visivel);
 	}

@@ -14,10 +14,21 @@ import tsi.too.bvb.entidades.contabancaria.ContaBancaria;
 import tsi.too.bvb.gui.TratadorDeCampos;
 import tsi.too.bvb.validacoes.ValidarDados;
 
+/** Classe que define o painel senhas utilizado pelas janelas <code>IgAbrirContaBancaria</code> e 
+ * <code>IgCriarAplicacao</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JPanel
+ * @see IgAbrirContaBancaria
+ * @see IgCriarAplicacao
+ * @see TratadorDeCampos
+ */
 public class PainelAbContaSenhas extends JPanel implements TratadorDeCampos {
 
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = 6747114381339596765L;
 	private JPasswordField senhaNumPasswordField;
@@ -25,9 +36,9 @@ public class PainelAbContaSenhas extends JPanel implements TratadorDeCampos {
 	private JPasswordField rSenhaNumPasswordField;
 	private JPasswordField rSenhaAlfPasswordField;
 
-	/**
-	 * Create the panel.
-	 */
+	/** Cria uma instância do painel senhas utilizado pelas janelas <code>IgAbrirContaBancaria</code> e 
+	 * <code>IgCriarAplicacao</code>
+	 */	
 	public PainelAbContaSenhas() {
 		setLayout(null);
 		
@@ -88,6 +99,8 @@ public class PainelAbContaSenhas extends JPanel implements TratadorDeCampos {
 		lblSenhaAlf.setLabelFor(senhaAlfPasswordField);
 	}
 
+	/** Limpa os campos do painel
+	 */
 	@Override
 	public void limparCampos() {
 		inserirBordasPadrao();
@@ -98,12 +111,20 @@ public class PainelAbContaSenhas extends JPanel implements TratadorDeCampos {
 		rSenhaAlfPasswordField.setText("");
 	}
 
+	/** Salva os dados inseridos na janela em um objeto do tipo <code>ContaBancaria</code>
+	 * @param contaBancaria <code>Object</code> referênte ao objeto que será salvo
+	 */
 	@Override
 	public void salvarCampos(Object contaBancaria) {
 		((ContaBancaria) contaBancaria).setSenhaNumerica(new String(senhaNumPasswordField.getPassword()));
 		((ContaBancaria) contaBancaria).setSenhaAlfabetica(new String(senhaAlfPasswordField.getPassword()));
 	}
 
+	/** Verifica se os campos do painel foram preenchidos corretamente. Os campos errados 
+	 * recebem uma borda vermelha
+	 *  @return <code>boolean</code> com <code>true</code> caso todos os campos tenham sido preenchidos corretamente, 
+	 *  e <code>false</code> caso contrário
+	 */
 	@Override
 	public boolean validarCampos() {
 		boolean valido = true;
@@ -143,6 +164,8 @@ public class PainelAbContaSenhas extends JPanel implements TratadorDeCampos {
 		return valido;
 	}
 
+	/** Insere a borda padrão nos campos do painel
+	 */
 	@Override
 	public void inserirBordasPadrao() {
 		senhaNumPasswordField.setBorder(UIManager.getBorder("FormattedTextField.border"));

@@ -11,15 +11,28 @@ import tsi.too.bvb.gui.funcionario.IgConsultarFuncionario;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 import tsi.too.bvb.persistencia.FuncionarioDAO;
 
+/** Classe para tratar os eventos do teclado da janela <code>IgConsultarFuncionario</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see KeyAdapter
+ */
 public class TETecladoConsultarFuncionario extends KeyAdapter {
 	
 	private IgConsultarFuncionario igConsultarFuncionario;
 
+	/** Cria uma instância do Tratador de eventos do teclado da janela <code>IgConsultarFuncionario</code>
+	 * @param igConsultarFuncionario <code>IgConsultarFuncionario</code> que será manipulada
+	 */
 	public TETecladoConsultarFuncionario(IgConsultarFuncionario igConsultarFuncionario) {
 		super();
 		this.igConsultarFuncionario = igConsultarFuncionario;
 	}
 
+	/** Trata os eventos do teclado dos elementos da janela <code>IgConsultarFuncionario</code>
+	 * @see KeyAdapter
+	 */
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub

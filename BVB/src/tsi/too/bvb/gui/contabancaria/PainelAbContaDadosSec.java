@@ -22,10 +22,21 @@ import tsi.too.bvb.entidades.tiposenumerados.TipoConta;
 import tsi.too.bvb.gui.TratadorDeCampos;
 import tsi.too.bvb.validacoes.ValidarDados;
 
+/** Classe que define o painel dados secundários utilizado pelas janelas <code>IgAbrirContaBancaria</code> e 
+ * <code>IgCriarAplicacao</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JPanel
+ * @see IgAbrirContaBancaria
+ * @see IgCriarAplicacao
+ * @see TratadorDeCampos
+ */
 public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = -690399083609439414L;
 	
@@ -38,9 +49,9 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 	private JDatePickerImpl datePicker;
 	private JLabel lblContaSalario;
 
-	/**
-	 * Create the panel.
-	 */
+	/** Cria uma instância do painel dados secundários utilizado pelas janelas <code>IgAbrirContaBancaria</code> e 
+	 * <code>IgCriarAplicacao</code>
+	 */	
 	public PainelAbContaDadosSec() {
 		setLayout(null);
 		
@@ -86,6 +97,8 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 		add(saldoTextField);
 	}
 
+	/** Limpa os campos do painel
+	 */
 	@Override
 	public void limparCampos() {
 		inserirBordasPadrao();
@@ -96,6 +109,9 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 		chckbxContaSalario.setSelected(false);
 	}
 
+	/** Salva os dados inseridos na janela em um objeto do tipo <code>ContaBancaria</code>
+	 * @param contaBancaria <code>Object</code> referênte ao objeto que será salvo
+	 */
 	@Override
 	public void salvarCampos(Object contaBancaria) {
 		((ContaBancaria) contaBancaria).setDataAbertura((Date) datePicker.getModel().getValue());
@@ -103,6 +119,11 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 		((ContaBancaria) contaBancaria).setContaSalario(chckbxContaSalario.isSelected());
 	}
 
+	/** Verifica se os campos do painel foram preenchidos corretamente. Os campos errados 
+	 * recebem uma borda vermelha
+	 *  @return <code>boolean</code> com <code>true</code> caso todos os campos tenham sido preenchidos corretamente, 
+	 *  e <code>false</code> caso contrário
+	 */
 	@Override
 	public boolean validarCampos() {
 		boolean valido = true;
@@ -164,12 +185,17 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 		return valido;
 	}
 	
+	/** Insere a borda padrão nos campos do painel
+	 */
 	@Override
 	public void inserirBordasPadrao() {
 		datePicker.setBorder(BorderFactory.createLineBorder(getBackground (), 2));
 		saldoTextField.setBorder(UIManager.getBorder("TextField.border"));
 	}
 
+	/** Verifica se a caixa de checagem conta salário deve ser exibida. Ela deve ser exibida caso o tipo da 
+	 * conta seja corrente
+	 */
 	public void visualizacaoOpcContaSal() {
 		boolean mostrar = true;
 		
@@ -182,6 +208,8 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 		chckbxContaSalario.setEnabled(mostrar);
 	}
 	
+	/** Atualiza a dica do campo saldo de acordo com o tipo da conta
+	 */
 	public void atualizaToolTipTextSaldo() {
 		final String SALDO_TOOLTIPTEXT = "este campo \u00E9 de preenchimento obrigat\u00F3rio, deve conter apenas d\u00EDgitos decimais";
 		
@@ -195,10 +223,18 @@ public class PainelAbContaDadosSec extends JPanel implements TratadorDeCampos {
 			saldoTextField.setToolTipText(SALDO_TOOLTIPTEXT + " e valor de no mínimo R$ 15.000,00");
 	}
 
+	/** Retorna o tipo da conta
+	 * @return <code>TipoConta</code> com o tipo da conta
+	 */
 	public TipoConta getTipoConta() {
 		return tipoConta;
 	}
 
+	/** Muda o campo de tipo da conta
+	 * @param tipoConta <code>TipoConta</code> com o novo tipo da conta
+	 * 
+	 * @see TipoConta
+	 */
 	public void setTipoConta(TipoConta tipoConta) {
 		this.tipoConta = tipoConta;
 	}

@@ -1,49 +1,70 @@
 package tsi.too.bvb.entidades.tiposenumerados;
 
+/** Enumeração com os meses do ano
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ */ 
 public enum Mes {
 	
+    /** Mês de Janeiro */
 	JANEIRO(0, "Janeiro"),
+	/** Mês de Fevereiro */
 	FEVEREIRO(1, "Fevereiro"),
+	/** Mês de Março */
 	MARCO(2, "Março"),
+	/** Mês de Abriu */
 	ABRIU(3, "Abriu"),
+	/** Mês de Maio */
 	MAIO(4, "Maio"),
+	/** Mês de Junho */
 	JUNHO(5, "Junho"),
+	/** Mês de Julho */
 	JULHO(6, "Julho"),
+	/** Mês de Agosto */
 	AGOSTO(7, "Agosto"),
+	/** Mês de Setembro */
 	SETEMBRO(8, "Setembro"),
+	/** Mês de Outrubro */
 	OUTUBRO(9, "Outrubro"),
+	/** Mês de Novembro */
 	NOVEMBRO(10, "Novembro"),
+	/** Mês de Dezembro */
 	DEZEMBRO(11, "Dezembro");
 	
 	private int numero;
 	private String descricao;
 	private final static int NUM_TIPOS = 12;
-
+	
 	private Mes(int numero, String descricao) {
 		this.numero = numero;
 		this.descricao = descricao;
 	}
-
+	
+	/** Retorna um <code>int</code> com o número do mês
+	 * @return <code>int</code> com o número do mês
+	 */
 	public int getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
-
+	/** Retorna uma <code>String</code> o nome do mês
+	 * @return <code>String</code> o nome do mês
+	 */
 	public String getDescricao() {
 		return descricao;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
+	/** Retorna um <code>int</code> o número de meses
+	 * @return <code>int</code> o número de meses
+	 */
 	public static int getNumTipos() {
 		return NUM_TIPOS;
 	}
 
+	/** Retorna um <code>String[]</code> com todos os meses da enumeração
+	 * @return <code>String[]</code> com todos os meses da enumeração
+	 */
 	public static String[] obterArrayMeses() {
 		String arrayTipos[] = new String[NUM_TIPOS];
 		int i = 0;
@@ -64,6 +85,10 @@ public enum Mes {
 		return arrayTipos;
 	}
 	
+	/** Retorna um <code>String[]</code> com o número de meses desejados da enumeração
+	 * @param numMeses <code>int</code> com o número de meses desejados no array
+	 * @return <code>String[]</code> com o número de meses desejados da enumeração
+	 */
 	public static String[] obterArrayMeses(int numMeses) {
 		String arrayTipos[] = new String[numMeses];
 		int i = 0;
@@ -84,6 +109,10 @@ public enum Mes {
 		return arrayTipos;
 	}
 	
+	/** Obtém o mês da enumeração corresponte ao parâmetro passado
+	 * @param mes <code>String</code> referêrente ao mês desejado
+	 * @return <code>Mes</code> com o mês desajado ou <code>null</code> caso não seja encontrado
+	 */
 	public static Mes obterMes(String mes) {
 		if(mes.equalsIgnoreCase(JANEIRO.getDescricao()))
 			return JANEIRO;
@@ -113,6 +142,10 @@ public enum Mes {
 		return null;
 	}
 	
+	/** Obtém o mês da enumeração corresponte ao parâmetro passado
+	 * @param numero <code>int</code> referêrente ao mês desejado
+	 * @return <code>Mes</code> com o mês desajado ou <code>null</code> caso não seja encontrado
+	 */
 	public static Mes obterMes(int numero) {
 		if(numero == JANEIRO.getNumero())
 			return JANEIRO;

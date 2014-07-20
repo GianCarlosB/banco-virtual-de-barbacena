@@ -30,14 +30,21 @@ import tsi.too.bvb.entidades.agencia.Agencia;
 import tsi.too.bvb.eventos.agencia.TEActionConsultarAgencia;
 import tsi.too.bvb.eventos.agencia.TETecladoConsultarAgencia;
 
+/** Classe que define a GUI de consulta de agência do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ */
 public class IgConsultarAgencia extends JDialog {
 
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = -733130280527598L;
 	
-	/** <code>int</code> com o número de colunas da tabela com os dados das agências pesquisadas */
+	// Número de colunas da tabela com os dados das agências pesquisadas
 	private final int NUMERO_COLUNAS_TABELA = 2;
 	private int num_linhas;
 	
@@ -54,9 +61,11 @@ public class IgConsultarAgencia extends JDialog {
 	private JTextField descricaoTextField;
 	private JButton btnCancelar;
 
-	/**
-	 * Create the frame.
-	 */
+	/** Cria uma instância da janela de consulta de agência do sistema BVB
+	 * @param janelaPai <code>Window</code> com a janela pai da caixa de diálogo <code>IgConsultarAgencia</code>
+	 * 
+	 * @see Window
+	 */	
 	public IgConsultarAgencia(Window janelaPai) {
 		setModal(true);
 		final Color pumpkin = new Color(211, 84, 0);
@@ -130,7 +139,7 @@ public class IgConsultarAgencia extends JDialog {
 	    };
 		tableConsulta.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {  
 		    /**
-			 * 
+			 * @serial
 			 */
 			private static final long serialVersionUID = -2860037545840868142L;
 
@@ -200,6 +209,9 @@ public class IgConsultarAgencia extends JDialog {
 		setVisible(true);
 	}
 	
+	/** Adiciona linhas à tabela. É inserido o dado da agência que for passado por parâmetro
+	 * @param agencia <code>Agencia</code> com o dado da agência que será inserida na tabela
+	 */
 	public void addLinhasTabela(Agencia agencia) {
 		DefaultTableModel model = ((DefaultTableModel)(tableConsulta.getModel()));
 		model.setNumRows(num_linhas++);
@@ -211,6 +223,11 @@ public class IgConsultarAgencia extends JDialog {
 		model.addRow(linha);
 	}
 	
+	/** Adiciona linhas à tabela. São inseridos os dados das agências que foram passados por parâmetro na lista <code>List</code>
+	 * @param agencias <code>List</code> com os dados das agências que serão inseridos na tabela
+	 * 
+	 * @see List
+	 */
 	public void addLinhasTabela(List<Agencia> agencias) {
 		DefaultTableModel model = limpaTabela();
 		
@@ -225,6 +242,9 @@ public class IgConsultarAgencia extends JDialog {
 		}
 	}
 	
+	/** Limpa a tabela de pesquisa apagando os dados contidos nela
+	 * @return <code>DefaultTableModel</code> com o modelo da tabela
+	 */
 	public DefaultTableModel limpaTabela() {
 		DefaultTableModel model = ((DefaultTableModel)(tableConsulta.getModel()));
 		num_linhas = 0;
@@ -233,11 +253,17 @@ public class IgConsultarAgencia extends JDialog {
 		return model;
 	}
 	
+	/** Limpa os campos da janela <code>IgConsultarAgencia</code>
+	 */
 	public void limpaCampos() {
 		codigoTextField.setText("");
 		descricaoTextField.setText("");
 	}
 	
+	/** Pesquisa se determinada agência foi inserida na tabela
+	 * @param agenca <code>Agencia</code> com os dados da agência que será pesquisada
+	 * @return <code>boolean</code> com <code>true</code> caso a agência tenha sido encontrada, e <code>false</code> caso contrário
+	 */
 	public boolean pesquisaTabela(Agencia agenca) {
 		for(int i = 0; i < num_linhas; i++) {
 			int codigo = Integer.parseInt(tableConsulta.getModel().getValueAt(i, 0).toString());
@@ -248,20 +274,32 @@ public class IgConsultarAgencia extends JDialog {
 		return false;
 	}
 
+	/** Retorna um <code>JTextField</code> com o campo de texto código
+	 * @return <code>JTextField</code> com o campo de texto código
+	 */
 	public JTextField getCodigoTextField() {
 		return codigoTextField;
 	}
+	
+	/** Retorna um <code>JTextField</code> com o campo de texto descrição
+	 * @return <code>JTextField</code> com o campo de texto descrição
+	 */
+	public JTextField getDescricaoTextField() {
+		return descricaoTextField;
+	}
 
+	/** Retorna um <code>JButton</code> com o botão buscar
+	 * @return <code>JButton</code> com o botão buscar
+	 */
 	public JButton getBtnBuscar() {
 		return btnBuscar;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão limpar
+	 * @return <code>JButton</code> com o botão limpar
+	 */
 	public JButton getBtnLimpar() {
 		return btnLimpar;
-	}
-
-	public JTextField getDescricaoTextField() {
-		return descricaoTextField;
 	}
 	
 } // class IgConsultarAgencia

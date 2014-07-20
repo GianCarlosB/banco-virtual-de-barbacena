@@ -15,13 +15,30 @@ import tsi.too.bvb.entidades.tiposenumerados.TipoConta;
 import tsi.too.bvb.gui.JanelaPopUpErro;
 import tsi.too.bvb.validacoes.Criptografia;
 
+/** Classe para manipular os dados das contas bancárias no banco de dados
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ *
+ */
 public class ContaBancariaDAO {
 
+	/** Cria uma <code>ContaBancariaDAO</code> para realizar o CRUD da conta bancária
+	 */
 	public ContaBancariaDAO() {
 		super();
 	}
 	
-	public void criar(BancoDeDadosDAO bdDao, ContaBancaria contaBancaria) {
+	/** Insere uma conta bancária no banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param contaBancaria <code>ContaBancaria</code> que será inserida no banco de dados
+	 * @return <code>boolean</code> com <code>true</code> caso tenha inserido com sucesso, e <code>false</code> caso contrário
+	 * 
+	 * @see BancoDeDadosDAO
+	 * @see ContaBancaria
+	 */
+	public boolean criar(BancoDeDadosDAO bdDao, ContaBancaria contaBancaria) {
 		final String SQL = "INSERT INTO conta_bancaria VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
@@ -41,9 +58,19 @@ public class ContaBancariaDAO {
 		} catch (SQLException | NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			new JanelaPopUpErro(null, "BVB - ERRO", e);
+			return false;
 		}
+		
+		return true;
 	}
 	
+	/** Obtém o próximo valor do número da conta bancária de sua respectiva sequência no banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @return <code>int</code> com o próximo valor do número da conta bancária
+	 * 
+	 * @see BancoDeDadosDAO
+	 */
 	public int proximoValorSequencia(BancoDeDadosDAO bdDao) {
 		final String SQL = "CALL NEXT VALUE FOR seq_conta_bancaria";
 		int proximoValor = 0;
@@ -64,6 +91,15 @@ public class ContaBancariaDAO {
 		return proximoValor;
 	}
 	
+	/** Pesquisa uma conta bancária pelo número no banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param numero <code>String</code> referênte ao número que será procurado
+	 * @return <code>ContaBancaria</code> com os dados da conta bancária encontrada ou <code>null</code> caso não encontre
+	 * 
+	 * @see BancoDeDadosDAO
+	 * @see ContaBancaria
+	 */
 	public ContaBancaria pesquisarNumConta(BancoDeDadosDAO bdDao, String numero) {
 		ContaBancaria contaBancaria = new ContaBancaria();
 		final String SQL = "SELECT * FROM conta_bancaria WHERE numeroConta = ?";
@@ -94,6 +130,18 @@ public class ContaBancariaDAO {
 		return contaBancaria;
 	}
 	
+	/** Pesquisa as contas correntes de um cliente no banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param cpf <code>String</code> referênte ao cpf que será procurado
+	 * @param tipoConta <code>TipoConta</code> referênte ao tipo que será procurado
+	 * @return Uma lista de <code>ContaBancaria</code> com os dados da(s) conta(s) encontrada(s) ou <code>null</code> caso não encontre nem uma
+	 * 
+	 * @see BancoDeDadosDAO
+	 * @see ContaBancaria
+	 * @see TipoConta
+	 * @see List
+	 */
 	public List<ContaBancaria> pesquisarCorrentista(BancoDeDadosDAO bdDao, String cpf, TipoConta tipoConta) {
 		List<ContaBancaria> lista = new ArrayList<>();
 		final String SQL = "SELECT * FROM conta_bancaria WHERE CPF = ?  AND tipoConta = ?";
@@ -123,6 +171,17 @@ public class ContaBancariaDAO {
 		return lista;
 	}
 	
+	/** Pesquisa as contas bancárias que foram abertas em um determinado mês no banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param data <code>Date</code> referênte ao mês que será procurado
+	 * @return Uma lista de <code>ContaBancaria</code> com os dados da(s) conta(s) encontrada(s) ou <code>null</code> caso não encontre nem uma
+	 * 
+	 * @see BancoDeDadosDAO
+	 * @see ContaBancaria
+	 * @see Date
+	 * @see List
+	 */
 	public List<ContaBancaria> pesquisarContas(BancoDeDadosDAO bdDao, Date data) {
 		List<ContaBancaria> lista = new ArrayList<>();
 		final String SQL = "SELECT * FROM conta_bancaria WHERE MONTH(dataAbertura) = " +
@@ -153,6 +212,18 @@ public class ContaBancariaDAO {
 		return lista;
 	}
 	
+	/** Pesquisa as datas em que contas bancárias foram abertas, em um determinado período e agência no banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param codigo <code>String</code> referênte ao código da agência que será procurado
+	 * @param dataIni <code>Date</code> referênte a data inicial que será procurada
+	 * @param dataFin <code>Date</code> referênte a data final que será procurada
+	 * @return Uma coleção set de <code>Date</code> com a(s) data(s) encontrada(s) ou <code>null</code> caso não encontre nem uma
+	 * 
+	 * @see BancoDeDadosDAO
+	 * @see Date
+	 * @see Set
+	 */
 	public Set<Date> pesquisarDatasContasAgencia(BancoDeDadosDAO bdDao, String codigo, Date dataIni, Date dataFin) {
 		Set<Date> set = new HashSet<>();
 		final String SQL = "SELECT * FROM conta_bancaria WHERE codAgencia = ? AND MONTH(dataAbertura) BETWEEN MONTH(CAST(? AS DATE)) AND " +
@@ -185,6 +256,16 @@ public class ContaBancariaDAO {
 		return set;
 	}
 	
+	/** Pesquisa as contas bancárias que foram abertas em uma determinada agência no banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param codigo <code>String</code> referênte ao código da agência que será procurado
+	 * @return Uma lista de <code>ContaBancaria</code> com os dados da(s) conta(s) encontrada(s) ou <code>null</code> caso não encontre nem uma
+	 * 
+	 * @see BancoDeDadosDAO
+	 * @see ContaBancaria
+	 * @see List
+	 */
 	public List<ContaBancaria> pesquisarContasAgencia(BancoDeDadosDAO bdDao, String codigo) {
 		List<ContaBancaria> lista = new ArrayList<>();
 		final String SQL = "SELECT * FROM conta_bancaria WHERE codAgencia = ?";
@@ -213,6 +294,17 @@ public class ContaBancariaDAO {
 		return lista;
 	}
 	
+	/** Pesquisa as contas bancárias que foram abertas em um determinado mês e agência no banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param codigo <code>String</code> referênte ao código da agência que será procurado
+	 * @param data <code>Date</code> referênte ao mês que será procurado
+	 * @return Uma lista de <code>ContaBancaria</code> com os dados da(s) conta(s) encontrada(s) ou <code>null</code> caso não encontre nem uma
+	 * 
+	 * @see BancoDeDadosDAO
+	 * @see ContaBancaria
+	 * @see List
+	 */
 	public List<ContaBancaria> pesquisarContasAgencia(BancoDeDadosDAO bdDao, String codigo, Date data) {
 		List<ContaBancaria> lista = new ArrayList<>();
 		final String SQL = "SELECT * FROM conta_bancaria WHERE codAgencia = ? AND MONTH(dataAbertura) = " +
@@ -244,7 +336,17 @@ public class ContaBancariaDAO {
 		return lista;
 	}
 	
-	public void alterarSaldo(BancoDeDadosDAO bdDao, ContaBancaria contaBancaria) {
+	/** Altera o saldo de uma conta bancária no banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param contaBancaria <code>ContaBancaria</code> cujo número é referênte ao número da conta que será alterada, e o saldo 
+	 * referênte ao novo saldo da conta
+	 * @return <code>boolean</code> com <code>true</code> caso tenha alterado com sucesso, e <code>false</code> caso contrário
+	 * 
+	 * @see BancoDeDadosDAO
+	 * @see ContaBancaria
+	 */
+	public boolean alterarSaldo(BancoDeDadosDAO bdDao, ContaBancaria contaBancaria) {
 		final String SQL = "UPDATE conta_bancaria SET saldo = ? WHERE numeroConta = ?";
 
 		try {
@@ -257,10 +359,23 @@ public class ContaBancariaDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			new JanelaPopUpErro(null, "BVB - ERRO", e);
+			return true;
 		}
+		
+		return false;
 	}
 	
-	public void alterarTipoConta(BancoDeDadosDAO bdDao, ContaBancaria contaBancaria) {
+	/** Altera o tipo de uma conta bancária no banco de dados
+	 * 
+	 * @param bdDao <code>BancoDeDadosDAO</code> referênte a instância do banco de dados onde os métodos de acesso ao banco estão localizados
+	 * @param contaBancaria <code>ContaBancaria</code> cujo número é referênte ao número da conta que será alterada, e o tipo 
+	 * referênte ao novo tipo da conta
+	 * @return <code>boolean</code> com <code>true</code> caso tenha alterado com sucesso, e <code>false</code> caso contrário
+	 * 
+	 * @see BancoDeDadosDAO
+	 * @see ContaBancaria
+	 */
+	public boolean alterarTipoConta(BancoDeDadosDAO bdDao, ContaBancaria contaBancaria) {
 		final String SQL = "UPDATE conta_bancaria SET tipoConta = ? WHERE numeroConta = ?";
 
 		try {
@@ -273,7 +388,10 @@ public class ContaBancariaDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			new JanelaPopUpErro(null, "BVB - ERRO", e);
+			return false;
 		}
+		
+		return true;
 	}
 
 } // class ContaBancariaDAO

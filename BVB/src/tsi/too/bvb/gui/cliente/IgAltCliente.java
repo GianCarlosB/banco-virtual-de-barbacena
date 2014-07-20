@@ -23,9 +23,17 @@ import tsi.too.bvb.entidades.cliente.Cliente;
 import tsi.too.bvb.eventos.cliente.TEActionAlterarCliente;
 import tsi.too.bvb.gui.TratadorDeCampos;
 
+/** Classe que define a GUI de alteração de cliente do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ */
 public class IgAltCliente extends JDialog {
+	
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = -4813322970092459329L;
 	
@@ -46,9 +54,13 @@ public class IgAltCliente extends JDialog {
 	private JTextPane txtpnSubTitulo;
 	private JLabel lblCamposErrados;
 
-	/**
-	 * Create the frame.
-	 */
+	/** Cria uma instância da janela de alteração de cliente do sistema BVB
+	 * @param cliente <code>Cliente</code> com os dados do cliente que será alterado
+	 * @param point <code>Point</code> com as coordenadas de onde a caixa de diálogo <code>IgAltCliente</code> se localizará
+	 * 
+	 * @see Cliente
+	 * @see Point
+	 */	
 	public IgAltCliente(Cliente cliente, Point point) {
 		this.cliente = cliente;
 		
@@ -146,6 +158,11 @@ public class IgAltCliente extends JDialog {
 		setVisible(true);
 	}
 	
+	/** Verifica qual painel do painel de "cartas" está visível
+	 *  @return <code>TratadorDeCampos</code> com o painel visível ou <code>null</code> caso nem um esteja visível
+	 *  
+	 *  @see TratadorDeCampos
+	 */
 	public TratadorDeCampos obterPainelVisivel() {
 		int i = 0;
 		Component paineis[] = cardPanel.getComponents();
@@ -160,50 +177,86 @@ public class IgAltCliente extends JDialog {
 		return null;
 	}
 	
+	/** Retorna um <code>CardLayout</code> com layout utilizado no painel de "cartas"
+	 * @return <code>CardLayout</code> com layout utilizado no painel de "cartas"
+	 */
 	public CardLayout getCardLayout() {
 		return cardLayout;
 	}
 
+	/** Retorna um <code>PainelAltCliente</code> referênte ao painel do cliente
+	 * @return <code>PainelAltCliente</code> referênte ao painel do cliente
+	 */
 	public PainelAltCliente getpAltCliente() {
 		return pAltCliente;
 	}
 
+	/** Retorna um <code>PainelAltEndereco</code> referênte ao painel do endereço
+	 * @return <code>PainelAltEndereco</code> referênte ao painel do endereço
+	 */
 	public PainelAltEndereco getpAltEndereco() {
 		return pAltEndereco;
 	}
 
+	/** Retorna um <code>PainelAltContato</code> referênte ao painel do contato
+	 * @return <code>PainelAltContato</code> referênte ao painel do cantato
+	 */
 	public PainelAltContato getpAltContato() {
 		return pAltContato;
 	}
 
+	/** Retorna um <code>JPanel</code> com o painel de "cartas"
+	 * @return <code>JPanel</code> com o painel de "cartas"
+	 */
 	public JPanel getCardPanel() {
 		return cardPanel;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão anterior
+	 * @return <code>JButton</code> com o botão anterior
+	 */
 	public JButton getBtnAnterior() {
 		return btnAnterior;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão próximo
+	 * @return <code>JButton</code> com o botão próximo
+	 */
 	public JButton getBtnProximo() {
 		return btnProximo;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão finalizar
+	 * @return <code>JButton</code> com o botão finalizar
+	 */
 	public JButton getBtnFinalizar() {
 		return btnFinalizar;
 	}
 	
+	/** Muda o campo de texto do subtítulo
+	 * @param subTitulo <code>String</code> com o novo subtítulo do campo
+	 */
 	public void setTxtpnSubTitulo(String subTitulo) {
 		this.txtpnSubTitulo.setText(subTitulo);
 	}
 
+	/** Retorna um <code>int</code> com o número de "cartas" do painel
+	 * @return <code>int</code> com o número de "cartas" do painel
+	 */
 	public int getNUM_CARDS() {
 		return NUM_CARDS;
 	}
 	
+	/** Retorna um <code>Cliente</code> com os dados do cliente que pode ter sido alterado
+	 * @return <code>Cliente</code> com os dados do cliente que pode ter sido alterado
+	 */
 	public Cliente getCliente() {
 		return cliente;
 	}
 	
+	/** Muda a visibilidade do rótulo que indica que algum campo não foi corretamente preenchido
+	 * @param visivel <code>boolean</code> com <code>true</code> se for visível e <code>false</code> caso contrário
+	 */
 	public void setLblCamposErrados(boolean visivel) {
 		this.lblCamposErrados.setVisible(visivel);
 	}

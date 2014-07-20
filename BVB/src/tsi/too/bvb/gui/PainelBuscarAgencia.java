@@ -6,18 +6,24 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/** Classe que define o painel buscar agência utilizado por diversos componentes GUI do sistema BVB
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JPanel
+ */
 public class PainelBuscarAgencia extends JPanel {
 
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = -4006535614283973222L;
 	
 	private JTextField codigoTextField;
 
-	/**
-	 * Create the panel.
-	 */
+	/** Cria uma instância do painel buscar agência utilizado por diversos componentes GUI do sistema BVB
+	 */	
 	public PainelBuscarAgencia() {
 		setLayout(null);
 		
@@ -35,10 +41,16 @@ public class PainelBuscarAgencia extends JPanel {
 
 	}
 
+	/** Muda o campo de texto código
+	 * @param codigoTextField <code>String</code> com o novo código do campo
+	 */
 	public void setCodigoTextField(String codigoTextField) {
 		this.codigoTextField.setText(codigoTextField);
 	}
 
+	/** Retorna um <code>JTextField</code> com o campo de texto código
+	 * @return <code>JTextField</code> com o campo de texto código
+	 */
 	public JTextField getCodigoTextField() {
 		return codigoTextField;
 	}

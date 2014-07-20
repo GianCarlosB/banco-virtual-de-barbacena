@@ -5,12 +5,25 @@ import tsi.too.bvb.gui.JanelaPopUpErro;
 import tsi.too.bvb.gui.login.IgLogin;
 import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 
-public class bvbApp {
+/** 
+ * Inicia o sistema do Banco Virtual de Barbacena. Cria uma conexão com o banco de dados e a tela de login do sistema
+ *
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see BancoDeDadosBVB
+ * @see IgApresentacao
+ * @see IgLogin
+*/
+public abstract class bvbApp {
 	
+	/** Cria uma instância do programa BVB
+	 * @param args <code>String[]</code> com os argumentos de linha de comando, esses argumentos não são utilizados na aplicação
+	 */
 	public static void main(String[] args) {
 		// Inicia a janela de apresentação (carregamento).
 		IgApresentacao igApresentacao = new IgApresentacao();
-		
+
 		// Inicia a thread que faz a conexão com o banco de dados.
 		Thread threadBancoDeDados = new Thread(BancoDeDadosBVB.getInstance());
 		threadBancoDeDados.start();

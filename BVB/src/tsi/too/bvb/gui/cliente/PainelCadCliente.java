@@ -20,9 +20,19 @@ import tsi.too.bvb.persistencia.BancoDeDadosBVB;
 import tsi.too.bvb.persistencia.ClienteDAO;
 import tsi.too.bvb.validacoes.ValidarDados;
 
+/** Classe que define o painel cliente utilizado pela janela <code>IgCadCliente</code>
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JPanel
+ * @see IgCadCliente
+ * @see TratadorDeCampos
+ */
 public class PainelCadCliente extends JPanel implements TratadorDeCampos {
+	
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = -4165406095601940313L;
 	
@@ -31,9 +41,8 @@ public class PainelCadCliente extends JPanel implements TratadorDeCampos {
 	private JButton btnValidar;
 	private JPanel cpfPanel;
 
-	/**
-	 * Create the panel.
-	 */
+	/** Cria uma instância do painel cliente utilizado pela janela <code>IgCadCliente</code>
+	 */	
 	public PainelCadCliente() {
 		setLayout(null);
 		
@@ -74,6 +83,8 @@ public class PainelCadCliente extends JPanel implements TratadorDeCampos {
 		cpfPanel.add(btnValidar);
 	}
 
+	/** Limpa os campos do painel
+	 */
 	@Override
 	public void limparCampos() {
 		inserirBordasPadrao();
@@ -82,12 +93,20 @@ public class PainelCadCliente extends JPanel implements TratadorDeCampos {
 		nomeTextField.setText("");
 	}
 
+	/** Salva os dados inseridos na janela em um objeto do tipo <code>Cliente</code>
+	 * @param cliente <code>Object</code> referênte ao objeto que será salvo
+	 */
 	@Override
 	public void salvarCampos(Object cliente) {
 		((Cliente) cliente).setCpf(cpfFormattedTextField.getText().replace(".", "").replace("-", ""));
 		((Cliente) cliente).setNome(nomeTextField.getText());
 	}
 
+	/** Verifica se os campos do painel foram preenchidos corretamente. Os campos errados 
+	 * recebem uma borda vermelha
+	 *  @return <code>boolean</code> com <code>true</code> caso todos os campos tenham sido preenchidos corretamente, 
+	 *  e <code>false</code> caso contrário
+	 */
 	@Override
 	public boolean validarCampos() {
 		boolean valido = true;
@@ -103,6 +122,8 @@ public class PainelCadCliente extends JPanel implements TratadorDeCampos {
 		return valido;
 	}
 	
+	/** Insere a borda padrão nos campos do painel
+	 */
 	@Override
 	public void inserirBordasPadrao() {
 		cpfPanel.setBorder(new TitledBorder(null, "N\u00E3o Validado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
@@ -110,6 +131,11 @@ public class PainelCadCliente extends JPanel implements TratadorDeCampos {
 		nomeTextField.setBorder(UIManager.getBorder("TextField.border"));
 	}
 
+	/** Verifica se o campo cpf do painel for preenchido corretamente. Se o campo 
+	 *  estiver errado, receberá uma borda vermelha
+	 *  @return <code>boolean</code> com <code>true</code> caso o campo  tenha sido preenchido corretamente, 
+	 *  e <code>false</code> caso contrário
+	 */
 	public boolean validarCampoCpf() {
 		String cpf = cpfFormattedTextField.getText().replace(".", "").replace("-", "");
 
@@ -133,6 +159,9 @@ public class PainelCadCliente extends JPanel implements TratadorDeCampos {
 		return false;
 	}
 
+	/** Retorna um <code>JButton</code> com o botão validar
+	 * @return <code>JButton</code> com o botão validar
+	 */
 	public JButton getBtnValidar() {
 		return btnValidar;
 	}

@@ -23,18 +23,29 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
+/** Classe que define a GUI de uma janela popup de informação
+ * 
+ * @author Gian Carlos Barros Honório
+ * @author Diego Oliveira
+ * 
+ * @see JDialog
+ */
 public class JanelaPopUpInfo extends JDialog {
 
 	/**
-	 * 
+	 * @serial
 	 */
 	private static final long serialVersionUID = -5819037031569739045L;
 	
 	private final JPanel contentPanel = new JPanel();
 
-	/**
-	 * Create the dialog.
-	 * @wbp.parser.constructor
+	/** Cria uma instância da janela popup de informação
+	 * @param janelaPai <code>Window</code> com a janela pai da caixa de diálogo <code>JanelaPopUpInfo</code>
+	 * @param titulo <code>String</code> com o título da janela
+	 * @param msgInfo <code>String</code> com a mensagem que será mostrada na janela
+	 * @param info <code>String</code> com as informações que serão mostradas na janela
+	 * 
+	 * @see Window
 	 */
 	public JanelaPopUpInfo(Window janelaPai, String titulo, String msgInfo, String info) {
 		setType(Type.POPUP);
@@ -107,8 +118,12 @@ public class JanelaPopUpInfo extends JDialog {
 		setVisible(true);
 	}
 	
-	/**
-	 * Create the dialog.
+	/** Cria uma instância da janela popup de informação
+	 * @param janelaPai <code>Window</code> com a janela pai da caixa de diálogo <code>JanelaPopUpInfo</code>
+	 * @param titulo <code>String</code> com o título da janela
+	 * @param msgInfo <code>String</code> com a mensagem que será mostrada na janela
+	 * 
+	 * @see Window
 	 */
 	public JanelaPopUpInfo(Window janelaPai, String titulo, String msgInfo) {
 		setType(Type.POPUP);
@@ -167,7 +182,9 @@ public class JanelaPopUpInfo extends JDialog {
 		setVisible(true);
 	}
 	
-	public void executarSomInfo() {
+	/** Executa o som de informação
+	 */	
+	private void executarSomInfo() {
 		Applet.newAudioClip(JanelaPopUpErro.class.getResource("/tsi/too/bvb/recursos/sons/chimes.wav")).play();
 	}
 	
