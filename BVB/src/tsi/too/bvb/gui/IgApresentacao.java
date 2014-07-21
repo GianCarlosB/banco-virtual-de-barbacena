@@ -38,6 +38,7 @@ public class IgApresentacao extends JFrame {
 	/** Cria uma instância da janela de apresentação do sistema BVB
 	 */
 	public IgApresentacao() {
+		setTitle("BVB - Carregando");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(IgApresentacao.class.getResource("/tsi/too/bvb/recursos/imagens/BVB - \u00EDcone.png")));
 		threadCarregamento.start();
 		setUndecorated(true);
