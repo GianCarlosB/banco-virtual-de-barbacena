@@ -117,8 +117,7 @@ public class TEActionMenuPrincipal implements ActionListener {
 						new JanelaPopUpAviso(igMenuPrincipal, "BVB - Limpar Banco de Dados", " Para que as mudanças sejam devidamente aplicadas,"
 								+ "\n o aplicativo será finalizado.");
 						
-						igMenuPrincipal.dispose();
-						System.exit(0);
+						igMenuPrincipal.terminarPrograma();
 					}
 				}
 			}
