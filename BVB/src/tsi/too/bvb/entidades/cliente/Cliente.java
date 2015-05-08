@@ -1,6 +1,7 @@
 package tsi.too.bvb.entidades.cliente;
 
 import tsi.too.bvb.entidades.Mascara;
+import tsi.too.bvb.validacoes.ValidarDados;
 
 /** A classe <code>Cliente</code> manipula dados referênte aos contatos dos clientes do BVB
  * 
@@ -118,10 +119,14 @@ public class Cliente {
 	 * @see Mascara
 	 */
 	public void insereMascara() {
-		cpf = Mascara.formatarString(cpf, "###.###.###-##");
-		endereco.setCep(Mascara.formatarString(endereco.getCep(), "#####-###"));
-		contato.setTelefoneFixo(Mascara.formatarString(contato.getTelefoneFixo(), "(##)####-####"));
-		contato.setTelefoneMovel(Mascara.formatarString(contato.getTelefoneMovel(), "(##)####-####"));
+		if(ValidarDados.validarVazio(cpf.trim()))
+			cpf = Mascara.formatarString(cpf, "###.###.###-##");
+		if(ValidarDados.validarVazio(endereco.getCep().trim()))
+			endereco.setCep(Mascara.formatarString(endereco.getCep(), "#####-###"));
+		if(ValidarDados.validarVazio(contato.getTelefoneFixo().trim()))
+			contato.setTelefoneFixo(Mascara.formatarString(contato.getTelefoneFixo(), "(##)####-####"));
+		if(ValidarDados.validarVazio(contato.getTelefoneMovel().trim()))
+			contato.setTelefoneMovel(Mascara.formatarString(contato.getTelefoneMovel(), "(##)####-####"));
 	}
 	
 	/** Remove as máscaras no cpf, cep, telefone fixo e móvel do cliente
@@ -129,10 +134,14 @@ public class Cliente {
 	 * @see Mascara
 	 */
 	public void removeMascara() {
-		cpf = cpf.replace(".", "").replace("-", "");
-		endereco.setCep(endereco.getCep().replace("-", ""));
-		contato.setTelefoneFixo(contato.getTelefoneFixo().replace("(", "").replace(")", "").replace("-", ""));
-		contato.setTelefoneMovel(contato.getTelefoneMovel().replace("(", "").replace(")", "").replace("-", ""));
+		if(ValidarDados.validarVazio(cpf.trim()))
+			cpf = cpf.replace(".", "").replace("-", "");
+		if(ValidarDados.validarVazio(endereco.getCep().trim()))
+			endereco.setCep(endereco.getCep().replace("-", ""));
+		if(ValidarDados.validarVazio(contato.getTelefoneFixo().trim()))
+			contato.setTelefoneFixo(contato.getTelefoneFixo().replace("(", "").replace(")", "").replace("-", ""));
+		if(ValidarDados.validarVazio(contato.getTelefoneMovel().trim()))
+			contato.setTelefoneMovel(contato.getTelefoneMovel().replace("(", "").replace(")", "").replace("-", ""));
 	}
 	
 	/** Retorna uma <code>String</code> com todos os dados do cliente formatados

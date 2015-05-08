@@ -189,8 +189,6 @@ public class TEActionAlterarCliente implements ActionListener {
 					
 					igAltCliente.getCliente().getEndereco().setComplemento(painelAltEndereco.getComplementoTextField().getText());
 				} // fim if(!painelAltEndereco.getComplementoTextField().getText().equals(cliente.getEndereco().getComplemento()))
-				else
-					igAltCliente.setLblCamposErrados(true);
 			} // fim if(e.getSource() == painelAltEndereco.getBtnEditarComplemento())
 			
 			else if(e.getSource() == painelAltEndereco.getBtnEditarLogradouro()) {

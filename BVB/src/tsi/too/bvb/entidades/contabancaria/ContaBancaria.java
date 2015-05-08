@@ -5,6 +5,7 @@ import java.util.Date;
 
 import tsi.too.bvb.entidades.Mascara;
 import tsi.too.bvb.entidades.tiposenumerados.TipoConta;
+import tsi.too.bvb.validacoes.ValidarDados;
 
 /** A classe <code>ContaBancaria</code> manipula dados referênte as contas bancárias do BVB
  * 
@@ -196,10 +197,13 @@ public class ContaBancaria {
 		if(this.contaSalario)
 			contaSalario = "Sim";
 		
+		if(ValidarDados.validarVazio(cpf.trim()))
+			cpf = Mascara.formatarString(cpf, "###.###.###-##");
+		
 		StringBuilder builder = new StringBuilder();
 		builder.append(" Código da Agência: ").append(codAgencia)
 				.append("\n Número da Conta: ").append("XXXXXXXXX").append("\n Tipo da Conta: ")
-				.append(tipoConta.getDescricao()).append("\n CPF: ").append(Mascara.formatarString(cpf, "###.###.###-##"))
+				.append(tipoConta.getDescricao()).append("\n CPF: ").append(cpf)
 				.append("\n Data de Abertura: ").append(new SimpleDateFormat("dd/MM/yyyy  HH:mm").format(dataAbertura))
 				.append("\n Senha Númerica: ").append(senhaNumerica)
 				.append("\n Senha Alfabética: ").append(senhaAlfabetica)
@@ -220,10 +224,13 @@ public class ContaBancaria {
 		if(this.contaSalario)
 			contaSalario = "Sim";
 		
+		if(ValidarDados.validarVazio(cpf.trim()))
+			cpf = Mascara.formatarString(cpf, "###.###.###-##");
+		
 		StringBuilder builder = new StringBuilder();
 		builder.append(" Código da Agência: ").append(codAgencia)
 				.append("\n Número da Conta: ").append(numConta).append("\n Tipo da Conta: ")
-				.append(tipoConta.getDescricao()).append("\n CPF: ").append(Mascara.formatarString(cpf, "###.###.###-##"))
+				.append(tipoConta.getDescricao()).append("\n CPF: ").append(cpf)
 				.append("\n Data de Abertura: ").append(new SimpleDateFormat("dd/MM/yyyy  HH:mm").format(dataAbertura))
 				.append("\n Senha Númerica: ").append(senhaNumerica)
 				.append("\n Senha Alfabética: ").append(senhaAlfabetica)
