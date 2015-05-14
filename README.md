@@ -4,8 +4,8 @@ BVB - Banco Virtual de Barbacena
 Trabalho prático apresentado como requisito parcial para obtenção de aprovação na disciplina de Tecnologia de Orientação
 a Objetos, do 5º período no Curso de Tecnologia em Sistemas para Internet, no Instituto Federal do Sudeste de
 Minas Gerais - Campus Barbacena.<hr>
-![menu](https://raw.github.com/GianCarlosB/BVB---Banco-Virtual-de-Barbacena/BVB/master/BVB/src/tsi/too/bvb/recursos/imagens/Logo02 - BVB.png)
-<h4>BVB<h4>
+![logo](https://raw.github.com/GianCarlosB/BVB---Banco-Virtual-de-Barbacena/master/BVB/src/tsi/too/bvb/recursos/imagens/Logo02 - BVB.png)
+<h4>BVB</h4>
 Este sistema possui três módulos: Contas Bancárias, Caixa Eletrônico e Controle de Funcionários. 
 A seguir uma breve descrição sobre cada um:<br>
 <ul>
@@ -39,4 +39,4 @@ A seguir uma breve descrição sobre cada um:<br>
 <hr>
 <h4>Screenshots</h4>
 <hr>
-![menu](https://raw.github.com/GianCarlosB/BVB---Banco-Virtual-de-Barbacena/BVB/master/BVB/screenshots/BVB - Menu.png)
+![menu](https://raw.github.com/GianCarlosB/BVB---Banco-Virtual-de-Barbacena/master/BVB/screenshots/BVB - Menu.png)
