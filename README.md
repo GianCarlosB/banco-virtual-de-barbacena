@@ -39,5 +39,10 @@ A seguir uma breve descrição sobre cada um:<br>
   <li>Biblioteca jdatepicker (para exibição gráfica de datas)</li>
 </ul>
 <hr>
+<strong>* IMPORTANTE *</strong><br>
+Para acessar a conta de administrador padrão do BVB, basta entrar com os seguintes dados:<br>
+Login: admin_bvb<br>
+Senha: 123456
+<hr>
 <h4>Screenshots</h4>
 ![menu](https://raw.github.com/GianCarlosB/BVB---Banco-Virtual-de-Barbacena/master/BVB/screenshots/BVB - Menu.png)
