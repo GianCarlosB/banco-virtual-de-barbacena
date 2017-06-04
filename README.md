@@ -44,4 +44,4 @@ Login: admin_bvb<br>
 Senha: 123456
 <hr>
 <h4>Screenshots</h4>
-![menu](/BVB/screenshots/BVB%20-%20Menu.png)
+![menu](BVB/screenshots/BVB%20-%20Menu.png)
