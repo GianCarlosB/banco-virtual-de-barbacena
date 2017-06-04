@@ -42,6 +42,8 @@ A seguir uma breve descrição sobre cada um:<br>
 Para acessar a conta de administrador padrão do BVB, basta entrar com os seguintes dados:<br>
 Login: admin_bvb<br>
 Senha: 123456
+<br/>
+Mais informações podem ser obtidas na pasta "outros" dentro do projeto.
 <hr>
 <h4>Screenshots</h4>
-![menu](BVB/screenshots/BVB%20-%20Menu.png)
+<img src="https://raw.github.com/GianCarlosB/BVB---Banco-Virtual-de-Barbacena/master/BVB/screenshots/BVB%20-%20Menu.png" alt="menu"/>
